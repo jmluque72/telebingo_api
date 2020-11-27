@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load queryset_utils %}
+
+{% block content %}
+
+    <div class="row clearfix">
+    	<legend>{% block legend %}Quiniela <span class="accion">Cargar resultados</span>{% endblock %}</legend>
+    </div>
+
+    {% block tabs %}
+        <div class="row clearfix base-tabs"> <!-- PESTAÑA EXTRACTO/GANADORES -->
+            <div class="col-md-2 tab-activa">Extracto</div>
+            {% if group.extract_sent %}
+                <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:quiniela_winners' group.pk %}">Ganadores</a></div>
+            {% else %}
+                <div class="col-md-2 tab-inactiva">Ganadores</div>
+            {% endif %}
+        </div>
+    {% endblock %}
+
+    <div class="row clearfix divisor-tabla">
+        <div class="col-md-2">
+            <label>Fecha: </label>&nbsp;{{ group.date|date:"d-N-Y" }}
+        </div>
+        <div class="col-md-2">
+            <label>Lotería: </label><span>{{ group.province }}</span>
+        </div>
+        <div class="col-md-2">
+            <label>Quiniela: </label><span>{{ group.get_type_display }}</span>
+        </div>
+        <div class="col-md-2">
+            <label>Sorteo Nro: </label><span>{{ group.number|default:"" }}</span>
+        </div>
+    </div>
+
+    <form id="results_form" method="post" action="{% url 'bet:quiniela_results' group.pk cur_draw.quiniela.pk %}">
+        {% csrf_token %}
+
+        <div class="row clearfix base-tabs"> <!-- PESTAÑA EXTRACTO/GANADORES -->
+            {% for draw in group.draws.all|order_by:"quiniela__code" %}
+                {% if draw.pk == cur_draw.pk %}
+                    <div class="col-md-2 tab-activa">
+                        {{ draw.quiniela.name }}
+                    </div>
+                {% else %}
+                    <div class="col-md-2 tab-inactiva">
+                    <a href="{% url 'bet:quiniela_results' group.pk draw.quiniela.pk %}">{{ draw.quiniela.name }}</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {% with form=resultsForm columns=1 show_order=True %}
+            {% include 'results/quiniela_results_set.html' %}
+        {% endwith %}
+
+        {% if not group.extract_sent %}
+        <br/>
+        <div class="row clearfix">
+            <button class="btn btn-info" name="save" type="submit">GUARDAR</button>
+            <input class="btn" type="button" value="Cancelar" onclick="window.history.back();"/>
+        </div>
+        {% endif %}
+
+    </form>
+
+    {% if group.is_loaded and not group.extract_sent %}
+        </br>
+        <form method="post" action="{% url 'bet:send_quiniela_extract' group.pk %}">
+            {% csrf_token %}
+            <div class="row clearfix">
+                <button class="btn btn-info" name="send" type="submit">Enviar extracto y determinar ganadores</button>
+            </div>
+        </form>
+    {% endif %}
+
+    {% block script_extracto %}
+        <script>
+        $(document).ready(function() {
+            var holder = $('.base-tabs:last');
+            if (holder.length == 0)
+                holder = $('legend');
+
+            {% if DEBUG %}
+            holder.append('<ul id="navul" class="nav navbar-nav pull-right"><a href="javascript:void(0)" id="button_fill"><h4>LLENAR</h4></a></ul>');
+            {% endif %}
+
+            $('#button_fill').on("click", function () {
+                $('input[type=number]').each(function () {
+                    var max = $(this).attr("max");
+                    if (max)
+                        $(this).val(Math.floor((Math.random() * parseInt(max)) + 1));
+                });
+            });
+        });
+        </script>
+    {% endblock %}
+
+{% endblock %}

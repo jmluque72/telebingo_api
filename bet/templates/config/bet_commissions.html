@@ -1,0 +1,70 @@
+{% extends "config/base_config.html" %}
+{% load staticfiles %}
+
+{% block selected_menu %}#settings-menu{% endblock %}
+{% block selected_tab %}#bet-commissions-tab{% endblock %}
+
+{% block content %}
+
+    {{ block.super }}
+
+    <form method="post" action="">
+        {% csrf_token %}
+
+        {{ commFormSet.management_form }}
+        <div class="row clearfix divisor-cabeceras">
+            <div class="col-md-2"><strong>Juego</strong></div>
+            <div class="col-md-2"><strong>Comisi&oacute;n (%)</strong></div>
+        </div>
+        <br/>
+        {% for form in commFormSet %}
+
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            <div class="row clearfix">
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {% if form.instance.pk %}
+                            {{ form.instance.game.name }}
+                        {% else %}
+                            {{ form.get_name_display }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ form.value }}
+                    </div>
+                </div>
+            </div>
+            {% if form.errors %}
+                <div class="row clearfix">
+
+                    <div class="col-md-2">
+                        {{ form.non_field_errors }}
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.value.errors }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {{ form.non_field_errors }}
+
+        {% endfor %}
+
+        <br/>
+        <div class="row clearfix">
+            <input class="btn" type="button" value="Cancelar" onclick="window.location={% url 'bet:old_draws' %};"/>
+            <button class="btn btn-info" name="save" type="submit">GUARDAR</button>
+        </div>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% with host=request.scheme|add:"://"|add:request.get_host %}
+    <meta charset="utf-8">
+    <meta name="author" content="RPS">
+    <title>{{ coupon.draw.game.name }}</title>
+
+    <link type="text/css" href="{{ host }}{% static 'bootstrap/css/bootstrap-responsive.min.css' %}" rel="stylesheet" media="screen">
+    <link type="text/css" href="{{ host }}{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet" media="screen">
+    <link type="text/css" href="{{ host }}{% static 'agencia24.css' %}" rel="stylesheet" media="screen">
+
+    <script src="{{ host }}{% static 'jquery/jquery-1.12.3.min.js' %}" defer></script>
+    <script type="text/javascript" src="{{ host }}{% static 'bootstrap/js/bootstrap.min.js' %}" defer></script>
+    {% endwith %}
+</head>
+<body>
+<div class="container">
+    <div class="tab-content">
+        {% regroup chances by round as round_list %}
+        {% for round in round_list %}
+            <div class="col-md-12"><h3>Ronda {{ forloop.counter }}</h3></div>
+            {% for chance in round.list %}
+            <div class="col-md-4">
+                <div class="row clearfix">
+                    <div class="billetes-tele">Billete {{ chance.letter }}</div>
+
+                    {% for line in chance.splitted_lines %}
+                        <table class="table table-bordered table-telebingo">
+                            <tr>
+                            {% for number in line %}
+                                <td class="{% if number in chance.line_results %}line {% elif number in chance.bingo_results %}bingo {% endif %}td-telebingo">
+                                    {% if number == '0' %}*{% else %}{{ number }}{% endif %}
+                                </td>
+                            {% endfor %}
+                            </tr>
+                        </table>
+                    {% endfor %}
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>{{ drawForm.price.label }}</label>
+                            {{ drawForm.price }}{{ drawForm.price.errors }}
+                        </div>
+                    </div>
+                </div>
+             </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+</body>

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load pagination_tags %}
+{% load ifusergroup %}
+
+{% block extra_head %}<!-- form.media -->{{ form.media }}{% endblock %}
+
+{% block selected_menu %}#quinielas-menu{% endblock %}
+
+{% block content %}
+	<div class="row clearfix">
+        <legend>Concursos
+            <ul id="navul" class="nav navbar-nav pull-right">
+                <li><a href="{% url 'bet:draw_quiniela_add' %}" class=" btn btn-nuevo">Nuevo Concurso</a></li>
+            </ul>
+        </legend>
+	</div>
+    {% block tabs_quiniela %}
+    <div class="row clearfix base-tabs"> <!-- PESTAÑA SORTEOS/RESULTADOS -->
+        <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:quinielas' %}">Sorteos</a></div>
+        <div class="col-md-2 tab-activa">Concursos</div>
+        <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:old_quinielas' %}">Resultados</a></div>
+        <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:provinces' %}">Provincias</a></div>
+    </div>
+    {% endblock tabs_quiniela %}
+    </br>
+
+    <form method="get" action="{% block filterform_action %}{% url 'bet:draws_quiniela' %}{% endblock %}">
+        <div class="row clearfix divisor">
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_from.label }}</label>
+                    {{ form.date_from }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_to.label }}</label>
+                    {{ form.date_to }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.quiniela.label }}</label><br />
+                    {{ form.quiniela }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.type.label }}</label><br />
+                    {{ form.type }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.state.label }}</label><br />
+                    {{ form.state }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <button class="btn btn-info" id="submit-draw-filter" type="submit" style="margin-top:24px">Filtrar</button>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+    <br />
+    <div class="row clearfix divisor-cabeceras">
+        <div class="col-md-2"><strong>Fecha</strong></div>
+        <div class="col-md-2"><strong>Quiniela</strong></div>
+        <div class="col-md-2"><strong>Tipo</strong></div>
+        <div class="col-md-2"><strong>Estado</strong></div>
+        <div class="col-md-4"><strong>Acciones</strong></div>
+     </div>
+
+    {% autopaginate draws 20 %}
+    {% for draw in draws %}
+        <div class="row clearfix divisor-tabla">
+            <div class="col-md-2">{{ draw.date_draw }}</div>
+            <div class="col-md-2">
+                <img width="35px" src="{{ draw.game.logo.url }}"/>{{ draw.quiniela }}
+            </div>
+            <div class="col-md-2">{{ draw.get_type_display }}</div>
+            <div class="col-md-2">{{ draw.get_state_display }}</div>
+            <div class="col-md-4">
+                {% block draws_actions %}
+                <table width="115" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><a href="{% url 'bet:draw_quiniela_edit' draw.pk %}"
+                           class="btn btn-sm btn-info" title="Editar">
+                        <i class="glyphicon glyphicon-pencil"></i></a></td>
+                  </tr>
+                </table>
+                {% endblock %}
+            </div>
+         </div>
+    {% endfor %}
+    {% paginate %}
+
+{% endblock %}

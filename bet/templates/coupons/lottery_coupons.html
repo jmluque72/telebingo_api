@@ -1,0 +1,85 @@
+{% extends "coupons/base_coupons.html" %}
+{% load ifusergroup %}
+{% load widget_tweaks %}
+
+{% block coupons_formset %}
+
+    {% with form=couponFormSet.empty_form %}
+        <div class="empty-form hidden">
+        <div class="row clearfix">
+            <div class="col-md-11">
+                <div class="row clearfix">
+                    <div class="col-md-2">
+                        <label>{{ form.number.label }}</label><br />
+                        {{ form.number }}{{ form.number.errors }}
+                    </div>
+                    <div class="col-md-2">
+                        <label>{{ form.fraction_sales.label }}</label><br />
+                        {% render_field form.fraction_sales max=draw.fractions %}{{ form.fraction_sales.errors }}
+                    </div>
+                    <div class="col-md-2">
+                        <label>{{ form.progresion.label }}</label><br />
+                        {{ form.progresion }}{{ form.progresion.errors }}
+                    </div>
+                    <div class="col-md-2"></div>
+                 </div>
+             </div>
+             <div class="col-md-1">
+                {% for field in form.hidden_fields %}
+                    {{ field }}
+                {% endfor %}
+            </div>
+        </div>
+        <br />
+        </div>
+    {% endwith %}
+
+    {% for form in couponFormSet %}
+        <div> {# div para formset #}
+        <div class="row clearfix">
+            <div class="col-md-11">
+                <div class="row clearfix">
+                    {% ifusergroup admin %}
+                        {% if form.instance.agency %}
+                            <div class="col-md-2">
+                            <label>Agencia</label><br />
+                            <a href="{% url 'bet:agency' form.instance.agency.id %}">{{ form.instance.agency.name }}</a>
+                            </div>
+                        {% endif %}
+                    {% endifusergroup %}
+
+                    <div class="col-md-2">
+                        <label>{{ form.number.label }}</label><br />
+                        {{ form.number }}{{ form.number.errors }}
+                    </div>
+                    <div class="col-md-2">
+                        <label>{{ form.fraction_sales.label }}</label><br />
+                        {{ form.fraction_sales }}{{ form.fraction_sales.errors }}
+                    </div>
+                    <div class="col-md-2">
+                        <label>{{ form.progresion.label }}</label><br />
+                        {{ form.progresion }}{{ form.progresion.errors }}
+                    </div>
+                    <div class="col-md-2">
+                        {% if not readonly and couponFormSet.can_delete and form.instance.fractions_bought == 0 and forloop.counter <= couponFormSet.initial_forms|length %}
+                            {{ form.DELETE }}
+                        {% endif %}
+                    </div>
+                 </div>
+             </div>
+             <div class="col-md-1">
+                {% for field in form.hidden_fields %}
+                    {{ field }}
+                {% endfor %}
+            </div>
+            {{ form.non_field_errors }}
+        </div>
+        <br />
+        </div>
+    {% endfor %}
+
+    {% if not readonly and couponFormSet|length < couponFormSet.max_num %}
+        <button type="button" class="btn btn-primary" id="addform" data-action="add-formset">+</button>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,119 @@
+[
+  {
+    "pk": 1,
+    "model": "bet.gametax",
+    "fields": {
+      "game": 1,
+      "province": 5,
+      "min_prov": "5000.00",
+      "min": "1333.33",
+      "nat_tax": "27.90",
+      "prov_tax": "5.00",
+      "min_nat": "5000.00"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "bet.gametax",
+    "fields": {
+      "game": 2,
+      "province": 5,
+      "min_prov": "5000.00",
+      "min": "0",
+      "nat_tax": "27.90",
+      "prov_tax": "5.00",
+      "min_nat": "5000.00"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "bet.gametax",
+    "fields": {
+      "game": 3,
+      "province": 5,
+      "min_prov": "5000.00",
+      "min": "1333.33",
+      "nat_tax": "27.90",
+      "prov_tax": "5.00",
+      "min_nat": "5000.00"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "bet.gametax",
+    "fields": {
+      "game": 4,
+      "province": 5,
+      "min_prov": "5000.00",
+      "min": "1000.00",
+      "nat_tax": "27.90",
+      "prov_tax": "5.00",
+      "min_nat": "5000.00"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "bet.gametax",
+    "fields": {
+      "game": 5,
+      "province": 5,
+      "min_prov": "5000.00",
+      "min": "1333.33",
+      "nat_tax": "27.90",
+      "prov_tax": "5.00",
+      "min_nat": "5000.00"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "bet.gametax",
+    "fields": {
+      "game": 6,
+      "province": 5,
+      "min_prov": "5000.00",
+      "min": "150.00",
+      "nat_tax": "27.90",
+      "prov_tax": "5.00",
+      "min_nat": "5000.00"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "bet.gametax",
+    "fields": {
+      "game": 7,
+      "province": 5,
+      "min_prov": "5000.00",
+      "min": "1333.33",
+      "nat_tax": "27.90",
+      "prov_tax": "5.00",
+      "min_nat": "5000.00"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "bet.gametax",
+    "fields": {
+      "game": 8,
+      "province": 5,
+      "min_prov": "5000.00",
+      "min": "1333.33",
+      "nat_tax": "27.90",
+      "prov_tax": "5.00",
+      "min_nat": "5000.00"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "bet.gametax",
+    "fields": {
+      "game": 9,
+      "province": 5,
+      "min_prov": "5000.00",
+      "min": "1334.00",
+      "nat_tax": "27.90",
+      "prov_tax": "5.00",
+      "min_nat": "5000.00"
+    }
+  }
+]

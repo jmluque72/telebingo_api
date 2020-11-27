@@ -1,0 +1,19 @@
+{% extends 'emails/base_email.html' %}
+{% load humanize %}
+
+{% block content %}
+    <p>Su carga de saldo fue rechazada{% if status_detail %} por mercadopago{% endif %}.</p><br>
+
+    <p>Detalles de la carga:</p>
+    <ul>
+        <li>Método: {{ movement.get_method_display }}{% if movement.type %} - {{ movement.type}}{% endif %}</li>
+        {% if movement.number %}<li>Número de transacción: {{ movement.number }}</li>{% endif %}
+        {% if movement.amount != movement.initial %}
+            <li>Monto especificado: ${{ movement.original|intcomma }}</li>
+            <li>Monto recibido: ${{ movement.amount|intcomma }}</li>
+        {% else %}
+            <li>Monto: ${{ movement.amount|intcomma}}</li>
+        {% endif %}
+        {% if movement.external_url %}<li>Cupón mercadopago: {{ movement.external_url }}</li>{% endif %}
+    </ul>
+{% endblock %}

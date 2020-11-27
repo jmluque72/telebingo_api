@@ -1,0 +1,90 @@
+[
+  {
+    "pk": 1,
+    "model": "bet.setting",
+    "fields": {
+      "default": true,
+      "code": 0
+    }
+  },
+  {
+    "pk": 2,
+    "model": "bet.setting",
+    "fields": {
+      "default": true,
+      "code": 1
+    }
+  },
+  {
+    "fields": {
+      "default": true,
+      "code": 2
+    },
+    "model": "bet.setting",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "default": true,
+      "code": 3
+    },
+    "model": "bet.setting",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "default": true,
+      "code": 4
+    },
+    "model": "bet.setting",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "default": true,
+      "code": 5
+    },
+    "model": "bet.setting",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "default": true,
+      "code": 6
+    },
+    "model": "bet.setting",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "default": true,
+      "code": 7
+    },
+    "model": "bet.setting",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "default": true,
+      "code": 8
+    },
+    "model": "bet.setting",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "default": true,
+      "code": 9
+    },
+    "model": "bet.setting",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "default": true,
+      "code": 10
+    },
+    "model": "bet.setting",
+    "pk": 11
+  }
+]

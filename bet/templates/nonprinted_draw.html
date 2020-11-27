@@ -1,0 +1,132 @@
+{% extends "base_draw.html" %}
+{% load widget_tweaks %}
+
+{% block extra_head %}<!-- form.media -->{{ drawForm.media }}{% endblock %}
+
+{% block form-action %}
+    {% if drawForm.instance.pk %}
+        {% url 'bet:draw_nonprinted_edit' game.code drawForm.instance.pk %}
+    {% else %}
+        {% url 'bet:draw_nonprinted_add' game.code %}
+    {% endif %}
+{% endblock %}
+
+{% block draw_legend %}
+    {{ game.name }}
+    {% if drawForm.instance.pk %}
+        <span class="accion">
+        {% if readonly %} Sorteo {{ drawForm.instance.get_state_display}}{% else %} Editar sorteo{% endif %}
+        </span>
+    {% else %}
+        <span class="accion"> Agregar sorteo</span>
+    {% endif %}
+{% endblock %}
+
+{% block draw_header %}{% endblock %}
+
+{% block draw_content %}
+    <div class="sub-secciones">Fechas</div>
+
+    <div class="row clearfix divisor">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>{{ drawForm.date_draw.label }}</label>
+                {{ drawForm.date_draw }}{{ drawForm.date_draw.errors }}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>{{ drawForm.date_limit_agency.label }}</label>
+                {{ drawForm.date_limit_agency }}{{ drawForm.date_limit_agency.errors }}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>{{ drawForm.date_limit.label }}</label>
+                {{ drawForm.date_limit }}{{ drawForm.date_limit.errors }}
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-secciones">Premios</div>
+		
+    <div class="row clearfix divisor">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ drawForm.prize_text.label }}</label>
+                {% render_field drawForm.prize_text %} {{ drawForm.prize_text.errors }}
+            </div>
+        </div>
+        <div class="col-md-1 text-center"><br /><strong>&oacute;</strong></div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>{{ drawForm.prize_image.label }}</label>
+                {{ drawForm.prize_image }}{{ drawForm.prize_image.errors }}
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-secciones">Datos Generales</div>
+
+    <div class="row clearfix divisor">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ drawForm.number.label }}</label>
+                {{ drawForm.number }}{{ drawForm.number.errors }}
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ drawForm.price.label }}</label>
+                {{ drawForm.price }}{{ drawForm.price.errors }}
+            </div>
+        </div>
+        {% if drawForm.price2.label != '' %}
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ drawForm.price2.label }}</label>
+                {{ drawForm.price2 }}{{ drawForm.price2.errors }}
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ drawForm.price3.label }}</label>
+                {{ drawForm.price3 }}{{ drawForm.price3.errors }}
+            </div>
+        </div>
+        {% endif %}
+
+        {% block general_details %}{% endblock %}
+     </div>
+
+    {% block tickets %}{% endblock %}
+    <br />
+
+    <div class="row clearfix divisor">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ drawForm.state.label }}</label>
+                {{ drawForm.state }}{{ drawForm.state.errors }}
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-secciones">Promociones</div>
+
+    <div class="row clearfix divisor">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>{{ drawForm.promotion_coupons.label }}</label>
+                {{ drawForm.promotion_coupons }}{{ drawForm.promotion_coupons.errors }}
+            </div>
+        </div>
+
+    </div>
+
+
+    <br />
+
+    {{ drawForm.non_field_errors }}
+
+{% endblock %}
+

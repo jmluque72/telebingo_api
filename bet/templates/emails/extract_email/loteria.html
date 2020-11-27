@@ -1,0 +1,11 @@
+{% extends 'tickets/base_ticket.html' %}
+{% load betfilters %}
+
+{% block details %}
+    <strong>Cart&oacute;n Nro:</strong>{{ details.0.coupon.number }}<br />
+    <strong>Progresi&oacute;n:</strong>{{ details.0.coupon.loteriacoupon.progresion }}<br />
+    <strong>Fracciones:</strong>{{ details.0.fraction_bought }} de {{ details.0.coupon.draw.fractions }}<br />
+    {% if ticket.real %}
+	    <img src="cid:{{ ticket.real.file.name|basename }}" alt="ticket">
+    {% endif %}
+{% endblock %}

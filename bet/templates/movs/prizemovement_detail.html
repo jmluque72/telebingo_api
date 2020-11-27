@@ -1,0 +1,7 @@
+{% extends 'movs/basemovement_detail.html' %}
+
+{% block topdetail %}
+    <div class="form-group">
+        <strong>Juego: </strong> {{ movement.winner.game.name }}
+    </div>
+{% endblock %}

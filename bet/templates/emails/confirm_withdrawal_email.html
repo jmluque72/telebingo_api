@@ -1,0 +1,7 @@
+{% extends 'emails/base_email.html' %}
+{% load humanize %}
+{% load negatefilter %}
+
+{% block content %}
+<p>Se han enviado <strong>${{ movement.amount|negate|intcomma }}</strong> a tu cuenta.
+{% endblock %}

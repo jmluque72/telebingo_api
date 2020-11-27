@@ -1,0 +1,2954 @@
+{% extends "registration/registration_base.html" %}
+{% load widget_tweaks %}
+{% block title %}Login{% endblock %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="header-wrapper header-transparent">
+    <header id="header">
+
+
+        <div class="header-inner">
+            <div class="container">
+                <div class="main-nav">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <nav class="navbar navbar-default nav-left" role="navigation">
+
+                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                    <div class="navbar-header">
+                                        {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri %}
+                                        <div class="logo">
+                                            <a href="{% url 'bet:user_profile_saldo'%}">
+                                                <img src="{% static 'img_login/logo.jpg' %}" class="img-responsive"
+                                                    alt="Loteria de Santa Cruz" />
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                        {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri %}
+                                        <div class="logo">
+                                            <a href="{% url 'bet:user_profile_saldo'%}">
+                                                <img src="{% static 'img_login/logo_lp.jpg' %}" class="img-responsive"
+                                                    alt="Loteria de La Pampa" />
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                        {% if 'a24.agencia24.com.ar' in request.build_absolute_uri %}
+                                        <div class="logo">
+                                            <a href="http://www.agencia24.com.ar/">
+                                                <img src="{% static 'img_login/logo_cb.png' %}" class="img-responsive"
+                                                    alt="Agencia 24" />
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                        {% if 'jugaya.com' in request.build_absolute_uri %}
+                                        <div class="logo">
+                                            <a href="http://help.jugaya.com/">
+                                                <img src="{% static 'img_login/logo_sf.png' %}" class="img-responsive"
+                                                    alt="Agencia 24" />
+                                            </a>
+                                        </div>
+                                        {% endif %}
+
+                                        {% if 'www.mibingomovil.com.ar' in request.build_absolute_uri %}
+                                        <div class="logo">
+                                            <a href="http://www.mibingomovil.com.ar/">
+                                                <img src="{% static 'img_login/logo_ca.png' %}" class="img-responsive"
+                                                    alt="Mi bingo" />
+                                            </a>
+                                        </div>
+                                        {% endif %}
+
+
+
+
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                    <div class="quote-btn">
+
+                                        {% if 'www.mibingomovil.com.ar' in request.build_absolute_uri %}
+                                        <a href="{% url 'bet:FAQ' %}" class="btn btn-primary float-right"
+                                            style='background-color: #023183;'>FAQ</a>
+                                        {% else %}
+                                        <a href="{% url 'bet:FAQ' %}" class="btn btn-primary float-right">FAQ</a>
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="quote-btn">
+                                        {% if 'www.mibingomovil.com.ar' in request.build_absolute_uri %}
+                                        <a href="{% url 'bet:como_se_juega' %}" class="btn btn-primary float-right"
+                                            style='background-color: #023183;'>CÓMO JUGAR</a>
+                                        {% else %}
+                                        <a href="{% url 'bet:como_se_juega' %}" class="btn btn-primary float-right">CÓMO
+                                            JUGAR</a>
+                                        {% endif %}
+
+                                    </div>
+
+
+
+                                </div>
+                            </nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+<div class="tp-banner-container fullwidthbanner">
+    <div id="rev-slider" class="tp-banner">
+        <ul>
+            <li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-title="winter">
+                <img src="{% static 'img_login/como-jugar.jpg'%}" alt="" data-bgfit="cover"
+                    data-bgposition="center center" data-bgrepeat="no-repeat">
+
+                <div class="tp-caption titulos tp-big-heading-bold tp-white sfb" data-x="25" data-y="235"
+                    data-speed="500" data-start="1000" data-easing="Back.easeOut" data-endspeed="500"
+                    style="font-size:100px;z-index: 3; max-width: auto; max-height: auto; white-space: nowrap;margin-top:-40px;color:white;">
+                    <span style="color:white;">TERMINOS Y CONDICIONES
+                        <a style="color:white;" class="btn pull-right" href="{% url 'bet:user_profile_saldo' %}">volver
+                        </a>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <div class="titulo-movil">
+            <p>
+        </div>
+        <div class="col-md-12 col-sm-12 pt-40">
+
+            <h1>TÉRMINOS Y CONDICIONES</h1>
+
+            <br />
+            <br /> {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri %}
+
+            <p>La Lotería para Obras de Acción Social de la Provincia de Santa Cruz en adelante “La Lotería” ha
+                implementado
+                el uso de una plataforma de juegos llamada “Lotería Móvil Santa Cruz” en adelante “La Plataforma”, que
+                le
+                permitirá a Ud. realizar apuestas y/o adquirir billetes de juegos oficiales a través de distintos
+                canales
+                como telefonía celular y/o web.</p>
+            <p>En el siguiente texto, denominado Términos y Condiciones de uso, como así también las Políticas de
+                Privacidad,
+                regularán la forma de uso que usted podrá hacer de los servicios que brinde la plataforma y de las
+                aplicaciones
+                que descargue para tal fin.</p>
+
+            <strong>1. Usuario Registrado o apostador</strong>
+            </br>
+            <p>Se denomina usuario registrado a la persona física que haya completado todos los datos solicitados para
+                el registro
+                en la plataforma y tenga activada su cuenta. El usuario no podrá realizar jugadas y/o compra de tickets,
+                si no se encuentra en la Provincia de Santa Cruz, por lo que se le pedirá tener la ubicación activada
+                para
+                realizar dicho control. El usuario es propietario de su cuenta en la plataforma. Automáticamente una
+                persona
+                que se registraen la plataforma está aceptando el uso y aplicación de los Términos y Condiciones,
+                conformando
+                un acuerdo entre usted y La Lotería. Sólo podrán participar en el uso de la plataformapersonas que no
+                tengan
+                ningún impedimento legal y que sean mayores de 18 años, pudiendo solicitarle la presentación o copia de
+                su
+                DNI para verificar dicha situación. Los datos proporcionados en el registro serán considerados como
+                privados.</p>
+            <strong>2. Derechos de la plataforma</strong>
+            </br>
+            <p>La plataforma se reserva el derecho de admisión de cualquier solicitud de registro de cualquier persona
+                y/o cancelar
+                cualquier cuenta de usuario registrado, si detectara algún impedimento legal o anomalía de cualquier
+                índole.
+                La Lotería podrá, a su entera discreción, modificar o interrumpir el servicio ya sea en forma parcial o
+                total
+                y el mismo podrá no estar disponible durante períodos de mantenimiento o en otros momentos. La Lotería
+                se
+                reserva el derecho de modificar los presentes Términos y Condiciones en cualquier momento y sin previo
+                aviso,
+                por lo que usted será responsable de revisarlas periódicamente, y el solo hecho de seguir utilizando la
+                plataforma
+                indicará que usted presta consentimiento a dichas normas, caso contrario podrá solicitar la baja de su
+                cuenta
+                por medio fehaciente a La Lotería.</p>
+            <strong> 3. Obligaciones del usuario</strong>
+            </br>
+            <p>Es obligación del usuario suministrar correctamente los datos solicitados al momento del registro y
+                mantenerlos
+                actualizados ante cualquier cambio. Deberá resguardar su clave personal que es de uso estrictamente
+                suyo.
+                Será responsable de todas las transacciones realizadas en su cuenta y deberá controlar en forma
+                periódica
+                el balance de su cuenta e informar cualquier anomalía a La Lotería. En el caso de que se acrediten o
+                debiten
+                fondos de su cuenta erróneamente es absoluta y total responsabilidad de usted informar de este hecho aLa
+                Lotería. Cualquier ganancia posterior al error y anterior a la notificación, relacionada o no con el
+                error,
+                será considerada no válida y devuelta ala plataforma.</p>
+            <strong>4. Uso de la Plataforma</strong>
+            </br>
+            <p>Para utilizar la plataforma, usted deberá ser un usuario registrado y cargar saldo en su cuenta
+                concurriendo
+                a la Lotería de la Provincia de Santa Cruz o a través de los medios que esta habilite. Posteriormente
+                podrá
+                realizar sus apuestas en los juegos oficiales habilitados en la plataforma por La Lotería, que serán
+                descontadas
+                del saldo disponible mientras cubra dichas valores. En su cuenta de usuario serán acreditadas las cargas
+                de crédito, se debitarán los importes para efectivizar la compra de sus Tickets/boletos y se acreditarán
+                los importes por premios menores. También podrá solicitar el retiro de dinero correspondiente a premios
+                acreditados,
+                cuyo pago será efectuado a través de los medios informados por La Lotería. Para el cobro de premios
+                mayores
+                usted deberá dirigirse a las oficinas de la Lotería de la Provincia de Santa Cruz o donde esta le
+                indique,
+                debiendo presentar la documentación requerida. Los resultados utilizados para constatar premios de
+                cualquier
+                juego, son los que informa La Lotería oficialmente en sus extractos, absolutamente ninguna otra fuente
+                de
+                datos es válida para constatar los resultados, ni siquiera los publicados en la plataforma. En el caso
+                de
+                suspensión de un sorteo, postergación o anulación, automáticamente se tomará como resolución lo que La
+                Lotería
+                indique como forma de proceder ante esta situación.</p>
+            <strong>5. Consultas y Reclamos</strong>
+            </br>
+            <p>Usted podrá realizar sus reclamos y consultas a través del mail sc@loteriamovil.com.ar o en las oficinas
+                de la
+                Lotería de la Provincia de Santa Cruz, sita en calle Perito Moreno 116 esquina Zapiola, CP (9400) – Rio
+                Gallegos,
+                Provincia de Santa Cruz. Los casos que puedan originarse no previstos en estos Términos y Condiciones,
+                serán
+                interpretados y resueltos dentro de las facultades otorgadas por la Ley.</p>
+
+            <br />
+
+        </div>
+        <div class="titulo-movil">
+            <p>
+        </div>
+        <div class="col-md-12 col-sm-12 pt-40">
+            <h1>POLITICAS DE PRIVACIDAD</h1>
+            <br />
+            <p>Nuestra política de privacidad describe qué información recogemos y cómo la utilizamos ya que el acceso a
+                los
+                servicios disponibles en nuestros canales móviles implica la aceptación de nuestra política de
+                privacidad.
+                La Lotería podrá modificar estos términos en cualquier momento notificando toda actualización de los
+                mismos.
+                La Lotería se compromete a cumplir con la protección de los datos personales establecido en la ley
+                25.326,
+                informando a los titulares de los mismos que pueden ejercer los derechos de acceso, rectificación,
+                cancelación
+                y oposición, dirigiéndose por mail a: sc@loteriamovil.com.aro bien, poniéndose en contacto con La
+                Lotería
+                al número (02966) 422631.</p>
+
+            <strong>Registros e Identificación de Usuarios</strong>
+            </br>
+            <p>El Registro de Usuarios de la plataforma es obligatoria para poder realizar apuestas en los juegos
+                autorizados
+                por La Lotería disponibles para nuestra Plataforma de Apuestas en nuestros canales móviles. La
+                registración
+                se puede realizar en La Lotería o en sus medios oficiales habilitados. Durante el proceso de registro se
+                requerirá como única información personal el Nombre, email y DNI. Luego, se controlará que el registro
+                se
+                esté realizando dentro de la jurisdicción de La Lotería, es decir, en la Provincia de Santa Cruz. En
+                caso
+                de recibir un premio, que por el monto, deba tributar el impuesto al premio, conforme las disposiciones
+                vigentes,
+                se deberá completar por única vez un formulario con datos complementarios, disponible por Internet o en
+                La
+                Lotería. Esta información adicional será validada para la acreditación del pago de su premio. La
+                aceptación
+                de estos términos y condiciones implica el consentimiento para la realización de dichas verificaciones.
+            </p>
+            <strong>Uso de la Información</strong>
+            </br>
+            <p>Toda la información proporcionada será tratada de forma segura y de conformidad con la normativa de
+                protección
+                de datos. La actualización y/o rectificación de los datos e información personal podrá realizarse en
+                cualquier
+                momento accediendo por los canales habilitados. La Lotería no compartirá información personal sobre los
+                usuarios
+                del sitio con otras personas, organizaciones o compañías, bajo ningún concepto ni circunstancia.
+                Ocasionalmente,
+                podrá recibir en su correo electrónico promociones, información adicional o noticias que La Lotería
+                entienda
+                que pueden resultar de interés. Para cancelar la suscripción a esos correos, se deberá remitir un correo
+                a sc@loteriamovil.com.aro bien, puede hacer esto poniéndose en contacto con nuestro centro de “Atención
+                al
+                cliente” al número (02966) 422631.</p>
+            <strong>Protección de Datos</strong>
+            </br>
+            <p>Nuestras medidas para la protección de datos incluyen seguridad física y espacial de datos, controles de
+                acceso
+                y sistemas que garantizan un alto nivel de codificación y seguridad de datos.</p>
+            <strong>Medidas de Seguridad</strong>
+            </br>
+            <p>La información contenida en la cuenta está protegida por una contraseña generada por el Usuario quien
+                debe resguardar
+                de terceras personas la clave personal de acceso a LA PLATAFORMA. Toda transacción que se realice bajo
+                un
+                usuario y contraseña serán bajo entera responsabilidad del titular de dicha cuenta y clave personal. En
+                caso
+                de que la clave haya sido sustraída o revelada por error a un tercero, el Usuario estará obligado a
+                proceder
+                al cambio de la misma, para lo cual se le facilitará un módulo de gestión de sus datos personales y
+                clave.
+                La Lotería no asume responsabilidad alguna por el uso indebido de los datos y contraseñas de acceso. La
+                Lotería
+                no envía correos electrónicos ni realiza llamadas para solicitar cambio y/o confirmación de datos
+                personales
+                (nombre de usuario, claves, etcétera).</p>
+            <strong>Cancelación de inscripción en el Registro</strong>
+            </br>
+            <p>El Usuario podrá cancelar o desactivar su cuenta en cualquier momento. La cancelación o desactivación de
+                la cuenta
+                producirá la eliminación de los datos personales del banco de datos de La Lotería, excepto que por causa
+                justificada o requerimiento de algún organismo de control deban conservarse dichos datos.</p>
+            <strong>Información sobre Defensa al Consumidor</strong>
+            </br>
+            <p>Nuestros usuarios encontraran información respecto a la legislación vigente en nuestro país en materia de
+                Defensa
+                del Consumidor ingresando en el sitio oficial http://www.consumidor.gov.ar, de la Subsecretaria de
+                Defensa
+                del Consumidor, organismo dependiente de la Secretaria de Comercio Interior, Ministerio de Economía y
+                finanzas
+                Publicas de la Nación. Asimismo, dispondrá de las vías de contacto de su interés.</p>
+
+            <br />
+
+        </div>
+        <div class="titulo-movil">
+            <p>
+        </div>
+        <div class="col-md-12 col-sm-12 pt-40">
+            <h1>REGLAMENTO GENERAL</h1>
+            </br>
+            <strong>1.</strong> La Plataforma de juegos “Lotería Móvil Santa Cruz” (en adelante denominado, “LA
+            PLATAFORMA”) y el
+            Registro de Jugadores de Apuestas (en adelante, denominado “el Registro”), son organizados y ejecutados por
+            La
+            Lotería para Obras de Acción Social de la Provincia de Santa Cruz, en adelante “La Lotería”, y se regirán
+            por
+            las presentes normas y las que en el futuro dicte La Lotería.</p>
+            </br>
+            <strong>2.</strong> El sólo hecho de utilizar LA PLATAFORMA implicará para el apostador (en adelante
+            denominado “el Usuario”)
+            que, a partir de dicho momento, adhiere en forma automática e inmediata a todos y a cada uno de los
+            siguientes
+            Términos y Condiciones y de todas las normas, reglamentos, sus actualizaciones y condiciones de uso de todos
+            los servicios y juegos habilitados en LA PLATAFORMA por La Lotería.</p>
+            </br>
+            <strong>REGISTRO EN LA PLATAFORMA</strong>
+            </br>
+            </p>
+            <strong>3.</strong> A los efectos de acceder a LA PLATAFORMA, La Lotería ha creado el Registro de Usuarios
+            de la plataforma
+            que tiene por objeto garantizar el juego responsable, evitar el fraude y la participación de menores de
+            edad.</p>
+            </br>
+            <strong>4.</strong> Podrán Registrarse en la plataforma únicamente las personas físicas mayores de edad que
+            no cuenten
+            con ningún impedimento o inhabilitación legal para ello. El Registro es único, individual y personal. El
+            Usuario
+            no puede autorizar a ninguna otra persona a utilizar su cuenta. Los datos proporcionados en el registro
+            serán
+            considerados como privados. Al registrarse se abrirá automáticamente una cuenta asignada al Usuario
+            registrado,
+            libre de gastos de inscripción, donde quedarán registrados todos sus movimientos (cargas de crédito, pago de
+            apuestas, cobro de premios y retiros de dinero).</p>
+            </br>
+            <strong>5.</strong> El Registro podrá realizarse en La Lotería, situada en calle Perito Moreno 116 esquina
+            Zapiola, CP
+            (9400) – Rio Gallegos, Provincia de Santa Cruz,en los lugares oficiales habilitados por la misma, donde se
+            le
+            dará el instructivo para proceder a la registración, o vía registro en la aplicación móvil, completando
+            todos
+            los datos requeridos en el formulario de registro y deberá aceptar los Términos y Condiciones de Uso de LA
+            PLATAFORMA.</p>
+            </br>
+            <strong>6.</strong> El Usuario es responsable de mantener actualizados los datos personales declarados en la
+            inscripción.
+            El DNI ingresado en el proceso de registro, no podrá ser modificado por el usuario una vez confirmado el
+            mismo.
+            En caso de haber cometido un error, deberá solicitar su corrección vía mail a sc@loteriamovil.com.ar.</p>
+            <br />
+            <strong>7.</strong> La Lotería no solicitará datos extras por ningún medio que no figuren en el formulario
+            de registro,
+            así como también no difundirá los datos del Registro, y solo usará los mismos para la finalidad establecida
+            en
+            el presente.</p>
+            <br />
+            <strong>8.</strong> El Registro del usuario permanecerá vigente hasta la notificación por medio fehaciente,
+            por parte
+            del Usuario a La Lotería, de su decisión de retirar su inscripción al registro y haya realizado la
+            extracción
+            de los saldos remanentes de su cuenta asignada. Asimismo, y transcurrido el término de 120 días sin que se
+            hayan
+            registrados movimientos en la cuenta del usuario La Lotería podrá efectuar de manera automática la baja en
+            el
+            sistema.
+            </p>
+            <br />
+            <strong>9.</strong> El Usuario se compromete a resguardar de terceras personas su clave personal de acceso a
+            LA PLATAFORMA
+            y toda transacción que se realice bajo su usuario y contraseña serán bajo su entera responsabilidad. En caso
+            de que su clave haya sido sustraída o revelada por error a un tercero, tendrá la obligación de proceder al
+            cambio
+            de la misma.</p>
+            <br />
+            <strong>CUENTA DE USUARIO, COMPROBANTES/TICKETSELECTRONICOS (CARGA DE CREDITO, APUESTAS, COBRO DE PREMIOS,
+                RETIRO DE
+                SALDO)
+            </strong>
+            <br />
+            </p>
+            <strong>10.</strong> Al registrarse el Usuario, le será asignada una cuenta donde quedarán asentados todos
+            sus movimientos
+            a través de los comprobantes y/o tickets electrónicos generados por la plataforma. Dichos comprobantes serán
+            respaldo válido para La Lotería y el Usuario, de cada uno de los movimientos registrados en la cuenta, y
+            podrán
+            ser impresos y resguardados por la Lotería en caso de querer conservar los mismo en soporte físico a fines
+            administrativos.
+            Dicha cuenta podrá ser consultada por el usuario en cualquier momento.</p>
+            <br />
+            <strong>11.</strong> Los depósitos o cargas de crédito se realizarán por medio de soportes físicos o
+            electrónicos autorizados
+            por La Lotería. Los mismos podrán ser utilizados en los medios tecnológicos habilitados por La Lotería, como
+            por ejemplo, dispositivos móviles, internet, u otro que a La Lotería disponga. </p>
+            <br />
+            <strong>12.</strong> Las apuestas y/o compra de billetes de juego, se realizarán en forma directa, a través
+            de telefonía
+            celular o móvil, o cualquier otro medio que disponga La Lotería. Previamente, el Usuario deberá registrarse
+            cumpliendo
+            los requisitos solicitados y poseer saldo disponible, pagar las apuestas realizadas en los juegos
+            habilitados
+            por La Lotería. Posteriormente podrá consultar el ticket electrónico de su jugada emitido por LA PLATAFORMA.
+            </p>
+            <br />
+            <strong>13.</strong> Los premios correspondientes a los Usuarios cuya apuesta emitida hubiere resultado
+            premiada según
+            la mecánica del juego realizado, les serán abonados en la cede la Lotería o a través de la agencia oficial
+            que
+            esta indique. Así mismo la Lotería podrá acreditar en el saldo de su cuenta si su monto no es mayor al
+            máximo
+            reglamentado por La Lotería, en cuyo caso, será considerado pagado una vez acreditado el valor de dicho
+            premio
+            en la cuenta del Usuario, tomando como válido el comprobante electrónico emitido por LA PLATAFORMA.En caso
+            de
+            premios mayores, la acreditación y/o cobro de los mismos, se ajustarán a los procedimientos reglamentados
+            por
+            La Lotería, debiendo el usuario presentar la documentación que le sea requerida.</p>
+            <br />
+            <strong>14.</strong> Los saldos en la cuenta del Usuario generados por el cobro de premios, son retornables
+            y disponibles
+            para su retiro dentro de los horarios de atención establecidos por La Lotería. El Usuario podrá en cualquier
+            momento afectar dicho saldo disponible para la realización de nuevas apuestas o hacer efectivo el retiro de
+            los
+            mismos, total o parcialmente a través de los medios y lugares que La Lotería indique.</p>
+            <br />
+            <strong>LIMITE DE RESPONSABILIDAD. PROHIBICIONES</strong>
+            <br />
+            </p>
+            <strong>15.</strong> La Lotería, en ningún caso y bajo ninguna circunstancia, será responsable por fallas o
+            errores atribuibles
+            al equipo telefónico utilizado por el Usuario, o errores de conectividad, enlace y/o transferencia de datos
+            que
+            impidan el registro de la operatoria en LA PLATAFORMA. El límite de la responsabilidad por parte de La
+            Lotería
+            respecto a los errores en los que hubiere incurrido LA PLATAFORMA, es el monto mínimo de la apuesta.</p>
+            <br />
+            <strong>16.</strong> Será considerada válida una apuesta que sea acompañada por el ticket electrónico (con
+            código de
+            seguridad válido) emitido por el sistema y registrada en tiempo y forma. En el caso de que se registraran, a
+            favor del Usuario, premios que no correspondieren por error, es obligación del Usuario notificar dicha
+            circunstancia
+            a La Lotería. Cualquier beneficio que el Usuario pretenda obtener o conservar por error de LA PLATAFORMA
+            constituirá
+            una situación de enriquecimiento sin causa y lo obligará a restituir el importe mal percibido en forma
+            inmediata.</p>
+            <br />
+            <strong>17.</strong> Los casos no previstos en el presente Reglamento serán interpretados y resueltos por La
+            Lotería
+            dentro de las facultades que le otorga la Ley. Las transgresiones a esta Reglamentación, y a las normas que
+            en
+            su consecuencia se dicten, serán juzgadas y sancionadas por La Lotería</p>
+            <br />
+            <strong>18.</strong> Las apuestas realizadas en LA PLATAFORMA, quedan registradas con un código de
+            transacción/control,
+            generando un ticket electrónico que puede ser impreso por el Usuarioy/o La Lotería. El Usuario puede
+            consultar
+            los movimientos de su cuenta (depósitos y apuestas realizados con los detalles de las mismas, retiro de
+            efectivo
+            y saldo disponible). Las apuestas confirmadas por el Usuario y validadas por LA PLATAFORMA no pueden ser
+            anuladas
+            por el Usuario.</p>
+            <br />
+            <strong>19.</strong> Las actividades y transacciones realizadas en LA PLATAFORMA se regirán por la
+            legislación Argentina.
+            Cualquier controversia derivada de la relación entre el Usuario Jugador y La Lotería será competencia de los
+            Tribunales Ordinarios de la ciudad de Rio Gallegos de la Provincia de Santa Cruz, con renuncia a cualquier
+            otro
+            fuero o jurisdicción que pudiere corresponder.</p>
+            <br />
+
+            <h1>REGLAMENTO DE JUEGO</h1>
+            </br>
+            <h2>REGLAMENTO DEL JUEGO "TELEBINGO" DE LOTERÍA DEL SUR</h2>
+            </p>
+            <strong>Normas Generales:</strong>
+            </br>
+            </p>
+            <strong>Artículo 1º</strong> La Lotería del Sur emitirá en circulación y comercialización un juego de azar
+            denominado
+            “TELEBINGO”, determinando el programa de emisión, lugar y horarios de los sorteos de sala.</p>
+            </br>
+            <strong>Artículo 2º</strong> El juego de azar implementado por el artículos anterior, tiene las
+            características de un
+            “Bingo de Sala” y consiste en la participación del público apostador, a través de la compra de cupones de
+            bingo
+            pre-impresos/electrónicos, que contienen una combinación de números, en un sorteo que se resuelve en una
+            sala
+            por medio de un sistema de extracción individual desde un sorteador o aparato similar, sin reposición, de
+            una
+            cantidad de bolillas numeradas desde el número 01 hasta el 90 inclusive.</p>
+            </br>
+            <strong>Artículo 3º</strong> Cada sorteo será emitido en directo por televisión, desde la sala de bingo que
+            se habilite
+            a tales efectos, pudiendo Lotería del Sur utilizar otros medios de comunicación e información como
+            complemento
+            y eventualmente como alternativa para casos de fuerza mayor, con el objeto de garantizar la transparencia
+            necesaria
+            de los resultados a los apostadores que participan del mismo.</p>
+            </br>
+            <strong>Artículo 4º</strong> Los sorteos se resolverán de la manera descripta anteriormente, en forma
+            individual en cada
+            ente miembro, en los lugares, fechas y horarios que se determine para cada caso, de acuerdo con el presente
+            reglamento
+            y con las normas específicas que a tales efectos se dicten.</p>
+            </br>
+            <strong>Artículo 5º</strong> A todos los efectos legales, Lotería del Sur será el ente emisor de los cupones
+            de Bingo
+            que circularán en cada uno de sus entes miembros.</p>
+            </br>
+            <strong>Artículo 6º</strong> El juego implementado en el artículo primero, se regirá por las normas
+            contenidas en el
+            presente reglamento, las que se consideran básicas respecto del funcionamiento del juego y, por aquellas
+            normas
+            específicas que se dicten en cada uno de los entes miembros, las cuales solamente podrán estar referidas a
+            los
+            aspectos variables del juego y, deberán ser autorizadas a través de Resoluciones de Presidencia de Lotería
+            del
+            Sur.
+            </p>
+            </br>
+            <strong>Artículo 7º</strong> Los aspectos variables mencionados en el artículo anterior se refieren a las
+            modalidades
+            del juego inherentes a cada ente miembro en particular, los programas de emisión, las fechas de realización
+            de
+            los sorteos, horarios de los mismos, aspectos cualitativos de los programas de premios, y cualquier otro
+            aspecto
+            que sea determinable en forma local y, siempre que no se oponga al presente reglamento.</p>
+            </br>
+            <strong>Artículo 8º</strong> Los apostadores participarán de este juego mediante la adquisición del cupón de
+            bingo, en
+            cuyo frente se individualizará en forma clara y diferenciada los distintos cartones incluidos en el mismo y
+            a
+            qué ronda de sorteo pertenecen.</p>
+            </br>
+            <strong>CARACTERÍSTICAS:</strong>
+            </br>
+            <strong>Artículo 9º</strong> Cada uno de los cupones de bingo emitidos será numerado correlativamente y
+            contendrá una o más combinaciones de quince (15) números por cada una de las rondas que se establezcan para
+            cada sorteo, a razón de uno o más cartones por ronda. El cupón deberá especificar, si correspondiere, la
+            serie a la cual pertenece, su valor nominal o precio de venta al público, el número de emisión, la fecha del
+            sorteo que corresponda y contener elementos de seguridad.</p>
+            </br>
+            <strong>Artículo 10º</strong> Lotería del Sur no se responsabilizará ni atenderá reclamos por la pérdida,
+            sustracción,
+            deterioro, adulteración y/o cualquier otra circunstancia que imposibilite la presentación material, total e
+            intacta
+            del cupón de bingo para el cobro de los premios.</p>
+            </br>
+            <strong>Artículo 11º</strong> El cupón de bingo será al portador e innominado, presumiéndose que el portador
+            es el propietario,
+            no reconociendo Lotería del Sur coparticipación en la propiedad de cada cupón de bingo, a los efectos del
+            cobro
+            de premios.</p>
+            </br>
+            <strong>DE LA COMERCIALIZACIÓN</strong>
+            </br>
+            </p>
+            <strong>Artículo 12º</strong> Lotería del Sur podrá comercializar, de acuerdo a la demanda operada en el
+            mercado, más
+            de una serie por emisión, como asimismo variar de un sorteo a otro la cantidad de cartones que componen el
+            cupón
+            y/o la cantidad de cupones que forman la serie.</p>
+            </br>
+            <strong>Artículo 13º</strong> La venta de cupones en cada una de las jurisdicciones podrá realizarse en
+            forma directa
+            al público en la Sala de Bingo, a través de su red de agencias oficiales y/o a través de otros canales de
+            venta
+            no tradicionales que el Ente miembro estime necesario y comercialmente conveniente, atendiendo a la
+            comodidad
+            del público adquirente, que por alguna razón no pudiera concurrir personalmente a la Sala de Bingo.</p>
+            </br>
+            <strong>DEL SORTEO</strong>
+            </br>
+            </p>
+            <strong>Artículo 14º</strong> Se deja establecido que en los sorteos o rondas programadas, únicamente
+            participarán los
+            cupones vendidos, por los que se declarará vendido a todo cupón distribuido que no haya sido reintegrado en
+            carácter
+            de devolución, o que no haya ingresado al sistema por el procedimiento de lectura de devoluciones.</p>
+            </br>
+            <strong>Artículo 15º</strong> Los sorteos serán transmitidos en vivo y en directo por cualquier medio
+            audiovisual (televisión,
+            radio, internet, etc.)</p>
+            </br>
+            <strong>Artículo 16º</strong> Los sorteos o rondas se ajustarán a las siguientes normas:
+            </br>
+            <strong>a)</strong>Se utilizará un bolillero transparente de extracción automatizada para realizar el sorteo
+            propiamente
+            dicho en el cual se introducirá la cantidad de noventa (90) bolillas numeradas del 01 al 90.
+            </br>
+            <strong>b)</strong>El locutor anunciará al público el número de sorteo que dará comienzo, el número de serie
+            o series vendidas, el importe, y el programa de premios que corresponda.
+            </br>
+            <strong>c)</strong>El locutor anunciará la iniciación de la ronda, procediéndose a la extracción de las
+            bolillas una a una, siendo cantadas a viva voz por el personal designado a tal efecto y, enfocadas por las
+            cámaras de televisión, debiendo el escribano del sorteo controlar las mismas y consignarlas en el Acta de
+            Sorteo, estableciéndose que la misma es válida únicamente si es cantada correctamente por el locutor, por
+            cuanto otros indicadores solamente son auxiliares del sorteo.
+            </br>
+            <strong>d)</strong>Paralelamente a la iniciación de la ronda, se pondrá en funcionamiento el sistema de
+            cómputos que
+            realizará el seguimiento del mismo, y determinará el cupón ganador de la ronda.</p>
+            </br>
+            <strong>Artículo 17º</strong> El sistema de cómputos empleado para el seguimiento del sorteo será
+            supervisado por los
+            funcionarios designados a tales efectos por cada Ente miembro.</p>
+            </br>
+            <strong>Artículo 18º</strong> En todos los casos las autoridades que fiscalizan el sorteo confeccionarán un
+            Acta en el
+            que constará el detalle y el orden en que las bolillas van apareciendo.</p>
+            </br>
+            <strong>Artículo 19º</strong> A medida que las bolillas numeradas vayan siendo extraídas los participantes
+            deberán marcar
+            en sus cartones los números que se van cantando, cuando éstos coincidan con los números impresos en sus
+            cartones.</p>
+            </br>
+            <strong>Artículo 20º</strong> El primer participante que complete marcando –conforme con el artículo
+            anterior- cualquiera
+            de las líneas horizontales de cada cartón se hará acreedor al premio “Línea” establecido en el programa de
+            premios
+            correspondiente.- Si hubiera más de un ganador, el premio deberá ser compartido entre ellos.</p>
+            </br>
+            <strong>Artículo 21º</strong> El primer participante que complete marcando –conforme con el artículo 20- los
+            quince (15)
+            números del cartón se hará acreedor al premio “Bingo” establecido en el programa de premios correspondiente,
+            aún en el supuesto en que haya sido favorecido anteriormente con el premio “Línea”. Si hubiera más de un
+            ganador,
+            el premio deberá ser compartido entre ellos.</p>
+            </br>
+            <strong>Artículo 22º</strong> Lotería del Sur podrá poner en juego el “Pozo Acumulado”, que consiste en la
+            obtención
+            de un premio “Línea” o “Bingo” por parte de uno o más participantes, antes de ser extraídas una determinada
+            cantidad
+            de bolillas fijada previamente a esos efectos.</p>
+            </br>
+            <strong>Artículo 23º</strong> Cuando problemas técnicos o de fuerza mayor de cualquier índole imposibiliten
+            la prosecución
+            de un sorteo, Lotería del Sur dejará expresa constancia de la situación en el Acta del sorteo. En caso de
+            cancelación
+            del sorteo, Lotería del Sur comunicará además, mediante publicación en el diario de mayor circulación del
+            Ente
+            miembro involucrado, la forma y plazo en que se efectuará la devolución de importes a los tenedores de
+            cupones.
+            Asimismo, Lotería del Sur se reserva el derecho de suspender o cancelar los sorteos programados en casos de
+            fuerza
+            mayor.
+            </p>
+            </br>
+            <strong>Artículo 24º</strong> Lotería del Sur emitirá un extracto oficial con el resultado de cada sorteo,
+            en el que
+            constará el o los números del o de los cupones premiados y el premio correspondiente, como asimismo los
+            números
+            extraídos. Dicho extracto será el medio oficial, definitivo e inapelable del resultado del sorteo con la
+            finalidad
+            de que el público pueda realizar el control correspondiente de sus cupones.</p>
+            </br>
+            <strong>DE LOS PREMIOS</strong>
+            </br>
+            </p>
+            <strong>Artículo 25º</strong> La suma destinada a premios será fija, quedando Lotería del Sur facultada a
+            distribuir
+            este monto dentro del programa de premios establecido para cada sorteo y modificar dichos montos cuando
+            razones
+            fundadas así lo aconsejen. Lotería del Sur podrá poner en juego “Promociones Especiales”, con el fin de
+            incrementar
+            el volumen de ventas, disponiendo los montos y la duración por medio de Resoluciones de Presidencia.</p>
+            </br>
+            <strong>Artículo 26º</strong> Del monto total bruto recaudado de cada sorteo, Lotería del Sur deducirá el
+            cinco por ciento
+            (5%) para constituir un Fondo de Reserva que será destinado a cubrir erogaciones inherentes al desarrollo,
+            expansión,
+            mejoramiento y cualquier otra actividad que redunde en futuros incrementos de ventas. Se entiende por monto
+            total
+            bruto recaudado al importe que surge de multiplicar el valor del cupón por la cantidad de cupones vendidos.
+            </p>
+            </br>
+            <strong>Artículo 27º</strong> Los premios podrán ser en efectivo, bienes muebles o inmuebles, u otros
+            premios fantasías,
+            siendo la distribución de los mismos en cada ronda una facultad de Lotería del Sur. La posibilidad de
+            canjear
+            un premio en especies por dinero en efectivo es facultad exclusiva de Lotería del Sur y, en el caso de
+            otorgarse,
+            se hará con una quita del diez por ciento (10%) sobre el valor del premio en especie, importe éste que
+            pasará
+            a formar parte del Fondo de Reserva del artículo anterior.</p>
+            </br>
+            <strong>Artículo 28º</strong> En el caso que exista más de un ganador de premios en especie (bienes muebles,
+            inmuebles,
+            vehículos, etc.) y de no existir acuerdo entre los ganadores, Lotería del Sur podrá canjearlo por dinero,
+            efectuando
+            una quita del diez por ciento (10%) sobre el valor nominal del premio, importe éste que pasará a formar
+            parte
+            del Fondo de Reserva del artículo 27º. Si hubiera más de un ganador de premios en dinero, los mismos se
+            distribuirán
+            en partes iguales.</p>
+            </br>
+            <strong>Artículo 29º</strong> El pago de los premios se realizará en la sala de bingo si el apostador se
+            encontrara presente
+            en la misma, en caso contrario los premios se abonarán a partir del tercer día hábil posterior a la
+            realización
+            del sorteo al portador del cupón ganador en los lugares que cada ente miembro establezca a tales efectos.
+            </p>
+            </br>
+            <strong>Artículo 30º</strong> Los premios adjudicados se hallan sujetos a las retenciones y/o gravámenes que
+            eventualmente
+            correspondan según las normas de orden nacional, provincial y/o municipal en vigencia al momento de la
+            percepción
+            del premio, asi como también a las normas emanadas de la Unidad de Información Financiera (UIF) que
+            correspondan.</p>
+            </br>
+            <strong>Artículo 31º</strong> El pago de premios caduca a los diez (10) días hábiles contados a partir del
+            día siguiente
+            de la realización del sorteo respectivo. La totalidad del monto de los premios caducos pasarán a integrar el
+            “Fondo de Reserva” del artículo 27 de este Reglamento.</p>
+            </br>
+            <strong>Artículo 32º</strong> El apostador que pretendiera ser ganador de un premio y no apareciera en las
+            nóminas oficiales,
+            podrá presentar su reclamo, debiéndolo hacer por escrito ante el Ente miembro organizador, adjuntando las
+            pruebas
+            que respalden su argumento, dentro de los tres (3) días hábiles siguientes a la fecha del respectivo sorteo.
+            </p>
+            </br>
+            <strong>Artículo 33º</strong> En todos los casos los premios se entregarán identificando al o a los
+            ganadores, en acto
+            público y con amplia difusión del hecho por los medios de comunicación que Lotería del Sur estime adecuados,
+            condición a la que el o los beneficiarios no podrá negarse ni exigir retribución alguna, bajo pena de no
+            recibir
+            el premio obtenido.</p>
+            </br>
+            <strong>Artículo 34º</strong> El precio de venta al público de cada uno de los cupones del TELEBINGO, se
+            fija inicialmente
+            en un valor pesos cinco ($5). Las modificaciones de este valor de venta al público, por motivo de
+            variaciones
+            de costos, de mercado y otros factores económicos y/o comerciales de cualquier índole que lo justifiquen,
+            deberán
+            resolverse a través del Consejo de Administración de Lotería del Sur.</p>
+            </br>
+            <strong>Artículo 35º</strong> El solo hecho de participar en el juego implica la aceptación integral del
+            presente reglamento,
+            no pudiendo los reclamantes oponerse al mismo ni plantear la vigencia de otras normas. No podrán participar
+            del
+            juego ni cobrar premios los menores de dieciocho (18) años.</p>
+            </br>
+            <strong>Artículo 36º</strong> Lotería del Sur se reserva las siguientes facultades:
+            </br>
+            <strong>a)</strong>Interpretar y aplicar las disposiciones del presente Reglamento.
+            </br>
+            <strong>b)</strong>Dictar disposiciones técnicas y normas complementarias.
+            </br>
+            <strong>c)</strong>Aplicar penalidades a los intervinientes en la comercialización cuando su accionar no se
+            ajuste al
+            presente Reglamento y demás normas que regulen el juego.
+            </br>
+            <strong>d)</strong>Resolver las cuestiones no previstas en el presente Reglamento.</p>
+            </br>
+            <strong>Artículo 37º</strong>Por cualquier divergencia que pudiera plantearse entre los participantes del
+            juego y Lotería
+            del Sur, las partes se someten a la jurisdicción y competencia de los Tribunales Ordinarios de la Ciudad
+            Santa
+            Rosa (Provincia de La Pampa) con la exclusión de cualquier otro fuero que pudiera corresponderles.</p>
+            </br>
+
+            <h2>REGLAMENTO DEL JUEGO “MINIBINGO” DE LOTERÍA DEL SUR</h2>
+            </br>
+            </p>
+            <strong>NORMAS GENERALES</strong>
+            </br>
+            </p>
+            <strong>Artículo 1º</strong> La Lotería del Sur emitirá en circulación y comercialización un juego de azar
+            denominado “MINIBINGO”, como una variante del juego “TELEBINGO”, determinando el programa de premios,
+            emisión, lugar, día y hora de los sorteos.</p>
+            </br>
+            <strong>Artículo 2º</strong> El juego de azar implementado por el artículos anterior, es un juego de
+            características
+            de un “Bingo de Sala” y consiste en la participación del público adquirente de cupones
+            pre-impresos/Electrónicos,
+            con una combinación de números, en un sorteo por el sistema de extracción individual desde un sorteador o
+            aparato
+            similar, sin reposición, de una cantidad de bolillas de entre una serie de tamaño mayor, identificadas desde
+            el número 01 hasta el 90 inclusive, emitido en directo por televisión desde una sala de bingo el que podrá
+            ser
+            transmitido por otro medio de información como complemento y eventualmente como alternativa en casos de
+            fuerza
+            mayor, con el objeto de brindar los servicios del juego a todos los apostadores que no se hallen en
+            condiciones
+            concurrir a la sala de bingo.</p>
+            </br>
+            <strong>Artículo 3º</strong> La LOTERÍA DEL SUR será el Ente emisor de los cupones del juego que circularán
+            bajo la denominación
+            del bingo de sala llamado “MINIBINGO” en la Provincia de Santa Cruz.</p>
+            </br>
+            <strong>Artículo 4º</strong> El solo hecho de participar en el juego, involucra para quienes intervienen en
+            la venta
+            y para los adquirentes la aceptación integral de la presente Reglamentación. No podrán participar del juego
+            ni
+            efectivizar los premios los menores de dieciocho (18) años.</p>
+            </br>
+            <strong>Artículo 5º</strong> Por cualquier divergencia que pudiera suscitarse entre los participantes del
+            juego con la
+            LOTERÍA DEL SUR, las partes se someten a la jurisdicción y competencia de los Tribunales Ordinarios de la
+            Ciudad
+            de Río Gallegos (Provincia de Santa Cruz) con la exclusión de cualquier otro fuero que pudiera
+            corresponderles.</p>
+            </br>
+            <strong>DE LOS CERTIFICADOS SORTEABLES</strong>
+            </br>
+            </p>
+            <strong>Artículo 6º</strong> El precio de venta al público del cupón del juego se fija para el inicio de la
+            explotación del MINIBINGO en un valor de de pesos cinco ($ 5), para cada uno de ellos; obteniendo el
+            apostador la posibilidad de doble chance, lo que equivale a dos (2) opciones para un mismo sorteo. Las
+            modificaciones necesarias de este valor de venta al público del cupón, como así también del formato del
+            mismo, por motivos de variaciones de costos, de mercado, u otros factores económicos o situaciones de
+            cualquier índole que las justifiquen, serán decididas por la LOTERÍA DEL SUR, dejándose constancia de ello
+            en un Acta. Cada cupón del juego estará compuesto de dos (2) cartones con una combinación de QUINCE (15)
+            números cada uno, el cual contendrá la especificación de la serie a la que pertenece y, un elemento de
+            seguridad, además del valor nominal de venta al público y la fecha del sorteo que corresponda.</p>
+            </br>
+            <strong>Artículo 7º</strong> La LOTERÍA DEL SUR no se responsabilizará ni atenderá reclamos por la pérdida,
+            sustracción,
+            deterioro, adulteración y/o cualquier otra circunstancia que imposibilite la presentación material, total e
+            intacta
+            del cupón del juego, al cobro.</p>
+            </br>
+            <strong>Artículo 8º</strong> El cupón será innominado y la LOTERÍA DEL SUR, no reconocerá coparticipación en
+            la propiedad
+            de cada certificado sorteable, a los efectos s del cobro de premios.</p>
+            </br>
+            <strong>Artículo 9º</strong> Los premios adjudicados se hallan sujetos a las retenciones y/o gravámenes que
+            eventualmente
+            correspondan según las normas de orden nacional, provincial y/o municipal en vigencia al momento de la
+            percepción
+            del premio, asiasí como también a las normas emanadas de la Unidad de Información Financiera (UIF) que
+            correspondan.</p>
+            </br>
+            <strong>DE LA COMERCIALIZACIÓN</strong>
+            </br>
+            </p>
+            <strong>Artículo 10º</strong> Lotería del Sur podrá comercializar, de acuerdo a la demanda operada en el
+            mercado, más
+            de una serie por emisión, como asimismo variar de un sorteo a otro la cantidad de cartones que componen el
+            cupón
+            y/o la cantidad de cupones que forman la serie.</p>
+            </br>
+            <strong>Artículo 11º</strong> La venta de cupones será efectuada por la red de ventas autorizadas por
+            LOTERÍA DEL SUR y/u otra metodología que a criterio de la LOTERÍA DEL SUR, sea necesaria y comercialmente
+            conveniente, atendiendo a la comodidad del público adquirente, que por alguna razón no pudiera concurrir
+            personalmente a la Sala de Bingo.</p>
+            </br>
+            <strong>DEL SORTEO</strong>
+            </br>
+            </p>
+            <strong>Artículo 12º</strong> Los sorteos serán transmitidos en vivo y en directo por cualquier medio
+            audiovisual (televisión,
+            radio, internet, etc.)</p>
+            </br>
+            <strong>Artículo 13º</strong> Sorteos o rondas se ajustarán a las siguientes normas:
+            </br>
+            <strong>a)</strong>Se utilizará un bolillero transparente de extracción automatizada para realizar el sorteo
+            propiamente
+            dicho en el cual se introducirá la cantidad de noventa (90) bolillas numeradas del 01 al 90.
+            </br>
+            <strong>b)</strong>El locutor anunciará al público el número de sorteo que dará comienzo, el número de serie
+            o series
+            vendidas, el importe, la cantidad de cupones vendidos que participarán del sorteo y el programa de premios
+            que
+            corresponda.
+            </br>
+            <strong>c)</strong>El locutor anunciará la iniciación de la ronda, procediéndose a la extracción de las
+            bolillas una
+            a una, siendo cantadas a viva voz por el personal designado a tal efecto y, enfocadas por las cámaras de
+            televisión,
+            debiendo el escribano del sorteo controlar las mismas y consignarlas en el Acta de Sorteo, estableciéndose
+            que
+            la misma es válida únicamente si es cantada correctamente por el locutor, por cuanto otros indicadores
+            solamente
+            son auxiliares del sorteo.
+            </br>
+            <strong>d)</strong>Paralelamente a la iniciación de la ronda, se pondrá en funcionamiento el sistema de
+            cómputos que
+            realizará el seguimiento del mismo y, determinará el o los cupones ganador o ganadores de la serie.</p>
+            </br>
+            <strong>Artículo 14º</strong> La LOTERÍA DEL SUR se reserva el derecho de suspender o cancelar los sorteos
+            programados.
+            En el supuesto que, problemas técnicos o de fuerza mayor de cualquier índole no sea posible continuar el
+            sorteo,
+            la LOTERÍA DEL SUR, dejará expresa constancia escrita mediante acta labrada por escribano público, sin
+            perjuicio
+            de lo cual podrá anunciar lo sucedido, por el canal de televisión donde se efectuaba el sorteo u otros
+            medios
+            de información. En los demás casos, la LOTERÍA DEL SUR, difundirá masivamente tal hecho con tres (3) días de
+            antelación a la fecha programada para el sorteo suspendido o cancelado.</p>
+            </br>
+            <strong>Artículo 15º</strong> La LOTERÍA DEL SUR emitirá mediante un extracto el resultado del sorteo en el
+            que constaran
+            el o los números identificatorios, del o de los cupones premiados y el premio correspondiente, como asimismo
+            los números extraídos. Dicho extracto será el medio, definitivo e inapelable del resultado del sorteo con la
+            finalidad de que el público, que por alguna razón no pueda participar directamente del sorteo en la sala de
+            bingo,
+            pudiera realizar el control correspondiente de su cupón.</p>
+            </br>
+            <strong>DE LOS PREMIOS</strong>
+            </br>
+            <strong>Artículo 16º</strong> La LOTERÍA DEL SUR aprobará, antes de su comercialización, la emisión de cada
+            una de las
+            series, sus programas de premios, pozos acumulados, características y demás datos de interés público, en lo
+            inherente
+            a sorteos ordinarios, extraordinarios y/o destinados a estimular a los apostadores, como así también otras
+            premiaciones
+            especiales, dejándose constancia de ello en un acta.</p>
+            </br>
+            <strong>Artículo 17º</strong> La LOTERÍA DEL SUR determinará la cantidad de cupones del juego a ser impresos
+            para cada
+            serie, como también el régimen de premiación por todo concepto asignable al juego, como sus posibles
+            actualizaciones
+            y/o modificaciones según lo requiera la demanda del juego, las condiciones del mercado, el uso de la
+            tecnología,
+            etc.
+            </p>
+            </br>
+            <strong>Artículo 18º</strong> El porcentaje correspondiente a los premios acorde a la programación general
+            aprobada,
+            no será inferior al treinta por ciento (30%) de modo concordante con el promedio de la recaudación bruta por
+            la efectiva venta de las cuatro (4) últimas emisiones sorteadas.</p>
+            </br>
+            <strong>Artículo 19º</strong> Se deja establecido que quien resulte ganador del Premio “Pozo Acumulado”,
+            también lo es
+            respecto del Premio “Bingo”.</p>
+            </br>
+            <strong>Artículo 20º</strong> Conclusión del Juego: Si por cualquier circunstancia LA LOTERÍA DEL SUR
+            decidiera dejar
+            sin efecto o concluido la Emisión y Sorteos del Juego denominado “MINIBINGO”, los importes destinados a Pozo
+            Acumulado,
+            quedarán a la libre disponibilidad de la LOTERÍA DEL SUR, no generando ello derecho a reclamo,
+            indemnización,
+            resarcimiento ni reconocimiento de ninguna naturaleza para el apostador e integrantes de la red de ventas.
+            </p>
+            </br>
+            <strong>Artículo 21º</strong> Por ser un juego de características de “bancado”, el programa de premios
+            deberá ser determinado
+            previamente por circular de la LOTERÍA DEL SUR y comunicado convenientemente al público apostador.</p>
+            </br>
+            <strong>Artículo 22º</strong> Resultará ganador del “Premio Línea” el o los cupones cuya totalidad de
+            números impresos
+            coincidan con los números extraídos hasta el momento de completarse algunas de las líneas del primer o
+            primeros
+            cartón o cartones. Resultará ganador del Premio Bingo el o los cupones cuya totalidad de números impresos
+            coincidan
+            con los números extraídos hasta el momento de completarse el o los primer o primeros cartones.</p>
+            </br>
+            <strong>Artículo 23º</strong> Cuando en una emisión exista más de un ganador, el importe destinado a premios
+            se distribuirá
+            en partes iguales entre ellos.</p>
+            </br>
+            <strong>Artículo 24º</strong> El pago de los premios se realizará en la sala de bingo si el apostador se
+            hallare en la
+            misma, caso contrario los premios se abonarán a partir del tercer día hábil posterior a la realización del
+            sorteo
+            al portador del cupón ganador el cual será abonado en la sede de L.O.A.S., Perito Moreno y Zapiola de la
+            ciudad
+            de Río Gallegos, (Provincia de Santa Cruz) o donde ésta indique, procediéndose previamente a la verificación
+            de su legitimidad.</p>
+            </br>
+            <strong>Artículo 25º</strong> El pago de premios caduca a los diez (15) días corridos a partir del día
+            siguiente de la
+            realización del sorteo respectivo. La totalidad del monto de los premios caducos, pasarán a formar parte de
+            la
+            partida correspondiente a la “Reserva” del Juego y se incluirá dicho monto dentro del Premio Pozo Acumulado.
+            </p>
+            </br>
+            <strong>Artículo 26º</strong> La LOTERÍA DEL SUR, fijará las condiciones y modalidades atinentes a la
+            Administración
+            del juego. El apostador que pretendiera ser ganador de un premio que no aparezca en las nóminas oficiales,
+            hecho
+            que en consecuencia diere lugar al no pago de dicho premio por parte de la LOTERÍA DEL SUR, podrá presentar
+            el
+            reclamo correspondiente al citado Organismo, por escrito y debidamente suscripto y con pruebas que respalden
+            su argumento.</p>
+            </br>
+            <strong>Artículo 27º</strong> Todo ganador queda sujeto y obligado a la publicidad requerida, condición a la
+            que no podrá
+            ni exigir retribución alguna, bajo pena de no recibir el premio obtenido.</p>
+            </br>
+            <strong>Artículo 29º</strong> La LOTERÍA DEL SUR queda facultada a:
+            </br>
+            <strong>a)</strong>Dictar disposiciones técnicas y normas complementarias.
+            </br>
+            <strong>b)</strong>Aplicar penalidades a los intervinientes en la comercialización, cuando su accionar no se
+            ajuste al
+            presente Reglamento y demás normas que regulen el juego.
+            </br>
+            <strong>c)</strong>Interpretar y aplicar las disposiciones del presente reglamento.</p>
+            </br>
+
+            <h2>REGLAMENTO DEL JUEGO “REBINGO” DE LOTERÍA DEL SUR</h2>
+            </br>
+            </p>
+            <strong>NORMAS GENERALES</strong>
+            </br>
+            </p>
+            <strong>Artículo 1º</strong> La Lotería del Sur emitirá en circulación y comercialización un juego de azar
+            denominado
+            “REBINGO”, como una variante del juego “TELEBINGO”, determinando el programa de premios, emisión, lugar, día
+            y hora de los sorteos.</p>
+            </br>
+            <strong>Artículo 2º</strong> El juego de azar implementado por el artículos anterior, es un juego de
+            características
+            de un “Bingo de Sala” y consiste en la participación del público adquirente de cupones
+            pre-impresos/Electrónico,
+            con una combinación de números, en un sorteo por el sistema de extracción individual desde un sorteador o
+            aparato
+            similar, sin reposición, de una cantidad de bolillas de entre una serie de tamaño mayor, identificadas desde
+            el número 01 hasta el 90 inclusive, emitido en directo por televisión desde una sala de bingo el que podrá
+            ser
+            transmitido por otro medio de información como complemento y eventualmente como alternativa en casos de
+            fuerza
+            mayor, con el objeto de brindar los servicios del juego a todos los apostadores que no se hallen en
+            condiciones
+            concurrir a la sala de bingo.</p>
+            </br>
+            <strong>Artículo 3º</strong> La LOTERÍA DEL SUR será el Ente emisor de los cupones del juego que circularán
+            bajo la denominación
+            del bingo de sala llamado “REBINGO” en la Provincia de Santa Cruz.</p>
+            </br>
+            <strong>Artículo 4º</strong> El solo hecho de participar en el juego, involucra para quienes intervienen en
+            la venta
+            y para los adquirentes la aceptación integral de la presente Reglamentación. No podrán participar del juego
+            ni
+            efectivizar los premios los menores de dieciocho (18) años.</p>
+            </br>
+            <strong>Artículo 5º</strong> Por cualquier divergencia que pudiera suscitarse entre los participantes del
+            juego con la
+            LOTERÍA DEL SUR, las partes se someten a la jurisdicción y competencia de los Tribunales Ordinarios de la
+            Ciudad
+            de Río Gallegos (Provincia de Santa Cruz) con la exclusión de cualquier otro fuero que pudiera
+            corresponderles.</p>
+            </br>
+            <strong>DE LOS CERTIFICADOS SORTEABLES</strong>
+            </br>
+            </p>
+            <strong>Artículo 6º</strong> El precio de venta al público del cupón del juego se fija para el inicio de la
+            explotación del REBINGO en un valor de pesos DIEZ ($ 10), para cada uno de ellos. Las modificaciones
+            necesarias de este valor de venta al público del cupón, como así también del formato del mismo, por motivos
+            de variaciones de costos, de mercado, u otros factores económicos o situaciones de cualquier índole que las
+            justifiquen, serán decididas por la LOTERÍA DEL SUR, dejándose constancia de ello en un Acta. Cada cupón del
+            juego estará compuesto de una (1) combinación de QUINCE (15) números cada uno, el cual contendrá la
+            especificación de la serie a la que pertenece y, un elemento de seguridad, además del valor nominal de venta
+            al público y la fecha del sorteo que corresponda.</p>
+            </br>
+            <strong>Artículo 7º</strong> La LOTERÍA DEL SUR no se responsabilizará ni atenderá reclamos por la pérdida,
+            sustracción,
+            deterioro, adulteración y/o cualquier otra circunstancia que imposibilite la presentación material, total e
+            intacta
+            del cupón del juego, al cobro.</p>
+            </br>
+            <strong>Artículo 8º</strong> El cupón será innominado y la LOTERÍA DEL SUR, no reconocerá coparticipación en
+            la propiedad
+            de cada certificado sorteable, a los efectos s del cobro de premios.</p>
+            </br>
+            <strong>Artículo 9º</strong> Los premios adjudicados se hallan sujetos a las retenciones y/o gravámenes que
+            eventualmente
+            correspondan según las normas de orden nacional, provincial y/o municipal en vigencia al momento de la
+            percepción
+            del premio, así como también a las normas emanadas de la Unidad de Información Financiera (UIF) que
+            correspondan.</p>
+            </br>
+            <strong>DE LA COMERCIALIZACIÓN</strong>
+            </br>
+            </p>
+            <strong>Artículo 10º</strong> Lotería del Sur podrá comercializar, de acuerdo a la demanda operada en el
+            mercado, más
+            de una serie por emisión, como asimismo variar de un sorteo a otro la cantidad de cartones que componen el
+            cupón
+            y/o la cantidad de cupones que forman la serie.</p>
+            </br>
+            <strong>Artículo 11º</strong> La venta de cupones será efectuada por la red de ventas autorizadas por
+            LOTERÍA DEL SUR
+            y/u otra metodología que a criterio de la LOTERÍA DEL SUR, sea necesaria y comercialmente conveniente,
+            atendiendo
+            a la comodidad del público adquirente.</p>
+            </br>
+            <strong>DEL SORTEO</strong>
+            </br>
+            </p>
+            <strong>Artículo 12º</strong> Los sorteos serán transmitidos en vivo y en directo por cualquier medio
+            audiovisual (televisión,
+            radio, internet, etc.) </p>
+            </br>
+            <strong>Artículo 13º</strong> Los sorteos o rondas se ajustarán a las siguientes normas:
+            </br>
+            <strong>a)</strong>Se utilizará un bolillero transparente de extracción automatizada para realizar el sorteo
+            propiamente
+            dicho en el cual se introducirá la cantidad de noventa (90) bolillas numeradas del 01 al 90.
+            </br>
+            <strong>b)</strong>El locutor anunciará al público el número de sorteo que dará comienzo, el número de serie
+            o series vendidas, el importe, y el programa de premios que corresponda.
+            </br>
+            <strong>c)</strong>El locutor anunciará la iniciación de la ronda, procediéndose a la extracción de las
+            bolillas una a una, siendo cantadas a viva voz por el personal designado a tal efecto y, enfocadas por las
+            cámaras de televisión, debiendo el escribano del sorteo controlar las mismas y consignarlas en el Acta de
+            Sorteo, estableciéndose que la misma es válida únicamente si es cantada correctamente por el locutor, por
+            cuanto otros indicadores solamente son auxiliares del sorteo.
+            </br>
+            <strong>d)</strong>Paralelamente a la iniciación de la ronda, se pondrá en funcionamiento el sistema de
+            cómputos que
+            realizará el seguimiento del mismo y, determinará el o los cupones ganador o ganadores de la serie.</p>
+            </br>
+            <strong>Artículo 14º</strong> La LOTERÍA DEL SUR se reserva el derecho de suspender o cancelar los sorteos
+            programados.
+            En el supuesto que, problemas técnicos o de fuerza mayor de cualquier índole no sea posible continuar el
+            sorteo,
+            la LOTERÍA DEL SUR, dejará expresa constancia escrita mediante acta labrada por escribano público, sin
+            perjuicio
+            de lo cual podrá anunciar lo sucedido, por el canal de televisión donde se efectuaba el sorteo u otros
+            medios
+            de información. En los demás casos, la LOTERÍA DEL SUR, difundirá masivamente tal hecho con tres (3) días de
+            antelación a la fecha programada para el sorteo suspendido o cancelado.</p>
+            </br>
+            <strong>Artículo 15º</strong> La LOTERÍA DEL SUR emitirá mediante un extracto el resultado del sorteo en el
+            que constaran
+            el o los números identificatorios, del o de los cupones premiados y el premio correspondiente, como asimismo
+            los números extraídos. Dicho extracto será el medio, definitivo e inapelable del resultado del sorteo con la
+            finalidad de que el público, que por alguna razón no pueda participar directamente del sorteo en la sala de
+            bingo,
+            pudiera realizar el control correspondiente de su cupón.</p>
+            </br>
+            <strong>DE LOS PREMIOS</strong>
+            </br>
+            </p>
+            <strong>Artículo 16º</strong> La LOTERÍA DEL SUR aprobará, antes de su comercialización, la emisión de cada
+            una de las
+            series, sus programas de premios, pozos acumulados, características y demás datos de interés público, en lo
+            inherente
+            a sorteos ordinarios, extraordinarios y/o destinados a estimular a los apostadores, como así también otras
+            premiaciones
+            especiales, dejándose constancia de ello en un acta.</p>
+            </br>
+            <strong>Artículo 17º</strong> La LOTERÍA DEL SUR determinará la cantidad de cupones del juego a ser impresos
+            para cada
+            serie, como también el régimen de premiación por todo concepto asignable al juego, como sus posibles
+            actualizaciones
+            y/o modificaciones según lo requiera la demanda del juego, las condiciones del mercado, el uso de la
+            tecnología,
+            etc.
+            </p>
+            </br>
+            <strong>Artículo 18º</strong> El porcentaje correspondiente a los premios acorde a la programación general
+            aprobada,
+            no será inferior al treinta por ciento (30%) de modo concordante con el promedio de la recaudación bruta por
+            la efectiva venta de las cuatro (4) últimas emisiones sorteadas.</p>
+            </br>
+            <strong>Artículo 19º</strong> Se deja establecido que quien resulte ganador del Premio “Pozo Acumulado”,
+            también lo es
+            respecto del Premio “Bingo”.</p>
+            </br>
+            <strong>Artículo 20º</strong> Conclusión del Juego: Si por cualquier circunstancia LA LOTERÍA DEL SUR
+            decidiera dejar
+            sin efecto o concluido la Emisión y Sorteos del Juego denominado “REBINGO”, los importes destinados a Pozo
+            Acumulado, quedarán a la libre disponibilidad de la LOTERÍA DEL SUR, no generando ello derecho a reclamo,
+            indemnización,
+            resarcimiento ni reconocimiento de ninguna naturaleza para el apostador e integrantes de la red de ventas.
+            </p>
+            </br>
+            <strong>Artículo 21º</strong> Por ser un juego de características de “bancado”, el programa de premios
+            deberá ser determinado
+            previamente por circular de la LOTERÍA DEL SUR y comunicado convenientemente al público apostador.</p>
+            </br>
+            <strong>Artículo 22º</strong> Resultará ganador del “Premio Línea” el o los cupones cuya totalidad de
+            números impresos
+            coincidan con los números extraídos hasta el momento de completarse algunas de las líneas del primer o
+            primeros
+            cartón o cartones. Resultará ganador del Premio Bingo el o los cupones cuya totalidad de números impresos
+            coincidan
+            con los números extraídos hasta el momento de completarse el o los primer o primeros cartones.</p>
+            </br>
+            <strong>Artículo 23º</strong> Cuando en una emisión exista más de un ganador, el importe destinado a premios
+            se distribuirá
+            en partes iguales entre ellos.</p>
+            </br>
+            <strong>Artículo 24º</strong> El pago de los premios se realizará en la sala de bingo si el apostador se
+            hallare en la
+            misma, caso contrario los premios se abonarán a partir del tercer día hábil posterior a la realización del
+            sorteo
+            al portador del cupón ganador el cual será abonado en la sede de L.O.A.S., Perito Moreno y Zapiola de la
+            ciudad
+            de Río Gallegos, (Provincia de Santa Cruz) o donde ésta indique, procediéndose previamente a la verificación
+            de su legitimidad.</p>
+            </br>
+            <strong>Artículo 25º</strong> El pago de premios caduca a los diez (15) días corridos a partir del día
+            siguiente de la
+            realización del sorteo respectivo. La totalidad del monto de los premios caducos, pasarán a formar parte de
+            la
+            partida correspondiente a la “Reserva” del Juego y se incluirá dicho monto dentro del Premio Pozo Acumulado.
+            </p>
+            </br>
+            <strong>Artículo 26º</strong> La LOTERÍA DEL SUR, fijará las condiciones y modalidades atinentes a la
+            Administración
+            del juego. El apostador que pretendiera ser ganador de un premio que no aparezca en las nóminas oficiales,
+            hecho
+            que en consecuencia diere lugar al no pago de dicho premio por parte de la LOTERÍA DEL SUR, podrá presentar
+            el
+            reclamo correspondiente al citado Organismo, por escrito y debidamente suscripto y con pruebas que respalden
+            su argumento.</p>
+            </br>
+            <strong>Artículo 27º</strong> Todo ganador queda sujeto y obligado a la publicidad requerida, condición a la
+            que no podrá
+            ni exigir retribución alguna, bajo pena de no recibir el premio obtenido.</p>
+            </br>
+            <strong>Artículo 28º</strong> La LOTERÍA DEL SUR queda facultada a:
+            </br>
+            <strong>a)</strong>Dictar disposiciones técnicas y normas complementarias.
+            </br>
+            <strong>b)</strong>Aplicar penalidades a los intervinientes en la comercialización, cuando su accionar no se
+            ajuste al
+            presente Reglamento y demás normas que regulen el juego.
+            </br>
+            <strong>c)</strong>Interpretar y aplicar las disposiciones del presente reglamento.</p>
+            </br>
+
+        </div>
+
+    </div>
+</div>
+</div>
+
+{% endif %}
+{% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri %}
+
+<br />
+<br />
+<p>El Instituto de Seguridad Social de la provincia de La Pampa (ISS-DAFAS) en adelante “La DAFAS” ha implementado el
+    uso de
+    una plataforma de juegos llamada “Lotería Móvil La Pampa” en adelante “La Plataforma”, que le permitirá a Ud.
+    realizar
+    apuestas y/o adquirir billetes de juegos oficiales a través de distintos canales como telefonía celular y/o web.</p>
+<p>En el siguiente texto, denominado Términos y Condiciones de uso, como así también las Políticas de Privacidad,
+    regularán
+    la forma de uso que usted podrá hacer de los servicios que brinde la plataforma y de las aplicaciones que descargue
+    para
+    tal fin.</p>
+
+<strong>1. Usuario Registrado o apostador</strong>
+</br>
+<p>Se denomina usuario registrado a la persona física que haya completado todos los datos solicitados para el registro
+    en la
+    plataforma y tenga activada su cuenta. El usuario no podrá realizar jugadas y/o compra de tickets, si no se
+    encuentra
+    en la Provincia de La Pampa, por lo que se le pedirá tener la ubicación activada para realizar dicho control. El
+    usuario
+    es propietario de su cuenta en la plataforma. Automáticamente una persona que se registraen la plataforma está
+    aceptando
+    el uso y aplicación de los Términos y Condiciones, conformando un acuerdo entre usted y La DAFAS. Sólo podrán
+    participar
+    en el uso de la plataformapersonas que no tengan ningún impedimento legal y que sean mayores de 18 años, pudiendo
+    solicitarle
+    la presentación o copia de su DNI para verificar dicha situación. Los datos proporcionados en el registro serán
+    considerados
+    como privados.</p>
+<strong>2. Derechos de la plataforma</strong>
+</br>
+<p>La plataforma se reserva el derecho de admisión de cualquier solicitud de registro de cualquier persona y/o cancelar
+    cualquier
+    cuenta de usuario registrado, si detectara algún impedimento legal o anomalía de cualquier índole. La DAFAS podrá, a
+    su entera discreción, modificar o interrumpir el servicio ya sea en forma parcial o total y el mismo podrá no estar
+    disponible
+    durante períodos de mantenimiento o en otros momentos. La DAFAS se reserva el derecho de modificar los presentes
+    Términos
+    y Condiciones en cualquier momento y sin previo aviso, por lo que usted será responsable de revisarlas
+    periódicamente,
+    y el solo hecho de seguir utilizando la plataforma indicará que usted presta consentimiento a dichas normas, caso
+    contrario
+    podrá solicitar la baja de su cuenta por medio fehaciente a La DAFAS.</p>
+<strong> 3. Obligaciones del usuario</strong>
+</br>
+<p>Es obligación del usuario suministrar correctamente los datos solicitados al momento del registro y mantenerlos
+    actualizados
+    ante cualquier cambio. Deberá resguardar su clave personal que es de uso estrictamente suyo. Será responsable de
+    todas
+    las transacciones realizadas en su cuenta y deberá controlar en forma periódica el balance de su cuenta e informar
+    cualquier
+    anomalía a La DAFAS. En el caso de que se acrediten o debiten fondos de su cuenta erróneamente es absoluta y total
+    responsabilidad
+    de usted informar de este hecho a La DAFAS. Cualquier ganancia posterior al error y anterior a la notificación,
+    relacionada
+    o no con el error, será considerada no válida y devuelta a la plataforma.
+</p>
+<strong>4. Uso de la Plataforma</strong>
+</br>
+<p>Para utilizar la plataforma, usted deberá ser un usuario registrado y cargar saldo en su cuenta concurriendo a La
+    DAFAS,
+    o a través de los medios que esta habilite. Posteriormente podrá realizar sus apuestas en los juegos oficiales
+    habilitados
+    en la plataforma por La DAFAS, que serán descontadas del saldo disponible mientras cubra dichas valores. En su
+    cuenta
+    de usuario serán acreditadas las cargas de crédito, se debitarán los importes para efectivizar la compra de sus
+    Tickets/boletos
+    y se acreditarán los importes por premios menores. También podrá solicitar el retiro de dinero correspondiente a
+    premios
+    acreditados, cuyo pago será efectuado a través de los medios informados por La DAFAS. Para el cobro de premios
+    mayores
+    usted deberá dirigirse a las oficinas de La DAFAS o donde esta le indique, debiendo presentar la documentación
+    requerida.
+    Los resultados utilizados para constatar premios de cualquier juego, son los que informa La DAFAS oficialmente en
+    sus
+    extractos, absolutamente ninguna otra fuente de datos es válida para constatar los resultados, ni siquiera los
+    publicados
+    en la plataforma. En el caso de suspensión de un sorteo, postergación o anulación, automáticamente se tomará como
+    resolución
+    lo que La DAFAS indique como forma de proceder ante esta situación.
+</p>
+<strong>5. Consultas y Reclamos</strong>
+</br>
+<p>Usted podrá realizar sus reclamos y consultas a través del mail lp@loteriamovil.com.ar o en las oficinas de la DAFAS
+    , sita
+    en calle Pellegrini 385, 1° y 2° Piso, Santa Rosa, CP. 6300, provincia de La Pampa. Los casos que puedan originarse
+    no
+    previstos en estos Términos y Condiciones, serán interpretados y resueltos dentro de las facultades otorgadas por la
+    Ley.
+</p>
+
+<br />
+</div>
+<div class="col-md-12 col-sm-12 pt-40">
+    <h1>POLITICAS DE PRIVACIDAD</h1>
+
+    <br />
+    <p>Nuestra política de privacidad describe qué información recogemos y cómo la utilizamos ya que el acceso a los
+        servicios
+        disponibles en nuestros canales móviles implica la aceptación de nuestra política de privacidad. La DAFAS podrá
+        modificar
+        estos términos en cualquier momento notificando toda actualización de los mismos.
+    </p>
+    <p>La DAFAS se compromete a cumplir con la protección de los datos personales establecido en la ley 25.326,
+        informando a
+        los titulares de los mismos que pueden ejercer los derechos de acceso, rectificación, cancelación y oposición,
+        dirigiéndose
+        por mail a: lp@loteriamovil.com.ar o bien, poniéndose en contacto con La DAFAS al número (02954) 43-3052.
+    </p>
+
+
+    <strong>Registros e Identificación de Usuarios</strong>
+    <br />
+
+    <p>EL Registro de Usuarios de la plataforma es obligatoria para poder realizar apuestas en los juegos autorizados
+        por La
+        DAFAS disponibles para nuestra Plataforma de Apuestas en nuestros canales móviles. La registración se puede
+        realizar
+        en La DAFAS o en sus medios oficiales habilitados.
+    </p>
+    <p>Durante el proceso de registro se requerirá como única información personal el Nombre, email y DNI.
+    </p>
+    <p>En caso de recibir un premio, que por el monto, deba tributar el impuesto al premio, conforme las disposiciones
+        vigentes,
+        se deberá completar por única vez un formulario con datos complementarios, que será provisto por La DAFAS. Esta
+        información
+        adicional será validada para la acreditación del pago de su premio. La aceptación de estos términos y
+        condiciones
+        implica el consentimiento para la realización de dichas verificaciones.
+    </p>
+
+    <strong>Uso de la Información</strong>
+    <br />
+
+    <p>Toda la información proporcionada será tratada de forma segura y de conformidad con la normativa de protección de
+        datos.
+        La actualización y/o rectificación de los datos e información personal podrá realizarse en cualquier momento
+        accediendo
+        por los canales habilitados. La DAFAS no compartirá información personal sobre los usuarios del sitio con otras
+        personas,
+        organizaciones o compañías, bajo ningún concepto ni circunstancia.
+    </p>
+    <p>Ocasionalmente, podrá recibir en su correo electrónico promociones, información adicional o noticias que La DAFAS
+        entienda
+        que pueden resultar de interés. Para cancelar la suscripción a esos correos, se deberá remitir un correo a
+        lp@loteriamovil.com.ar
+        o bien, puede hacer esto poniéndose en contacto con nuestro centro de “Atención al cliente” al número (02954)
+        43-3052.
+    </p>
+
+    <strong>Protección de Datos</strong>
+    <br />
+
+    <p>Nuestras medidas para la protección de datos incluyen seguridad física y espacial de datos, controles de acceso y
+        sistemas
+        que garantizan un alto nivel de codificación y seguridad de datos.
+    </p>
+    <strong>Medidas de Seguridad</strong>
+    <br />
+
+    <p>La información contenida en la cuenta está protegida por una contraseña generada por el Usuario quien debe
+        resguardar
+        de terceras personas la clave personal de acceso a LA PLATAFORMA. Toda transacción que se realice bajo un
+        usuario
+        y contraseña serán bajo entera responsabilidad del titular de dicha cuenta y clave personal. En caso de que la
+        clave
+        haya sido sustraída o revelada por error a un tercero, el Usuario estará obligado a proceder al cambio de la
+        misma,
+        para lo cual se le facilitará un módulo de gestión de sus datos personales y clave.
+    </p>
+    <p>La DAFAS no asume responsabilidad alguna por el uso indebido de los datos y contraseñas de acceso.
+    </p>
+    <p>La DAFAS no envía correos electrónicos ni realiza llamadas para solicitar cambio y/o confirmación de datos
+        personales
+        (nombre de usuario, claves, etcétera).
+    </p>
+
+    <strong>Cancelación de inscripción en el Registro</strong>
+    <br />
+
+    <p>El Usuario podrá cancelar o desactivar su cuenta en cualquier momento. La cancelación o desactivación de la
+        cuenta producirá
+        la eliminación de los datos personales del banco de datos de La DAFAS, excepto que por causa justificada o
+        requerimiento
+        de algún organismo de control deban conservarse dichos datos.
+    </p>
+    <strong>Información sobre Defensa al Consumidor</strong>
+    <br />
+
+    <p>Nuestros usuarios encontraran información respecto a la legislación vigente en nuestro país en materia de Defensa
+        del
+        Consumidor ingresando en el sitio oficial http://www.consumidor.gov.ar, de la Subsecretaria de Defensa del
+        Consumidor,
+        organismo dependiente de la Secretaria de Comercio Interior, Ministerio de Economía y finanzas Publicas de la
+        Nación.
+        Asimismo, dispondrá de las vías de contacto de su interés.</p>
+
+</div>
+
+</div>
+
+</div>
+<div class="titulo-movil">
+    <p>
+</div>
+<div class="col-md-12 col-sm-12 pt-40">
+    <h1>REGLAMENTO GENERAL</h1>
+    <strong>1.</strong> La Plataforma de juegos "Lotería Móvil La Pampa" (en adelante denominado, “LA PLATAFORMA”) y el
+    Registro
+    de Jugadores de Apuestas (en adelante, denominado “el Registro”), son organizados y ejecutados por el Instituto de
+    Seguridad
+    Social de la provincia de La Pampa (ISS-DAFAS), en adelante “La DAFAS”, y se regirán por las presentes normas y las
+    que
+    en el futuro dicte La DAFAS.
+    </br>
+    </br>
+    <strong>2.</strong>El sólo hecho de utilizar LA PLATAFORMA implicará para el apostador (en adelante denominado “el
+    Usuario”)
+    que, a partir de dicho momento, adhiere en forma automática e inmediata a todos y a cada uno de los siguientes
+    Términos
+    y Condiciones y de todas las normas, reglamentos, sus actualizaciones y condiciones de uso de todos los servicios y
+    juegos
+    habilitados en LA PLATAFORMA por La DAFAS.
+    </br>
+    </br>
+
+    <strong>REGISTRO EN LA PLATAFORMA</strong>
+    <br />
+    </p>
+
+    <strong>3.</strong> A los efectos de acceder a LA PLATAFORMA, La DAFAS ha creado el Registro de Usuarios de la
+    plataforma que
+    tiene por objeto garantizar el juego responsable, evitar el fraude y la participación de menores de edad.
+    </br>
+    </br>
+    <strong>4.</strong> Podrán registrarse en la plataforma únicamente las personas físicas mayores de edad que no
+    cuenten con ningún
+    impedimento o inhabilitación legal para ello. El registro es único, individual y personal. El Usuario no puede
+    autorizar
+    a ninguna otra persona a utilizar su cuenta. Los datos proporcionados en el registro serán considerados como
+    privados.
+    Al registrarse se abrirá automáticamente una cuenta asignada al Usuario registrado, libre de gastos de inscripción,
+    donde
+    quedarán registrados todos sus movimientos (cargas de créditos, pagos de apuestas , cobro de premios y retiros de
+    dinero).
+    </br>
+    </br>
+    <strong>5.</strong> El Registro podrá realizarse en La DAFAS, situada en calle Pellegrini 385, 1° y 2° Piso, Santa
+    Rosa, CP.
+    6300, provincia de La Pampa,en los lugares oficiales habilitados por la misma, donde se le dará el instructivo para
+    proceder
+    a la registración, o vía registro en la aplicación móvil, completando todos los datos requeridos en el formulario de
+    registro y deberá aceptar los Términos y Condiciones de Uso de LA PLATAFORMA.
+    </br>
+    </br>
+    <strong>6.</strong> El Usuario es responsable de mantener actualizados los datos personales declarados en la
+    inscripción El DNI
+    ingresado en el proceso de registro, no podrá ser modificado por el usuario una vez confirmado el mismo. En caso de
+    haber
+    cometido un error, deberá solicitar su corrección vía mail a lp@loteriamovil.com.ar.
+    </br>
+    </br>
+    <strong>7.</strong> La DAFAS no solicitará datos extras por ningún medio que no figuren en el formulario de
+    registro, así como
+    también no difundirá los datos del Registro, y solo usará los mismos para la finalidad establecida en el presente.
+    </br>
+    </br>
+    <strong>8.</strong> El registro del usuario permanecerá vigente hasta la notificación por medio fehaciente, por
+    parte del Usuario
+    a La DAFAS, de su decisión de retirar su inscripción al registro y haya realizado la extracción de los saldos
+    remanentes
+    de su cuenta asignada. Asimismo, y transcurrido el término de 120 días sin que se hayan registrados movimientos en
+    la
+    cuenta del usuario La DAFAS podrá efectuar de manera automática la baja en el sistema.
+    </br>
+    </br>
+    <strong>9.</strong> El Usuario se compromete a resguardar de terceras personas su clave personal de acceso a LA
+    PLATAFORMA y
+    toda transacción que se realice bajo su usuario y contraseña serán bajo su entera responsabilidad. En caso de que su
+    clave haya sido sustraída o revelada por error a un tercero, tendrá la obligación de proceder al cambio de la misma.
+    </br>
+    </br>
+
+    <strong> DE USUARIO, COMPROBANTES / TICKETS ELECTRONICOS (CARGA DE CREDITO, APUESTAS, COBROS DE PREMIOS, RETIRO DE
+        SALDO)</strong>
+    <br />
+    </p>
+    <strong>10.</strong> Al registrarse el Usuario, le será asignada una cuenta donde quedarán asentados todos sus
+    movimientos a
+    través de los comprobantes y/o tickets electrónicos generados por la plataforma. Dichos comprobantes serán respaldo
+    válido
+    para La DAFAS y el Usuario, de cada uno de los movimientos registrados en la cuenta, y podrán ser impresos y
+    resguardados
+    por la DAFAS en caso de querer conservar los mismo en soporte físico a fines administrativos. Dicha cuenta podrá ser
+    consultada por el usuario en cualquier momento.
+    </br>
+    </br>
+    <strong>11.</strong> Los depósitos o cargas de crédito se realizarán por medio de soportes físicos o electrónicos
+    autorizados
+    por La DAFAS. Los mismos podrán ser utilizados en los medios tecnológicos habilitados por La DAFAS, como por
+    ejemplo,
+    dispositivos móviles, internet, u otro que La DAFAS disponga.
+    </br>
+    </br>
+    <strong>12.</strong> Las apuestas y/o compra de billetes de juego, se realizarán en forma directa, a través de
+    telefonía celular
+    o móvil, o cualquier otro medio que disponga La DAFAS. Previamente, el Usuario deberá registrarse cumpliendo los
+    requisitos
+    solicitados y poseer saldo disponible, pagar las apuestas realizadas en los juegos habilitados por La DAFAS.
+    Posteriormente
+    podrá consultar el ticket electrónico de su jugada emitido por LA PLATAFORMA.
+    </br>
+    </br>
+
+
+    <strong>13.</strong> Los premios correspondientes a los Usuarios cuya apuesta emitida hubiere resultado premiada
+    según la mecánica
+    del juego realizado, les serán acreditados en el saldo de su cuenta si su monto no es mayor al máximo reglamentado
+    por
+    La DAFAS, en cuyo caso, será considerado pagado una vez acreditado el valor de dicho premio en la cuenta del
+    Usuario,
+    tomando como válido el comprobante electrónico emitido por LA PLATAFORMA.En caso de premios mayores, la acreditación
+    y/o cobro de los mismos, se ajustarán a los procedimientos reglamentados por La DAFAS, debiendo el usuario presentar
+    la documentación que le sea requerida.
+    </br />
+    <br />
+    <strong>14.</strong> Los saldos en la cuenta del Usuariogenerados por el cobro de premios, son retornables y
+    disponibles para
+    su retiro dentro de los horarios de atención establecidos por La DAFAS.El Usuario podrá en cualquier momento afectar
+    dicho saldo disponible para la realización de nuevas apuestas o hacer efectivo el retiro de los mismos, total o
+    parcialmente
+    a través de los medios y lugares que La DAFAS indique.
+    </br>
+    </br>
+
+
+    <strong>LIMITE DE RESPONSABILIDAD. PROHIBICIONES</strong>
+    <br />
+    </p>
+
+
+    <strong>15.</strong> La DAFAS, en ningún caso y bajo ninguna circunstancia, será responsable por fallas o errores
+    atribuibles
+    al equipo telefónico utilizado por el Usuario, o errores de conectividad, enlace y/o transferencia de datos que
+    impidan
+    el registro de la operatoria en LA PLATAFORMA. El límite de la responsabilidad por parte de La DAFAS respecto a los
+    errores
+    en los que hubiere incurrido LA PLATAFORMA, es el monto mínimo de la apuesta.
+    </br>
+    </br>
+    <strong>16.</strong> Será considerada válida una apuesta que sea acompañada por el ticket electrónico (con código de
+    seguridad
+    válido) emitido por LA PLATAFORMA y registrada en tiempo y forma. En el caso de que se registraran, a favor del
+    Usuario,
+    premios que no correspondieren por error, es obligación del Usuario notificar dicha circunstancia a La DAFAS.
+    Cualquier
+    beneficio que el Usuario pretenda obtener o conservar por error de LA PLATAFORMA constituirá una situación de
+    enriquecimiento
+    sin causa y lo obligará a restituir el importe mal percibido en forma inmediata.
+    </br>
+    </br>
+    <strong>17.</strong> Los casos no previstos en el presente Reglamento serán interpretados y resueltos por La DAFAS
+    dentro de
+    las facultades que le otorga la Ley. Las transgresiones a esta Reglamentación, y a las normas que en su consecuencia
+    se dicten, serán juzgadas y sancionadas por La DAFAS.
+    </br>
+    </br>
+    <strong>18.</strong> Las apuestas realizadas en LA PLATAFORMA, quedan registradas con un código de
+    transacción/control, generando
+    un ticket electrónico que puede ser impreso por el usuario y/o La DAFAS. El Usuario puede consultar los movimientos
+    de
+    su cuenta (depósitos y apuestas realizadas con los detalles de las mismas, retiro de efectivo y saldo disponible).
+    Las
+    apuestas confirmadas por el Usuario y validadas por LA PLATAFORMA no pueden ser anuladas por el Usuario.
+    </br>
+    </br>
+    <strong>19.</strong> Las actividades y transacciones realizadas en LA PLATAFORMA se regirán por la legislación
+    Argentina. Cualquier
+    controversia derivada de la relación entre el Usuario Jugador y La DAFAS será competencia de los Tribunales
+    Ordinarios
+    de la ciudad de Santa Rosa de la Provincia de La Pampa, con renuncia a cualquier otro fuero o jurisdicción que
+    pudiere
+    corresponder.
+    </br>
+    </br>
+
+    <br />
+</div>
+
+</div>
+</div>
+</div>
+
+{% endif %}
+{% if 'a24.agencia24.com.ar' in request.build_absolute_uri %}
+
+<h1>REGLAMENTO GENERAL Y TÉRMINO DE USO</h1>
+<br />
+<strong>Introducción</strong>
+</br>
+<p>A partir de este punto nos referiremos a “Agencia24” como “el portal” o “del portal” o “el sitio” o “del sitio” o
+    “sitio”
+    o “portal”.</p>
+<p>En el siguiente texto, denominado Reglamento General se expone la información y descripción general de las reglas de
+    uso
+    del portal de servicio. El portal ofrece a los usuarios un avanzado servicio de solicitud de apuestas que serán
+    efectivizadas
+    por nuestros representantes en nombre propio y por cuenta y orden del usuario, a través de las agencias oficiales de
+    la Lotería Provincial donde se encuentra fisicamente el usuario, como la ley lo indica, siendo el portal un simple
+    intermediario
+    que presta el servicio entre el usuario del portal y alguna Agencia Oficial de la Lotería, que se encuentra en la
+    provincia
+    donde está el usuario solicitando el servicio.</p>
+
+<strong>1.1. Marco Legal</strong>
+</br>
+<p>Absolutamente TODAS las solicitudes de apuestas realizadas desde el portal son inmediatamente volcadas como jugadas
+    OFICIALES,
+    siendo las mismas efectivizadas por nuestros representantes, que compran los tickets/boletos que fueron solicitados
+    a
+    través del servicio que presta el portal, en alguna Agencia Oficial de la Lotería correspondiente a la provincia
+    donde
+    se encuentra el usuario fisicamente, evitando de esta manera la invasión jurisdiccional en otras provincias, dándole
+    a este servicio un indiscutible marco totalmente legal dentro de la ley. El Portal no organiza, administra, opera,
+    ni
+    explota juegos de azar, ni basa su actividad comercial en la venta de juegos de lotería, ni tiene relación comercial
+    con las Loterías o los diferentes juegos oficiales del mercado. Nos limitamos a proveer un servicio de mensajería
+    que
+    brinda el servicio de compra para el usuario, por su cuenta y orden, de los tickets/boletos de lotería o juegos que
+    encarga,
+    dentro de los juegos oficiales autorizados en la provincia donde se encuentre. El Portal no participa de ningúna
+    ganancia
+    generada por los juegos que solicita comprar el usuario, ni comisión de ningún premio de lotería. Nos limitamos a
+    prestar
+    para el usuario, un servicio responsable, amable, y honesto de mensajería y/o gestión. Nuestro negocio es la
+    mensajería
+    y la publicidad.</p>
+
+<strong>1.2. Usuario Registrado o apostador o usuario y cuentas</strong>
+</br>
+<p>Se denomina usuario registrado o usuario a la persona física que haya completadolos datos solicitados para el
+    registro en
+    el sitio y tenga activada su cuenta. El usuario es propietario de su cuenta en el portal en la cual se acreditarán
+    sus
+    depósitos para debitar los importes necesarios para efectivizar la compra de sus Tickets/boletos solicitados, se
+    debitarán
+    también sus retiros y se acreditarán los importes por premios ganados por los Tickets/boletos comprados por su
+    cuenta
+    y orden, a los efectos de brindar un servicio completo al usuario.</p>
+
+<strong>1.3. Aceptación</strong>
+</br>
+<p>Automáticamente una persona que se registraen el portal está aceptando el uso y aplicación de este Reglamente
+    General. Sólo
+    podrán participar en el uso del portal personas mayores de 18 años. Los reglamentos de cada juego en particular son
+    los
+    que la Lotería de la provincia correspondiente ofrece sobre los mismos y el usuario es responsable de conocerlos. El
+    portal no guarda relación, ni tiene injerencia sobre los mismos y siempre respetará dichos reglamentos o las
+    modificaciones
+    que cada Lotería disponga con o sin previo aviso, para efectivizar las solicitudes de apuestas recibidas y el cobro
+    de
+    los premios que surjan de dichas apuestas. El portal en ningún momento se hará responsable por anomalías o
+    inconvenientes
+    ocasionados en el desarrollo de los juegos o sorteos que presente cada Lotería, ya que es ajeno al desarrollo,
+    características
+    y comercialización de cada juego. Automáticamente una persona que se registrada en el portal está aceptando el
+    reglamento
+    de cada uno de estos juegos en particular que son regulados por la Lotería pertinente. El portal se desliga
+    completamente
+    de la redacción o modificaciones de los reglamentos de estos juegos, simplemente los respetará tal y como exija cada
+    Lotería tanto para cobros, pagos, anulaciones o modificaciones, a los efectos de cumplir con el servicio de
+    mensajería
+    prestado por mandato del usuario. El usuario una vez registrado en el sitio, acepta sin lugar a ningún tipo de
+    apelación
+    todos estos reglamentos anteriormente mencionados.
+</p>
+
+<strong>1.4. Derechos del portal</strong>
+</br>
+<p>El portal se reserva el derecho de admisión de cualquier solicitud de registro de cualquier persona sin importar si
+    esta
+    solicitud alguna vez fue aceptada incluso en este mismo sitio. El portal puede cancelar cualquier cuenta de usuario
+    y
+    reembolsar los fondos sin explicaciones adicionales. El portal también se reserva el derecho de admisión de fondos
+    si
+    detectara que sus fuentes son de orígenes dudosos o injustificables. El portal también se reserva el derecho de
+    admisión
+    de cualquier tipo de solicitud de apuesta incluso si ésta ya fue aceptada y luego se comprueba algún tipo anomalía
+    de
+    cualquier índole en la misma. El portal se reserva el derecho de congelar los fondos de la cuenta del usuario si la
+    ley
+    así lo determina. El portal se reserva el derecho de anular cualquier solicitud de apuesta que levante sospecha de
+    fraude
+    o estafa incluso una vez aceptada la jugada y realizado el sorteo. Estos casos serán debidamente resueltos ante la
+    ley.</p>
+
+<strong>1.5. Obligaciones del usuario</strong>
+</br>
+<p>Es obligación del usuario suministrar correctamente los datosal momento del registro y mantenerlos actualizados ante
+    cualquier
+    cambio. También es responsable de controlar y cuidar el acceso a su cuenta. En caso de olvidar sus datos de ingreso
+    al
+    portal, hay herramientas a su disposición en el sitio para la recuperación de los mismos. Es obligación del usuario
+    controlar
+    en forma periódica el balance de su cuenta e informar cualquier anomalía a través del mail de contacto. Es absoluta
+    y
+    completa obligación del usuario mantener en secreto su nombre de usuario y contraseña. En el caso de que se
+    acrediten
+    o debiten fondos de su cuenta erróneamente es absoluta y total responsabilidad del usuario informar de este hecho al
+    portal mediante el formulario de contacto, o por email a contacto@agencia24.com.ar Cualquier ganancia posterior al
+    error
+    y anterior a la notificación, relacionada o no con el error, será considerada no válida y devuelta al portal. Casos
+    como
+    éstos pueden ser tratados como fraude o estafa ante la ley.</p>
+
+<strong>1.6. Cambios en el Reglamento General</strong>
+</br>
+<p>El portal se reserva el derecho de modificar este reglamento sin ningún previo aviso y los usuarios registrados
+    automáticamente
+    renovarán su aceptación a este nuevo reglamento, por eso se recomienda a los usuarios que accedan periódicamente a
+    la
+    relectura del reglamento en caso de que haya modificaciones desde la última vez que haya sido leído así tienen la
+    posibilidad
+    de solicitar la baja como usuarios registrado del portal mediante el formulario de contacto o por email a
+    contacto@agencia24.com.ar,
+    en caso de no aceptar las nuevas reglas. Mientras un usuario sea usuario registrado acepta todo lo que este
+    reglamento
+    expresa.</p>
+
+<strong>1.7. Depósitos y retiros de premios</strong>
+</br>
+<p>Para que el portal pueda efectivizar las solicitudes de apuestas recibidas, el usuario debe disponer de saldo en su
+    cuenta.
+    Para ello, dispone de los medios de pagos disponibles indicados en el portal. Recién realizada la acreditación del
+    dinero
+    a la cuenta del portal será acreditado el monto enviado en la cuenta del usuario registrado correspondiente. La
+    acreditación
+    puede hacerse en forma instantánea o demorar hasta 72hs hábiles según el medio de pago utilizado por el usuario.
+    Momentáneamente
+    tampoco se le transmitirán al usuario los costos de transacciones por operaciones de recepción de dinero. El
+    depósito
+    mínimo en una cuenta del sitio es de $100 (cien pesos). Se podrá retirar dinero de una cuenta de usuario equivalente
+    al 100% (cien por ciento) de los premios acreditados, seleccionando cualquiera de los métodos que seleccione desde
+    la
+    sección “Retirar saldo”. Pero en cualquiera de los casos, los costos del envío del dinero estarán a cargo del
+    usuario
+    registrado.</p>
+
+<strong>1.8. Solicitudes de Apuestas y Tickets oficiales</strong>
+</br>
+<p>Cuando el usuario solicita una apuesta, el precio de la misma es el que decide el usuario y deberá respetar los
+    máximos y
+    mínimos que cada juego permite según su reglamento. Caso contrario no será ejecutadosu solicitud de apuesta. El
+    usuario
+    recibirá un aviso cuando su solicitud de apuesta fue realizada en la agencia oficial. A partir de este momento, si
+    lo
+    quisiere, podrá solicitar el envío de la foto del ticket oficial generado por su pedido, cuyos datos contendrán la
+    apuesta
+    válida realizada, Todos los tickets oficiales de los usuarios quedarán bajo guarda del portal y el usuario podrá
+    solicitar
+    su retiro físico enviando dicha solicitud a contacto@agencia24.com.ar, si quisiera tener el ticket en su poder, de
+    lo
+    contrario el portal realizará como servicio al usuario, las verificaciones posteriores para comprobar si su ticket
+    fue
+    premiado.</p>
+<strong>1.9. Premios</strong>
+</br>
+<p>El o los premios obtenidos en los tickets oficiales que compran nuestros agentes en las agencias oficiales luego de
+    recibir
+    la solicitud del usuario, serán acreditados en su cuenta si y solo si el Ticket/boletooficial original que el portal
+    efectivizó por la solicitud de apuesta recibida,al ser pasado para su control en la máquina oficial de la Lotería
+    y/o
+    verificado su resultado con el extracto oficial del juego que corresponda, indica que el mismo tiene un premio, el
+    monto
+    que indique la máquina y/o extracto oficial del juego, es el que será acreditado en su cuenta, siempre y cuando el
+    premio
+    no sea mayor y deba ser cobrado físicamente por el usuario, en cuyo caso el portal coordinará con el usuario para
+    proceder
+    a la entrega de dicho ticket. Este proceso puede demorar hasta 48hs hábiles, aunque normalmente el tiempo de
+    acreditación
+    sea entre 2 y 3 horas después de cada sorteo, excepto en el caso del sorteo nocturno que es durante la mañana
+    siguiente
+    del sorteo. El portal se reserva el derecho de constatar la veracidad y la legitimidad del valor acreditado en
+    concepto
+    de premio incluso una vez realizada la acreditación, permitiéndonos poder cancelar el premio en el caso de alguna
+    anomalía
+    o si el usuario no cumplimenta con los requisitos enunciado en el punto 1.2 del presente. Caso que algún premio no
+    haya
+    sido acreditado en la cuenta del usuario, estedeberá realizar dicho reclamo, no siendo responsable el portal por
+    dicha
+    omisión.El usuariodeberá controlar, en los casos en que el juego que está solicitando su apuesta lo permita, que su
+    ticket/boleto
+    oficial tenga incorporado su número de documento, caso contrario el sitio no se responsabiliza por posibles reclamos
+    que puedan surgir en la acreditación del premio.Nuestros representantes que le prestan el servicioal usuario, están
+    obligados
+    a transmitir lasolicitud de apuesta manualmente en el mostrador en la Agencia Oficial para obtener el ticket/boleto
+    oficial.
+    En el caso de ocurrir algún error u omisión al momento de pasar lasolicitud de apuesta del portal a la máquina
+    oficial
+    de Lotería, el portal no se hará responsable ante cualquier diferencia entre la solicitud de apuesta recibida y
+    ticket/boleto
+    oficial que origine la misma, tomando como valido esta última. Ante cualquier error u omisión, el portal procederá a
+    la reacreditación del valor de lasolicitud de apuesta en la cuenta del usuario.El sitio tampoco será responsable si
+    lasolicitud
+    de apuesta tuvo premios y no pudo comprar el ticket oficial de Lotería por causas de terceros (ej.: Cortes de luz al
+    momento de descargar las jugadas para pasarlas, incendio de nuestros servidores, cortes del servicio de internet en
+    nuestras
+    oficinas, etc,) en este caso nos remitiremos a reacreditarle el valor de lasolicitud de apuesta en la cuenta del
+    usuario.</p>
+<strong>1.10. Resultados</strong>
+</br>
+<p>Los resultados utilizados para constatar premios de cualquier juego, son los que informa cada Lotería oficialmente en
+    sus
+    extractos, absolutamente ninguna otra fuente de datos es válida para constatar los resultados, ni siquiera los
+    publicados
+    en el portal que son solo informativos.</p>
+<strong>1.11. Excepciones</strong>
+</br>
+<p>En el caso de suspensión de un sorteo, postergación o anulación, automáticamente se tomará como resolución lo que
+    cada Lotería
+    indique como forma de proceder ante esta situación.</p>
+<strong>1.12. Plazo para las apuestas</strong>
+</br>
+<p>Generalmente se podrán solicitar apuestas siempre y cuando el portal lo permita, teniendo en cuenta los horarios de
+    sorteos
+    de cada juego. En todos los casos los tiempos de plazos pueden ser mayores o menores sin ningún previo aviso, ya que
+    los mismos se pactan en el momento que se cargan al sistema según las expectativas de juego de cada sorteo. Pero
+    nunca
+    podrá solicitarse una apuesta a un sorteo después del tiempo límite que establece el ente oficial que administra el
+    mismo,
+    considerándose nulas todas aquellas solicitudes de apuesta que ingresen posteriormente a dicho horario de cierre.
+</p>
+<strong>1.13. Reclamos</strong>
+</br>
+<p>El usuario podrá realizar sus reclamos y consultas mediante nuestro formulario de contacto o mail informado:
+    contacto@agencia24.com.ar</p>
+<strong>1.14. Confidencialidad</strong>
+</br>
+<p>Toda la información recibida será mantenida bajo estricta confidencialidad. El portal no reportará registro alguno de
+    ganancias
+    y/o pérdidas o informes de usuarios, así como la identidad del usuario bajo ninguna circunstancia en ninguna base de
+    datos pública o privada sin embargo se alienta a los usuarios a cumplir con las respectivas leyes locales.</p>
+<strong>1.15. Créditos</strong>
+</br>
+<p>Es responsabilidad del usuario mantener con saldo suficiente su cuenta en el portal para poder solicitar apuestas, en
+    ningún
+    caso se le aceptará una solicitud de apuesta sin los fondos necesarios para poder efectivizar la misma. En caso de
+    que
+    por error una solicitud de apuesta sea pasada desde una cuenta sin saldo suficiente será considerada nula. En caso
+    de
+    que el usuario haya realizado un depósito en su cuenta y todavía no se haya acreditado el dinero en su cuenta y con
+    los
+    fondos que posee no llegase a cubrir su jugada, el caso será de la misma manera que al principio del punto.</p>
+<strong>1.16. Dirección física de Portal</strong>
+</br>
+<p>Agencia24 tiene su sede en Av. Recta Martinoli 6782 Oficina 3, CP 5147 Córdoba, Argentina. Mail:
+    contacto@agencia24.com.ar</p>
+
+<br />
+</div>
+<div class="col-md-12 col-sm-12 pt-40">
+    <h1>POLITICAS DE PRIVACIDAD</h1>
+
+    <br />
+    <p>Nuestra política de privacidad describe qué información recogemos y cómo la utilizamos ya que el acceso a los
+        servicios
+        disponibles en nuestros canales móviles implica la aceptación de nuestra política de privacidad. El Portal podrá
+        modificar estos términos en cualquier momento notificando toda actualización de los mismos.</p>
+    <p>El Portal se compromete a cumplir con la protección de los datos personales establecido en la ley 25.326,
+        informando
+        a los titulares de los mismos que pueden ejercer los derechos de acceso, rectificación, cancelación y oposición,
+        dirigiéndose por mail a: contacto@agencia24.com.ar</p>
+
+
+    <strong>Registros e Identificación de Usuarios</strong>
+    <br />
+
+    <p>El Registro de Usuarios del portal es obligatorio para poder usar los servicios que presta el mismo. Durante el
+        proceso
+        de registro se requerirá como única información personal el Nombre, email y DNI.</p>
+
+
+    <strong>Uso de la Información</strong>
+    <br />
+
+    <p>Toda la información proporcionada será tratada de forma segura y de conformidad con la normativa de protección de
+        datos.
+        La actualización y/o rectificación de los datos e información personal podrá realizarse en cualquier momento
+        accediendo
+        por los canales habilitados. El Portal no compartirá información personal sobre los usuarios del sitio con otras
+        personas, organizaciones o compañías, bajo ningún concepto ni circunstancia. Ocasionalmente, podrá recibir en su
+        correo electrónico promociones, información adicional o noticias que el Portal entienda que pueden resultar de
+        interés.
+        Para cancelar la suscripción a esos correos, se deberá remitir un correo a contacto@agencia24.com.ar.
+    </p>
+
+    <strong>Protección de Datos</strong>
+    <br />
+
+    <p>Nuestras medidas para la protección de datos incluyen seguridad física y espacial de datos, controles de acceso y
+        sistemas
+        que garantizan un alto nivel de codificación y seguridad de datos.
+    </p>
+
+    <strong>Medidas de Seguridad</strong>
+    <br />
+
+    <p>La información contenida en la cuenta está protegida por una contraseña generada por el Usuario quien debe
+        resguardar
+        de terceras personas la clave personal de acceso al Portal. Toda transacción que se realice bajo un usuario y
+        contraseña
+        serán bajo entera responsabilidad del titular de dicha cuenta y clave personal. En caso de que la clave haya
+        sido
+        sustraída o revelada por error a un tercero, el Usuario estará obligado a proceder al cambio de la misma, para
+        lo
+        cual se le facilitará un módulo de gestión de sus datos personales y clave.
+    </p>
+    <p>El Portal no asume responsabilidad alguna por el uso indebido de los datos y contraseñas de acceso.
+    </p>
+    <p>El Portal no envía correos electrónicos ni realiza llamadas para solicitar cambio y/o confirmación de datos
+        personales
+        (nombre de usuario, claves, etcétera).
+    </p>
+
+    <strong>Cancelación de inscripción en el Registro</strong>
+    <br />
+
+    <p>El Usuario podrá cancelar o desactivar su cuenta en cualquier momento. La cancelación o desactivación de la
+        cuenta producirá
+        la eliminación de los datos personales del banco de datos del Portal, excepto que por causa justificada o
+        requerimiento
+        de algún organismo de control deban conservarse dichos datos.
+    </p>
+
+    <strong>Información sobre Defensa al Consumidor</strong>
+    <br />
+
+    <p>Nuestros usuarios encontraran información respecto a la legislación vigente en nuestro país en materia de Defensa
+        del
+        Consumidor ingresando en el sitio oficial http://www.consumidor.gov.ar, de la Subsecretaria de Defensa del
+        Consumidor,
+        organismo dependiente de la Secretaria de Comercio Interior, Ministerio de Economía y finanzas Públicas de la
+        Nación.
+        Asimismo, dispondrá de las vías de contacto de su interés.</p>
+
+</div>
+
+</div>
+
+<br />
+</div>
+
+
+{% endif %}
+
+
+{% if 'www.jugaya.com' in request.build_absolute_uri %}
+
+<h1>REGLAMENTO GENERAL Y TÉRMINO DE USO</h1>
+<br />
+<strong>Introducción</strong>
+</br>
+<p>A partir de este punto nos referiremos a “JUGAYA” como “el portal” o “del portal” o “el sitio” o “del sitio” o
+    “sitio”
+    o “portal”.</p>
+<p>En el siguiente texto, denominado Reglamento General se expone la información y descripción general de las reglas de
+    uso
+    del portal de servicio. El portal ofrece a los usuarios un avanzado servicio de solicitud de apuestas que serán
+    efectivizadas
+    por nuestros representantes en nombre propio y por cuenta y orden del usuario, a través de las agencias oficiales de
+    la Lotería Provincial donde se encuentra fisicamente el usuario, como la ley lo indica, siendo el portal un simple
+    intermediario
+    que presta el servicio entre el usuario del portal y alguna Agencia Oficial de la Lotería, que se encuentra en la
+    provincia
+    donde está el usuario solicitando el servicio.</p>
+
+<strong>1.1. Marco Legal</strong>
+</br>
+<p>Absolutamente TODAS las solicitudes de apuestas realizadas desde el portal son inmediatamente volcadas como jugadas
+    OFICIALES,
+    siendo las mismas efectivizadas por nuestros representantes, que compran los tickets/boletos que fueron solicitados
+    a
+    través del servicio que presta el portal, en alguna Agencia Oficial de la Lotería correspondiente a la provincia
+    donde
+    se encuentra el usuario fisicamente, evitando de esta manera la invasión jurisdiccional en otras provincias, dándole
+    a este servicio un indiscutible marco totalmente legal dentro de la ley. El Portal no organiza, administra, opera,
+    ni
+    explota juegos de azar, ni basa su actividad comercial en la venta de juegos de lotería, ni tiene relación comercial
+    con las Loterías o los diferentes juegos oficiales del mercado. Nos limitamos a proveer un servicio de mensajería
+    que
+    brinda el servicio de compra para el usuario, por su cuenta y orden, de los tickets/boletos de lotería o juegos que
+    encarga,
+    dentro de los juegos oficiales autorizados en la provincia donde se encuentre. El Portal no participa de ningúna
+    ganancia
+    generada por los juegos que solicita comprar el usuario, ni comisión de ningún premio de lotería. Nos limitamos a
+    prestar
+    para el usuario, un servicio responsable, amable, y honesto de mensajería y/o gestión. Nuestro negocio es la
+    mensajería
+    y la publicidad.</p>
+
+<strong>1.2. Usuario Registrado o apostador o usuario y cuentas</strong>
+</br>
+<p>Se denomina usuario registrado o usuario a la persona física que haya completadolos datos solicitados para el
+    registro en
+    el sitio y tenga activada su cuenta. El usuario es propietario de su cuenta en el portal en la cual se acreditarán
+    sus
+    depósitos para debitar los importes necesarios para efectivizar la compra de sus Tickets/boletos solicitados, se
+    debitarán
+    también sus retiros y se acreditarán los importes por premios ganados por los Tickets/boletos comprados por su
+    cuenta
+    y orden, a los efectos de brindar un servicio completo al usuario.</p>
+
+<strong>1.3. Aceptación</strong>
+</br>
+<p>Automáticamente una persona que se registraen el portal está aceptando el uso y aplicación de este Reglamente
+    General. Sólo
+    podrán participar en el uso del portal personas mayores de 18 años. Los reglamentos de cada juego en particular son
+    los
+    que la Lotería de la provincia correspondiente ofrece sobre los mismos y el usuario es responsable de conocerlos. El
+    portal no guarda relación, ni tiene injerencia sobre los mismos y siempre respetará dichos reglamentos o las
+    modificaciones
+    que cada Lotería disponga con o sin previo aviso, para efectivizar las solicitudes de apuestas recibidas y el cobro
+    de
+    los premios que surjan de dichas apuestas. El portal en ningún momento se hará responsable por anomalías o
+    inconvenientes
+    ocasionados en el desarrollo de los juegos o sorteos que presente cada Lotería, ya que es ajeno al desarrollo,
+    características
+    y comercialización de cada juego. Automáticamente una persona que se registrada en el portal está aceptando el
+    reglamento
+    de cada uno de estos juegos en particular que son regulados por la Lotería pertinente. El portal se desliga
+    completamente
+    de la redacción o modificaciones de los reglamentos de estos juegos, simplemente los respetará tal y como exija cada
+    Lotería tanto para cobros, pagos, anulaciones o modificaciones, a los efectos de cumplir con el servicio de
+    mensajería
+    prestado por mandato del usuario. El usuario una vez registrado en el sitio, acepta sin lugar a ningún tipo de
+    apelación
+    todos estos reglamentos anteriormente mencionados.
+</p>
+
+<strong>1.4. Derechos del portal</strong>
+</br>
+<p>El portal se reserva el derecho de admisión de cualquier solicitud de registro de cualquier persona sin importar si
+    esta
+    solicitud alguna vez fue aceptada incluso en este mismo sitio. El portal puede cancelar cualquier cuenta de usuario
+    y
+    reembolsar los fondos sin explicaciones adicionales. El portal también se reserva el derecho de admisión de fondos
+    si
+    detectara que sus fuentes son de orígenes dudosos o injustificables. El portal también se reserva el derecho de
+    admisión
+    de cualquier tipo de solicitud de apuesta incluso si ésta ya fue aceptada y luego se comprueba algún tipo anomalía
+    de
+    cualquier índole en la misma. El portal se reserva el derecho de congelar los fondos de la cuenta del usuario si la
+    ley
+    así lo determina. El portal se reserva el derecho de anular cualquier solicitud de apuesta que levante sospecha de
+    fraude
+    o estafa incluso una vez aceptada la jugada y realizado el sorteo. Estos casos serán debidamente resueltos ante la
+    ley.</p>
+
+<strong>1.5. Obligaciones del usuario</strong>
+</br>
+<p>Es obligación del usuario suministrar correctamente los datos al momento del registro y mantenerlos actualizados ante
+    cualquier
+    cambio. También es responsable de controlar y cuidar el acceso a su cuenta. En caso de olvidar sus datos de ingreso
+    al
+    portal, hay herramientas a su disposición en el sitio para la recuperación de los mismos. Es obligación del usuario
+    controlar
+    en forma periódica el balance de su cuenta e informar cualquier anomalía a través del mail de contacto. Es absoluta
+    y
+    completa obligación del usuario mantener en secreto su nombre de usuario y contraseña. En el caso de que se
+    acrediten
+    o debiten fondos de su cuenta erróneamente es absoluta y total responsabilidad del usuario informar de este hecho al
+    portal mediante el formulario de contacto, o por email a contacto@jugaya.com Cualquier ganancia posterior al error
+    y anterior a la notificación, relacionada o no con el error, será considerada no válida y devuelta al portal. Casos
+    como
+    éstos pueden ser tratados como fraude o estafa ante la ley.</p>
+
+<strong>1.6. Cambios en el Reglamento General</strong>
+</br>
+<p>El portal se reserva el derecho de modificar este reglamento sin ningún previo aviso y los usuarios registrados
+    automáticamente
+    renovarán su aceptación a este nuevo reglamento, por eso se recomienda a los usuarios que accedan periódicamente a
+    la
+    relectura del reglamento en caso de que haya modificaciones desde la última vez que haya sido leído así tienen la
+    posibilidad
+    de solicitar la baja como usuarios registrado del portal mediante el formulario de contacto o por email a
+    contacto@jugaya.com,
+    en caso de no aceptar las nuevas reglas. Mientras un usuario sea usuario registrado acepta todo lo que este
+    reglamento
+    expresa.</p>
+
+<strong>1.7. Depósitos y retiros de premios</strong>
+</br>
+<p>Para que el portal pueda efectivizar las solicitudes de apuestas recibidas, el usuario debe disponer de saldo en su
+    cuenta.
+    Para ello, dispone de los medios de pagos disponibles indicados en el portal. Recién realizada la acreditación del
+    dinero
+    a la cuenta del portal será acreditado el monto enviado en la cuenta del usuario registrado correspondiente. La
+    acreditación
+    puede hacerse en forma instantánea o demorar hasta 72hs hábiles según el medio de pago utilizado por el usuario.
+    Momentáneamente
+    tampoco se le transmitirán al usuario los costos de transacciones por operaciones de recepción de dinero. El
+    depósito
+    mínimo en una cuenta del sitio es de $100 (cien pesos). Se podrá retirar dinero de una cuenta de usuario equivalente
+    al 100% (cien por ciento) de los premios acreditados, seleccionando cualquiera de los métodos que seleccione desde
+    la
+    sección “Retirar saldo”. Pero en cualquiera de los casos, los costos del envío del dinero estarán a cargo del
+    usuario
+    registrado.</p>
+
+<strong>1.8. Solicitudes de Apuestas y Tickets oficiales</strong>
+</br>
+<p>Cuando el usuario solicita una apuesta, el precio de la misma es el que decide el usuario y deberá respetar los
+    máximos y
+    mínimos que cada juego permite según su reglamento. Caso contrario no será ejecutado su solicitud de apuesta. El
+    usuario
+    recibirá un aviso cuando su solicitud de apuesta fue realizada en la agencia oficial. A partir de este momento, si
+    lo
+    quisiere, podrá solicitar el envío de la foto del ticket oficial generado por su pedido, cuyos datos contendrán la
+    apuesta
+    válida realizada, Todos los tickets oficiales de los usuarios quedarán bajo guarda del portal y el usuario podrá
+    solicitar
+    su retiro físico enviando dicha solicitud a contacto@jugaya.com, si quisiera tener el ticket en su poder, de lo
+    contrario el portal realizará como servicio al usuario, las verificaciones posteriores para comprobar si su ticket
+    fue
+    premiado.</p>
+<strong>1.9. Premios</strong>
+</br>
+<p>El o los premios obtenidos en los tickets oficiales que compran nuestros agentes en las agencias oficiales luego de
+    recibir
+    la solicitud del usuario, serán acreditados en su cuenta si y solo si el Ticket/boleto oficial original que el
+    portal
+    efectivizó por la solicitud de apuesta recibida, al ser pasado para su control en la máquina oficial de la Lotería
+    y/o
+    verificado su resultado con el extracto oficial del juego que corresponda, indica que el mismo tiene un premio, el
+    monto
+    que indique la máquina y/o extracto oficial del juego, es el que será acreditado en su cuenta, siempre y cuando el
+    premio
+    no sea mayor y deba ser cobrado físicamente por el usuario, en cuyo caso el portal coordinará con el usuario para
+    proceder
+    a la entrega de dicho ticket. Este proceso puede demorar hasta 48hs hábiles, aunque normalmente el tiempo de
+    acreditación
+    sea entre 2 y 3 horas después de cada sorteo, excepto en el caso del sorteo nocturno que es durante la mañana
+    siguiente
+    del sorteo. El portal se reserva el derecho de constatar la veracidad y la legitimidad del valor acreditado en
+    concepto
+    de premio incluso una vez realizada la acreditación, permitiéndonos poder cancelar el premio en el caso de alguna
+    anomalía
+    o si el usuario no cumplimenta con los requisitos enunciado en el punto 1.2 del presente. Caso que algún premio no
+    haya
+    sido acreditado en la cuenta del usuario, este deberá realizar dicho reclamo, no siendo responsable el portal por
+    dicha
+    omisión. El usuario deberá controlar, en los casos en que el juego que está solicitando su apuesta lo permita, que
+    su ticket/boleto
+    oficial tenga incorporado su número de documento, caso contrario el sitio no se responsabiliza por posibles reclamos
+    que puedan surgir en la acreditación del premio. Nuestros representantes que le prestan el servicio al usuario,
+    están obligados
+    a transmitir la solicitud de apuesta manualmente en el mostrador en la Agencia Oficial para obtener el ticket/boleto
+    oficial.
+    En el caso de ocurrir algún error u omisión al momento de pasar la solicitud de apuesta del portal a la máquina
+    oficial
+    de Lotería, el portal no se hará responsable ante cualquier diferencia entre la solicitud de apuesta recibida y
+    ticket/boleto
+    oficial que origine la misma, tomando como valido esta última. Ante cualquier error u omisión, el portal procederá a
+    la re acreditación del valor de la solicitud de apuesta en la cuenta del usuario. El sitio tampoco será responsable
+    si la solicitud
+    de apuesta tuvo premios y no pudo comprar el ticket oficial de Lotería por causas de terceros (ej.: Cortes de luz al
+    momento de descargar las jugadas para pasarlas, incendio de nuestros servidores, cortes del servicio de internet en
+    nuestras
+    oficinas, etc,) en este caso nos remitiremos a re acreditarle el valor de la solicitud de apuesta en la cuenta del
+    usuario.</p>
+<strong>1.10. Resultados</strong>
+</br>
+<p>Los resultados utilizados para constatar premios de cualquier juego, son los que informa cada Lotería oficialmente en
+    sus
+    extractos, absolutamente ninguna otra fuente de datos es válida para constatar los resultados, ni siquiera los
+    publicados
+    en el portal que son solo informativos.</p>
+<strong>1.11. Excepciones</strong>
+</br>
+<p>En el caso de suspensión de un sorteo, postergación o anulación, automáticamente se tomará como resolución lo que
+    cada Lotería
+    indique como forma de proceder ante esta situación.</p>
+<strong>1.12. Plazo para las apuestas</strong>
+</br>
+<p>Generalmente se podrán solicitar apuestas siempre y cuando el portal lo permita, teniendo en cuenta los horarios de
+    sorteos
+    de cada juego. En todos los casos los tiempos de plazos pueden ser mayores o menores sin ningún previo aviso, ya que
+    los mismos se pactan en el momento que se cargan al sistema según las expectativas de juego de cada sorteo. Pero
+    nunca
+    podrá solicitarse una apuesta a un sorteo después del tiempo límite que establece el ente oficial que administra el
+    mismo,
+    considerándose nulas todas aquellas solicitudes de apuesta que ingresen posteriormente a dicho horario de cierre.
+</p>
+<strong>1.13. Reclamos</strong>
+</br>
+<p>El usuario podrá realizar sus reclamos y consultas mediante nuestro formulario de contacto o mail informado:
+    contacto@jugaya.com</p>
+<strong>1.14. Confidencialidad</strong>
+</br>
+<p>Toda la información recibida será mantenida bajo estricta confidencialidad. El portal no reportará registro alguno de
+    ganancias
+    y/o pérdidas o informes de usuarios, así como la identidad del usuario bajo ninguna circunstancia en ninguna base de
+    datos pública o privada sin embargo se alienta a los usuarios a cumplir con las respectivas leyes locales.</p>
+<strong>1.15. Créditos</strong>
+</br>
+<p>Es responsabilidad del usuario mantener con saldo suficiente su cuenta en el portal para poder solicitar apuestas, en
+    ningún
+    caso se le aceptará una solicitud de apuesta sin los fondos necesarios para poder efectivizar la misma. En caso de
+    que
+    por error una solicitud de apuesta sea pasada desde una cuenta sin saldo suficiente será considerada nula. En caso
+    de
+    que el usuario haya realizado un depósito en su cuenta y todavía no se haya acreditado el dinero en su cuenta y con
+    los
+    fondos que posee no llegase a cubrir su jugada, el caso será de la misma manera que al principio del punto.</p>
+<strong>1.16. Dirección física de Portal</strong>
+</br>
+<p>JUGAYA tiene su sede en Colombres 1224 Bis, Rosario, Argentina. Mail: contacto@jugaya.com</p>
+
+<br />
+</div>
+<div class="col-md-12 col-sm-12 pt-40">
+    <h1>POLITICAS DE PRIVACIDAD</h1>
+
+    <br />
+    <p>Nuestra política de privacidad describe qué información recogemos y cómo la utilizamos ya que el acceso a los
+        servicios
+        disponibles en nuestros canales móviles implica la aceptación de nuestra política de privacidad. El Portal podrá
+        modificar estos términos en cualquier momento notificando toda actualización de los mismos.</p>
+    <p>El Portal se compromete a cumplir con la protección de los datos personales establecido en la ley 25.326,
+        informando
+        a los titulares de los mismos que pueden ejercer los derechos de acceso, rectificación, cancelación y oposición,
+        dirigiéndose por mail a: contacto@jugaya.com</p>
+
+
+    <strong>Registros e Identificación de Usuarios</strong>
+    <br />
+
+    <p>El Registro de Usuarios del portal es obligatorio para poder usar los servicios que presta el mismo. Durante el
+        proceso
+        de registro se requerirá como única información personal el Nombre, email y DNI.</p>
+
+
+    <strong>Uso de la Información</strong>
+    <br />
+
+    <p>Toda la información proporcionada será tratada de forma segura y de conformidad con la normativa de protección de
+        datos.
+        La actualización y/o rectificación de los datos e información personal podrá realizarse en cualquier momento
+        accediendo
+        por los canales habilitados. El Portal no compartirá información personal sobre los usuarios del sitio con otras
+        personas, organizaciones o compañías, bajo ningún concepto ni circunstancia. Ocasionalmente, podrá recibir en su
+        correo electrónico promociones, información adicional o noticias que el Portal entienda que pueden resultar de
+        interés.
+        Para cancelar la suscripción a esos correos, se deberá remitir un correo a contacto@jugaya.com.
+    </p>
+
+    <strong>Protección de Datos</strong>
+    <br />
+
+    <p>Nuestras medidas para la protección de datos incluyen seguridad física y espacial de datos, controles de acceso y
+        sistemas
+        que garantizan un alto nivel de codificación y seguridad de datos.
+    </p>
+
+    <strong>Medidas de Seguridad</strong>
+    <br />
+
+    <p>La información contenida en la cuenta está protegida por una contraseña generada por el Usuario quien debe
+        resguardar
+        de terceras personas la clave personal de acceso al Portal. Toda transacción que se realice bajo un usuario y
+        contraseña
+        serán bajo entera responsabilidad del titular de dicha cuenta y clave personal. En caso de que la clave haya
+        sido
+        sustraída o revelada por error a un tercero, el Usuario estará obligado a proceder al cambio de la misma, para
+        lo
+        cual se le facilitará un módulo de gestión de sus datos personales y clave.
+    </p>
+    <p>El Portal no asume responsabilidad alguna por el uso indebido de los datos y contraseñas de acceso.
+    </p>
+    <p>El Portal no envía correos electrónicos ni realiza llamadas para solicitar cambio y/o confirmación de datos
+        personales
+        (nombre de usuario, claves, etcétera).
+    </p>
+
+    <strong>Cancelación de inscripción en el Registro</strong>
+    <br />
+
+    <p>El Usuario podrá cancelar o desactivar su cuenta en cualquier momento. La cancelación o desactivación de la
+        cuenta producirá
+        la eliminación de los datos personales del banco de datos del Portal, excepto que por causa justificada o
+        requerimiento
+        de algún organismo de control deban conservarse dichos datos.
+    </p>
+
+    <strong>Información sobre Defensa al Consumidor</strong>
+    <br />
+
+    <p>Nuestros usuarios encontraran información respecto a la legislación vigente en nuestro país en materia de Defensa
+        del
+        Consumidor ingresando en el sitio oficial http://www.consumidor.gov.ar, de la Subsecretaria de Defensa del
+        Consumidor,
+        organismo dependiente de la Secretaria de Comercio Interior, Ministerio de Economía y finanzas Públicas de la
+        Nación.
+        Asimismo, dispondrá de las vías de contacto de su interés.</p>
+
+</div>
+
+</div>
+
+<br />
+</div>
+
+
+{% endif %}
+
+
+{% if 'www.mibingomovil.com.ar' in request.build_absolute_uri  %}
+
+<p>La Caja de Prestaciones Sociales de Catamarca (Ca.Pre.S.Ca) en adelante “La Caja” ha implementado el uso de una
+    plataforma de juegos llamada “Bingomóvil Ca.Pre.S.Ca”, en adelante “La Plataforma”, que permitirá al usuario
+    realizar apuestas y/o adquirir billetes de juegos oficiales a través de distintos canales como telefonía celular y/o
+    web.</p>
+<p>En el siguiente texto, denominado Términos y Condiciones de uso, se regulará la forma en que el usuario podrá hacer
+    uso de los servicios que brinde la plataforma y de las aplicaciones que descargue para tal fin. Acceder a la
+    plataforma implica reconocer expresamente que el usuario ha leído estos términos y condiciones y accede a
+    respetarlos sin ningún tipo de restricción.</p>
+
+<strong>1. Usuario Registrado o apostador</strong>
+</br>
+</br>
+<p>Se denomina usuario registrado a la persona física que haya completado todos los datos solicitados para el registro
+    en la plataforma, tenga activada su cuenta. El usuario no podrá realizar jugadas y/o compra de tickets, si no se
+    encuentra en la Provincia de Catamarca, por lo que se le pedirá tener activada la función “ubicación” para realizar
+    dicho control. El usuario es propietario de su cuenta en la plataforma. Automáticamente una persona que se registra
+    en la plataforma está aceptando el uso y aplicación de los Términos y Condiciones, conformando un acuerdo entre el
+    usuario y La Caja. Sólo podrán participar en el uso de la plataforma personas que no tengan ningún impedimento legal
+    y que sean mayores de 18 años, pudiendo La Caja solicitar al Usuario la presentación o copia de su DNI para
+    verificar dicha situación. Los datos proporcionados en el registro serán considerados como privados.</p>
+<strong>2. Derechos de la plataforma</strong>
+</br>
+</br>
+<p>La plataforma se reserva el derecho de admisión de cualquier solicitud de registro de cualquier persona y/o cancelar
+    cualquier cuenta de usuario registrado, si detectara algún impedimento legal o anomalía de cualquier índole. La Caja
+    podrá, a su entera discreción, modificar o interrumpir el servicio ya sea en forma parcial o total y el mismo podrá
+    no estar disponible durante períodos de mantenimiento o en otros momentos. La Caja se reserva el derecho de
+    modificar los presentes Términos y Condiciones en cualquier momento y sin previo aviso, por lo que el usuario será
+    responsable de revisarlas periódicamente, y el solo hecho de seguir utilizando la plataforma indicará que el usuario
+    presta consentimiento a dichas normas, caso contrario podrá solicitar la baja de su cuenta por medio fehaciente a La
+    Caja.</p>
+<strong> 3. Obligaciones del usuario</strong>
+</br>
+</br>
+<p>Es obligación del usuario suministrar correctamente los datos solicitados al momento del registro y mantenerlos
+    actualizados ante cualquier cambio. Deberá resguardar su clave personal que es de uso estrictamente suyo. Será
+    responsable de todas las transacciones realizadas en su cuenta y deberá controlar en forma periódica el balance de
+    su cuenta e informar cualquier anomalía a La Caja. En el caso de que se acrediten o debiten fondos de su cuenta
+    erróneamente es absoluta y total responsabilidad del usuario informar de este hecho a La Caja. Cualquier ganancia
+    posterior al error y anterior a la notificación, relacionada o no con el error, será considerada no válida y
+    devuelta a la plataforma.</p>
+<strong>4. Uso de la Plataforma</strong>
+</br>
+</br>
+<p>Para utilizar la plataforma, el usuario deberá estar registrado y cargar saldo en su cuenta concurriendo a La Caja o
+    a través de los medios que esta habilite. Posteriormente podrá realizar sus apuestas en los juegos oficiales
+    habilitados en la plataforma por La Caja, que serán descontadas del saldo disponible mientras cubra dichas valores.
+    Cada persona física tiene derecho a un máximo de 1 cuenta de jugador, la cual no puede transferirse ni ser usada por
+    ningún tercero, prohibiéndose de forma estricta la compraventa de cuentas de jugador o de usuario con fines
+    económicos o lucrativos. En su cuenta de usuario serán acreditadas las cargas de crédito, se debitarán los importes
+    para efectivizar la compra de sus Tickets/boletos y se acreditarán los importes por premios menores. También podrá
+    solicitar el retiro de dinero correspondiente a premios acreditados, cuyo pago será efectuado a través de los medios
+    informados por La Caja. Para el cobro de premios mayores el usuario deberá dirigirse a las oficinas de Ca.Pre.S.Ca o
+    donde esta le indique, debiendo presentar la documentación requerida. Los resultados utilizados para constatar
+    premios de cualquier juego, son los que informa La Caja oficialmente en sus extractos, absolutamente ninguna otra
+    fuente de datos es válida para constatar los resultados, ni siquiera los publicados en la plataforma. En el caso de
+    suspensión de un sorteo, postergación o anulación, automáticamente se tomará como resolución lo que La Caja indique
+    como forma de proceder ante esta situación.</p>
+<strong>5. Consultas y Reclamos</strong>
+</br>
+</br>
+<p>El usuario podrá realizar sus reclamos y consultas a través del mail info@poten.com.ar o en las oficinas de
+    Ca.Pre.S.Ca, sita en calle Mota Botello 854, San Fernando del Valle de Catamarca - Provincia de Catamarca. Los casos
+    que puedan originarse no previstos en estos Términos y Condiciones, serán interpretados y resueltos dentro de las
+    facultades otorgadas por la Ley.</p>
+
+<br />
+
+</div>
+<div class="titulo-movil">
+    <p>
+</div>
+<div class="col-md-12 col-sm-12 pt-40">
+    <h1>POLITICAS DE PRIVACIDAD</h1>
+
+    <br />
+    <br />
+    <p>Nuestra política de privacidad describe qué información recogemos y cómo la utilizamos ya que el acceso a los
+        servicios disponibles en nuestros canales móviles implica la aceptación de nuestra política de privacidad. La
+        Caja podrá modificar estos términos en cualquier momento notificando toda actualización de los mismos. La Caja
+        se compromete a cumplir con la protección de los datos personales establecido en la ley 25.326, informando a los
+        titulares de los mismos que pueden ejercer los derechos de acceso, rectificación, cancelación y oposición,
+        dirigiéndose por mail a: info@poten.com.ar o bien, poniéndose en contacto con Ca.Pre.S.Ca al número (0383)
+        4437751.</p>
+
+    <strong>Registros e Identificación de Usuarios</strong>
+    </br>
+    </br>
+    <p>El Registro de Usuarios de la plataforma es obligatoria para poder realizar apuestas en los juegos autorizados
+        por La Caja disponibles para nuestra Plataforma de Apuestas en nuestros canales móviles. La registración se
+        puede realizar en la sede de Ca.Pre.S.Ca o en sus medios oficiales habilitados. Durante el proceso de registro
+        se requerirá como única información personal el nombre y apellido, DNI, fecha de nacimiento, email, y
+        contraseña. Solo será visible para el resto de jugadores el nombre de usuario; la identificación y la contraseña
+        se conservarán de forma totalmente confidencial. Luego, se controlará que el registro se esté realizando dentro
+        de la jurisdicción de la Provincia de Catamarca y se le pedirá que acepte las condiciones generales de uso y
+        nuestra política de privacidad. En caso de recibir un premio, que por el monto, deba tributar el impuesto al
+        premio, conforme las disposiciones vigentes, se deberá completar por única vez un formulario con datos
+        complementarios, disponible por Internet o en la sede de La Caja. Esta información adicional será validada para
+        la acreditación del pago de su premio. La aceptación de estos términos y condiciones implica el consentimiento
+        para la realización de dichas verificaciones.</p>
+    <strong>Uso de la Información</strong>
+    </br>
+    </br>
+    <p>Toda la información proporcionada será tratada de forma segura y de conformidad con la normativa de protección de
+        datos. La actualización y/o rectificación de los datos e información personal podrá realizarse en cualquier
+        momento accediendo por los canales habilitados. La Caja no compartirá información personal sobre los usuarios
+        del sitio con otras personas, organizaciones o compañías, bajo ningún concepto ni circunstancia. Ocasionalmente,
+        podrá recibir en su correo electrónico promociones, información adicional o noticias que La Caja entienda que
+        pueden resultar de interés. Para cancelar la suscripción a esos correos, se deberá remitir un correo a
+        info@poten.com.ar o bien, puede hacer esto poniéndose en contacto con nuestro centro de “Atención al cliente” al
+        número (0383) 4437751.</p>
+    <strong>Protección de Datos</strong>
+    </br>
+    </br>
+    <p>Nuestras medidas para la protección de datos incluyen seguridad física y espacial de datos, controles de acceso y
+        sistemas que garantizan un alto nivel de codificación y seguridad de datos.</p>
+    <strong>Medidas de Seguridad</strong>
+    </br>
+    </br>
+    <p>La información contenida en la cuenta está protegida por una contraseña generada por el Usuario quien debe
+        resguardar de terceras personas la clave personal de acceso a La Plataforma. Toda transacción que se realice
+        bajo un usuario y contraseña serán bajo entera responsabilidad del titular de dicha cuenta y clave personal. En
+        caso de que la clave haya sido sustraída o revelada por error a un tercero, el Usuario estará obligado a
+        proceder al cambio de la misma, para lo cual se le facilitará un módulo de gestión de sus datos personales y
+        clave. La Caja no asume responsabilidad alguna por el uso indebido de los datos y contraseñas de acceso. La Caja
+        no envía correos electrónicos ni realiza llamadas para solicitar cambio y/o confirmación de datos personales
+        (nombre de usuario, claves, etcétera).</p>
+    <strong>Cancelación de inscripción en el Registro</strong>
+    </br>
+    </br>
+    <p>El Usuario podrá cancelar o desactivar su cuenta en cualquier momento. La cancelación o desactivación de la
+        cuenta producirá la eliminación de los datos personales del banco de datos de La Caja, excepto que por causa
+        justificada o requerimiento de algún organismo de control deban conservarse dichos datos.</p>
+    <strong>Información sobre Defensa al Consumidor</strong>
+    </br>
+    </br>
+    <p>Nuestros usuarios encontraran información respecto a la legislación vigente en nuestro país en materia de Defensa
+        del Consumidor ingresando en el sitio oficial http://www.consumidor.gov.ar, de la Subsecretaria de Defensa del
+        Consumidor, organismo dependiente de la Secretaria de Comercio Interior, Ministerio de Economía y finanzas
+        Publicas de la Nación. Asimismo, dispondrá de las vías de contacto de su interés.</p>
+
+    <br />
+
+</div>
+<div class="titulo-movil">
+    <p>
+</div>
+<div class="col-md-12 col-sm-12 pt-40">
+    <h1>REGLAMENTO GENERAL</h1>
+    </br>
+
+    <strong>1.</strong> La Plataforma de juegos “Bingomóvil Ca.Pre.S.Ca” (en adelante denominado, “LA PLATAFORMA”) y el
+    Registro de Jugadores de Apuestas (en adelante, denominado “el Registro”), son organizados y ejecutados por la Caja
+    de Prestaciones Sociales de Catamarca (Ca.Pre.S.Ca), en adelante “La Caja”, y se regirán por las presentes normas y
+    las que en el futuro dicte La Caja.</p>
+    </br>
+    <strong>2.</strong> El sólo hecho de utilizar LA PLATAFORMA implicará para el apostador (en adelante denominado “el
+    Usuario”) que, a partir de dicho momento, adhiere en forma automática e inmediata a todos y a cada uno de los
+    siguientes Términos y Condiciones y de todas las normas, reglamentos, sus actualizaciones y condiciones de uso de
+    todos los servicios y juegos habilitados en LA PLATAFORMA por La Caja.</p>
+    </br>
+    <strong>REGISTRO EN LA PLATAFORMA</strong>
+    </br>
+    <strong>3.</strong> A los efectos de acceder a LA PLATAFORMA, La Caja ha creado el Registro de Usuarios de la
+    plataforma que tiene por objeto garantizar el juego responsable, evitar el fraude y la participación de menores de
+    edad.</p>
+    </br>
+    <strong>4.</strong> Podrán Registrarse en la plataforma únicamente las personas físicas mayores de edad que no
+    cuenten con ningún impedimento o inhabilitación legal para ello. El Registro es único, individual y personal. El
+    Usuario no puede autorizar a ninguna otra persona a utilizar su cuenta. Los datos proporcionados en el registro
+    serán considerados como privados. Al registrarse se abrirá automáticamente una cuenta asignada al Usuario
+    registrado, libre de gastos de inscripción, donde quedarán registrados todos sus movimientos (cargas de crédito,
+    pago de apuestas, cobro de premios y retiros de dinero).</p>
+    </br>
+    <strong>5.</strong> El Registro podrá realizarse en Ca.Pre.S.Ca, situada en calle Mota Botello 854, San Fernando del
+    Valle de Catamarca, Provincia de Catamarca, en los lugares oficiales habilitados por la misma, donde se le dará el
+    instructivo para proceder a la registración, o vía registro en la aplicación móvil, completando todos los datos
+    requeridos en el formulario de registro y deberá aceptar los Términos y Condiciones de Uso de LA PLATAFORMA.</p>
+    </br>
+    <strong>6.</strong> El Usuario es responsable de mantener actualizados los datos personales declarados en la
+    inscripción. El DNI ingresado en el proceso de registro, no podrá ser modificado por el usuario una vez confirmado
+    el mismo. En caso de haber cometido un error, deberá solicitar su corrección vía mail a info@poten.com.ar</p>
+    <br />
+    <strong>7.</strong> La Caja no solicitará datos extras por ningún medio que no figuren en el formulario de registro,
+    así como también no difundirá los datos del Registro, y solo usará los mismos para la finalidad establecida en el
+    presente.</p>
+    <br />
+    <strong>8.</strong> El Registro del usuario permanecerá vigente hasta la notificación por medio fehaciente, por
+    parte del Usuario a La Caja, de su decisión de retirar su inscripción al registro y haya realizado la extracción de
+    los saldos obtenidos por premios remanentes de su cuenta asignada. Asimismo, y transcurrido el término de 120 días
+    sin que se hayan registrados movimientos en la cuenta del usuario La Caja podrá efectuar de manera automática la
+    baja en el sistema.</p>
+    <br />
+    <strong>9.</strong> El Usuario se compromete a resguardar de terceras personas su clave personal de acceso a LA
+    PLATAFORMA y toda transacción que se realice bajo su usuario y contraseña serán bajo su entera responsabilidad. En
+    caso de que su clave haya sido sustraída o revelada por error a un tercero, tendrá la obligación de proceder al
+    cambio de la misma.</p>
+    <br />
+    <strong>CUENTA DE USUARIO, COMPROBANTES/TICKETSELECTRONICOS (CARGA DE CREDITO, APUESTAS, COBRO DE PREMIOS, RETIRO DE
+        SALDO)</strong>
+    <br />
+    <strong>10.</strong> Al registrarse el Usuario, le será asignada una cuenta donde quedarán asentados todos sus
+    movimientos a través de los comprobantes y/o tickets electrónicos generados por la plataforma. Dichos comprobantes
+    serán respaldo válido para La Caja y el Usuario, de cada uno de los movimientos registrados en la cuenta, y podrán
+    ser impresos y resguardados por La Caja en caso de querer conservar los mismo en soporte físico a fines
+    administrativos. Dicha cuenta podrá ser consultada por el usuario en cualquier momento.</p>
+    <br />
+    <strong>11.</strong> Los depósitos o cargas de crédito se realizarán por medio de soportes físicos o electrónicos
+    autorizados por La Caja. Los mismos podrán ser utilizados en los medios tecnológicos habilitados por La Caja, como
+    por ejemplo, dispositivos móviles, internet, u otro que a La Caja disponga.</p>
+    <br />
+    <strong>12.</strong> Las apuestas y/o compra de billetes de juego, se realizarán en forma directa, a través de
+    telefonía celular o móvil/web, o cualquier otro medio que disponga La Caja. Previamente, el Usuario deberá
+    registrarse cumpliendo los requisitos solicitados y poseer saldo disponible, pagar las apuestas realizadas en los
+    juegos habilitados por La Caja. Posteriormente podrá consultar el ticket electrónico de su jugada emitido por LA
+    PLATAFORMA.</p>
+    <br />
+    <strong>13.</strong> Los premios correspondientes a los Usuarios cuya apuesta emitida hubiere resultado premiada
+    según la mecánica del juego realizado, les serán acreditados en el saldo de su cuenta si su monto no es mayor al
+    máximo reglamentado por La Caja, en cuyo caso, será considerado pagado una vez acreditado el valor de dicho premio
+    en la cuenta del Usuario, tomando como válido el comprobante electrónico emitido por LA PLATAFORMA. En caso de
+    premios mayores, la acreditación y/o cobro de los mismos, se ajustarán a los procedimientos reglamentados por La
+    Caja, debiendo el usuario presentar la documentación que le sea requerida.</p>
+    <br />
+    <strong>14.</strong> Los saldos en la cuenta del Usuario generados por el cobro de premios, son retornables y
+    disponibles para su retiro dentro de los horarios de atención establecidos por La Caja. El Usuario podrá en
+    cualquier momento afectar dicho saldo disponible para la realización de nuevas apuestas o hacer efectivo el retiro
+    de los mismos, total o parcialmente a través de los medios y lugares que La Caja indique.</p>
+    <br />
+    <strong>LIMITE DE RESPONSABILIDAD. PROHIBICIONES</strong>
+    <br />
+    <strong>15.</strong> La Caja, en ningún caso y bajo ninguna circunstancia, será responsable por fallas o errores
+    atribuibles al equipo telefónico utilizado por el Usuario, o errores de conectividad, enlace y/o transferencia de
+    datos que impidan el registro de la operatoria en LA PLATAFORMA. El límite de la responsabilidad por parte de La
+    Caja respecto a los errores en los que hubiere incurrido LA PLATAFORMA, es el monto mínimo de la apuesta.</p>
+    <br />
+    <strong>16.</strong> Será considerada válida una apuesta que sea acompañada por el ticket electrónico (con código de
+    seguridad válido) emitido por el sistema y registrada en tiempo y forma. En el caso de que se registraran a favor
+    del Usuario, premios que no correspondieren por error, es obligación del Usuario notificar dicha circunstancia a La
+    Caja. Cualquier beneficio que el Usuario pretenda obtener o conservar por error de LA PLATAFORMA constituirá una
+    situación de enriquecimiento sin causa y lo obligará a restituir el importe mal percibido en forma inmediata.</p>
+    <br />
+    <strong>17.</strong> Los casos no previstos en el presente Reglamento serán interpretados y resueltos por La Caja
+    dentro de las facultades que le otorga la Ley. Las transgresiones a esta Reglamentación, y a las normas que en su
+    consecuencia se dicten, serán juzgadas y sancionadas por La Caja</p>
+    <br />
+    <strong>18.</strong> Las apuestas realizadas en LA PLATAFORMA, quedan registradas con un código de
+    transacción/control, generando un ticket electrónico que puede ser impreso por el Usuario y/o La Caja. El Usuario
+    puede consultar los movimientos de su cuenta (depósitos y apuestas realizados con los detalles de las mismas, retiro
+    de efectivo y saldo disponible). Las apuestas confirmadas por el Usuario y validadas por LA PLATAFORMA no pueden ser
+    anuladas por el Usuario.</p>
+    <br />
+    <strong>19.</strong> Las actividades y transacciones realizadas en LA PLATAFORMA se regirán por la legislación
+    Argentina. Cualquier controversia derivada de la relación entre el Usuario Jugador y La Caja será competencia de los
+    Tribunales Ordinarios de la ciudad de San Fernando del Valle de Catamarca de la Provincia de Catamarca, con renuncia
+    a cualquier otro fuero o jurisdicción que pudiere corresponder.</p>
+    <br />
+
+</div>
+
+</div>
+</div>
+</div>
+
+{% endif %}
+
+
+<div class="page-content dark bkg-img5 pt-20">
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <img src="img/banner-eje.jpg" class="img-responsive" alt="">
+    </div>
+</div>
+
+<div class="page-content dark bkg-img5 pt-20">
+</div>
+{% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri %}
+
+<div class="page-content white_0">
+    <div class="container">
+        <div>
+            <div class="col-md-4 col-sm-4">
+                <img src="{% static 'img_login/tele-bingo.jpg' %}" class="img-responsive" alt="Tele Bingo">
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <img src="{% static 'img_login/mini-bingo.jpg' %}" class="img-responsive" alt="Mini Bingo">
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <img src="{% static 'img_login/re-bingo.jpg' %}" class="img-responsive" alt="Re Bingo">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri %}
+
+<div class="page-content white_0">
+    <div class="container">
+        <div>
+            <div class="col-md-4 col-sm-4">
+                <img src="{% static 'img_login/tele-bingo_lp.jpg' %}" class="img-responsive" alt="Tele Bingo">
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <img src="{% static 'img_login/mini-bingo_lp.jpg' %}" class="img-responsive" alt="Mini Bingo">
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <img src="{% static 'img_login/re-bingo_lp.jpg' %}" class="img-responsive" alt="Re Bingo">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+
+<div class="page-content dark bkg-img5 pt-20">
+</div>
+
+<div class="page-content white_0" style="padding-top:10px;padding-bottom:10px;">
+    <div class="container">
+        {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri %}
+        <img src="{% static 'img_login/banner_web_sc.gif' %}" class="img-responsive" alt=""> {% endif %}
+        {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri %}
+        <img src="{% static 'img_login/banner_web_lp.gif' %}" class="img-responsive" alt=""> {% endif %}
+    </div>
+</div>
+
+<div id="footer-wrapper">
+    <div id="footer1">
+        <div class="container">
+
+
+            {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri %}
+
+            <div class="row">
+
+                <div class="col-md-5 col-sm-12">
+                    <a target="_blank" href="http://loteriadesantacruz.gob.ar/">
+                        <img src="{% static 'img_login/logo-pie.jpg' %}" class="img-responsive"
+                            alt="Builder Construction HTML Template" />
+                    </a>
+                    <div class="col-md-8 col-sm-10 pt-12">
+                        <p style="color:white;">© Lotería de Santa Cruz 2018. Todos los derechos reservados</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/map.svg' %}" class="img-responsive" alt="map icon" />
+                        </span>
+                        <span style='color:white;' class="tp-white">DIRECCIÓN:</br> Períto Moreno 116 esq. Zapiola</br>
+                            CP (9400) Río Gallegos</br>
+                            Tel. (02966) 422631</span>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/email.svg' %}" class="img-responsive" alt="email icon" />
+                        </span>
+                        <a style='color:white;' class="tp-white" href="#">Email: contacto@loteriadesantacruz.gob.ar</a>
+                        <br />
+                        <br />
+                        <a href="{% url 'bet:terms' %}" style='background:white;color:gray;'
+                            class="btn btn-primary ">TÉRMINOS Y CONDICIONES</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %} {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri %}
+
+            <div class="row">
+
+                <div class="col-md-5 col-sm-12">
+                    <a target="_blank" href="http://loteriadesantacruz.gob.ar/">
+                        <img src="{% static 'img_login/logo-pie_lp.jpg' %}" style="valign:middle;"
+                            class="img-responsive" alt="Builder Construction HTML Template" />
+                    </a>
+                    <div class="col-md-8 col-sm-10 pt-12">
+                        <p style="color:white;">© Lotería de La Pampa 2018. Todos los derechos reservados</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/map.svg' %}" class="img-responsive" alt="map icon" />
+                        </span>
+                        <span style='color:white;' class="tp-white">DIRECCIÓN:</br> Calle Pellegrini 385, 1° y 2°
+                            Piso</br>
+                            CP (6300) Santa Rosa, La Pampa</br>
+                            Tel. (02954) 43-3052</span>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/email.svg' %}" class="img-responsive" alt="email icon" />
+                        </span>
+                        <a style='color:white;' class="tp-white" href="#">Email: lp@loteriamovil.com.ar</a>
+                        <br />
+                        <br />
+                        <a href="{% url 'bet:terms' %}" style='background:white;color:gray;'
+                            class="btn btn-primary ">TÉRMINOS Y CONDICIONES</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if 'www.jugaya.com' in request.build_absolute_uri  %}
+
+            <div class="row">
+
+                <div class="col-md-5 col-sm-12">
+                    <a target="_blank" href="http://www.agencia24.com.ar/">
+                        <img src="{% static 'img_login/logo_pie_sf.png' %}" style="valign:middle;"
+                            class="img-responsive" alt="Builder Construction HTML Template" />
+                    </a>
+                    <div class="col-md-8 col-sm-10 pt-12">
+                        <p style="color:white;">© Juga Ya 2018. Todos los derechos reservados</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/map.svg' %}" class="img-responsive" alt="map icon" />
+                        </span>
+                        <span style='color:white;' class="tp-white">DIRECCIÓN:</br> Colombres Bis 1224</br>
+                            CP (S2006) Rosario, Santa Fe.</br>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/email.svg' %}" class="img-responsive" alt="email icon" />
+                        </span>
+                        <a style='color:white;' class="tp-white" href="#">Email: contacto@jugaya.com</a>
+                        <br />
+                        <br />
+                        <a href="{% url 'bet:terms' %}" style='background:white;color:gray;'
+                            class="btn btn-primary ">TÉRMINOS Y CONDICIONES</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if 'www.mibingomovil.com.ar' in request.build_absolute_uri  %}
+
+            <div class="row">
+
+                <div class="col-md-5 col-sm-12">
+                    <a target="_blank" href="http://help.jugaya.com/">
+                        <img src="{% static 'img_login/logo_ca.png' %}" style="valign:middle;" class="img-responsive"
+                            alt="Builder Construction HTML Template" />
+                    </a>
+                    <div class="col-md-8 col-sm-10 pt-12">
+                        <p style="color:white;">© Mi Bingo 2020. Todos los derechos reservados</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/map.svg' %}" class="img-responsive" alt="map icon" />
+                        </span>
+                        <span style='color:white;' class="tp-white">DIRECCIÓN:</br> Mota Botello 854</br>
+                            CP (4700) San Fernando del Valle de Catamarca.</br>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/email.svg' %}" class="img-responsive" alt="email icon" />
+                        </span>
+                        <a style='color:white;' class="tp-white" href="#">Email: caprescatamarca@gmail.com</a>
+                        <br />
+                        <br />
+                        <a href="{% url 'bet:terms' %}" style='background-color: #023183;color:white;'
+                            class="btn btn-primary ">TÉRMINOS Y CONDICIONES</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+<script src="{% static 'charge_credit/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.scripts.min.js' %}"></script>
+<script src="{% static 'js/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
+<script src="{% static 'js/rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
+<script src="{% static 'js/retina.js' %}"></script>
+<script src="{% static 'js/include.js' %}"></script>
+
+<script>
+    jQuery(document).ready(function ($) {
+        'use strict';
+
+        jQuery('#rev-slider').revolution(
+            {
+                dottedOverlay: "none",
+                delay: 9000,
+                startwidth: 1170,
+                startheight: 250,
+                hideThumbs: 200,
+                thumbWidth: 100,
+                thumbHeight: 50,
+                thumbAmount: 3,
+                navigationType: "none",
+                navigationArrows: "solo",
+                navigationStyle: "preview5",
+                touchenabled: "on",
+                onHoverStop: "off",
+                swipe_velocity: 0.7,
+                swipe_min_touches: 1,
+                swipe_max_touches: 1,
+                drag_block_vertical: false,
+                keyboardNavigation: "on",
+                navigationHAlign: "center",
+                navigationVAlign: "bottom",
+                navigationHOffset: 0,
+                navigationVOffset: 20,
+                soloArrowLeftHalign: "left",
+                soloArrowLeftValign: "center",
+                soloArrowLeftHOffset: 20,
+                soloArrowLeftVOffset: 0,
+                soloArrowRightHalign: "right",
+                soloArrowRightValign: "center",
+                soloArrowRightHOffset: 20,
+                soloArrowRightVOffset: 0,
+                shadow: 0,
+                fullWidth: "on",
+                fullScreen: "off",
+                spinner: "spinner0",
+                stopLoop: "off",
+                stopAfterLoops: -1,
+                stopAtSlide: -1,
+                shuffle: "off",
+                forceFullWidth: "off",
+                fullScreenAlignForce: "off",
+                minFullScreenHeight: "400",
+                hideThumbsOnMobile: "off",
+                hideNavDelayOnMobile: 1500,
+                hideBulletsOnMobile: "off",
+                hideArrowsOnMobile: "off",
+                hideThumbsUnderResolution: 0,
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                startWithSlide: 0,
+                hideTimerBar: "on"
+            });
+
+
+    });
+</script>
+</div>
+{% endblock %}

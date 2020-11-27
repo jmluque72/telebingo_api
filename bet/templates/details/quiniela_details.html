@@ -1,0 +1,55 @@
+{% extends 'details/basebet_details.html' %}
+
+{% block topdetails %}{% endblock %}
+
+{% block details %}
+
+    {% for draws, detail_list in details.iteritems %}
+    <div style="border-top: 1px solid #e5e5e5; padding-top: 10px;">
+
+        <div class="form-group">
+            <strong>{{ draws.0.get_type_display }}: </strong>Sorteo Nro. {{ detail_list.0.draw_number }} del {{ draws.0.date_draw|date:"d.m.Y" }}
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-md-2">Nro.</div>
+            <div class="col-md-3">Ub.Ext.</div>
+            <div class="col-md-2">Valor</div>
+        </div>
+
+        {% for detail in detail_list %}
+
+            {% if not detail.apuesta %} {# si no es redoblona #}
+                <div class="row">
+                    <div class="col-md-2">{{ detail.number }}</div>
+                    <div class="col-md-3">{{ detail.get_location_display|lower }}</div>
+                    <div class="col-md-2">{{ detail.importq }}</div>
+
+                    <div class="form-group">
+                        {% if detail.redoblona %} {# si tiene redoblona #}
+                            <br/><strong>Con redoblona al:</strong> {{ detail.redoblona.number }} {{ detail.redoblona.get_location_display|lower }}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <strong>Loter&iacute;a{{ draws|pluralize }}:</strong>
+        {% for draw in draws %}
+            {{ draw.quiniela.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+
+        <div class="form-group">
+            <strong>Estado: </strong> {{ detail_list.0.get_state_display }}
+        </div>
+        {% if detail_list.0.ticket.real %}
+        <div class="form-group">
+            <a class="fancybox" rel="group" href="{{ detail_list.0.ticket.real.url }}"><strong>Ticket</strong></a>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+{% endblock %}
+
+{% block bottomdetails %}{% endblock %}

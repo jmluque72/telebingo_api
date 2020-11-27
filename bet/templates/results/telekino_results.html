@@ -1,0 +1,35 @@
+{% extends "results/results_base.html" %}
+
+{% block action_form %}{% url 'bet:telekino_results' draw.pk %}{% endblock %}
+
+{% block tabs %}
+    <div class="row clearfix base-tabs"> <!-- PESTAÑA EXTRACTO/GANADORES -->
+        <div class="col-md-2 tab-activa">Extracto</div>
+        <div class="col-md-2 tab-inactiva">Ganadores</div>
+    </div>
+{% endblock %}
+
+{% block results %}
+
+    {% with form=telForm extractForm=extractFormTel title='Telekino' columns=3 %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+
+    {% with form=rekForm extractForm=extractFormRek title='Rekino' columns=5 %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+
+    {% include 'results/coupons_results.html' %}
+
+{% endblock %}
+
+{% block extracto %}
+{
+    "tel": [[0, 50000000],
+            [70, 3000],
+            [2000, 200],
+            [24000, 30],
+            [120000, 20]],
+    "rek": [[1, 3500000]]
+}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'extract/base_extract.html' %}
+
+{% block content %}
+    {% with results=draw.totobingo_results.gog title="Ganá o ganá" columns=6 hide_hits=True %}
+        {% include 'extract/results_set.html' %}
+    {% endwith %}
+
+    {% with results=draw.totobingo_results.poz title="Pozo Millonario" columns=6 %}
+        {% include 'extract/results_set.html' %}
+    {% endwith %}
+
+    {% with results=draw.totobingo_results.star title="Bolilla Estrella" hide_hits=True %}
+        {% include 'extract/results_set.html' %}
+    {% endwith %}
+
+{% endblock %}

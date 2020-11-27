@@ -1,0 +1,560 @@
+body {
+	color:#666666;
+}
+
+legend {
+    display: block;
+    width: 100%;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: inherit;
+	font-weight:bold;
+    color: #333;
+    border: 0; 
+    border-bottom: 2px solid #448cde;
+}
+
+.accion {
+	font-size:14px;
+	font-weight:normal;
+}
+
+.sub-secciones {
+    display: block;
+    width: 100%;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    font-size: 20px;
+	font-weight:bold;
+    line-height: inherit;
+    color: #666;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #448cde;
+    border-color: #448cde;
+}
+
+.btn-info:hover {
+    color: #fff;
+    background-color: #3278c9;
+    border-color: #3278c9;
+}
+
+.btn-nuevo {
+	text-decoration:none;
+	padding-top:8px!important;
+	padding-bottom:8px!important;
+	margin-top:-5px!important;
+	color: #fff;
+    background-color: #C90000;
+    border-color: #C90000;
+}
+
+.btn-nuevo:hover,.btn-nuevo:focus,.btn-nuevo:active  {
+    color: #fff;
+    background-color: #e60000!important;
+    border-color: #e60000!important;
+}
+
+.divisor {
+	border-bottom:solid 1px #ccc;
+	padding-bottom:20px
+}
+
+.divisor-cabeceras {
+	border-bottom:solid 2px #a2a2a2;
+	padding-bottom:5px
+}
+
+.divisor-tabla {
+	border-bottom:solid 1px #b3b3b3;
+	padding:10px 0px
+}
+
+input[type=text], input[type=number], select, input[type=password] {
+    height: 34px;
+	width:100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+#id_prize_image {
+	margin-top:6px
+}
+
+a {
+	color:#448cde;
+	text-decoration:underline
+}
+
+a:hover {
+	color:#1e69be;
+	text-decoration:underline
+}
+
+footer {
+	background:#e2e2e2;
+	padding:10px 0;
+	margin-top:50px
+}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 150px!important;
+}
+
+.titulo-separador {
+	 font-size:22px;
+	 color:#448cde
+}
+
+#id_email {
+	height: 34px;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+/* ---------- MEN� PRINCIPAL ------------- */
+
+/* ---------- NAVBAR-DESA ------------- */
+.navbar-desa {
+    background-color: #C90000;
+    border-color: #C90000;
+}
+
+.navbar-desa .navbar-nav > li > a {
+    color: #fff;
+	text-decoration:none
+}
+
+.navbar-desa .navbar-nav > li > a:hover, .navbar-desa .navbar-nav > li > a:focus {
+    color: #ccc;
+    background-color: transparent;
+}
+
+.navbar-desa .navbar-nav > .open > a, .navbar-desa .navbar-nav > .open > a:hover, .navbar-desa .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #dd0000;
+}
+
+/* ---------- END NAVBAR-DESA ------------- */
+
+.navbar-default {
+    background-color: #448cde;
+    border-color: #448cde;
+}
+
+.navbar {
+    border-radius: 0px;
+	margin-bottom:0px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+	text-decoration:none
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #ccc;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #5ea3f1;
+}
+
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+	text-decoration:none
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #448cde;
+}
+
+/* ---------- FIN MEN� PRINCIPAL ------------- */
+
+/* ---------- MEN� SECUNDARIO ------------- */
+
+.navbar-default.second-menu {
+    background-color: #e2e2e2;
+    border-color: #e2e2e2;
+	border-top:solid 2px #fff;
+	margin-bottom:20px
+}
+
+.navbar-default .navbar-nav.second-items > li > a {
+    color: #666; !important
+	text-decoration:none
+}
+
+.navbar-default .navbar-nav.second-items > li > a:hover {
+    color: #666; !important
+	text-decoration:none;
+	background:#d2d2d2
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #fff !important;
+  background-color: #448cde;
+}
+
+/* ---------- FIN MEN� SECUNDARIO ------------- */
+
+/* ---------- BTN NUEVO SORTEO ------------- */
+
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #3278c9;
+    border-color: #3278c9;
+}
+
+.btn-info:active:hover, .btn-info.active:hover, .open > .dropdown-toggle.btn-info:hover, .btn-info:active:focus, .btn-info.active:focus, .open > .dropdown-toggle.btn-info:focus, .btn-info:active.focus, .btn-info.active.focus, .open > .dropdown-toggle.btn-info.focus {
+    color: #fff;
+    background-color: #3278c9;
+    border-color: #3278c9;
+}
+
+/* ---------- FIN BTN NUEVO SORTEO ------------- */
+
+/* ---------- LOGIN ------------- */
+
+.back-login {
+	background:url(imgs/login-background.jpg) center top no-repeat;
+	width:100%;
+	height:493px;
+	color:#fff
+}
+
+.back-logout {
+	background:url(imgs/logout-background.jpg) center top no-repeat;
+	width:100%;
+	height:493px;
+	color:#fff
+}
+
+.back-login a {
+	color:#fff
+}
+
+.form-margin {
+	margin-top:225px;
+	margin-left:125px
+}
+
+.logout-margin {
+	margin-top:265px;
+	margin-left:100px
+}
+
+.alert-margin {
+	margin-top:370px;
+	margin-left:50px
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #de0202;
+    border-color: #a20000;
+	text-decoration:none
+}
+
+.btn-danger:hover {
+    color: #fff;
+    background-color: #a20000;
+    border-color: #a20000;
+}
+
+.alert-danger {
+    color: #ffffff;
+    background-color: #de0202;
+    border-color: #de0202;
+}
+
+.login-shadow {
+	background:url(imgs/login-shadow.png) center top no-repeat;
+	width:100%;
+	height:33px
+}
+
+/* ---------- FIN LOGIN ------------- */
+
+/* ---------- MOVIMIENTOS DE CUENTA USUARIOS ------------- */
+
+.bloque-saldo {
+	background:#448cde;
+	color:#FFFFFF;
+	padding:10px 20px;
+}
+
+.bloque-saldo h3 {
+	color: white;
+	font-size: 28px;
+	margin:0;
+}
+
+.bloque-retiro-saldo {
+	background:#3ec34e;
+	color:#FFFFFF;
+	padding:10px 20px;
+}
+
+.division-saldo {
+	border-left:solid 1px #fff
+}
+
+/* ---------- MOVIMIENTOS DE CUENTA USUARIOS ------------- */
+
+/* ---------- LISTADO DATOS GENERALES QUINIELA ------------- */
+
+ul#id_lottery {
+	list-style:none;
+	margin-left:-35px
+}
+
+ul#id_lottery li {
+	display:inline;
+}
+
+ul#id_lottery li label {
+	font-weight:normal;
+	margin-right:10px
+}
+
+.tipo > label {
+	font-weight:normal;
+	margin-right:10px;
+	margin-left:5px
+}
+
+/* ---------- FIN LISTADO DATOS GENERALES QUINIELA ------------- */
+
+/* ---------- TABS SORTEOS Y RESULTADOS ------------- */
+
+.base-tabs {
+	border-bottom:solid 1px #cccccc;
+	margin-bottom:0px;
+	padding-bottom:0px
+}
+
+.tab-activa {
+	background: #448cde;
+	border-top:solid 1px #448cde;
+	border-left:solid 1px #448cde;
+	border-right:solid 1px #448cde;
+	color:#fff;
+	text-align:center;
+	height:40px;
+	font-size:16px;
+	line-height:40px;
+	font-weight:bold
+}
+
+.tab-inactiva {
+	background: white;
+	border-top:solid 1px #ccc;
+	border-left:solid 1px #ccc;
+	border-right:solid 1px #ccc;
+	text-align:center;
+	height:40px;
+	font-size:16px;
+	line-height:40px;
+}
+
+.tab-inactiva:hover {
+	background:#e2e2e2;
+}
+
+.tab-inactiva a {
+	color:#333;
+	text-decoration:none;
+	font-weight:bold;
+	display:block
+}
+
+.tab-activa a {
+	color: #fff;
+	text-decoration:none;
+}
+
+/* ---------- FIN TABS SORTEOS Y RESULTADOS ------------- */
+
+/* ---------- GANADORES ----------- */
+
+.num-resultados {
+	border:1px solid #448cde;
+	display:inline-block;
+	padding:5px;
+	border-radius:5px;
+	margin:0 2px;
+	text-align:center;
+	background:#eef6fe
+}
+
+.num-coincidencias {
+	border:1px solid #448cde;
+	display:inline-block;
+	padding:5px;
+	border-radius:5px;
+	margin:0 2px;
+	text-align:center;
+	background:#fff;
+}
+
+a.btn-volver {
+	color: #448cde;
+	text-decoration:none
+}
+
+/* ---------- FIN GANADORES ------- */
+
+/* ---------- PAGINADOR ------------- */
+
+a.page, .next, .prev {
+	text-decoration:none;
+	padding:5px 8px;
+	background:#FFFFFF;
+	border:solid 1px #ccc;
+	border-radius:5px
+}
+
+a.page:hover  {
+	background:#e7e7e7;
+}
+
+span.current {
+	padding:5px 8px;
+	background:#448cde;
+	border:solid 1px #448cde;
+	color:#fff;
+	border-radius:5px
+}
+
+/* ---------- FIN PAGINADOR ------------- */
+
+/* ---------- ERRORES FORMULARIOS ------------- */
+.errorlist {
+	color: red;
+	font-size: smaller;
+	padding-left: 15px;
+	padding-right: 15px;
+    list-style-type: none;
+}
+/* ---------- FIN ERRORES FORMULARIOS ------------- */
+
+/* ---------- DIALOGOS ------------- */
+.modal-dialog .row {
+    margin-left: -15px;
+}
+/* ---------- FIN DIALOGOS ------------- */
+
+/* ---------- RESETEAR PASSWORD --------- */
+.header-small {
+	background:#448cde;
+	height:105px;
+}
+
+.logo-header-small {
+	margin: 30px 0 0 30px
+}
+
+
+/* ----------- FIN RESETEAR PASSWORD --------- */
+
+
+.won {
+	background: #97f15b
+}
+
+.white {
+	background:#ffffff;
+	padding:5%
+}
+
+h3 {
+	color:#448cde
+}
+
+.text-error {
+	color: #c90000
+}
+
+.mfp-wrap { z-index: 2000 }
+
+.td-telebingo {
+	width:11%;
+	padding:10px;
+	text-align:center;
+}
+
+.table-telebingo {
+	width:90%;
+	margin-bottom:0px;
+}
+
+.bingo {
+	background:#c2dfff
+}
+
+.billetes-tele {
+	font-size:18px;
+	margin-top:20px;
+}
+
+.ronda-tele {
+	font-size:25px;
+	color:#4186d4;
+}
+
+
+@media (max-width: 320px) {
+.td-telebingo {
+	max-width:5% !important;
+	padding:5px!important;
+	text-align:center;
+	font-size:12px
+}
+
+.table-telebingo {
+	width:105%!important;
+	margin-bottom:0px;
+	max-width:105%
+}
+
+}

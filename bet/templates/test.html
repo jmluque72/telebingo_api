@@ -1,0 +1,322 @@
+
+<script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+
+
+
+
+{% extends "registration/registration_base.html" %}
+{% load widget_tweaks %}
+
+
+{% block title %}Login{% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+ <div class="header-wrapper header-transparent">
+            <header id="header">
+
+
+                <div id='header_top' class="header-inner">
+                    <div class="container">
+                        <div class="main-nav">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <nav class="navbar navbar-default nav-left" role="navigation">
+                                        <div class="col-md-5 col-sm-5 col-xs-12">
+                                            <div class="navbar-header">
+                                                <div class="logo">
+                                                    <a href="">
+                                                        <img src="{% static 'img_login/logo.jpg' %}" class="img-responsive" alt="Loteria de Santa Cruz"/>
+                                                    </a>
+                                                </div></div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <div class="loteria">LOTERIA MOVIL</div>
+                                            </div>
+
+
+
+                                            <div class="col-md-5 col-sm-5 col-xs-12" >
+                                                <div class="quote-btn" >
+                                                    <a href="{% url 'bet:FAQ' %}" class="btn btn-primary float-right">FAQ</a>
+                                                </div>
+                                                <div class="quote-btn" >
+                                                    <a href="{% url 'bet:como_se_juega' %}" class="btn btn-primary float-right">CÓMO JUGAR</a>
+                                                </div>
+                                            </div>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pull-right col-md-3 col-sm-2 col-xs-12">
+                                        <div class=""> <a  href="{% url 'auth_logout' %}" class=" btn btn-primary ">DESCONECTARSE</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <div class="tp-banner-container fullwidthbanner">
+            <div id="rev-slider" class="tp-banner">
+                <ul>
+                    <li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-title="winter">
+                        <img src="{% static 'img_login/slider/slide-01.jpg' %}" alt=''  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-content white_0">
+            <div class="container">
+                <div class="row mb-0 negative-top-margin">
+                    <div class="col-md-4 col-sm-4 col-xs-1">
+                    </div>
+
+                    <div class="col-md-8 col-sm-8 col-xs-12 inputs_block_mercado">
+                        <div class="contact-form">
+
+                                <div class="form-group">
+                                    <label>
+                                        TU SALDO ACTUAL
+                                    </label>
+                                    <br/>
+                                        <span style='padding-top:30px;text-align: center;font-size:40px;'>${{ profile.saldo }}</span>
+                                                                        <br/>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-group">
+                                     <label>
+                                        INGRESE EL IMPORTE A CARGAR
+                                    </label>
+                                        <input name="import" type="number" class="wpcf7-text form-control" style="text-align:right;" id="importe" >
+                                </div>
+                                <div class="form-group">
+                                    <center>
+
+                                    <input readonly onclick="openMP();" name="MP-Checkout" id="MP-Checkout" mp-mode="redirect" class="wpcf6-submit btn btn-primary float-center comment-reply" value="CARGAR CREDITO" />
+
+                                    </center>
+
+                                </div>
+
+                                <div class="col-md-8 col-sm-8 col-xs-10">
+                                        <img src="{% static 'img_login/mercado-pago.png' %}" alt="" >
+                                    </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4 col-sm-4 col-xs-8">
+                        <div class="feature-box style-1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content white_0">
+            <div class="container">
+                <div>
+                    <div class="col-md-4 col-sm-4">
+					<img src="{% static 'img_login/tele-bingo.jpg' %}" class="img-responsive" alt="Tele Bingo">
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+					<img src="{% static 'img_login/mini-bingo.jpg' %}" class="img-responsive" alt="Mini Bingo">
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                    <img src="{% static 'img_login/re-bingo.jpg' %}" class="img-responsive" alt="Re Bingo">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="page-content white_0">
+            <div class="container">
+            <img src="{% static 'img_login/banner-eje.jpg' %}" class="img-responsive" alt="">
+            </div>
+        </div>
+<div id="footer-wrapper">
+            <div id="footer1">
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-md-5 col-sm-12">
+                            <a target="_blank" href="http://loteriadesantacruz.gob.ar/">
+                                <img src="{% static 'img_login/logo-pie.jpg' %}" class="img-responsive" alt="Builder Construction HTML Template"/>
+                            </a>
+                            <div class="col-md-8 col-sm-10 pt-12">
+                                <p style="color:white;">© Lotería de Santa Cruz 2018. Todos los derechos reservados</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-5">
+                            <div class="footer-info">
+                                <span class="icon-container" >
+                                    <img src="{% static 'img_login/svg/map.svg' %}" class="img-responsive" alt="map icon"/>
+                                </span>
+                                <span style='color:white;' class="tp-white">DIRECCIÓN:</br> Períto Moreno 116 esq. Zapiola</br>
+												  CP (9400) Río Gallegos</br>
+												  Tel. (02966) 422631</span>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 col-sm-5">
+                            <div class="footer-info">
+                                <span class="icon-container">
+                                    <img src="{% static 'img_login/svg/email.svg' %}" class="img-responsive" alt="email icon"/>
+                                </span>
+                                <a style='color:white;' class="tp-white" href="#">Email: contacto@loteriadesantacruz.gob.ar</a>
+                                <br/>
+                                <br/>
+                                <a href="{% url 'bet:terms' %}" style='background:white;color:gray;' class="btn btn-primary ">TÉRMINOS Y CONDICIONES</a>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+        <script src="{% static 'charge_credit/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/jquery.scripts.min.js' %}"></script>
+        <script src="{% static 'js/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
+        <script src="{% static 'js/rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
+		<script src="{% static 'js/retina.js' %}"></script>
+        <script src="{% static 'js/include.js' %}"></script>
+
+        <script>
+            /* <![CDATA[ */
+            jQuery(document).ready(function ($) {
+                'use strict';
+
+                jQuery('#rev-slider').revolution(
+                        {
+                            dottedOverlay: "none",
+                            delay: 9000,
+                            startwidth: 1170,
+                            startheight: 440,
+                            hideThumbs: 200,
+                            thumbWidth: 100,
+                            thumbHeight: 50,
+                            thumbAmount: 3,
+                            navigationType: "none",
+                            navigationArrows: "solo",
+                            navigationStyle: "preview5",
+                            touchenabled: "on",
+                            onHoverStop: "off",
+                            swipe_velocity: 0.7,
+                            swipe_min_touches: 1,
+                            swipe_max_touches: 1,
+                            drag_block_vertical: false,
+                            keyboardNavigation: "on",
+                            navigationHAlign: "center",
+                            navigationVAlign: "bottom",
+                            navigationHOffset: 0,
+                            navigationVOffset: 20,
+                            soloArrowLeftHalign: "left",
+                            soloArrowLeftValign: "center",
+                            soloArrowLeftHOffset: 20,
+                            soloArrowLeftVOffset: 0,
+                            soloArrowRightHalign: "right",
+                            soloArrowRightValign: "center",
+                            soloArrowRightHOffset: 20,
+                            soloArrowRightVOffset: 0,
+                            shadow: 0,
+                            fullWidth: "on",
+                            fullScreen: "off",
+                            spinner: "spinner0",
+                            stopLoop: "off",
+                            stopAfterLoops: -1,
+                            stopAtSlide: -1,
+                            shuffle: "off",
+                            forceFullWidth: "off",
+                            fullScreenAlignForce: "off",
+                            minFullScreenHeight: "400",
+                            hideThumbsOnMobile: "off",
+                            hideNavDelayOnMobile: 1500,
+                            hideBulletsOnMobile: "off",
+                            hideArrowsOnMobile: "off",
+                            hideThumbsUnderResolution: 0,
+                            hideSliderAtLimit: 0,
+                            hideCaptionAtLimit: 0,
+                            hideAllCaptionAtLilmit: 0,
+                            startWithSlide: 0,
+                            hideTimerBar: "on"
+                        });
+
+
+            });
+            /* ]]> */
+
+            Mercadopago.setPublishableKey("hTCvkQHiQ8JUQotORKFsC3heNMSZ2MBM");
+
+            (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+
+
+            function openMP() {
+
+                if ($('#importe').val() == '') {
+                    alert("Debe completar importe");
+                    return;
+                }
+                data = {"import": $('#importe').val()}
+                $('#MP-Checkout').hide();
+                $.get( "../get_preferences_charge", data, function( data ) {
+                    $('#header_top').hide();
+                    $MPC.openCheckout ({
+                        url: data.url,
+                        mode: "redirect",
+                        onreturn: function(data) {
+                            console.log(data);
+                            $('#header_top').show();
+                            location.reload();
+                            if (data.collection_status=='approved'){
+                                location.reload();
+                            } else if(data.collection_status=='pending'){
+                                $("#id_pending").css("visibility","visible");
+                            } else if(data.collection_status=='in_process'){
+                                $("#id_pending").css("visibility","visible");
+                            } else if(data.collection_status=='rejected'){
+                                $("#id_pending").css("visibility","visible");
+                            } else if(data.collection_status==null){
+                                $("#id_pending").css("visibility","visible");
+                            }
+		                }
+                    });
+                },
+                error: function(data) {
+                    alert(data); //or whatever
+                    $('#MP-Checkout').show();
+
+                });
+            }
+
+        });
+
+
+        </script>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+

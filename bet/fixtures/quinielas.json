@@ -1,0 +1,34 @@
+[
+  {
+    "pk": 1,
+    "model": "bet.quiniela",
+    "fields": {
+      "name": "Buenos Aires",
+      "code": 2
+    }
+  },
+  {
+    "pk": 2,
+    "model": "bet.quiniela",
+    "fields": {
+      "name": "Córdoba",
+      "code": 3
+    }
+  },
+  {
+    "pk": 3,
+    "model": "bet.quiniela",
+    "fields": {
+      "name": "Nacional",
+      "code": 1
+    }
+  },
+  {
+    "pk": 4,
+    "model": "bet.quiniela",
+    "fields": {
+      "name": "Santiago del Estero",
+      "code": 5
+    }
+  }
+]

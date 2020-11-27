@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block selected_menu %}#agenciy-coupons-menu{% endblock %}
+
+{% block content %}
+
+    <div class="row clearfix">
+    	<legend>Mis Billetes de Lotería</legend>
+    </div>
+
+    {% comment %}
+    <div class="container">
+        <div class="row clearfix base-tabs">
+            <div class="col-md-2 tab-activa">Premios Lotería</div>
+            <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:game_taxes' %}">Impuestos</a></div>
+        </div>
+    </div>
+    <br />
+    {% endcomment %}
+
+    <form method="post" action="">
+        {% csrf_token %}
+
+        <div class="row clearfix">
+            <div class="col-md-2">
+                <div class="form-group">
+                    {{ couponFormSet.empty_form.number.label_tag }}
+                </div>
+            </div>
+        </div>
+
+        <div class="formset">
+            {{ couponFormSet.management_form }}
+
+            {% with form=couponFormSet.empty_form %}
+                <div class="empty-form hidden">
+                    <div class="row clearfix">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                {{ form.number }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endwith %}
+
+            {% for form in couponFormSet %}
+
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+
+                <div class="row clearfix">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                            {{ form.number }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                            {% if couponFormSet.can_delete and forloop.counter <= couponFormSet.initial_forms|length %}
+                                {{ form.DELETE }}
+                            {% endif %}
+                            </div>
+                        </div>
+                </div>
+
+            {% endfor %}
+
+            {% if couponFormSet|length < couponFormSet.max_num %}
+                <button type="button" class="btn btn-primary" id="addform" data-action="add-formset">+</button>
+            {% endif %}
+        </div>
+
+        <br/>
+        <div class="row clearfix">
+            <button class="btn btn-info" name="save" type="submit">GUARDAR</button>
+        </div>
+    </form>
+
+    <script>
+        var x = $('.formset').children('div');
+        //x.first().clone().addClass('empty-form hidden').insertBefore(x.first());
+
+        var formset = x.djangoFormset({
+            deleteButtonText: 'X'
+        });
+
+        $('form').on('click', '[data-action=add-formset]', function(event) {
+            var form = formset.addForm();
+            form.deleteButton.remove();
+            //$( form ).after( "<br />" );
+
+            var max = parseInt($('#id_coupon_set-MAX_NUM_FORMS').val());
+            if (formset.forms.length == max)
+                $("#addform").remove();
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load pagination_tags %}
+
+{% block extra_head %}<!-- form.media -->{{ form.media }}{% endblock %}
+
+{% block selected_menu %}#prize-requests-menu{% endblock %}
+
+{% block content %}
+    <legend>Solicitudes de premios</legend>
+    <br/>
+
+    <form method="get" action="{% url 'bet:prize_requests' %}">
+        <div class="row clearfix divisor">
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_from.label }}</label>
+                    {{ form.date_from }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_to.label }}</label>
+                    {{ form.date_to }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.game.label }}</label><br />
+                    {{ form.game }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.state.label }}</label><br />
+                    {{ form.state }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <button class="btn btn-info" id="submit-draw-filter" type="submit" style="margin-top:24px">Filtrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br />
+
+    <div class="row clearfix divisor-cabeceras">
+        <div class="col-md-2"><strong>Fecha</strong></div>
+        <div class="col-md-2"><strong>Juego</strong></div>
+        <div class="col-md-1"><strong>Sorteo</strong></div>
+        <div class="col-md-1"><strong>Fecha</strong></div>
+        <div class="col-md-2"><strong>Modalidad</strong></div>
+        <div class="col-md-2"><strong>Usuario</strong></div>
+        <div class="col-md-1"><strong>Estado</strong></div>
+        <div class="col-md-1"><strong>Acciones</strong></div>
+    </div>
+
+    {% autopaginate requests 20 %}
+    {% for request in requests %}
+        <div class="row clearfix divisor-tabla">
+            <div class="col-md-2">{{ request.date|date:"d.m.Y H:i" }}</div>
+            <div class="col-md-2">
+                <img width="35px" src="{{ request.detail.coupon.draw.game.logo.url }}"/>
+                {{ request.detail.coupon.draw.game }}
+            </div>
+            <div class="col-md-1">{{ request.detail.coupon.draw.number }}</div>
+            <div class="col-md-1">{{ request.detail.coupon.draw.date_draw|date:"d.m.Y" }}</div>
+            <div class="col-md-2">{{ request.get_mode }}</div>
+            <div class="col-md-2">{{ request.detail.bet.user.user.get_full_name }}</div>
+            <div class="col-md-1">{{ request.get_state_display }}</div>
+            <div class="col-md-1">
+                <a href="{% url 'bet:prize_request' request.pk %}" title="Comprobar" class="btn btn-sm btn-info">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    {% paginate %}
+
+{% endblock %}

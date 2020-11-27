@@ -1,0 +1,68 @@
+{% extends "coupons/base_coupons.html" %}
+{% load ifusergroup %}
+
+{% block coupons_formset %}
+
+    {% with form=couponFormSet.empty_form %}
+        <div class="empty-form hidden">
+        <div class="row clearfix">
+            <div class="col-md-5">
+            	<div class="row clearfix">
+                    {% for field in form.hidden_fields %}
+                        {{ field }}
+                    {% endfor %}
+                    <div class="col-md-3">
+                    	<label>{{ form.number.label }}</label>
+                    	{{ form.number }}{{ form.number.errors }}
+					</div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+        <br />
+        </div>
+    {% endwith %}
+
+
+    {% if app != 'SC' %}
+
+        {% for form in couponFormSet %}
+            <div> {# div para formset #}
+            <div class="row clearfix">
+                <div class="col-md-5">
+                    <div class="row clearfix">
+                        {% for field in form.hidden_fields %}
+                            {{ field }}
+                        {% endfor %}
+
+                        {% ifusergroup admin %}
+                            {% if form.instance.agency %}
+                            <div class="col-md-3">
+                                <label>Agencia</label><br/>
+                                <a href="{% url 'bet:agency' form.instance.agency.id %}">{{ form.instance.agency.name }}</a>
+                            </div>
+                            {% endif %}
+                        {% endifusergroup %}
+                        <div class="col-md-3">
+                            <label>{{ form.number.label }}</label>
+                            {{ form.number }}{{ form.number.errors }}
+                        </div>
+                        <div class="col-md-2">
+                            {% if not readonly and couponFormSet.can_delete and form.instance.fractions_bought == 0 and forloop.counter <= couponFormSet.initial_forms|length %}
+                                {{ form.DELETE }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {{ form.non_field_errors }}
+            </div>
+            <br />
+            </div>
+        {% endfor %}
+
+        {% if not readonly and couponFormSet|length < couponFormSet.max_num and app != 'SC' %}
+            <button type="button" class="btn btn-primary" id="addform" data-action="add-formset">+</button>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

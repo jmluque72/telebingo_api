@@ -1,0 +1,38 @@
+[
+ {
+   "Fecha": "6/3/2020",
+   "Sorteo": 1140,
+   "HoraSorteo": "22:00",
+   "FechaCierre": "6/3/2020",
+   "HoraAgencia": "19:00",
+   "Monto": "Pozo Estimado",
+   "Precio": 25
+ },
+ {
+   "Fecha": "13/3/2020",
+   "Sorteo": 1141,
+   "HoraSorteo": "22:00",
+   "FechaCierre": "13/3/2020",
+   "HoraAgencia": "19:00",
+   "Monto": "Pozo Estimado",
+   "Precio": 25
+ },
+ {
+   "Fecha": "20/3/2020",
+   "Sorteo": 1142,
+   "HoraSorteo": "22:00",
+   "FechaCierre": "20/3/2020",
+   "HoraAgencia": "19:00",
+   "Monto": "Pozo Estimado",
+   "Precio": 25
+ },
+ {
+   "Fecha": "27/3/2020",
+   "Sorteo": 1143,
+   "HoraSorteo": "22:00",
+   "FechaCierre": "27/3/2020",
+   "HoraAgencia": "19:00",
+   "Monto": "Pozo Estimado",
+   "Precio": 25
+ }
+]

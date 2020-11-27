@@ -1,0 +1,19 @@
+<table width="650" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#FFFFFF" style="border:solid 10px #e2e2e2">
+  <tr>
+      {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+        <td><img src="cid:header.jpg" border="0" alt="Loteria movil" title="Loteria movil" /></td>
+      {% endif %}
+      {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+        <td><img src="cid:header_lp.jpg" border="1" alt="Loteria movil" title="Loteria movil" /></td>
+      {% endif %}
+      {% if 'jugaya.com' in request.build_absolute_uri  %}
+        <td><img src="cid:header_sf.jpg" border="1" alt="Juga ya" title="Juga ya" /></td>
+      {% endif %}
+  </tr>
+  <tr>
+    <td style="padding:40px 25px; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#666666; line-height:25px">
+    	{% block greeting %}{% if recipients|length == 1 %}<h1 style="font-size:24px; color:#df0101;">&iexcl;Hola, {{ user.first_name }}!</h1>{% endif %}{% endblock %}
+        {% block content %}{% endblock %}
+      </td>
+  </tr>
+</table>

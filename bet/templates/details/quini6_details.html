@@ -1,0 +1,19 @@
+{% extends 'details/basebet_details.html' %}
+
+{% block details %}
+    {{ block.super }}
+    {% with detail=details.0 %}
+    <div class="form-group">
+        <strong>Números:
+        {% for number in detail.numbers %}
+             {{ number|stringformat:"02d" }}
+        {% endfor %}
+        </strong>
+    </div>
+    <div class="form-group">
+        <strong>Modalidad: </strong> Tradicional
+        {% if detail.rev %} - Revancha{% endif %}
+        {% if detail.sie %} - Siempre Sale{% endif %}
+    </div>
+    {% endwith %}
+{% endblock %}

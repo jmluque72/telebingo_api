@@ -1,0 +1,16 @@
+{% extends 'extract/base_extract.html' %}
+
+{% block content %}
+    {% for round in draw.round_set.all %}
+        {% with number=round.number|stringformat:'d' %}
+        {% with title='Ronda '|add:number subtitle='Linea' results=round.results.line columns=11 %}
+            {% include 'extract/results_set.html' %}
+        {% endwith %}
+
+        {% with subtitle='Bingo' results=round.results.bingo columns=11 %}
+            {% include 'extract/results_set.html' %}
+        {% endwith %}
+        {% endwith %}
+    {% endfor %}
+
+{% endblock %}

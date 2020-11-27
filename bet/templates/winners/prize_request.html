@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load pagination_tags %}
+
+{% block selected_menu %}#prize-requests-menu{% endblock %}
+
+{% block content %}
+<div class="row clearfix">
+	<a href="{% url 'bet:prize_requests' %}" class="num-coincidencias btn-volver"><i class="glyphicon glyphicon-chevron-left"></i> Volver</a>
+</div>
+<br />
+    <div class="row clearfix">
+    	<legend>Solicitud de premios</legend>
+        <div class="row clearfix divisor-tabla">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Sorteo Nro: </label>{{ prize_request.detail.coupon.draw.number }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Fecha: </label>{{ prize_request.detail.coupon.draw.date_draw|date:"d-N-Y" }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Hora: </label>{{ prize_request.detail.coupon.draw.date_draw|date:"H:i" }}
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="row clearfix">
+    	<div class="sub-secciones">{{ prize_request.detail.coupon.draw.game.name }} - {{ results_set.name }}</div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-md-2">
+            <label>Resultados:</label>
+        </div>
+        <div class="col-md-6">
+            {% for number in results_set.get_numbers %}
+                <div class="num-resultados">{{ number|stringformat:"02d" }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <br/>
+
+    <div class="row clearfix">
+        <div class="col-md-2">
+            <label>Cart&oacute;n:</label>
+        </div>
+        <div class="col-md-6">
+            <img class="img-responsive" src="{{ prize_request.detail.ticket.real.url }}">
+        </div>
+    </div>
+    <br/>
+
+    <div class="row clearfix">
+        <div class="col-md-2">
+            <label>Coincidencias:</label>
+        </div>
+        <div class="col-md-6">
+            {% for number in prize_request.get_numbers %}
+                {% if number in results_set.get_numbers %}
+                    <div class="num-coincidencias">{{ number|stringformat:"02d" }}</div>
+                {% else %}
+                    {{ number|stringformat:"02d" }}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <br/>
+
+    <div class="row clearfix">
+        <div class="col-md-2">
+            <label>Premio:</label>
+        </div>
+        <div class="col-md-3">
+            {{ row_extract.hits }} acierto{{ row_extract.hits|pluralize }}:
+            <strong>{% if row_extract.prize_type == 0 %}
+                        ${{ row_extract.get_prize|intcomma }}
+                    {% else %}
+                        {{ row_extract.get_prize }}
+                    {% endif %}</strong>
+        </div>
+    </div>
+    <br/>
+	 <div class="row clearfix">
+    <form method='post' class="form" action='{% url 'bet:prize_request' prize_request.pk %}'>
+        {% csrf_token %}
+
+               
+                {% if prize_request.state == 0 %}
+                <button class="btn btn-info" name="accept" type="submit">Confirmar</button>
+                <button class="btn" name="reject" type="submit">Rechazar</button>
+                
+                {% endif %}
+    </form>
+    </div>
+{% endblock %}

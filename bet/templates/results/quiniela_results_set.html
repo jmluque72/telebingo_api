@@ -1,0 +1,34 @@
+<br/>
+<div class="row clearfix">
+    {% if title %}
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>{{ title }}</label>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row clearfix">
+    {% for field in form %}
+        {% if columns and forloop.counter0|divisibleby:columns %}
+            <div class="row clearfix">
+        {% endif %}
+
+        <div class="col-md-1 text-right">
+            {% if show_order %}
+            <span>{{ forloop.counter }}°</span>
+            {% endif %}
+         </div>
+         <div class="col-md-2">
+                {{ field }}<br /><br />
+        </div>
+
+        {% if columns and forloop.counter|divisibleby:columns %}
+            </div>
+        {% endif %}
+
+    {% endfor %}
+    </div>
+
+    {{ form.non_field_errors }}
+</div>

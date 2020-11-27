@@ -1,0 +1,9 @@
+{% extends 'emails/base_email.html' %}
+
+{% block content %}
+    {% if not preprinted %}
+        <p>Adjunto encontrar&aacute;s el ticket de tu apuesta de {{ game }}.</p>
+    {% else %}
+        <p>Adjunto encontrar&aacute;s tu cup&oacute;n de {{ game }}.</p>
+    {% endif %}
+{% endblock %}

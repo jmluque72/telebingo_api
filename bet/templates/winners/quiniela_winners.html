@@ -1,0 +1,159 @@
+{% extends "winners/winners_base.html" %}
+{% load mathfilters %}
+{% load widget_tweaks %}
+
+{% block legend %}
+    Quiniela <span class="accion">Ganadores en el sistema</span>
+{% endblock %}
+
+{% block action_form %}"{% url 'bet:quiniela_winners' group.pk %}"{% endblock %}
+
+{% block tabs %}
+    <div class="row clearfix base-tabs"> <!-- PESTAÑA EXTRACTO/GANADORES -->
+        <div class="col-md-2 tab-inactiva">
+            <a href="{% url 'bet:quiniela_results' group.pk %}">Extracto</a>
+        </div>
+        <div class="col-md-2 tab-activa">Ganadores</div>
+    </div>
+{% endblock %}
+
+{% block draw_info %}
+    <div class="col-md-2">
+        <label>Fecha: </label>&nbsp;{{ group.date|date:"d-N-Y" }}
+    </div>
+    <div class="col-md-2">
+        <label>Lotería: </label><span>{{ group.province }}</span>
+    </div>
+    <div class="col-md-2">
+        <label>Quiniela: </label><span>{{ group.get_type_display }}</span>
+    </div>
+    <div class="col-md-2">
+        <label>Sorteo Nro: </label><span>{{ group.number|default:"" }}</span>
+    </div>
+{% endblock %}
+
+{% block results %}
+    <!-- Dialog -->
+    <div class="modal fade" id="modal-detail" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <!-- EndDialog -->
+
+<br/>
+{% with total=formset|length %}
+
+    {% if total == 0 %}
+        <h3>No se encontraron ganadores en el sistema</h3>
+    {% else %}
+        <legend>Se encontr{{ total|pluralize:"ó,aron" }} {{ total }} ganador{{ total|pluralize:"es" }} en el sistema</legend>
+
+        {{ formset.management_form }}
+
+        <div class="row clearfix divisor">
+            <div class="col-md-1">
+                {% if not_notified %}
+                <input id="id_check_all" type="checkbox"/>
+                {% endif %}
+                <label for="id_check_all">Notif.</label>
+            </div>
+            <div class="col-md-1"><strong>Agencia</strong></div>
+            <div class="col-md-2"><strong>Ganador</strong></div>
+            <div class="col-md-1"><strong>Quiniela</strong></div>
+            <div class="col-md-2"><strong>Apuesta</strong></div>
+            <div class="col-md-1"><strong>Importe</strong></div>
+            {% if redoblona %}
+                <div class="col-md-1"><strong>Redoblona</strong></div>
+            {% endif %}
+            <div class="col-md-1"><strong>Premio</strong></div>
+            <div class="col-md-1"><strong>Total</strong></div>
+            <div class="col-md-1"><strong>Detalle</strong></div>
+        </div>
+
+        {% for form in formset %}
+
+            {% for field in form.hidden_fields %}
+                {{ field }}
+            {% endfor %}
+
+            <div class="row clearfix divisor-tabla">
+            {% for winner in form.instance.get_winners %}
+                <div class="row">
+                    {% with detail=winner.detail.parent %}
+
+                    {% if forloop.counter0 == 0 %}
+                        {% if form.instance.notif %}
+                            <div class="col-md-1">Notificado</div>
+                            {{ form.notif|add_class:"hidden" }}
+                        {% else %}
+                            <div class="col-md-1">{{ form.notif }}</div>
+                        {% endif %}
+
+                        <div class="col-md-1">{{ detail.bet.agency.name }}</div>
+                        <div class="col-md-2">{{ detail.bet.user.user.get_full_name }}</div>
+                    {% else %}
+                        <div class="col-md-4"></div>
+                    {% endif %}
+                    <div class="col-md-1">{{ winner.draw.parent.quiniela.name }}</div>
+                    <div class="col-md-2"><strong>{{ detail.number }}</strong> {{ detail.get_location_display|lower }}</div>
+                    <div class="col-md-1">$ {{ detail.real_import|floatformat:"-2" }}</div>
+
+                    {% if redoblona %}
+                        {% with detail=winner.detail.parent %}
+                            <div class="col-md-1"><strong>{{ detail.redoblona.number|default:"-" }}</strong> {{ detail.redoblona.get_location_display|lower }}</div>
+                        {% endwith %}
+                    {% endif %}
+
+                    <div class="col-md-1">
+                        $ {{ winner.prize }}
+                        {% if winner.hits > 1 %}
+                            ({{ winner.hits }} aciertos)
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-1">
+                    {% if forloop.counter0 == 0 %}
+                        $ {{ form.instance.get_prize }}
+                    {% endif %}
+                    </div>
+
+                    <div class="col-md-1" style="font-size: 12px;">
+                        <a href="{% url 'bet:bet_detail' detail.bet.pk detail.bet.game.code %}"
+                           data-toggle="modal" data-target="#modal-detail" >Ver Detalle</a>
+                    </div>
+                    {% endwith %}
+                </div>
+                <br/>
+            {% endfor %}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+{% endwith %}
+
+{% endblock %}
+
+{% block buttons %}
+    {% if not_notified %}
+    <div class="row clearfix">
+        <button class="btn btn-info" name="save" type="submit">Notificar a los ganadores</button>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function() {
+
+            $('#id_check_all').change(function() {
+                var checkboxes = $('input:checkbox:not(".hidden")');
+                if($(this).prop('checked')) {
+                    checkboxes.prop('checked', true);
+                } else {
+                    checkboxes.prop('checked', false);
+                }
+            });
+        });
+    </script>
+{% endblock %}

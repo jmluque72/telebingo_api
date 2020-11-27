@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load pagination_tags %}
+{% load ifusergroup %}
+{% load staticfiles %}
+
+{% block extra_head %}
+    <script src="{% static 'jquery/jquery.form.js' %}"></script>
+    {{ form.media }}
+{% endblock %}
+
+{% block selected_menu %}#users-menu{% endblock %}
+
+{% block content %}
+    <!-- Dialog -->
+    <div class="modal fade" id="modal-user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <!-- EndDialog -->
+
+    <legend>Usuarios</legend>
+
+    <form method="get" action="{% url 'bet:users' %}">
+            <div class="row clearfix divisor">
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.date_from.label }}</label><br />
+                        {{ form.date_from }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.date_to.label }}</label><br />
+                        {{ form.date_to }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.user.label }}</label><br />
+                        {{ form.user }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.state.label }}</label><br />
+                        {{ form.state }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <button class="btn btn-info" type="submit" style="margin-top:24px">Filtrar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    <br />
+
+    <div class="row clearfix divisor-cabeceras">
+        <div class="col-md-2"><strong>Fecha de alta</strong></div>
+        <div class="col-md-2"><strong>Nombre</strong></div>
+        <div class="col-md-2"><strong>Último movimiento</strong></div>
+        <div class="col-md-2"><strong>Estado</strong></div>
+        <div class="col-md-2"><strong>Acciones</strong></div>
+    </div>
+
+    {% autopaginate profiles 20 %}
+    {% for profile in profiles %}
+        <div class="row clearfix divisor-tabla">
+            <div class="col-md-2">{{ profile.user.date_joined|date:"d-N-Y" }}</div>
+            <div class="col-md-2">{{ profile.user.get_full_name }}</div>
+            <div class="col-md-2">{{ profile.last_movement.confirm_date|date:"d-N-Y H:m"|default:"" }}</div>
+            <div class="col-md-2">{% if profile.user.is_active %}Activo{% else %}Inactivo{% endif %}</div>
+            <div class="col-md-2">
+                <table width="80" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><a href="{% url 'bet:user' profile.pk %}" class="btn btn-sm btn-info">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                    </a></td>
+
+                    <td><a data-toggle="modal" href="{% url 'bet:edit_user' profile.pk %}" data-target="#modal-user" title="Editar usuario" class="btn btn-sm btn-info">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </a></td>
+
+                  </tr>
+                </table>
+            </div>
+         </div>
+    {% endfor %}
+    {% paginate %}
+
+    <script>
+        // VACIAR DIALOGO AL CERRAR
+        // (Necesario cuando se abren diferentes dialogos en una misma pagina)
+        $('#modal-user').on('hide.bs.modal', function () {
+            $(this).removeData('bs.modal');
+            $(this).find('.modal-content').html('');
+        });
+    </script>
+
+{% endblock %}

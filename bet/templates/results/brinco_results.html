@@ -1,0 +1,22 @@
+{% extends "results/results_base.html" %}
+
+{% block results %}
+
+    {% with form=resultsForm extractForm=extractFormSet title='Tradicional' %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+    {% with form=resultsForm2 extractForm=extractFormSet2 title='Nuevo' %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+
+{% endblock %}
+
+{% block extracto %}
+{
+    "extract_set": [[1, 15000000],
+            [10, 15000],
+            [500, 80],
+            [1000, 10]]
+}
+{% endblock %}
+

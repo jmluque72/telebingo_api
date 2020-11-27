@@ -1,0 +1,244 @@
+{% extends "base_draw.html" %}
+
+{% block form-action %}{% endblock %}
+
+{% block draw_legend %}{{ draw.game.name }} <span class="accion">Agregar billetes</span>{% endblock %}
+
+{% block draw_header %}
+    <div class="row clearfix divisor-tabla">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Sorteo Nro:</label> {{ draw.number }}
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Fecha:</label> {{ draw.date_draw|date:"d-N-Y" }}
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form
+            -group">
+                <label>Hora:</label> {{ draw.date_draw|date:"H:i" }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block tabs %}{% endblock %}
+
+{% block draw_content %}
+
+    {% if not readonly %}
+        <div class="row clearfix divisor-tabla">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="id_start">Desde</label>
+                    <input id="id_start" min="0" name="start" type="number">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="id_end">Hasta</label>
+                    <input id="id_end" min="0" name="end" type="number">
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <input id="generate-button" class="btn btn-info" type="button" style="margin-top:23px" value="GENERAR"/>
+            </div>
+        </div>
+        <br />
+        <div id="row">
+            <div><p id="msg"></p></div>
+        </div>
+
+        {{ couponFormSet.non_form_errors }}
+    {% endif %}
+	<div class="container">
+        <div class="row clearfix divisor formset">
+            {{ couponFormSet.management_form }}
+            {% block coupons_formset %}{% endblock %}
+        </div>
+    </div>
+    <br />
+
+
+    <script>
+
+        function makeEvents() {
+            var start = parseInt($('#id_start').val());
+            var end = parseInt($('#id_end').val());
+            $.ajax({
+                url: '/make_coupons_range/',
+                dataType: "json",
+                data: {
+                    start: start,
+                    end: end,
+                    draw: {{ draw.id }},
+                },
+                success: function(data) {
+                    $('#msg').text(data.msg);
+
+                },error: function (xhr, ajaxOptions, thrownError) {
+                     alert(xhr.status);
+                     alert(thrownError);
+                }
+
+            });
+        }
+
+    </script>
+
+    {% if not readonly  %}
+        <script>
+            var app = '{{app}}';
+
+            var x = $('.formset').children('div');
+            //x.first().clone().addClass('empty-form hidden').insertBefore(x.first());
+
+            var formset = x.djangoFormset({
+                deleteButtonText: 'X'
+            });
+            $('form').on('click', '[data-action=add-formset]', function(event) {
+                var form = formset.addForm();
+                form.deleteButton.remove();
+                //$( form ).after( "<br />" );
+
+                var max = parseInt($('#id_coupon_set-MAX_NUM_FORMS').val());
+                if (formset.forms.length == max)
+                    $("#addform").remove();
+            });
+
+            function next_empty_input(index){
+                while (true) {
+                    var inp = $('#id_coupon_set-'+index+'-number');
+                    if (inp.length == 0){
+                        var form = formset.addForm();
+                        form.deleteButton.remove();
+                        return [index+1, $('#id_coupon_set-'+index+'-number')];
+                    }
+
+                    if (inp.val() == "")
+                        return [index+1, inp];
+
+                    index += 1;
+                }
+            }
+
+
+            $('#generar_cupones').click(function(){
+
+                var start = parseInt($('#id_start').val());
+                var end = parseInt($('#id_end').val());
+                $.ajax({
+                    url: '/get_coupons_numbers_range/',
+                    dataType: "json",
+                    data: {
+                        start: start,
+                        end: end,
+                        draw: {{ draw.id }},
+                    },
+                    success: function(data) {
+                        $('#msg').text(data.msg);
+                        console.log(data);
+
+                    },error: function (xhr, ajaxOptions, thrownError) {
+                     alert(xhr.status);
+                     alert(thrownError);
+                }
+
+                });
+
+            });
+
+            $('#generate-button').click(function(){
+
+                if (app == 'SC') {
+                    var start = parseInt($('#id_start').val());
+                    var end = parseInt($('#id_end').val());
+
+                    $.ajax({
+                        url: '/get_coupons_numbers_range/',
+                        dataType: "json",
+                        data: {
+                            start: start,
+                            end: end,
+                            draw: {{ draw.id }},
+                        },
+                        success: function(data) {
+                            $('#msg').text(data.msg);
+                            console.log(data);
+
+                        }
+                    });
+
+                    return;
+
+                }
+
+                var start = parseInt($('#id_start').val());
+                var end = parseInt($('#id_end').val());
+
+                if (!isNumber(start) || !isNumber(end) || start > end)
+                    return;
+
+                var initial = parseInt($('#id_coupon_set-INITIAL_FORMS').val());
+                if (!isNumber(initial))
+                    return;
+
+                var next = [initial, undefined]; // [index, input element]
+                for (var number=start; number<=end; number++){
+                    next = next_empty_input(next[0]);
+                    next[1].val(number);
+                    {% if couponFormSet.empty_form.fraction_sales %}
+                        $('#id_coupon_set-'+(next[0]-1)+'-fraction_sales').val({{ draw.fractions }});
+                    {% endif %}
+                }
+            });
+
+            $(function() {
+                $(".autocomplete-field").autocomplete({
+                    source: function(request, response) {
+                        $.ajax({
+                            url: '/get_coupons_numbers/',
+                            dataType: "json",
+                            data: {
+                                term: request.term,
+                                draw: {{ draw.id }},
+                            },
+                            success: function(data) {
+                                response(data);
+                            }
+                        });
+                    },
+                    minLength: 2,
+                    select: function( event, ui ) {
+                        var coupon_id = event.target.id.replace('number','id');
+                        $('#'+ coupon_id).val(ui.item.id);
+                    }
+                });
+            });
+        </script>
+    {% endif %}
+
+{% endblock %}
+
+
+{% block draw_buttons %}
+    {% if readonly %}
+        <div class="row clearfix">
+            <input type="button" class="btn" onclick="location.href='{% url 'bet:old_draws' %}'" value="Volver"/>
+        </div>
+    {% else %}
+    <div class="row clearfix">
+
+        {% if app != 'SC' %}
+            <button class="btn btn-info" name="save" type="submit">GUARDAR</button>
+        {% else %}
+            <button class="btn btn-info" name="generar_cupones" onclick="return makeEvents();" id="generar_cupones" type="button">Generar cupones</button>
+        {% endif %}
+
+    </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'django_modalview/form_content.html' %}
+{% load widget_tweaks %}
+
+{% block form %}
+    
+    {% for field in form.visible_fields %}
+        <div class="row clearfix form-group {% if field.errors %}has-error has-feedback{% endif %}">
+            <label class="col-md-3 control-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            <div class="col-md-8">
+                {{ field|add_class:"form-control" }}
+                {% if field.errors %}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <span class="help-block">{{ field.errors }}</span>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+    {% if form.non_field_erorrs %}
+        <div class="row clearfix form-group has-error has-feedback">
+            <div class="col-md-10 col-md-offset-1 ">
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <span class="help-block">{{ form.non_field_erorrs }}</span>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row clearfix">
+        <div class="col-md-10 col-md-offset-1 progress progress-striped active hidden" style="padding: 0">
+            <div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;min-width: 2em">
+            </div>
+        </div>
+    </div>
+    {%for field in form.hidden_fields %}
+        {{ field }}
+    {% endfor %}
+
+    <script>
+        $("input[type='submit']").click(function(){
+            $('.progress-striped').toggleClass('hidden');
+        });
+    </script>
+
+{% endblock %}

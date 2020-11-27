@@ -1,0 +1,29 @@
+{% extends 'extract/base_extract.html' %}
+
+{% block draw_header %}
+    <strong>Fecha:</strong> {{ draw.date_draw|date:"d.m.Y" }}<br/ >
+<!--
+    <strong>Sorteo Nro.:</strong> {{ draw.number }}<br/ >
+    -->
+{% endblock %}
+
+{% block content %}
+    <div class="title-juego">{{ draw.get_type_display }} {{ draw.quiniela }}<br /> <small>({{ draw.date_draw|date:"H:i" }}hs)</small></div>
+    <br />
+
+    <table width="95%" align="center" class="numeros-resultados">
+        <thead bgcolor="#e2eefc" class="cabecera-tabla">
+            <th class="interior-cabecera">Posici&oacute;n</th>
+            <th class="interior-cabecera">N&uacute;mero</th>
+        </thead>
+
+        <tbody>
+        {% for number in draw.quiniela_results.res.get_numbers %}
+            <tr class="borde-extracto">
+                <td class="interior-extracto">{{ forloop.counter|stringformat:"02d" }}</td>
+                <td class="interior-extracto">{{ number|stringformat:"04d" }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

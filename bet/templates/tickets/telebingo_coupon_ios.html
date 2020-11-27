@@ -1,0 +1,127 @@
+
+<style>
+    div {
+        font-family: monospace;
+    }
+
+    h1 {
+        font-size:60px
+    }
+
+     .dot {
+        background-color: #bbb;
+        border-radius: 50%;
+        padding:5px;
+        display: inline-block;
+    }
+
+
+</style>
+
+<table style='font-family: monospace;font-size:12px;' width='100%'>
+    <tr>
+        <td colspan="2" style='text-align:center;'><h1>{{game_name}}</h1></td>
+    </tr>
+    <tr>
+        <td width='50%' style="font-size:30px">CUPON:{{cupon}}</td>
+    </tr>
+    <tr>
+        <td width='50%' style="font-size:30px">PRECIO:{{precio}}</td>
+    </tr>
+    <tr>
+        <td width='100%' style="font-size:30px;">SORTEO:{{sorteo}}</td>
+    </tr>
+    <tr>
+        <td width='100%' style="font-size:30px;">FECHA: {{fecha}}</td>
+    </tr>
+    <tr>
+        <td width='100%' style="font-size:30px;">PRESCRIBE: {{prescribe}}</td>
+    </tr>
+    <tr>
+        <td width='100%' style="font-size:30px;">VENTA: {{venta}}</td>
+    </tr>
+
+    <tr>
+        <td width='100%' style="font-size:12px;">NOMBRE: {{name}}</td>
+    </tr>
+
+    <tr>
+        <td width='100%' style="font-size:30px;">DNI: {{dni}}</td>
+    </tr>
+
+    <tr>
+        <td width='100%' style="font-size:30px;">CÓDIGO OPERACIÓN: {{codoperation}}</td>
+    </tr>
+
+    {% if ctr == "1"%}
+        <tr>
+            <td width='100%' style="font-size:30px;">CONTROL: {{control}}</td>
+        </tr>
+    {% endif %}
+
+    {% for rounds in data %}
+        <tr>
+            <td colspan="2" width='100%' style='text-align:center;font-size:50px;padding-top:20px;'>{{ rounds.name }}</td>
+        </tr>
+        {% for changes in rounds.chances %}
+            <tr>
+                <td colspan="2" width='100%' style='text-align:center;font-size:60px'>{{ changes.name }}</td>
+            </tr>
+
+            {% for line in changes.lines %}
+
+                <tr>
+                    <td colspan="2" style="padding-left:1%;">
+                        <table cellpadding="0" cellspacing="0" border="1" style='font-family: monospace;font-size:60px;' width='100%'>
+                            <tr>
+                                {% for v in line %}
+                                    {% if v == 0 %}
+                                        <td width='10%' style='text-align:center;'>**</td>
+                                    {% else %}
+                                        {% if v < 10  %}
+                                            <td width='10%' style='text-align:center;'><div  id="r_{{rounds.name}}_c_{{v}}{{changes.name}}"   onclick="action('r_{{rounds.name}}_c_{{v}}{{changes.name}}')">0{{v}}</div></td>
+                                        {% else %}
+                                            <td width='10%' style='text-align:center;'><div  id="r_{{rounds.name}}_c_{{v}}{{changes.name}}"   onclick="action('r_{{rounds.name}}_c_{{v}}{{changes.name}}')">{{v}}</div></td>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+        {% endfor %}
+
+    {% endfor %}
+
+    <tr>
+        <td colspan="2" width='50%' style="font-size:40px">
+            <img src="{{barcode_img}}" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" width='50%' style="font-size:40px"></td>
+    </tr>
+    <tr>
+        <td colspan="2" width='50%' style="font-size:40px"></td>
+    </tr>
+
+    <script>
+
+        function action(id) {
+            list = document.getElementById(id).classList;
+            if (list.contains("dot")) {
+                list.remove("dot");
+            } else {
+                list.add("dot");
+            }
+        }
+    </script>
+
+
+</table>
+
+
+

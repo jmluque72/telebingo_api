@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="row clearfix">
+    <div class="col-md-12">
+        <h1>Nueva Notificacion </h1>
+    </div>
+</div>
+
+<br/>
+<br/>
+
+<div class="table-content">
+    <form method="post" action="{% url 'bet:send_push' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table style="border-collapse:separate; border-spacing: 0 1em;">
+
+            <tr class="{% if field.error %} alert alert-error {% endif %}">
+                <td width="30%">{{push_form.type.label}}</td>
+                <td width="30%" class="no-border-right">{{push_form.type}}</td>
+                <td>{{push_form.type.errors}}</td>
+            </tr>
+
+            <tr class="{% if field.error %} alert alert-error {% endif %}">
+                <td width="30%">{{push_form.users.label}}</td>
+                <td width="30%" class="no-border-right">{{push_form.users}}</td>
+                <td>{{push_form.users.errors}}</td>
+            </tr>
+
+            <tr class="{% if field.error %} alert alert-error {% endif %}">
+                <td width="30%">{{push_form.text.label}}</td>
+                <td width="30%" class="no-border-right">{{push_form.text}}</td>
+                <td>{{push_form.text.errors}}</td>
+            </tr>
+
+        </table>
+        <br/>
+        <div >
+            <input type="submit" class="btn btn-info"value="Confirmar" />&nbsp;
+            <a class="btn btn-danger" href="{% url 'bet:home' %}">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+<hr>
+
+<div class="content"  style="padding-bottom:100px;">
+        <table style="border-collapse:separate; border-spacing: 0 1em;">
+        <thead>
+            <th width='10%'>Fecha</th>
+            <th width='20%'>Users</th>
+            <th width='40%'>Text</th>
+            <th width='10%'>Estimados</th>
+            <th width='10%'>Procesados</th>
+            <th width='10%'>Iniciado</th>
+            <th width='10%'>Finalizado</th>
+
+        </thead>
+        <tbody>
+            {% for item in pushs %}
+            <tr>
+                <td width='20%'>{{item.date_entered}}</td>
+                <td width='20%'>{{item.users}}</td>
+                <td width='40%'>{{item.text}}</td>
+                <td width='10%'>{{item.totals}}</td>
+                <td width='10%'>{{item.process}}</td>
+                <td width='10%'>{{item.startprocess}}</td>
+                <td width='10%'>{{item.finished}}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+{% endblock %}
+
+

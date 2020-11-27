@@ -1,0 +1,43 @@
+{% extends 'tickets/base_ticket.html' %}
+{# context: {bet, game, details} #}
+
+{% block title %}{{ game.name|upper }} {{ details.0.get_type_display|upper }} del {{ details.0.group.date|date:"d/m/Y" }} {% endblock %}
+
+{% block topdetails %}{% endblock %}
+
+{% block details %}
+    <table>
+        <thead>
+        <th width="33%">N&uacute;mero</th>
+        <th width="33%">Ubicaci&oacute;n</th>
+        <th width="33%">Valor</th>
+        </thead>
+
+        <tbody>
+            {% for detail in details %}
+                {% if not detail.apuesta %} {# si no es redoblona #}
+                <tr>
+                    <td>{{ detail.number }}</td>
+                    <td>{{ detail.get_location_display }}</td>
+                    <td>{{ detail.importq }}</td>
+                </tr>
+                {% endif %}
+                {% if detail.redoblona %}
+                <tr>
+                    <td>{{ detail.redoblona.number }}</td>
+                    <td>{{ detail.redoblona.get_location_display }}</td>
+                    <td>Redoblona</td>
+                </tr>
+                {% endif %}
+
+            {% endfor %}
+        </tbody>
+    </table>
+    <strong>Loter&iacute;as:</strong> {{ lotteries|join:", " }}
+{% endblock %}
+
+{% block bottomdetails %}
+    <strong>Fecha:</strong> {{ bet.date_bet|date:"d/m/Y - H:i:s" }}<br/>
+    <strong>Sorteo Nro:</strong> {{ details.0.group.number }}<br />
+    {# <strong>Prescribe:</strong> {{ draw.date_draw|date:"d/m/Y" }} #}
+{% endblock %}

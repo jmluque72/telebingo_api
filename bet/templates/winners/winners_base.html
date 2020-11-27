@@ -1,0 +1,32 @@
+{% extends "results/results_base.html" %}
+
+
+{% block legend %}
+    {{ draw.game.name }} <span class="accion">Ganadores en el sistema</span>
+{% endblock %}
+
+{% block tabs %}
+    <div class="row clearfix base-tabs"> <!-- PESTAÑA EXTRACTO/GANADORES -->
+        {% with url_results='bet:'|add:draw.game.code|add:'_results' %}
+        <div class="col-md-2 tab-inactiva"><a href="{% url url_results draw.pk %}">Extracto</a></div>
+        {% endwith %}
+        <div class="col-md-2 tab-activa">Ganadores</div>
+    </div>
+{% endblock %}
+
+{% block script_extracto %}{% endblock %}
+{% block script %}
+    <script>
+        $(document).ready(function() {
+
+            $('#id_check_all').change(function() {
+                var checkboxes = $(this).closest('form').find('input:checkbox:not(".hidden")');
+                if($(this).prop('checked')) {
+                    checkboxes.prop('checked', true);
+                } else {
+                    checkboxes.prop('checked', false);
+                }
+            });
+        });
+    </script>
+{% endblock %}

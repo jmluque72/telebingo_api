@@ -1,0 +1,701 @@
+{% extends "registration/registration_base.html" %}
+{% load widget_tweaks %}
+
+
+{% block title %}Login{% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="header-wrapper header-transparent">
+    <header id="header">
+
+
+        <div class="header-inner">
+            <div class="container">
+                <div class="main-nav">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <nav class="navbar navbar-default nav-left" role="navigation">
+
+                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                    <div class="navbar-header">
+                                        {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+                                        <div class="logo">
+                                            <a href="{% url 'bet:user_profile_saldo'%}">
+                                                <img src="{% static 'img_login/logo.jpg' %}" class="img-responsive"
+                                                    alt="Loteria de Santa Cruz" />
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                        {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+                                        <div class="logo">
+                                            <a href="{% url 'bet:user_profile_saldo'%}">
+                                                <img src="{% static 'img_login/logo_lp.jpg' %}" class="img-responsive"
+                                                    alt="Loteria de La Pampa" />
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                        {% if 'a24.agencia24.com.ar' in request.build_absolute_uri  %}
+                                        <div class="logo">
+                                            <a href="http://www.agencia24.com.ar/">
+                                                <img src="{% static 'img_login/logo_cb.png' %}" class="img-responsive"
+                                                    alt="Agencia 24" />
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                        {% if 'jugaya.com' in request.build_absolute_uri  %}
+                                        <div class="logo">
+                                            <a href="http://help.jugaya.com/">
+                                                <img src="{% static 'img_login/logo_sf.png' %}" class="img-responsive"
+                                                    alt="Agencia 24" />
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                        {% if 'www.mibingomovil.com.ar' in request.build_absolute_uri %}
+                                        <div class="logo">
+                                            <a href="http://www.mibingomovil.com.ar/">
+                                                <img src="{% static 'img_login/logo_ca.png' %}" class="img-responsive"
+                                                    alt="Mi bingo" />
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                   
+                                </div>
+                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                    <div class="quote-btn">
+
+                                        {% if 'www.mibingomovil.com.ar' in request.build_absolute_uri %}
+                                        <a href="{% url 'bet:FAQ' %}" class="btn btn-primary float-right"
+                                            style='background-color: #023183;'>FAQ</a>
+                                        {% else %}
+                                        <a href="{% url 'bet:FAQ' %}" class="btn btn-primary float-right">FAQ</a>
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="quote-btn">
+                                        {% if 'www.mibingomovil.com.ar' in request.build_absolute_uri %}
+                                        <a href="{% url 'bet:como_se_juega' %}" class="btn btn-primary float-right"
+                                            style='background-color: #023183;'>CÓMO JUGAR</a>
+                                        {% else %}
+                                        <a href="{% url 'bet:como_se_juega' %}" class="btn btn-primary float-right">CÓMO
+                                            JUGAR</a>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+<div class="tp-banner-container fullwidthbanner">
+    <div id="rev-slider" class="tp-banner">
+        <ul>
+            <li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-title="winter">
+                <img src="{% static 'img_login/como-jugar.jpg'%}" alt="" data-bgfit="cover"
+                    data-bgposition="center center" data-bgrepeat="no-repeat">
+
+                <div class="tp-caption titulos tp-big-heading-bold tp-white sfb" data-x="25" data-y="235"
+                    data-speed="500" data-start="1000" data-easing="Back.easeOut" data-endspeed="500"
+                    style="font-size:100px;z-index: 3; max-width: auto; max-height: auto; white-space: nowrap;margin-top:-40px;color:white;">
+                    <span style="color:white;">PREGUNTAS FRECUENTES<a style="color:white;" class="btn pull-right"
+                            href="{% url 'bet:user_profile_saldo' %}">volver </a></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <div class="titulo-movil">
+            <h1>PREGUNTAS FRECUENTES</h1>
+            <p><a class="svg-black" href="{% url 'bet:user_profile_saldo' %}">volver</a>
+        </div>
+        <div class="col-md-12 col-sm-12 pt-40">
+
+            {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+
+            <p>
+                <span class="faq">1. Como me registro en la App?</span></br>
+                Debes seleccionar “Registrarse” y completar todos los datos requeridos para generar tu usuario y
+                contraseña.
+                </br></br>
+
+                <span class="faq">2. Como cargo crédito para jugar a través de la App?</span></br>
+                Podés Cargar crédito en las oficinas de la Lotería de Santa Cruz o en el sitio oficial
+                (sc.loteriamovil.com.ar), ingresando con tu usuario y contraseña.</br></br>
+
+                <span class="faq">3. Tiene costo usar la App para jugar?</span></br>
+                No. Es totalmente gratuita. Debes tener crédito en tu cuenta y conexión a internet (wifi o paquete de
+                datos).</br></br>
+
+                <span class="faq">4. Como sé si mi ticket tiene premio?</span></br>
+                Recibirás un mensaje a través de la App y también podrás realizar el control de tu jugada ingresando a
+                “Mis Apuestas”, y luego seleccionando la jugada a controlar, donde podrás visualizar el extracto del
+                juego.</br></br>
+
+                <span class="faq">5. Como se acreditan los premios?</span></br>
+                Los premios menores se acreditarán en tu cuenta y los verás reflejados en el saldo. Los premios mayores
+                los deberás cobrar en la Lotería de Santa Cruz, presentando tu DNI, antes del período de prescripción
+                para el cobro de premios que determine el juego.</br></br>
+
+                <span class="faq">6. Como retiro dinero de mi cuenta?</span></br>
+                Para retirar dinero debes completar la Solicitud de "Solicitar Retiro" desde la app y recibirás el mismo
+                a través de los medios oficiales habilitados por la Lotería de Santa Cruz o en forma presencial en las
+                oficinas de la Lotería de Santa Cruz. presentando tu DNI. El importe a retirar no podrá superar el
+                obtenido en concepto de premios acreditados.</br></br>
+
+                <span class="faq">7. Que sucede si me olvido la contraseña?</span></br>
+                En la pantalla de inicio o en Iniciar Sesión, selecciona “Olvidaste tu contraseña?”, y se te enviará un
+                email para que puedas cambiarla.</br></br>
+
+                <span class="faq">8. Cual es la edad mínima para jugar?</span></br>
+                Debes tener mínimo 18 años.</br></br>
+
+                <span class="faq">9. Como consulto mis apuestas y los movimientos de mi cuenta?</span></br>
+                Podés hacerlo a través de la App seleccionando el botón “Mis Apuestas” o “Mi Cuenta”.</br></br>
+
+                <span class="faq">10. Tenés más dudas o consultas o queres cambiar tu email o DNI??</span></br>
+                Envíanos un mail a sc@loteriamovil.com.ar
+
+            </p><br>
+            {% endif %}
+
+            {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+
+            <p>
+                <span class="faq">1. COMO ME REGISTRO EN LA APP?</span></br>
+                Debes seleccionar “Registrarse” y completar todos los datos requeridos para generar tu usuario y
+                contraseña.</br></br>
+
+                <span class="faq">2. COMO CARGO CRÉDITO PARA JUGAR A TRAVÉS DE LA APP?</span></br>
+                Podés Cargar crédito en las oficinas de La DAFAS o en el sitio oficial (lp.loteriamovil.com.ar),
+                ingresando con tu usuario y contraseña.</br></br>
+
+                <span class="faq">3. TIENE COSTO USAR LA APP PARA JUGAR?</span></br>
+                No. Es totalmente gratuita. Debes tener crédito en tu cuenta y conexión a internet (wifi o paquete de
+                datos).</br></br>
+
+                <span class="faq">4. COMO SÉ SI MI TICKET TIENE PREMIO?</span></br>
+                Recibirás un mensaje a través de la App y también podrás realizar el control de tu jugada ingresando a
+                “Mis Apuestas”, y luego seleccionando la jugada a controlar, donde podrás visualizar el extracto del
+                juego.</br></br>
+
+                <span class="faq">5. COMO SE ACREDITAN LOS PREMIOS?</span></br>
+                Los premios menores se acreditarán en tu cuenta y los verás reflejados en el saldo. Los premios mayores
+                los deberás cobrar en la DAFAS, presentando tu DNI, antes del período de prescripción para el cobro de
+                premios que determine el juego.</br></br>
+
+                <span class="faq">6. COMO RETIRO DINERO DE MI CUENTA?</span></br>
+                Para retirar dinero debes completar la Solicitud de “Solicitar Retiro” desde la app y recibirás el mismo
+                a través de los medios oficiales habilitados por la DAFAS, o en forma presencial en las oficinas de la
+                DAFAS, presentando tu DNI. El importe a retirar no podrá superar el obtenido en concepto de premios
+                acreditados.</br></br>
+
+                <span class="faq">7. QUE SUCEDE SI ME OLVIDO LA CONTRASEÑA?</span></br>
+                En la pantalla de inicio o en Iniciar Sesión, selecciona “Olvidaste tu contraseña?”, y se te enviará un
+                email para que puedas cambiarla.</br></br>
+
+                <span class="faq">8. CUAL ES LA EDAD MÍNIMA PARA JUGAR?</span></br>
+                Debes tener mínimo 18 años.</br></br>
+
+                <span class="faq">9. COMO CONSULTO MIS APUESTAS Y LOS MOVIMIENTOS DE MI CUENTA?</span></br>
+                Podés hacerlo a través de la App seleccionando el botón “Mis Apuestas” o “Mi Cuenta”.</br></br>
+
+                <span class="faq">10. TENÉS MÁS DUDAS O CONSULTAS, O QUERES CAMBIAR TU EMAIL O DNI?</span></br>
+                Envíanos un mail a lp@loteriamovil.com.ar</br></br>
+
+            </p><br>
+            {% endif %}
+
+
+            {% if 'a24.agencia24.com.ar' in request.build_absolute_uri  %}
+            <p>
+                <span class="faq">1. COMO ME REGISTRO EN LA APP?</span></br>
+                Debes seleccionar “Registrarse” y completar todos los datos requeridos para generar tu usuario y
+                contraseña.</br></br>
+
+                <span class="faq">2. COMO CARGO CRÉDITO PARA JUGAR A TRAVÉS DE LA APP?</span></br>
+                Podes cargar crédito en el sitio oficial de Agencia24 (a24.agencia24.com.ar), ingresando con tu usuario
+                y contraseña.</br></br>
+
+                <span class="faq">3. TIENE COSTO USAR LA APP PARA JUGAR?</span></br>
+                No. Es totalmente gratuita. Debes tener crédito en tu cuenta y conexión a internet (wifi o paquete de
+                datos).</br></br>
+
+                <span class="faq">4. COMO SÉ SI MI APUESTA TIENE PREMIO?</span></br>
+                Recibirás un mensaje a través de la App y también podrás realizar el control de tu jugada ingresando a
+                “Mis Apuestas”, y luego seleccionando la jugada a controlar, donde podrás visualizar el extracto del
+                juego.</br></br>
+
+                <span class="faq">5. COMO SE ACREDITAN LOS PREMIOS?</span></br>
+                Los premios menores se acreditarán en tu cuenta y los verás reflejados en el saldo. Los premios mayores
+                los deberás cobrar en la Lotería correspondiente, presentando tu DNI y el ticket premiado que se
+                encuentra bajo nuestra guarda.</br></br>
+
+                <span class="faq">6. COMO RETIRO DINERO DE MI CUENTA?</span></br>
+                Para retirar dinero debes completar la Solicitud de “Solicitar Retiro” desde la app y recibirás el mismo
+                a través de los medios oficiales habilitados por la Agencia24. El importe a retirar no podrá superar el
+                obtenido en concepto de premios acreditados.</br></br>
+
+                <span class="faq">7. QUE SUCEDE SI ME OLVIDO LA CONTRASEÑA?</span></br>
+                En la pantalla de inicio o en Iniciar Sesión, selecciona “Olvidaste tu contraseña?”, y se te enviará un
+                email para que puedas cambiarla.</br></br>
+
+                <span class="faq">8. CUAL ES LA EDAD MÍNIMA PARA JUGAR?</span></br>
+                Debes tener mínimo 18 años.</br></br>
+
+                <span class="faq">9. COMO CONSULTO MIS APUESTAS Y LOS MOVIMIENTOS DE MI CUENTA?</span></br>
+                Podés hacerlo a través de la App seleccionando el botón “Mis Apuestas” o “Mi Cuenta”.</br></br>
+
+                <span class="faq">10. TENÉS MÁS DUDAS O CONSULTAS, O QUERES CAMBIAR TU EMAIL O DNI?</span></br>
+                Envíanos un mail a contacto@agencia24.com.ar</br></br>
+
+            </p><br>
+
+            {% endif %}
+
+            {% if 'jugaya.com' in request.build_absolute_uri  %}
+            <p>
+                <span class="faq">1. COMO ME REGISTRO EN LA APP?</span></br>
+                Debes seleccionar “Registrarse” y completar todos los datos requeridos para generar tu usuario y
+                contraseña.</br></br>
+
+                <span class="faq">2. COMO CARGO CRÉDITO PARA JUGAR A TRAVÉS DE LA APP?</span></br>
+                Podes cargar crédito en el sitio oficial de JUGAYA (www.jugaya.com), ingresando con tu usuario y
+                contraseña.</br></br>
+
+                <span class="faq">3. TIENE COSTO USAR LA APP PARA JUGAR?</span></br>
+                No. Es totalmente gratuita. Debes tener crédito en tu cuenta y conexión a internet (wifi o paquete de
+                datos).</br></br>
+
+                <span class="faq">4. COMO SÉ SI MI APUESTA TIENE PREMIO?</span></br>
+                Recibirás un mensaje a través de la App y también podrás realizar el control de tu jugada ingresando a
+                “Mis Apuestas”, y luego seleccionando la jugada a controlar, donde podrás visualizar el extracto del
+                juego.</br></br>
+
+                <span class="faq">5. COMO SE ACREDITAN LOS PREMIOS?</span></br>
+                Los premios menores se acreditarán en tu cuenta y los verás reflejados en el saldo. Los premios mayores
+                los deberás cobrar en la Lotería correspondiente, presentando tu DNI y el ticket premiado que se
+                encuentra bajo nuestra guarda.</br></br>
+
+                <span class="faq">6. COMO RETIRO DINERO DE MI CUENTA?</span></br>
+                Para retirar dinero debes completar la Solicitud de “Solicitar Retiro” desde la app y recibirás el mismo
+                a través de los medios oficiales habilitados por JUGAYA. El importe a retirar no podrá superar el
+                obtenido en concepto de premios acreditados.</br></br>
+
+                <span class="faq">7. QUE SUCEDE SI ME OLVIDO LA CONTRASEÑA?</span></br>
+                En la pantalla de inicio o en Iniciar Sesión, selecciona “Olvidaste tu contraseña?”, y se te enviará un
+                email para que puedas cambiarla.</br></br>
+
+                <span class="faq">8. CUAL ES LA EDAD MÍNIMA PARA JUGAR?</span></br>
+                Debes tener mínimo 18 años.</br></br>
+
+                <span class="faq">9. COMO CONSULTO MIS APUESTAS Y LOS MOVIMIENTOS DE MI CUENTA?</span></br>
+                Podés hacerlo a través de la App seleccionando el botón “Mis Apuestas” o “Mi Cuenta”.</br></br>
+
+                <span class="faq">10. TENÉS MÁS DUDAS O CONSULTAS, O QUERES CAMBIAR TU EMAIL O DNI?</span></br>
+                Envíanos un mail a contacto@jugaya.com o por WhatsApp al +5493416097683</br></br>
+
+            </p><br>
+
+            {% endif %}
+
+            {% if 'www.mibingomovil.com.ar' in request.build_absolute_uri  %}
+            <p>
+                    <span class="faq">1. COMO ME REGISTRO EN LA APP?</span></br>
+                    Debes seleccionar “Registro por primera vez” y completar todos los datos requeridos para generar tu usuario y contraseña.</br></br>
+
+                    <span class="faq">2. COMO CARGO CRÉDITO PARA JUGAR A TRAVÉS DE LA APP?</span></br>
+                    Podes cargar crédito en el sitio oficial de Mi Bingo Movil Ca.Pre.S.Ca (www.mibingomovil.com.ar), ingresando con tu usuario y contraseña.</br></br>
+
+                    <span class="faq">3. TIENE COSTO USAR LA APP PARA JUGAR?</span></br>
+                    No. Es totalmente gratuita. Debes tener crédito en tu cuenta y conexión a internet (wifi o paquete de datos).</br></br>
+
+                    <span class="faq">4. COMO SÉ SI MI APUESTA TIENE PREMIO?</span></br>
+                    Recibirás un mensaje a través de la App y también podrás realizar el control de tu jugada ingresando a “Mis Apuestas”, y luego seleccionando la jugada a controlar, donde podrás visualizar el extracto del juego.</br></br>
+
+                    <span class="faq">5. COMO SE ACREDITAN LOS PREMIOS?</span></br>
+                    Los premios menores se acreditarán en tu cuenta y los verás reflejados en el saldo. Los premios mayores los deberás cobrar en la Caja de Prestaciones Sociales de Catamarca (Ca.Pre.S.Ca) presentando tu DNI.</br></br>
+
+                    <span class="faq">6. COMO RETIRO DINERO DE MI CUENTA?</span></br>
+                    Para retirar dinero debes completar la Solicitud de “Solicitar Retiro” desde la app y recibirás el mismo a través de los medios oficiales habilitados por Ca.Pre.S.Ca. El importe a retirar no podrá superar el obtenido en concepto de premios acreditados.</br></br>
+
+                    <span class="faq">7. QUE SUCEDE SI ME OLVIDO LA CONTRASEÑA?</span></br>
+                    En la pantalla de inicio o en Iniciar Sesión, selecciona “Olvidaste tu contraseña?”, y se te enviará un email para que puedas cambiarla.</br></br>
+
+                    <span class="faq">8. CUAL ES LA EDAD MÍNIMA PARA JUGAR?</span></br>
+                    Debes tener mínimo 18 años.</br></br>
+
+                    <span class="faq">9. COMO CONSULTO MIS APUESTAS Y LOS MOVIMIENTOS DE MI CUENTA?</span></br>
+                    Podés hacerlo a través de la App seleccionando el botón “Mis Apuestas” o “Mi Cuenta”.</br></br>
+
+                    <span class="faq">10. TENÉS MÁS DUDAS O CONSULTAS, O QUERES CAMBIAR TU EMAIL O DNI?</span></br>
+                    Envíanos un mail  a info@poten.com.ar</br></br>
+            </p>
+             {% endif %}
+
+        </div>
+
+    </div>
+</div>
+</div>
+<div class="page-content dark bkg-img5 pt-20">
+</div>
+{% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+
+<div class="page-content white_0">
+    <div class="container">
+        <div>
+            <div class="col-md-4 col-sm-4">
+                <img src="{% static 'img_login/tele-bingo.jpg' %}" class="img-responsive" alt="Tele Bingo">
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <img src="{% static 'img_login/mini-bingo.jpg' %}" class="img-responsive" alt="Mini Bingo">
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <img src="{% static 'img_login/re-bingo.jpg' %}" class="img-responsive" alt="Re Bingo">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+
+<div class="page-content white_0">
+    <div class="container">
+        <div>
+            <div class="col-md-4 col-sm-4">
+                <img src="{% static 'img_login/tele-bingo_lp.jpg' %}" class="img-responsive" alt="Tele Bingo">
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <img src="{% static 'img_login/mini-bingo_lp.jpg' %}" class="img-responsive" alt="Mini Bingo">
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <img src="{% static 'img_login/re-bingo_lp.jpg' %}" class="img-responsive" alt="Re Bingo">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+
+<div class="page-content dark bkg-img5 pt-20">
+</div>
+
+<div class="page-content white_0" style="padding-top:10px;padding-bottom:10px;">
+    <div class="container">
+        {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+        <img src="{% static 'img_login/banner_web_sc.gif' %}" class="img-responsive" alt="">
+        {% endif %}
+        {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+        <img src="{% static 'img_login/banner_web_lp.gif' %}" class="img-responsive" alt="">
+        {% endif %}
+    </div>
+</div>
+
+
+
+<div id="footer-wrapper">
+    <div id="footer1">
+        <div class="container">
+
+
+            {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+
+            <div class="row">
+
+                <div class="col-md-5 col-sm-12">
+                    <a target="_blank" href="http://loteriadesantacruz.gob.ar/">
+                        <img src="{% static 'img_login/logo-pie.jpg' %}" class="img-responsive"
+                            alt="Builder Construction HTML Template" />
+                    </a>
+                    <div class="col-md-8 col-sm-10 pt-12">
+                        <p style="color:white;">© Lotería de Santa Cruz 2018. Todos los derechos reservados</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/map.svg' %}" class="img-responsive" alt="map icon" />
+                        </span>
+                        <span style='color:white;' class="tp-white">DIRECCIÓN:</br> Períto Moreno 116 esq. Zapiola</br>
+                            CP (9400) Río Gallegos</br>
+                            Tel. (02966) 422631</span>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/email.svg' %}" class="img-responsive" alt="email icon" />
+                        </span>
+                        <a style='color:white;' class="tp-white" href="#">Email: contacto@loteriadesantacruz.gob.ar
+                            <br />Whatsapp: +54 92966445360</a>
+                        <br />
+                        <br />
+                        <a href="{% url 'bet:terms' %}" style='background:white;color:gray;'
+                            class="btn btn-primary ">TÉRMINOS Y CONDICIONES</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+
+            <div class="row">
+
+                <div class="col-md-5 col-sm-12">
+                    <a target="_blank" href="http://loteriadesantacruz.gob.ar/">
+                        <img src="{% static 'img_login/logo-pie_lp.jpg' %}" style="valign:middle;"
+                            class="img-responsive" alt="Builder Construction HTML Template" />
+                    </a>
+                    <div class="col-md-8 col-sm-10 pt-12">
+                        <p style="color:white;">© Lotería de La Pampa 2018. Todos los derechos reservados</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/map.svg' %}" class="img-responsive" alt="map icon" />
+                        </span>
+                        <span style='color:white;' class="tp-white">DIRECCIÓN:</br> Calle Pellegrini 385, 1° y 2°
+                            Piso</br>
+                            CP (6300) Santa Rosa, La Pampa</br>
+                            Tel. (02954) 43-3052</span>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/email.svg' %}" class="img-responsive" alt="email icon" />
+                        </span>
+                        <a style='color:white;' class="tp-white" href="#">Email: lp@loteriamovil.com.ar</a>
+                        <br />
+                        <br />
+                        <a href="{% url 'bet:terms' %}" style='background:white;color:gray;'
+                            class="btn btn-primary ">TÉRMINOS Y CONDICIONES</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if 'a24.agencia24.com.ar' in request.build_absolute_uri  %}
+
+            <div class="row">
+
+                <div class="col-md-5 col-sm-12">
+                    <a target="_blank" href="http://www.agencia24.com.ar/">
+                        <img src="{% static 'img_login/logo_cb.png' %}" style="valign:middle;" class="img-responsive"
+                            alt="Builder Construction HTML Template" />
+                    </a>
+                    <div class="col-md-8 col-sm-10 pt-12">
+                        <p style="color:white;">© Agencia 24 2018. Todos los derechos reservados</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/map.svg' %}" class="img-responsive" alt="map icon" />
+                        </span>
+                        <span style='color:white;' class="tp-white">DIRECCIÓN:</br> Av. Recta Martinolli 6785 of 3</br>
+                            CP (5147) Cordoba, Arg.</br>
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/email.svg' %}" class="img-responsive" alt="email icon" />
+                        </span>
+                        <a style='color:white;' class="tp-white" href="#">Email: contacto@agencia24.com.ar</a>
+                        <br />
+                        <br />
+                        <a href="{% url 'bet:terms' %}" style='background:white;color:gray;'
+                            class="btn btn-primary ">TÉRMINOS Y CONDICIONES</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if 'jugaya.com' in request.build_absolute_uri  %}
+
+            <div class="row">
+
+                <div class="col-md-5 col-sm-12">
+                    <a target="_blank" href="http://help.jugaya.com/">
+                        <img src="{% static 'img_login/logo_pie_sf.png' %}" style="valign:middle;"
+                            class="img-responsive" alt="Builder Construction HTML Template" />
+                    </a>
+                    <div class="col-md-8 col-sm-10 pt-12">
+                        <p style="color:white;">© Juga Ya 2018. Todos los derechos reservados</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/map.svg' %}" class="img-responsive" alt="map icon" />
+                        </span>
+                        <span style='color:white;' class="tp-white">DIRECCIÓN:</br> Colombres Bis 1224</br>
+                            CP (S2006) Rosario, Santa Fe.</br>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/email.svg' %}" class="img-responsive" alt="email icon" />
+                        </span>
+                        <a style='color:white;' class="tp-white" href="#">Email: contacto@jugaya.com</a>
+                        <br />
+                        <br />
+                        <a href="{% url 'bet:terms' %}" style='background:white;color:gray;'
+                            class="btn btn-primary ">TÉRMINOS Y CONDICIONES</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if 'www.mibingomovil.com.ar' in request.build_absolute_uri  %}
+
+            <div class="row">
+
+                <div class="col-md-5 col-sm-12">
+                    <a target="_blank" href="http://help.jugaya.com/">
+                        <img src="{% static 'img_login/logo_ca.png' %}" style="valign:middle;" class="img-responsive"
+                            alt="Builder Construction HTML Template" />
+                    </a>
+                    <div class="col-md-8 col-sm-10 pt-12">
+                        <p style="color:white;">© Mi Bingo movil 2020. Todos los derechos reservados</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/map.svg' %}" class="img-responsive" alt="map icon" />
+                        </span>
+                        <span style='color:white;' class="tp-white">DIRECCIÓN:</br> Mota Botello 854</br>
+                            CP (4700) San Fernando del Valle de Catamarca.</br>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-5">
+                    <div class="footer-info">
+                        <span class="icon-container">
+                            <img src="{% static 'img_login/svg/email.svg' %}" class="img-responsive" alt="email icon" />
+                        </span>
+                        <a style='color:white;' class="tp-white" href="#">Email: caprescatamarca@gmail.com</a>
+                        <br />
+                        <br />
+                        <a href="{% url 'bet:terms' %}" style='background-color: #023183;color:white;'
+                            class="btn btn-primary ">TÉRMINOS Y CONDICIONES</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+<script src="{% static 'charge_credit/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.scripts.min.js' %}"></script>
+<script src="{% static 'js/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
+<script src="{% static 'js/rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
+<script src="{% static 'js/retina.js' %}"></script>
+<script src="{% static 'js/include.js' %}"></script>
+
+<script>
+    jQuery(document).ready(function ($) {
+        'use strict';
+
+        jQuery('#rev-slider').revolution(
+            {
+                dottedOverlay: "none",
+                delay: 9000,
+                startwidth: 1170,
+                startheight: 250,
+                hideThumbs: 200,
+                thumbWidth: 100,
+                thumbHeight: 50,
+                thumbAmount: 3,
+                navigationType: "none",
+                navigationArrows: "solo",
+                navigationStyle: "preview5",
+                touchenabled: "on",
+                onHoverStop: "off",
+                swipe_velocity: 0.7,
+                swipe_min_touches: 1,
+                swipe_max_touches: 1,
+                drag_block_vertical: false,
+                keyboardNavigation: "on",
+                navigationHAlign: "center",
+                navigationVAlign: "bottom",
+                navigationHOffset: 0,
+                navigationVOffset: 20,
+                soloArrowLeftHalign: "left",
+                soloArrowLeftValign: "center",
+                soloArrowLeftHOffset: 20,
+                soloArrowLeftVOffset: 0,
+                soloArrowRightHalign: "right",
+                soloArrowRightValign: "center",
+                soloArrowRightHOffset: 20,
+                soloArrowRightVOffset: 0,
+                shadow: 0,
+                fullWidth: "on",
+                fullScreen: "off",
+                spinner: "spinner0",
+                stopLoop: "off",
+                stopAfterLoops: -1,
+                stopAtSlide: -1,
+                shuffle: "off",
+                forceFullWidth: "off",
+                fullScreenAlignForce: "off",
+                minFullScreenHeight: "400",
+                hideThumbsOnMobile: "off",
+                hideNavDelayOnMobile: 1500,
+                hideBulletsOnMobile: "off",
+                hideArrowsOnMobile: "off",
+                hideThumbsUnderResolution: 0,
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                startWithSlide: 0,
+                hideTimerBar: "on"
+            });
+
+
+    });
+</script>
+</div>
+{% endblock %}

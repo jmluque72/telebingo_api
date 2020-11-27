@@ -1,0 +1,17 @@
+{% extends 'extract/results_set.html' %}
+
+{% block table %}
+<table width="95%" align="center" class="numeros-resultados">
+    <thead bgcolor="#e2eefc" class="cabecera-tabla">
+        <th class="interior-cabecera">Ganadores</th>
+        <th class="interior-cabecera">Premio</th>
+    </thead>
+
+    <tbody>
+        <tr class="borde-extracto">
+            <td class="interior-extracto">{{ results.winners|default:"Vacante" }}</td>
+            <td class="interior-extracto">${{ results.prize }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

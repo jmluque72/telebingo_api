@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load ifusergroup %}
+
+{% block selected_menu %}#games-menu{% endblock %}
+
+{% block content %}
+
+	<h3>No impresos</h3>
+    {% for game in games %}
+        {% if game.type %}
+            <div class="row clearfix divisor-tabla">
+                <div class="col-md-1"><img width="35px" src="{{ game.logo.url }}"/></div>
+                <div class="col-md-2">{{ game.name }}</div>
+                <div class="col-md-4">
+                    <table width="400" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        {% if game.code == 'quiniela' %}
+                        <td width="18%"><a href="{% url 'bet:draws_quiniela' %}">Sorteos</a></td>
+                        <td width="28%"><a href="{% url 'bet:old_quinielas' %}">Resultados</a></td>
+                        <td><a href="{% url 'bet:draw_quiniela_add' %}" class="btn btn-sm btn-info">
+                            <i class="glyphicon glyphicon-plus"></i>
+                        </a></td>
+                        {% else %}
+                        <td width="18%"><a href="{% url 'bet:draws' %}?code={{ game.code }}">Sorteos</a></td>
+                        <td width="28%"><a href="{% url 'bet:old_draws' %}?code={{ game.code }}">Resultados</a></td>
+                        <td><a href="{% url 'bet:draw_nonprinted_add' game.code %}" class="btn btn-sm btn-info">
+                            <i class="glyphicon glyphicon-plus"></i>
+                        </a></td>
+                        {% endif %}
+                      </tr>
+                    </table>
+                </div>
+             </div>
+        {% endif %}
+	{% endfor %}        
+
+	<h3>Pre-Impresos</h3>
+	
+    {% for game in games %}
+        {% if not game.type %}
+            <div class="row clearfix divisor-tabla">
+            <div class="col-md-1"><img width="35px" src="{{ game.logo.url }}"/></div>
+            <div class="col-md-2">{{ game.name }}</div>
+            <div class="col-md-4">
+                <table width="400" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="18%"><a href="{% url 'bet:draws' %}?code={{ game.code }}">Sorteos</a></td>
+                    <td width="28%"><a href="{% url 'bet:old_draws' %}?code={{ game.code }}">Resultados</a></td>
+                    {% ifusergroup admin %}
+                    <td><a href="{% url 'bet:draw_preprinted_add' game.code %}" class="btn btn-sm btn-info">
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </a></td>
+                    {% endifusergroup %}
+                  </tr>
+                </table>
+            </div>
+         </div>
+        {% endif %}
+    {% endfor %}
+
+
+{% endblock %}

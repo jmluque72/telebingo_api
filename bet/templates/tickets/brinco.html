@@ -1,0 +1,11 @@
+{% extends 'tickets/base_ticket.html' %}
+
+{% block details %}
+    {% with detail=details.0 %}
+        <strong class="numeros">
+        {% for number in detail.numbers %}
+            {{ number|stringformat:"02d" }}
+        {% endfor %}
+        </strong>
+    {% endwith %}
+{% endblock %}

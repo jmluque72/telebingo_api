@@ -1,0 +1,32 @@
+{% with detail=details.0 draw=bet.draws.0 %}
+    <div>
+        <h4>{% block title %}{{ game.name|upper }} del {{ draw.date_draw|date:"d/m/Y" }} {% endblock %}</h4>
+        {% block modalities %}{% endblock %}
+        <hr />
+
+        <strong>LOTERIA DE LA PCIA DE CORDOBA</strong><br>
+        <!--
+        <small>
+        Agencia {{ agency.number }}<br/>
+        {{ agency.name|upper }} {{ agency.address|title }} - {{ agency.neighborhood|capfirst }}
+        </small>
+        -->
+    </div>
+    <hr />
+
+    {% block topdetails %}{% endblock %}
+
+    <div>
+        {% block details %}{% endblock %}
+        <hr />
+        <strong>${{ bet.importq }}</strong>
+    </div>
+    <hr />
+    <div>
+        {% block bottomdetails %}
+        <strong>Fecha y hora:</strong> {{ bet.date_bet|date:"d/m/Y - H:i:s" }}<br/>
+        <strong>Sorteo Nro:</strong> {{ draw.number }}<br />
+        {# <strong>Prescribe:</strong> {{ draw.date_draw|date:"d/m/Y" }} #}
+        {% endblock %}
+    </div>
+{% endwith %}

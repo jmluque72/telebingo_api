@@ -1,0 +1,33 @@
+{% extends "results/results_base.html" %}
+
+{% block results %}
+
+    {% with form=traForm extractForm=extractFormTra title='Tradicional' subtitle='Primer sorteo' jackpot=6 %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+
+    {% with form=desForm extractForm=extractFormDes title='Desquite' %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+
+    {% with form=sosForm extractForm=extractFormSos title='Sale o Sale' %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+
+{% endblock %}
+
+{% block extracto %}
+{
+    "tra": [[0, 250000000],
+            [0, 82500000],
+            [0, 3500000],
+            [0, 24000],
+            [6, 1500],
+            [14, 800],
+            [43, 200],
+            [379, 100],
+            [578, 100]],
+    "des": [[0, 3500000]],
+    "sos": [[35, 25000]]
+}
+{% endblock %}

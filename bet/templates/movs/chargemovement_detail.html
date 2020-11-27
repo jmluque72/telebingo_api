@@ -1,0 +1,15 @@
+{% extends 'movs/basemovement_detail.html' %}
+
+{% block bottomdetail %}
+    <div class="form-group">
+        <strong>Medio de pago: </strong> {{ movement.get_method_display }}
+    </div>
+
+    <div class="form-group">
+        <strong>Nro. de transacción: </strong> {{ movement.number }}
+    </div>
+
+    <div class="form-group">
+        <strong>Tipo de transacción: </strong> {{ movement.type }}
+    </div>
+{% endblock %}

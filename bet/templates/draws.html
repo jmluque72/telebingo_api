@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load pagination_tags %}
+{% load ifusergroup %}
+
+{% block extra_head %}
+    <script src="{% static 'jquery/jquery.form.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap-uploadprogress.js' %}"></script>
+    {{ form.media }}
+{% endblock %}
+
+{% block selected_menu %}#draws-menu{% endblock %}
+
+{% block content %}
+	<div class="row clearfix">
+        <legend>{% block legend %}Sorteos{% endblock %}
+            {% ifusergroup admin %}
+                <ul id="navul" class="nav navbar-nav pull-right">
+                    {% if request.GET.code %}
+                    <li><a href="/{{ request.GET.code }}/draw_add/" class=" btn btn-nuevo">Nuev{% if game_name|last == 'a' %}a{% else %}o{% endif %} {{ game_name }}</a></li>
+                    {% else %}
+                    <li class="dropdown">
+                        <a class="dropdown-toggle btn btn-nuevo" data-toggle="dropdown" href="#">
+                            Nuevo sorteo <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for game in games %}
+                                {% if game.code != 'quiniela' %}
+                                <li><a href="/{{ game.code }}/draw_add/">{{ game.name }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% endif %}
+    
+                </ul>
+            {% endifusergroup %}
+        </legend>
+	</div>
+    {% block tabs %}
+    <div class="row clearfix base-tabs"> <!-- PESTAÑA SORTEOS/RESULTADOS -->
+        <div class="col-md-2 tab-activa">Ver Sorteos</div>
+        <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:old_draws' %}">Resultados</a></div>
+    </div>
+    {% endblock tabs %}
+    </br>
+
+    <form method="get" action="{% block filterform_action %}{% url 'bet:draws' %}{% endblock %}">
+        <div class="row clearfix divisor">
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_from.label }}</label>
+                    {{ form.date_from }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_to.label }}</label>
+                    {{ form.date_to }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.code.label }}</label><br />
+                    {{ form.code }}
+                </div>
+            </div>
+            {% ifusergroup admin %}
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.state.label }}</label><br />
+                    {{ form.state }}
+                </div>
+            </div>
+            {% endifusergroup %}
+            <div class="col-md-2">
+                <div class="form-group">
+                    <button class="btn btn-info" id="submit-draw-filter" type="submit" style="margin-top:24px">Filtrar</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <br />
+    <div class="row clearfix divisor-cabeceras">
+        <div class="col-md-2"><strong>Fecha</strong></div>
+        <div class="col-md-3"><strong>Juego</strong></div>
+        <div class="col-md-2"><strong>Premio</strong></div>
+        {% ifusergroup admin %}
+        <div class="col-md-2"><strong>Estado</strong></div>
+        {% endifusergroup %}
+        <div class="col-md-3"><strong>Acciones</strong></div>
+     </div>
+
+    {% autopaginate draws 20 %}
+    {% for draw in draws %}
+        <div class="row clearfix divisor-tabla">
+            <div class="col-md-2">{{ draw.date_draw|date:"d N - H:i" }}</div>
+            <div class="col-md-3">
+                <img width="35px" src="{{ draw.game.logo.url }}"/>
+
+                {% if draw.game.code == 'quiniela' %}
+                    {{ draw.drawquiniela.quiniela }}
+                {% else %}
+                    {{ draw.game.name }}
+                {% endif %}
+            </div>
+            <div class="col-md-2">{{ draw.prize_text }}</div>
+            {% ifusergroup admin %}
+            <div class="col-md-2">{{ draw.get_state_display }}</div>
+            {% endifusergroup %}
+            <div class="col-md-3">
+                {% block draws_actions %}
+                <table width="115" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                      {% ifusergroup admin %}
+                          <td><a href="/{{ draw.game.code }}/{{ draw.pk }}/draw_edit/"
+                                 class="btn btn-sm btn-info" title="Editar">
+                              <i class="glyphicon glyphicon-pencil"></i></a></td>
+                      {% else %}
+                          <td><a href="/{% if 'telebingo' in draw.game.code %}telebingo_{% endif %}coupons/{{ draw.pk }}/"
+                                 class="btn btn-sm btn-info" title="Cargar billetes">
+                              <i class="glyphicon glyphicon-pencil"></i></a></td>
+                    {% endifusergroup %}
+                  </tr>
+                </table>
+                {% endblock %}
+            </div>
+         </div>
+    {% endfor %}
+    {% paginate %}
+{% endblock %}

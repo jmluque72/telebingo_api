@@ -1,0 +1,123 @@
+<form id="promotion_form" method='post' class="form" role="form"
+      {% if form.instance.pk %}
+        action='{% url 'bet:promotion' form.instance.pk %}'>
+      {% else %}
+        action='{% url 'bet:promotion' %}'>
+      {% endif %}
+    {% csrf_token %}
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+
+        <h4>Promoción {{ promotion.draw.game.name }}</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="row clearfix">
+            <div class="col-md-2">{{ form.game.label_tag }}</div>
+            <div class="col-md-2">{{ form.game }}</div>
+            <div class="col-md-12">{{ form.game.errors }}</div>
+        </div>
+        <br/>
+        <div class="row clearfix">
+            <div class="col-md-2">{{ form.draw.label_tag }}</div>
+            <div class="col-md-6">{{ form.draw }}</div>
+            <div class="col-md-12">{{ form.draw.errors }}</div>
+        </div>
+        <br/>
+        <div class="row clearfix">
+            <div class="col-md-2">{{ form.suggestion.label_tag }}</div>
+            <div class="col-md-8">{{ form.suggestion }}</div>
+            <div class="col-md-12">{{ form.suggestion.errors }}</div>
+        </div>
+        <br/>
+        <div class="row clearfix">
+            <div class="col-md-2">{{ form.is_active.label_tag }}</div>
+            <div class="col-md-8">{{ form.is_active }}</div>
+            <div class="col-md-12">{{ form.is_active.errors }}</div>
+        </div>
+        {% if form.non_field_errors %}
+        <br/>
+        <div class="row clearfix">
+            <div class="col-md-12">{{ form.non_field_errors }}</div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-info">Guardar</button>
+    </div>
+</form>
+
+<script>
+    $('select').selectpicker();
+
+    $('select').on('change', function(evt){
+        $('select').selectpicker('refresh');
+    });
+
+    var form_options = {
+        target: '.modal-content',
+        success: function () {
+        }
+    };
+    $('#promotion_form').ajaxForm(form_options);
+
+</script>
+
+<script>
+    String.format = function() {
+        // The string containing the format items (e.g. "{0}")
+        // will and always has to be the first argument.
+        var theString = arguments[0];
+
+        // start with the second argument (i = 1)
+        for (var i = 1; i < arguments.length; i++) {
+            // "gm" = RegEx options for Global search (more than one instance)
+            // and for Multiline search
+            var regEx = new RegExp("\\{" + (i - 1) + "\\}", "gm");
+            theString = theString.replace(regEx, arguments[i]);
+        }
+
+        return theString;
+    };
+
+    function update_draws(){
+        var game_id = $("#id_game").val();
+
+        $("#id_draw").empty();
+        $('select').selectpicker('refresh');
+        if (!isNumber(game_id))
+            return;
+
+        var promo_id = '{{ form.instance.pk|default:"" }}';
+        var url = String.format("/get_promotion_draws/{0}/{1}", game_id, promo_id);
+
+        $.ajax({
+            url: url,
+            success: function(result){
+                if (jQuery.isEmptyObject(result))
+                    return;
+
+                var select = $("#id_draw");
+                select.empty();
+
+                $.each(result.draws, function (i, item) {
+                    select.append($('<option>', {
+                        value: item.pk,
+                        selected: item.selected,
+                        text : item.value
+                    }));
+                });
+                select.selectpicker('refresh');
+            }
+        });
+    }
+
+    $("#id_game").change(update_draws);
+
+    update_draws();
+
+</script>

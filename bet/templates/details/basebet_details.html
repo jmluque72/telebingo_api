@@ -1,0 +1,58 @@
+{% load staticfiles %}
+{% load humanize %}
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+
+    {% block dialogtitle %}
+        <h4><img width="35px" src="{{ game.logo.url }}"/> Apuesta de {{ game.name }}</h4>
+    {% endblock %}
+</div>
+<div class="modal-body">
+    {% block topdetails %}
+        <div class="form-group">
+            <strong>Sorteo: </strong> Nro. {{ bet.draws.0.number }} del {{ bet.draws.0.date_draw|date:"d.m.Y H:i" }}
+        </div>
+    {% endblock %}
+
+    <div class="form-group">
+        <strong>Fecha de apuesta: </strong> {{ bet.date_bet|date:"d.m.Y H:i" }}
+    </div>
+
+    <div class="form-group">
+        <strong>Monto: </strong> $ {{ bet.importq }}
+    </div>
+
+    {% block details %}
+        {% if details.0.ticket.real %}
+        <div class="form-group">
+            <strong>Ticket: </strong> <a class="image-popup-vertical-fit" href="{{ details.0.ticket.real.url }}">
+            <img src="{{ details.0.ticket.real.url }}" height="90"></a>
+        </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block bottomdetails %}
+        <div class="form-group">
+            <strong>Estado: </strong> {{ details.0.get_state_display }}
+        </div>
+    {% endblock %}
+
+    {% if bet.won %}
+        <div class="form-group">
+            <strong>Premio: </strong>
+        {% for detail in bet.get_details %}
+            {% for winner in detail.winner_set.all %}
+                {% if winner.parent.prize_type == 0 %}
+                    $ {{ winner.get_prize|intcomma }}
+                {% else %}
+                    {{ winner.get_prize }}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        </div>
+    {% endif %}
+    <script>
+        $(".fancybox").fancybox();
+    </script>
+</div>

@@ -1,0 +1,165 @@
+[
+  {
+    "pk": 1,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 0,
+      "quiniela_prizes": "7,70,600,3500"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 1
+    }
+  },
+  {
+    "pk": 3,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 2
+    }
+  },
+  {
+    "pk": 4,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 3
+    }
+  },
+  {
+    "pk": 5,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 4,
+      "quiniela_prizes": "7,70,500,3500"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 5
+    }
+  },
+  {
+    "pk": 7,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 6
+    }
+  },
+  {
+    "pk": 8,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 7
+    }
+  },
+  {
+    "pk": 9,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 8
+    }
+  },
+  {
+    "pk": 10,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 9
+    }
+  },
+  {
+    "pk": 11,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 10
+    }
+  },
+  {
+    "pk": 12,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 11
+    }
+  },
+  {
+    "pk": 13,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 12
+    }
+  },
+  {
+    "pk": 14,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 13
+    }
+  },
+  {
+    "pk": 15,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 14
+    }
+  },
+  {
+    "pk": 16,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 15
+    }
+  },
+  {
+    "pk": 17,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 16
+    }
+  },
+  {
+    "pk": 18,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 17
+    }
+  },
+  {
+    "pk": 19,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 18
+    }
+  },
+  {
+    "pk": 20,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 19
+    }
+  },
+  {
+    "pk": 21,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 20
+    }
+  },
+  {
+    "pk": 22,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 21
+    }
+  },
+  {
+    "pk": 23,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 22
+    }
+  }
+]

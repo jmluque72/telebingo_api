@@ -1,0 +1,50 @@
+<table>
+  <tr>
+      {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+        <td><img src="cid:header.jpg" border="0" alt="Loteria movil" title="Loteria movil" /></td>
+      {% endif %}
+      {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+        <td><img src="cid:header_lp.jpg" border="1" alt="Loteria movil" title="Loteria movil" /></td>
+      {% endif %}
+      {% if 'jugaya.com' in request.build_absolute_uri  %}
+        <td><img src="cid:header_sf.jpg" border="1" alt="Juga ya" title="Juga ya" /></td>
+      {% endif %}
+  </tr>
+  <tr>
+    <td style="">
+        <h1 style="font-size:30px;">Hola, {{ user.first_name }}!</h1>
+    </td>
+  </tr>
+
+  <br/>
+  <br/>
+
+    <tr>
+    <td style="">
+        <h1 style="font-size:15px;padding-left:20px">Lamentablemente JUGA YA no pudo efectivizar tu apuesta de {{game_name}} para el día {{draw_date}}, el importe total de la misma ya fue devuelta a tu cuenta.</h1>
+        <br/>
+      </td>
+  </tr>
+
+
+    <tr>
+    <td style="">
+        <span style="font-size:14px;padding-left:20px;">Consultas o dudas contacto@jugaya.com</span>
+      </td>
+  </tr>
+
+    <tr>
+    <td style="">
+        <span style="font-size:14px;padding-left:20px;">WhatsApp +5493416097683</span>
+  <br/>
+   <br/>
+  <br/>
+      </td>
+  </tr>
+
+
+
+
+
+</table>
+

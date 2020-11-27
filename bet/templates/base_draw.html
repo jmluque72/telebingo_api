@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form {% block form-content %}class="form-inline" method="post" enctype="multipart/form-data"{% endblock %}
+      action="{% block form-action %}{% endblock %}">
+
+	{% csrf_token %}
+	<fieldset>
+		<legend>{% block draw_legend %}{% endblock %}</legend>
+        {% block tabs_quiniela %}{% endblock tabs_quiniela %}
+
+        {% block draw_header %}
+            <div class="row clearfix divisor-tabla">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Sorteo Nro:</label> {{ drawForm.instance.number }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Fecha:</label> {{ drawForm.instance.date_draw|date:"d-N-Y" }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Hora:</label> {{ drawForm.instance.date_draw|date:"H:i" }}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+        {% block tabs %}{% endblock %}
+
+		{% block draw_content %}{% endblock %}
+        
+
+        {% block draw_buttons %}
+            <div class="row clearfix">
+                {% if not readonly %}
+                <div class="row clearfix">
+                    <input class="btn" type="button" value="Cancelar" onclick="window.history.back();"/>
+                    <button class="btn btn-info" name="save" type="submit">GUARDAR</button>
+                </div>
+                {% endif %}
+            </div>
+        {% endblock %}
+
+	</fieldset>
+</form>
+
+<script>
+$('#id_date_draw_picker').on("dp.change", function(e) {
+    if (e !== undefined) {
+        var m = moment(e.date.format("YYYY-MM-DD HH:mm"));
+        m.subtract(15, 'minutes');
+        $('#id_date_limit_agency').val(m.format("DD/MM/YYYY HH:mm"));
+        m.subtract(15, 'minutes');
+        $('#id_date_limit').val(m.format("DD/MM/YYYY HH:mm"));
+    }
+});
+</script>
+{% endblock %}
+

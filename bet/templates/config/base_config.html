@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="row clearfix">
+    	<legend>Configuraciones</legend>
+    </div>
+
+    <div class="container">
+        <div class="row clearfix base-tabs">
+            <div id="loteria-prizes-tab" class="col-md-2 tab-inactiva"><a href="{% url 'bet:loteria_prizes' %}">Premios Lotería</a></div>
+            <div id="game-taxes-tab" class="col-md-2 tab-inactiva"><a href="{% url 'bet:game_taxes' %}">Impuestos</a></div>
+            <div id="bet-commissions-tab" class="col-md-2 tab-inactiva"><a href="{% url 'bet:bet_commissions' %}">Comisiones</a></div>
+        </div>
+    </div>
+    <br />
+
+{% endblock %}

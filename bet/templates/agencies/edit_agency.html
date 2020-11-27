@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form id="edit_agency_form" method='post' class="form" role="form"
+        {% if pk %}
+            action='{% url 'bet:edit_agency' pk %}'>
+        {% else %}
+          action='{% url 'bet:edit_agency' %}'>
+        {% endif %}
+        <fieldset>
+
+        {% csrf_token %}
+
+        <legend>{{ draw.pk|yesno:"Editar ,Nueva " }}agencia</legend>
+
+        {{ agencyForm.non_form_errors }}
+        {{ userForm.non_form_errors }}
+
+        {% for field in agencyForm.hidden_fields %}
+            {{ field }}
+        {% endfor %}
+        {% for field in userForm.hidden_fields %}
+            {{ field }}
+        {% endfor %}
+
+        <div class="row clearfix">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ agencyForm.name.label_tag }}</label>
+                    {{ agencyForm.name }}{{ agencyForm.name.errors }}
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ agencyForm.number.label }}</label>
+                    {{ agencyForm.number }}{{ agencyForm.number.errors }}
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ agencyForm.address.label }}</label>
+                    {{ agencyForm.address }}{{ agencyForm.address.errors }}
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ agencyForm.neighborhood.label }}</label>
+                    {{ agencyForm.neighborhood }}{{ agencyForm.neighborhood.errors }}
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ agencyForm.city.label }}</label>
+                    {{ agencyForm.city }}{{ agencyForm.city.errors }}
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label style="width:100%;">{{ agencyForm.province.label }}</label>
+                    {{ agencyForm.province }}{{ agencyForm.province.errors }}
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix divisor">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ agencyForm.is_active.label_tag }}</label>
+                    {{ agencyForm.is_active }}{{ agencyForm.is_active.errors }}
+                </div>
+            </div>
+        </div>
+
+        <div class="sub-secciones">Agenciero</div>
+
+        <div class="row clearfix">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ userForm.first_name.label }}</label>
+                    {{ userForm.first_name }}{{ userForm.first_name.errors }}
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ userForm.last_name.label }}</label>
+                    {{ userForm.last_name }}{{ userForm.last_name.errors }}
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix divisor">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ userForm.email.label }}</label>
+                    {{ userForm.email }}{{ userForm.email.errors }}
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row clearfix">
+            <div class="row clearfix">
+                <button type="button" class="btn btn-default" onclick="window.history.back();">Cancelar</button>
+                <button type="submit" class="btn btn-info">Guardar</button>
+            </div>
+        </div>
+        </fieldset>
+    </form>
+
+{% endblock %}

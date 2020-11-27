@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block selected_menu %}#quinielas-menu{% endblock %}
+
+{% block content %}
+    <div class="row clearfix">
+        <legend>Quinielas por provincia</legend>
+	</div>
+    {% block tabs_quiniela %}
+    <div class="row clearfix base-tabs"> <!-- PESTAÑA SORTEOS/RESULTADOS -->
+        <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:quinielas' %}">Sorteos</a></div>
+        <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:draws_quiniela' %}">Concursos</a></div>
+        <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:old_quinielas' %}">Resultados</a></div>
+        <div class="col-md-2 tab-activa">Provincias</div>
+    </div>
+    {% endblock tabs_quiniela %}
+    <br/><br/>
+
+    <form id="{% url 'bet:provinces' %}" method='post' class="form" role="form">
+        {% csrf_token %}
+
+        {{ form.errors }}
+        {{ form.non_field_errors }}
+
+        <div class="row clearfix">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="{{ form.province.id_for_label }}">Provincia:</label>
+                    {{ form.province }}
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    {{ form.quinielas.label_tag }}
+                    {{ form.quinielas }}
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-info" name="save" type="submit">GUARDAR</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        $(function() {
+            var province = $("#id_province");
+            var quinielas = $("#id_quinielas");
+            var modified = false;
+
+            var $provincepicker = province.data('selectpicker').$newElement;
+
+            $provincepicker.on('show.bs.dropdown', function(e) {
+                if (modified) {
+                    modified = false;
+                    var prov = province.find("option:selected").text();
+
+                    bootbox.dialog({
+                        title: "Guardar",
+                        message: "¿Desea guardar los cambios hechos para la provincia "+prov+"?",
+                        buttons: {
+                            save: {
+                                label: "Guardar",
+                                className: "btn",
+                                callback: function () {
+                                    $('form').submit();
+                                }
+                            },
+                            cancel: {
+                                label: "Cancelar",
+                                className: "btn",
+                                callback: function () {
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+
+            province.change(function () {
+                update_quinielas($(this).val());
+            });
+
+            quinielas.change(function() {
+                modified = true;
+            });
+
+            function update_quinielas(number) {
+                modified = false;
+                quinielas.find("option:selected").prop("selected", false);
+                if (!isNumber(number)) {
+                    quinielas.selectpicker('refresh');
+                    return;
+                }
+
+                $.ajax({
+                    url: '/get_quinielas/' + (parseInt(number) + 1),
+                    success: function (result) {
+
+                        quinielas.find("option").filter(function() {
+                            return $.inArray( parseInt(this.value), result.quinielas ) != -1;
+                        }).prop('selected', true);
+
+                        quinielas.selectpicker('refresh');
+                    }
+                });
+            }
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,249 @@
+{% extends "results/results_base.html" %}
+{% load humanize %}
+{% load widget_tweaks %}
+
+{% block action_form %}{% url 'bet:telebingocordobes_results' draw.pk %}{% endblock %}
+
+{% block tabs %}
+    <div class="row clearfix base-tabs"> <!-- PESTAÑA EXTRACTO/GANADORES -->
+        <div class="col-md-2 tab-activa">Extracto</div>
+        {% if draw.extract_sent %}
+            <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:telebingo_winners' draw.pk %}">Ganadores</a></div>
+        {% else %}
+            <div class="col-md-2 tab-inactiva">Ganadores</div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block results %}
+
+    <br/>
+    <div class="row clearfix form-group {% if extract_form.file.errors %}has-error has-feedback{% endif %}">
+        <label class="col-md-2 control-label" for="{{ extract_form.file.id_for_label }}">Extracto original:</label>
+        <div class="col-md-4">
+            {{ extract_form.file|add_class:"form-control" }}
+            {% if extract_form.file.errors %}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <span class="help-block">{{ extract_form.file.errors }}</span>
+            {% endif %}
+        </div>
+        <div class="col-md-3">
+            {% if draw.orig_extract %}
+            <button class="btn btn-sm btn-info" name="extract" type="submit">Reemplazar extracto</button>
+            <a style="padding-left: 10px;" href="{{ draw.orig_extract.url }}" target="_blank">Ver extracto</a>
+            {% else %}
+            <button class="btn btn-sm btn-info" name="extract" type="submit">Importar extracto</button>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if extract_form.non_field_erorrs %}
+        <div class="row clearfix form-group has-error has-feedback">
+            <div class="col-md-10 col-md-offset-1 ">
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <span class="help-block">{{ extract_form.non_field_erorrs }}</span>
+            </div>
+        </div>
+    {% endif %}
+    <div class="divisor"></div>
+    
+    <br/>
+    {% if not draw.extract_sent %}
+        <div class="row clearfix form-group {% if results_form.file.errors %}has-error has-feedback{% endif %}">
+            <label class="col-md-2 control-label" for="{{ results_form.file.id_for_label }}">Resultados:</label>
+            <div class="col-md-4">
+                {{ results_form.file|add_class:"form-control" }}
+                {% if results_form.file.errors %}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <span class="help-block">{{ results_form.file.errors }}</span>
+                {% endif %}
+            </div>
+            <div class="col-md-2">
+                {% if draw.is_loaded %}
+                <button class="btn btn-sm btn-info" name="results" type="submit">Reemplazar resultados</button>
+                {% else %}
+                <button class="btn btn-sm btn-info" name="results" type="submit">Importar resultados</button>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if results_form.non_field_erorrs %}
+            <div class="row clearfix form-group has-error has-feedback">
+                <div class="col-md-10 col-md-offset-1 ">
+                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    <span class="help-block">{{ results_form.non_field_erorrs }}</span>
+                </div>
+            </div>
+        {% endif %}
+        <div class="divisor"></div>
+    {% endif %}
+
+    {% if draw.is_loaded %}
+
+        {% for round in draw.round_set.all %}
+
+            {% with columns=11 round_number=round.number subtitle='Linea' results=round.results.line %}
+                {% include 'results/tbg_results_set.html' %}
+            {% endwith %}
+
+            {% with columns=11 results=round.results.bingo subtitle='Bingo' %}
+                {% include 'results/tbg_results_set.html' %}
+            {% endwith %}
+
+        {% endfor %}
+
+        <br />
+        <div class="row clearfix divisor-tabla">
+            <div class="row clearfix">
+                <div class="col-md-2"><label style="font-size:22px; color:#448cde">Billetes</label></div>
+            </div>
+            <br />
+
+            <div class="row clearfix">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>DNI</label>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Premio</label>
+                    </div>
+                </div>
+            </div>
+
+            {% for row in draw.coupon_extract_set.all %}
+                <div class="row clearfix">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ row.number|intcomma }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {% if row.prize.type == 0 %}$ {% endif %}{{ row.prize.get_prize|intcomma }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <br />
+        <div class="row clearfix divisor-tabla">
+            <div class="row clearfix">
+                <div class="col-md-2"><label style="font-size:22px; color:#448cde">Terminación</label></div>
+            </div>
+            <br />
+
+            <div class="row clearfix">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Número</label>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Billetes premiados</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row clearfix">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ ending_number }}
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ ending_count }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix divisor-tabla">
+            <div class="row clearfix">
+                <div class="col-md-2"><label style="font-size:22px; color:#448cde">Extras</label></div>
+                <br />
+                <br />
+
+                <div class="row clearfix">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                Descripcion
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                Cupon
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                             <div class="form-group">
+                                Ronda
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+
+                            <div class="form-group">
+                                Chance
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                Premio
+                            </div>
+                        </div>
+                    </div>
+
+                {% for row in extras %}
+                    <div class="row clearfix">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                {{ row.description }}
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                {{ row.coupon.number|intcomma }}
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                             <div class="form-group">
+                                {{ row.round }}
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+
+                            <div class="form-group">
+                                {{ row.chance }}
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                {{ row.prize }}
+                            </div>
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+
+            </div>
+            <br />
+
+
+        </div>
+
+    {% endif %}
+
+    {% block buttons %}{% endblock %}
+
+{% endblock %}
+
+{% block script_extracto %}{% endblock %}

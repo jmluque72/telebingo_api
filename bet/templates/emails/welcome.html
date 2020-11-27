@@ -1,0 +1,66 @@
+<table>
+  <tr>
+      {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+        <td><img src="cid:header.jpg" border="0" alt="Loteria movil" title="Loteria movil" /></td>
+      {% endif %}
+      {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+        <td><img src="cid:header_lp.jpg" border="1" alt="Loteria movil" title="Loteria movil" /></td>
+      {% endif %}
+      {% if 'jugaya.com' in request.build_absolute_uri  %}
+        <td><img src="cid:header_sf.jpg" border="1" alt="Juga ya" title="Juga ya" /></td>
+      {% endif %}
+  </tr>
+  <tr>
+    <td style="">
+        <h1 style="font-size:30px;">Hola, {{ user.first_name }}!</h1>
+    </td>
+  </tr>
+
+  <br/>
+  <br/>
+
+    <tr>
+    <td style="">
+        <h1 style="font-size:15px;padding-left:20px">Tenemos una buena noticia para vos.</h1>
+        <br/>
+      </td>
+  </tr>
+
+
+    <tr>
+    <td style="">
+        <span style="font-size:14px;padding-left:20px"><span style="color:red;">Juga Ya</span> te obsequia <span style="color:red;">$30</span> para que juegues</span>
+      </td>
+  </tr>
+
+    <tr>
+    <td style="">
+        <span style="font-size:14px;padding-left:20px;">Empezá a disfrutar la nueva forma de ganar.</span>
+      </td>
+  </tr>
+    <tr>
+    <td style="">
+        <span style="font-size:14px;padding-left:20px;">Entra a help.jugaya.com para conocer más de nosotros.</span>
+      </td>
+  </tr>
+    <tr>
+    <td style="">
+        <span style="font-size:14px;padding-left:20px;">Consultas o dudas contacto@jugaya.com</span>
+      </td>
+  </tr>
+
+    <tr>
+    <td style="">
+        <span style="font-size:14px;padding-left:20px;">WhatsApp +5493416097683</span>
+  <br/>
+   <br/>
+  <br/>
+      </td>
+  </tr>
+
+
+
+
+
+</table>
+

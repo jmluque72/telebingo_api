@@ -1,0 +1,12 @@
+{% extends 'emails/base_email.html' %}
+
+{% block content %}
+<p>Hemos recibido tu apuesta de <strong>{{ game }}</strong> y la hemos enviado
+    a la agencia correspondiente: <strong>{{ agency.name }}.</strong></p>
+
+<p>En breve recibir&aacute;s un mail con la confirmación de tu apuesta.</p>
+{% if not preprinted %}
+    <p>Adjunto encontrar&aacute;s el ticket virtual de tu apuesta.</p>
+{% endif %}
+
+{% endblock %}

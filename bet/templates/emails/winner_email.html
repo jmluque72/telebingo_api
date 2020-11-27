@@ -1,0 +1,68 @@
+{% extends 'emails/base_email.html' %}
+{% load humanize %}
+
+{% block content %}
+    <p><strong>¡¡¡Felicitaciones!!!</strong></p>
+
+    {% if winner.prize_type == 0 %}
+        {% with prize=winner.get_prize %}
+            <p>Ganaste <strong>${{ prize|intcomma }}</strong> en {{ game.article }} {{ game.name }}.
+            {% if telebingogame %}
+                <small style="line-height: 20px;">
+                    {{telebingogame_draw}}
+                </small>
+            {% endif %}
+            {% if taxes %}
+                <small style="line-height: 20px;">
+                    ({% for tax in taxes %}
+                        {{ tax.message }} ({{ tax.tax|intcomma }}%): ${{ tax.val|intcomma }}.
+                    {% endfor %}
+                    Total: ${{ t_prize|intcomma }}.)
+                </small>
+            {% endif %}
+            </p>
+        {% endwith %}
+    {% elif winner.prize_type == 1 %}
+        <p>Ganaste <strong>{{ winner.get_prize }}</strong> de {{ game.name }}.</p>
+        {% if winner.usercredit.accredited == False %}
+            <p>Recibirás tu premio antes del próximo sorteo.</p>
+        {% endif %}
+    {% else %}
+        <p>Ganaste <strong>{{ winner.get_prize }}</strong> en {{ game.article }} {{ game.name }}.</p>
+    {% endif %}
+
+
+    {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+        <p>
+            Para cobrar el premio, comunicarse telefónicamente al (02966) 422631 o dirigirse a Lotería para Obras de Acción Social de la Provincia de Santa Cruz, Calle Perito Moreno 116 esq. Zapiola, Rio Gallego, Santa Cruz
+        </p>
+        <p>
+            Debe hacerse presente con el DNI y la impresión del cupon adjuto.
+        </p>
+    {% endif %}
+    {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+
+        <p>
+            Para cobrar el premio, comunicarse telefónicamente al  (02954) 43-3052 o dirigirse a La DAFAS de la Provincia de La Pampa, Calle Pellegrini 385, 1° y 2° Piso, Santa Rosa, La Pampa.
+        </p>
+        <p>
+            Debe hacerse presente con el DNI y la impresión del cupon adjuto.
+        </p>
+    {% endif %}
+
+
+
+    {% if 'telebingo_' not in game.code  %}
+
+        <p>El importe del premio fue acreditado en tu cuenta de usuario. Podes confirmarlo entrando a 'Mi Cuenta'.</p>
+        {% if 'jugaya.com' in request.build_absolute_uri  %}
+            <p>Cualquier duda o consulta envianos un mail a contacto@jugaya.com</p>
+        {% else %}
+            <p>Cualquier duda o consulta envianos un mail a contacto@agencia24.com.ar</p>
+        {% endif %}
+        <p>Gracias por usar nuestros servicios!</p>
+
+    {% endif %}
+
+
+{% endblock %}

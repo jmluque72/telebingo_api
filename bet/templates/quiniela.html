@@ -1,0 +1,157 @@
+{% extends "base_draw.html" %}
+
+{% block extra_head %}<!-- form.media -->{{ groupForm.media }}{% endblock %}
+
+{% block selected_menu %}#quinielas-menu{% endblock %}
+
+{% block form-action %}
+    {% if group.pk %}
+        {% url 'bet:quiniela' group.pk %}
+    {% else %}
+        {% url 'bet:quiniela' %}
+    {% endif %}
+{% endblock %}
+
+{% block draw_legend %}
+    Quiniela <span class="accion">Agregar sorteos</span>
+{% endblock %}
+
+{% block tabs_quiniela %}
+<div class="row clearfix base-tabs"> <!-- PESTAÑA SORTEOS/RESULTADOS -->
+    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:quinielas' %}">Sorteos</a></div>
+    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:draws_quiniela' %}">Concursos</a></div>
+    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:old_quinielas' %}">Resultados</a></div>
+    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:provinces' %}">Provincias</a></div>
+</div>
+{% endblock tabs_quiniela %}
+
+{% block draw_header %}{% endblock %}
+
+{% block draw_content %}
+
+    </br>
+    <div class="row clearfix divisor">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ groupForm.date.label }}</label><br />
+                {{ groupForm.date }}{{ groupForm.date.errors }}
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ groupForm.province.label }}</label><br />
+                {{ groupForm.province }}{{ groupForm.province.errors }}
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ groupForm.number.label }}</label><br />
+                {{ groupForm.number }}{{ groupForm.number.errors }}
+            </div>
+        </div>
+    </div>
+    </br>
+    <div class="row clearfix divisor">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ groupForm.type.label }}</label><br />
+                {{ groupForm.type }}{{ groupForm.type.errors }}
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ groupForm.refine.label }}</label><br />
+                {{ groupForm.refine }}
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ groupForm.draws.label }}</label>
+                {{ groupForm.draws }}{{ groupForm.draws.errors }}
+            </div>
+        </div>
+    </div>
+    </br>
+
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+
+    {{ groupForm.non_field_errors }}
+
+    <script>
+        String.format = function() {
+            // The string containing the format items (e.g. "{0}")
+            // will and always has to be the first argument.
+            var theString = arguments[0];
+
+            // start with the second argument (i = 1)
+            for (var i = 1; i < arguments.length; i++) {
+                // "gm" = RegEx options for Global search (more than one instance)
+                // and for Multiline search
+                var regEx = new RegExp("\\{" + (i - 1) + "\\}", "gm");
+                theString = theString.replace(regEx, arguments[i]);
+            }
+
+            return theString;
+        };
+
+        function update_draws(){
+            var province_id = $("#id_province").val();
+            var date_str = $("#id_date").val();
+            var refine = $("#id_refine").prop("checked");
+            var tipo = $("#id_type").val();
+
+            if (refine && tipo !== "")
+                tipo += "/";
+            else
+                tipo = "";
+
+            if (!isNumber(province_id) || !date_str)
+                return;
+
+            var date = moment(date_str, "DD/MM/YYYY").format('YYYY-MM-DD');
+            var url = String.format("/get_draws/{0}/{1}/{2}", tipo+date,
+                                    province_id, "{{ group.pk|default:"" }}");
+
+            $.ajax({
+                url: url,
+                success: function(result){
+                    if (jQuery.isEmptyObject(result))
+                        return;
+
+                    var select = $("#id_draws");
+                    select.empty();
+
+                    $.each(result.draws, function (i, item) {
+                        select.append($('<option>', {
+                            value: item.pk,
+                            selected: item.selected,
+                            text : String.format("{0} {1} {2}",
+                                    item.quiniela__name, item.type, item.date)
+                        }));
+                    });
+                    select.selectpicker('refresh');
+                }
+            });
+        }
+
+        $('#id_date_picker').on("change.dp", function(e) {
+            if (e !== undefined)
+                update_draws();
+        });
+
+        $("#id_province, #id_refine").change(update_draws);
+
+        $("#id_type").change(function () {
+            if ($("#id_type").val() !== "")
+                update_draws();
+        });
+
+        $("#id_draws").empty();
+
+        update_draws();
+
+    </script>
+
+{% endblock %}

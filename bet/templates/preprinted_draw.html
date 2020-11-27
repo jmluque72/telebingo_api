@@ -1,0 +1,80 @@
+{% extends "nonprinted_draw.html" %}
+{% load ifusergroup %}
+
+{% block form-action %}
+    {% if drawForm.instance.pk %}
+        {% url 'bet:draw_preprinted_edit' game.code drawForm.instance.pk %}
+    {% else %}
+        {% url 'bet:draw_preprinted_add' game.code %}
+    {% endif %}
+{% endblock %}
+
+{% block tabs %}
+    <div class="row clearfix base-tabs"> <!-- PESTAÑA SORTEO/BILLETES -->
+        <div class="col-md-1 tab-activa">Sorteo</div>
+        {% if drawForm.instance.pk %}
+            {% ifusergroup admin %}
+            <div class="col-md-1 tab-inactiva"><a href="{% url 'bet:admin_coupons' drawForm.instance.pk %}">Billetes</a></div>
+            {% else %}
+            <div class="col-md-1 tab-inactiva"><a href="{% url 'bet:coupons' drawForm.instance.pk %}">Billetes</a></div>
+            {% endifusergroup %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block general_details %}
+    {% if game.code == 'loteria' %}
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>{{ drawForm.fractions.label }}</label>
+                {{ drawForm.fractions }}{{ drawForm.fractions.errors }}
+            </div>
+        </div>
+    {% endif %}
+    {% if 'telebingo' in game.code %}
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>{{ drawForm.rounds.label }}</label>
+                {{ drawForm.rounds }}{{ drawForm.rounds.errors }}
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>{{ drawForm.chances.label }}</label>
+                {{ drawForm.chances }}{{ drawForm.chances.errors }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block tickets %}
+    <div class="sub-secciones">Imágenes</div>
+
+    <div class="row clearfix divisor">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>{{ drawForm.coupon_image.label }}</label>
+                {{ drawForm.coupon_image }}{{ drawForm.coupon_image.errors }}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>{{ drawForm.coupon_thumbnail.label }}</label>
+                {{ drawForm.coupon_thumbnail }}{{ drawForm.coupon_thumbnail.errors }}
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-secciones">Promociones</div>
+
+    <div class="row clearfix divisor">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>{{ drawForm.promotion_coupons.label }}</label>
+                {{ drawForm.promotion_coupons }}{{ drawForm.promotion_coupons.errors }}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+

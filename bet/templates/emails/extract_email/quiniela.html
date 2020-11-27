@@ -1,0 +1,44 @@
+{% extends 'tickets/base_ticket.html' %}
+{# context: {bet, game, details} #}
+
+{% block title %}{{ game.name|upper }} {{ details.0.get_type_display|upper }} del {{ details.0.group.date|date:"d/m/Y" }} {% endblock %}
+
+{% block topdetails %}{% endblock %}
+
+{% block details %}
+    <table align="center">
+        <thead bgcolor="#448cde">
+        <th width="33%" style="color:#FFFFFF; padding:5px">N&uacute;mero</th>
+        <th width="33%" style="color:#FFFFFF; padding:5px">Ubicaci&oacute;n</th>
+        <th width="33%" style="color:#FFFFFF; padding:5px">Valor</th>
+        </thead>
+
+        <tbody style="color:#666666">
+            {% for detail in details %}
+                {% if not detail.apuesta %} {# si no es redoblona #}
+                <tr>
+                    <td style="border-bottom:solid 1px #eee; padding:5px">{{ detail.number }}</td>
+                    <td style="border-bottom:solid 1px #eee; padding:5px">{{ detail.get_location_display }}</td>
+                    <td style="border-bottom:solid 1px #eee; padding:5px">{{ detail.importq }}</td>
+                </tr>
+                {% endif %}
+                {% if detail.redoblona %}
+                <tr>
+                    <td style="border-bottom:solid 1px #eee; padding:5px">{{ detail.redoblona.number }}</td>
+                    <td style="border-bottom:solid 1px #eee; padding:5px">{{ detail.redoblona.get_location_display }}</td>
+                    <td style="border-bottom:solid 1px #eee; padding:5px">Redoblona</td>
+                </tr>
+                {% endif %}
+
+            {% endfor %}
+        </tbody>
+    </table>
+    <br />
+    <strong>Loter&iacute;as:</strong> {{ detail.lotteries|join:", " }}
+{% endblock %}
+
+{% block bottomdetails %}
+    <strong>Fecha y hora:</strong> {{ bet.date_bet|date:"d/m/Y - H:i:s" }}<br/>
+    <strong>Sorteo Nro:</strong> {{ details.0.group.number }}<br />
+    {# <strong>Prescribe:</strong> {{ draw.date_draw|date:"d/m/Y" }} #}
+{% endblock %}

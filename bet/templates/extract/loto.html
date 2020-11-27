@@ -1,0 +1,17 @@
+{% extends 'extract/base_extract.html' %}
+
+{% block content %}
+    {% with results=draw.loto_results.tra title="Tradicional" %}
+        {% with extras=results.get_extras %}
+            {% include 'extract/results_set.html' %}
+        {% endwith %}
+    {% endwith %}
+
+    {% with results=draw.loto_results.des title="Desquite" %}
+        {% include 'extract/results_set.html' %}
+    {% endwith %}
+
+    {% with results=draw.loto_results.sos title="Sale o Sale" %}
+        {% include 'extract/results_set.html' %}
+    {% endwith %}
+{% endblock %}

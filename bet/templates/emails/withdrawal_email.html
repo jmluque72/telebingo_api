@@ -1,0 +1,8 @@
+{% extends 'emails/base_email.html' %}
+{% load humanize %}
+{% load negatefilter %}
+
+{% block content %}
+<p>Has solicitado retirar <strong>${{ movement.amount|negate|intcomma }}</strong> de tu cuenta, a trav&eacute;s de <strong>{{ movement.get_method_display }}</strong>.<br>
+    En breve recibir&aacute;s un mail confirmando que tu saldo se ha acreditado.
+{% endblock %}

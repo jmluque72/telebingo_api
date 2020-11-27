@@ -1,0 +1,107 @@
+<br/>
+<div class="row clearfix divisor-tabla">
+    {% if title or subtitle %}
+    <div class="row clearfix">
+        <div class="col-md-2">
+            <div class="form-group">
+                {% if title %}
+                <label class="titulo-separador">{{ title }}</label><br />
+                {% endif %}
+                {% if subtitle %}
+                <span>{{ subtitle }}</span>
+                {% endif %}
+             </div>
+        </div>
+    </div>
+    {% endif %}
+    {% for field in form %}
+        {% if columns and forloop.counter0|divisibleby:columns %}
+            <div class="row clearfix">
+        {% endif %}
+
+        <div class="col-md-1 {% if numbersFormSet %}hidden{% endif %}">
+            <div class="form-group">
+                {{ field }}
+            </div>
+        </div>
+
+        {% if jackpot == forloop.counter %}
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label>Jackpot</label>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if columns %}
+            {% if forloop.counter|divisibleby:columns or forloop.last %}
+                </div>
+            {% endif %}
+        {% endif %}
+
+    {% endfor %}
+
+    {% if numbersFormSet %}
+        <div class="{{ dynamic }}_formset">
+            {{ numbersFormSet.management_form }}
+
+            <div class="col-md-1 empty-form hidden">
+                <div class="form-group">
+                    {{ numbersFormSet.empty_form.number }}
+                </div>
+            </div>
+
+            {% for form in numbersFormSet %}
+                <div class="col-md-1">
+                    <div class="form-group">
+                        {{ form.number }}
+                    </div>
+                </div>
+            {% endfor %}
+
+            {# {{ numbersFormSet.non_form_errors }} #}
+            {% if numbersFormSet.total_error_count and not numbersFormSet.non_form_errors %}
+                <ul class="errorlist nonfield"><li>Faltan datos.</li></ul>
+            {% endif %}
+        </div>
+
+        {% if not readonly and numbersFormSet|length < numbersFormSet.max_num and dynamic %}
+            <button type="button" onclick="this.blur();" class="btn btn-primary" id="{{ dynamic }}_addform">+</button>
+
+            <script>
+                var x = $('.{{ dynamic }}_formset').children('div');
+
+                var {{ dynamic }} = x.djangoFormset({insertDeleteButton: false});
+                $("#{{ dynamic }}_addform").on('click', function(event) {
+                    {{ dynamic }}.addForm();
+
+                    var max = parseInt($('#id_{{ dynamic }}-MAX_NUM_FORMS').val());
+                    if ({{ dynamic }}.forms.length == max)
+                        $("#{{ dynamic }}_addform").remove();
+                });
+            </script>
+        {% endif %}
+    {% endif %}
+
+    <div class="row clearfix">
+        <div class="col-md-12">
+        {{ form.non_field_errors }}
+        </div>
+    </div>
+</div>
+
+{# EXTRACTO #}
+{% if extractForm %}
+    <div class="row clearfix divisor-tabla">
+        {{ extractForm.management_form }}
+
+        {% include 'results/rowextract.html' %}
+
+        {% if extractForm.total_error_count %}
+            <ul class="errorlist nonfield"><li>Faltan datos.</li></ul>
+        {% endif %}
+
+        {{ extractForm.non_form_errors }}
+    </div>
+{% endif %}
+

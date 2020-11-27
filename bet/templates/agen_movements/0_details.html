@@ -1,0 +1,18 @@
+{% extends 'agen_movements/base_detail.html' %}
+{% load humanize %}
+
+{# Para todos los juegos #}
+
+{% block topdetail %}
+    {% with bet=movement.bet %}
+    <div class="form-group">
+        <strong>Juego: </strong> {{ bet.game.name }} <small>{{ bet.draws.0.date_draw }}</small>
+    </div>
+    <div class="form-group">
+        <strong>Usuario: </strong> {{ bet.user.user.get_full_name }}
+    </div>
+    <div class="form-group">
+        <strong>Importe Ticket: </strong> $ {{ movement.real_amount|intcomma }}
+    </div>
+    {% endwith %}
+{% endblock %}

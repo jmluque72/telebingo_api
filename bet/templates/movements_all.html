@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load ifusergroup %}
+{% load pagination_tags %}
+
+{% block extra_head %}<!-- form.media -->{{ form.media }}{% endblock %}
+
+{% block selected_menu %}#moviments-menu{% endblock %}
+
+{% block content %}
+
+    <form method="get" action="{% url 'bet:movements_all' %}">
+            <div class="row clearfix divisor">
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.date_from.label }}</label>
+                        {{ form.date_from }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.date_to.label }}</label>
+                        {{ form.date_to }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.user.label }}</label><br />
+                        {{ form.user }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.code.label }}</label><br />
+                        {{ form.code }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.draw.label }}</label><br />
+                        {{ form.draw }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Exportar a excel</label> <input type="checkbox" id="export_excel" name="export_excel"/>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <button class="btn btn-info" id="submit-draw-filter" type="submit" style="margin-top:24px">Filtrar</button>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    <br />
+
+    	{% csrf_token %}
+
+        <div class="row clearfix divisor-cabeceras">
+            <div class="col-md-2"><strong>Sorteo</strong></div>
+            <div class="col-md-2"><strong>Fecha</strong></div>
+            <div class="col-md-2"><strong>Usuario</strong></div>
+            <div class="col-md-2"><strong>Tipo</strong></div>
+            <div class="col-md-1"><strong>Monto</strong></div>
+        </div>
+
+        <div id="formset">
+        {% autopaginate instances 20 %}
+        {% for instance in instances %}
+
+            <div class="row clearfix divisor-tabla">
+                <div class="col-md-2">{{instance.number}}<strong></strong></div>
+                <div class="col-md-2">{{ instance.date|date:"d.m.Y H:i" }}</div>
+                <div class="col-md-2">{{ instance.user.user.get_full_name }}</div>
+                <div class="col-md-2">{{ instance.get_code_display }}</div>
+                <div class="col-md-1">{{ instance.amount }}</div>
+            </div>
+        {% endfor %}
+        {% paginate %}
+        </div>
+
+        <script>
+            var mov_amount;
+            var confirmed = {{ confirmed }};
+            var current_select;
+
+            $(document).ready(function() {
+                $('#formset').find('select').each(function(index, element) {
+                    $(element).data("prev", $(element).val());
+                }).on('change', function() {
+                    current_select = $(this);
+                    if ($(this).val() == confirmed) {
+                        var amount_id = $(this).attr('data-amount');
+                        mov_amount = $('#'+amount_id);
+                        if (mov_amount.val() > 0)
+                            show_modal();
+                        else
+                            this.form.submit();
+                    } else {
+                        this.form.submit();
+                    }
+                });
+
+                $('#save_btn').click(function() {
+                    mov_amount.val($('#id_amount').val());
+                    $('#modal-payment').modal('hide');
+                    current_select.data("prev", current_select.val());
+                    mov_amount.closest("form").submit();
+                });
+
+                $('#cancel_btn').click(function() {
+                    current_select.val(current_select.data("prev"));
+                    current_select.selectpicker('refresh');
+                });
+
+                function show_modal() {
+                    var input = $('#id_amount');
+                    input.val(parseFloat(mov_amount.val()));
+                    input.attr('min', 0);
+                    input.attr('max', mov_amount.attr('data-initial'));
+                    $('#modal-payment').modal('show');
+                }
+            });
+        </script>
+
+{% endblock %}

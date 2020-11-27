@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load queryset_utils %}
+{% load staticfiles %}
+{% load pagination_tags %}
+
+{% block extra_head %}<!-- form.media -->{{ form.media }}{% endblock %}
+
+{% block selected_menu %}#quinielas-menu{% endblock %}
+
+{% block content %}
+	<div class="row clearfix">
+        <legend>Quinielas
+            <ul id="navul" class="nav navbar-nav pull-right">
+                <li><a href="{% url 'bet:quiniela' %}" class=" btn btn-nuevo">Nuevo sorteo</a></li>
+            </ul>
+        </legend>
+	</div>
+    {% block tabs %}
+    <div class="row clearfix base-tabs"> <!-- PESTAÑA SORTEOS/RESULTADOS -->
+        <div class="col-md-2 tab-activa">Sorteos</div>
+        <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:draws_quiniela' %}">Concursos</a></div>
+        <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:old_quinielas' %}">Resultados</a></div>
+        <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:provinces' %}">Provincias</a></div>
+    </div>
+    {% endblock tabs %}
+    <br/>
+
+    <form method="get" action="{% block filterform_action %}{% url 'bet:quinielas' %}{% endblock %}">
+        <div class="row clearfix divisor">
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_from.label }}</label>
+                    {{ form.date_from }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_to.label }}</label>
+                    {{ form.date_to }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.province.label }}</label><br />
+                    {{ form.province }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.type.label }}</label><br />
+                    {{ form.type }}
+                </div>
+            </div>
+            {% block filterform %}{% endblock %}
+            <div class="col-md-2">
+                <div class="form-group">
+                    <button class="btn btn-info" id="submit-draw-filter" type="submit" style="margin-top:24px">Filtrar</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <br />
+    <div class="row clearfix divisor-cabeceras">
+        <div class="col-md-2"><strong>Fecha</strong></div>
+        <div class="col-md-2"><strong>Provincia</strong></div>
+        <div class="col-md-1"><strong>Tipo</strong></div>
+        <div class="col-md-4"><strong>Quinielas</strong></div>
+        <div class="col-md-2"><strong>Estado</strong></div>
+        <div class="col-md-1"><strong>Acciones</strong></div>
+     </div>
+
+    {% autopaginate groups 20 %}
+    {% for group in groups %}
+        <div class="row clearfix divisor-tabla">
+            <div class="col-md-2">{{ group.date_draw|date:"d-m-y H:i" }}</div>
+            <div class="col-md-2">{{ group.province }}</div>
+            <div class="col-md-1">{{ group.get_type_display }}</div>
+            <div class="col-md-4">
+                {% for draw in group.draws.all|order_by:"quiniela__code" %}
+                    {{ draw.quiniela }}{% if draw.type != group.type %} ({{ draw.get_type_display }}){% endif %}{% if not forloop.last %} -{% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-md-2">{{ group.get_state_display }}</div>
+            <div class="col-md-1">
+                {% block draws_actions %}
+                <table width="80" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><a href="{% url 'bet:quiniela' group.pk %}"
+                           class="btn btn-sm btn-info" title="Editar">
+                        <i class="glyphicon glyphicon-pencil"></i></a></td>
+                  </tr>
+                </table>
+                {% endblock %}
+            </div>
+         </div>
+    {% endfor %}
+    {% paginate %}
+
+{% endblock %}

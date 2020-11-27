@@ -1,0 +1,6 @@
+{% extends 'emails/base_email.html' %}
+
+{% block content %}
+<p>Se ha rechazado tu solicitud de premio de <strong>{{ detail.bet.game.name }}</strong>
+porque no corresponde con una apuesta ganadora.</p>
+{% endblock %}

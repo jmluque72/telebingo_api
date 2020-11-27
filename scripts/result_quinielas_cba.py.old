@@ -1,0 +1,191 @@
+# coding: utf-8
+
+import logging
+import pytz
+import ssl
+import urllib as urllib2
+from HTMLParser import HTMLParser
+from datetime import datetime, timedelta
+from django.conf import settings
+from bet import models
+
+TZ = pytz.timezone(settings.TIME_ZONE)
+logger = logging.getLogger('agencia24_default')
+
+loteria = 'None'
+flag_ba = 0
+flag_bsas = 0
+flag_cba = 0
+flag_sfe = 0
+flag_sgo = 0
+numbers_ba = [None] * 20
+numbers_bsas = [None] * 20
+numbers_cba = [None] * 20
+numbers_sfe = [None] * 20
+numbers_sgo = [None] * 20
+error = False
+
+
+def run():
+    # global definitions
+    global error
+    global flag_ba
+    global flag_bsas
+    global flag_cba
+    global flag_sfe
+    global flag_sgo
+
+    # creating an object of the overridden class
+    parser = MyHTMLParser()
+
+    # date_limit = datetime.now() - timedelta(days=1)
+    date_limit = datetime.now()
+    current_day = date_limit.day
+    current_month = date_limit.month
+    current_year = date_limit.year
+
+    groups = models.QuinielaGroup.objects.filter(state=0, date_limit_agency__year=current_year,
+                                                 date_limit_agency__month=current_month,
+                                                 date_limit_agency__day=current_day)
+    # Opening site using urllib2
+    context = ssl._create_unverified_context()
+    urlo = "https://www.loteriadecordoba.com.ar/juegos/quiniela?sorteo="
+    for g in groups:
+        nro_sorteo = str(g.number)
+
+        if g.type == 0:
+            concurso = "LA PRIMERA"
+        elif g.type == 1:
+            concurso = "MATUTINO"
+        elif g.type == 2:
+            concurso = "VESPERTINO"
+        elif g.type == 3:
+            concurso = "NOCTURNO"
+        else:
+            concurso = "TURISTA"
+
+        url = urlo + nro_sorteo + '-' + concurso
+
+        print(url)
+
+        try:
+            html_page = html_page = urllib2.urlopen(url, context=context)
+        except:
+            error = True
+
+        # Feeding the content
+        flag_ba = 0
+        flag_bsas = 0
+        flag_cba = 0
+        flag_sfe = 0
+        flag_sgo = 0
+        parser.feed(str(html_page.read()))
+
+        if loteria == 'None':
+            error = True
+        if (flag_cba != 20 and flag_cba != 0) or (flag_ba != 20 and flag_ba != 0) or \
+                (flag_bsas != 20 and flag_bsas != 0) or (flag_sfe != 20 and flag_sfe != 0) \
+                or (flag_sgo != 20 and flag_sgo != 0):
+            error = True
+
+        if not error:
+            loads = g.draws.all()
+
+            for l in loads:
+
+                resultset = models.QuinielaResults.objects.filter(draw=l).first()
+                if resultset is None:
+                    if l.quiniela.code == 1 and flag_ba == 20:
+                        print('Save numbers')
+                        saveNumbers(l, numbers_ba)
+                    if l.quiniela.code == 2 and flag_bsas == 20:
+                        saveNumbers(l, numbers_bsas)
+                    if l.quiniela.code == 3 and flag_cba == 20:
+                        saveNumbers(l, numbers_cba)
+                    if l.quiniela.code == 4 and flag_sfe == 20:
+                        saveNumbers(l, numbers_sfe)
+                    if l.quiniela.code == 5 and flag_sgo == 20:
+                        saveNumbers(l, numbers_sgo)
+
+        print('Error:', error)
+
+
+def saveNumbers(l, array_numbers):
+
+    resultset20 = models.ResultsSet20()
+    resultset20.number1 = array_numbers[0]
+    resultset20.number2 = array_numbers[1]
+    resultset20.number3 = array_numbers[2]
+    resultset20.number4 = array_numbers[3]
+    resultset20.number5 = array_numbers[4]
+    resultset20.number6 = array_numbers[5]
+    resultset20.number7 = array_numbers[6]
+    resultset20.number8 = array_numbers[7]
+    resultset20.number9 = array_numbers[8]
+    resultset20.number10 = array_numbers[9]
+    resultset20.number11 = array_numbers[10]
+    resultset20.number12 = array_numbers[11]
+    resultset20.number13 = array_numbers[12]
+    resultset20.number14 = array_numbers[13]
+    resultset20.number15 = array_numbers[14]
+    resultset20.number16 = array_numbers[15]
+    resultset20.number17 = array_numbers[16]
+    resultset20.number18 = array_numbers[17]
+    resultset20.number19 = array_numbers[18]
+    resultset20.number20 = array_numbers[19]
+    resultset20.save()
+    resultset = models.QuinielaResults(draw=l, res=resultset20)
+    resultset.save()
+
+
+# create a subclass and override the handler methods
+class MyHTMLParser(HTMLParser):
+
+    def handle_data(self, data):
+        # print(data)
+        global loteria
+        if data == 'QUINIELA LOTBA':
+            loteria = 'BA'
+        if data == 'QUINIELA DE BUENOS AIRES':
+            loteria = 'BSAS'
+        if data == 'QUINIELA DE CÓRDOBA':
+            loteria = 'CBA'
+        if data == 'LOTERÍA DE SANTA FE':
+            loteria = 'SFE'
+        if data == 'LOTERÍA DE SANTIAGO DEL ESTERO':
+            loteria = 'SGO'
+        if len(data) == 4:
+            try:
+                if 0 <= int(data) <= 9999:
+                    if loteria == 'BA':
+                        global flag_ba
+                        global numbers_ba
+                        numbers_ba[flag_ba] = data
+                        flag_ba += 1
+                        print('BA POS', flag_ba, '-', data)
+                    if loteria == 'BSAS':
+                        global flag_bsas
+                        global numbers_bsas
+                        numbers_bsas[flag_bsas] = data
+                        flag_bsas += 1
+                        print('BSAS POS', flag_bsas, '-', data)
+                    if loteria == 'CBA':
+                        global flag_cba
+                        global numbers_cba
+                        numbers_cba[flag_cba] = data
+                        flag_cba += 1
+                        print('CBA POS', flag_cba, '-', data)
+                    if loteria == 'SFE':
+                        global flag_sfe
+                        global numbers_sfe
+                        numbers_sfe[flag_sfe] = data
+                        flag_sfe += 1
+                        print('SFE POS', flag_sfe, '-', data)
+                    if loteria == 'SGO':
+                        global flag_sgo
+                        global numbers_sgo
+                        numbers_sgo[flag_sgo] = data
+                        flag_sgo += 1
+                        print('SGO POS', flag_sgo, '-', data)
+            except:
+                pass

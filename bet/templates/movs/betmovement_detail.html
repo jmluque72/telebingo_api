@@ -1,0 +1,17 @@
+{% extends 'movs/basemovement_detail.html' %}
+
+{# Para todos los juegos #}
+
+{% block dialogtitle %}
+    <h4>{{ movement.get_code_display }}
+        {% if movement.bet.draws.0.number %}
+            <small>(Nro. {{ movement.bet.draws.0.number }})</small>
+        {% endif %}
+    </h4>
+{% endblock %}
+
+{% block topdetail %}
+    <div class="form-group">
+        <strong>Juego: </strong> {{ movement.game.name }} <small>{{ movement.bet.draws.0.date_draw }}</small>
+    </div>
+{% endblock %}

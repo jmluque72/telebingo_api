@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<form method="post" action="{% url 'singup' %}">
+{% csrf_token %}
+
+<table>
+{% for field in form %}
+    {% if field.errors %}
+    <tr class="alert alert-error"><td>{{ field.errors }}</td></tr>
+    {% endif %}
+    <tr class="fieldWrapper">
+        <td>{{ field.label_tag }}</td> <td>{{ field }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+<input class="btn" type="submit" value="Sing Up" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+
+
+
+{% endblock %}

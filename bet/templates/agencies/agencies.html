@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load pagination_tags %}
+{% load humanize %}
+{% load ifusergroup %}
+{% load staticfiles %}
+
+{% block extra_head %}
+    <script src="{% static 'jquery/jquery.form.js' %}"></script>
+{% endblock %}
+
+{% block selected_menu %}#agencies-menu{% endblock %}
+
+{% block content %}
+
+    <div class="row clearfix">
+        <legend>Agencias
+            <ul id="navul" class="nav navbar-nav pull-right">
+                <li><a href="{% url 'bet:edit_agency' %}" class="btn btn-nuevo">Nueva Agencia</a></li>
+            </ul>
+        </legend>
+    </div>
+
+    <br />
+    <div class="row clearfix divisor">
+    	<div class="col-md-3 bloque-saldo">
+        	Saldo <h2 style="margin:0">$ {{ total|intcomma }}</h2>
+        </div>
+    </div>
+    <br />
+
+    <div class="row clearfix divisor-cabeceras">
+        <div class="col-md-2"><strong>Nombre</strong></div>
+        <div class="col-md-3"><strong>Usuario</strong></div>
+        <div class="col-md-2"><strong>Estado</strong></div>
+        <div class="col-md-2"><strong>Saldo</strong></div>
+        <div class="col-md-2"><strong>Acciones</strong></div>
+    </div>
+
+    {% autopaginate agencies 20 %}
+    {% for agency in agencies %}
+        <div class="row clearfix divisor-tabla">
+            <div class="col-md-2">{{ agency.name }}</div>
+            <div class="col-md-3">{{ agency.user.get_full_name }}</div>
+            <div class="col-md-2">{% if agency.is_active %}Activa{% else %}Inactiva{% endif %}</div>
+            <div class="col-md-2" {% if agency.calc_balance < 0 %}style="color:red"{% endif %}>{{ agency.calc_balance|intcomma }}</div>
+            <div class="col-md-2">
+                <table width="90" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><a href="{% url 'bet:agency' agency.pk %}" class="btn btn-sm btn-info">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                    </a></td>
+                    <td><a href="{% url 'bet:edit_agency' agency.pk %}" title="Editar agencia" class="btn btn-sm btn-info">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </a></td>
+                  </tr>
+                </table>
+            </div>
+         </div>
+    {% endfor %}
+    {% paginate %}
+
+{% endblock %}

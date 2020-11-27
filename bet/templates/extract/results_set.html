@@ -1,0 +1,65 @@
+{% load humanize %}
+
+{% if title %}
+    <div class="title-juego">{{ title|upper }}</div>
+{% endif %}
+{% if subtitle %}
+<div class="cabecera-telebingo">{{ subtitle }}</div>
+{% endif %}
+
+{% if subtitle == 'Bingo' %}
+<div class="numeros-ganadores-billete">
+{% else %}
+<div class="numeros-ganadores">
+{% endif %}
+
+{% for number in results.get_numbers %}
+    {% if columns and forloop.counter0|divisibleby:columns %}
+        <div class="row clearfix">
+    {% endif %}
+
+   	{{ number|stringformat:"02d" }}
+
+    {% if extras and results.get_numbers|length == forloop.counter %}
+        <br /><label style="font-size:15px">Jackpots</label><br />
+        {% for extra in extras %}
+            {{ extra|stringformat:"02d" }}
+        {% endfor %}
+    {% endif %}
+
+    {% if columns %}
+        {% if forloop.counter|divisibleby:columns or forloop.last %}
+            </div>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+</div>
+
+{% block table %}
+    {% if results.extract_set.all %}
+        <table width="95%" align="center" class="numeros-resultados">
+            <thead bgcolor="#e2eefc" class="cabecera-tabla">
+                {% if not hide_hits %}
+                <th class="interior-cabecera">Aciertos</th>
+                {% endif %}
+                <th class="interior-cabecera">Ganadores</th>
+                <th class="interior-cabecera">Premio</th>
+            </thead>
+
+            <tbody>
+            {% for extract in results.extract_set.all %}
+                <tr class="borde-extracto">
+                    {% if not hide_hits %}
+                    <td class="interior-extracto">{{ extract.hits }}</td>
+                    {% endif %}
+                    <td class="interior-extracto">{{ extract.winners|default:"Vacante" }}</td>
+                    <td class="interior-extracto">${{ extract.get_prize|intcomma }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    
+{% endblock %}
+<br/>
+

@@ -1,0 +1,63 @@
+{% extends "draws.html" %}
+{% load ifusergroup %}
+{% load drawcouponsfilter %}
+
+{% block extra_head %}<!-- form.media -->{{ form.media }}{% endblock %}
+
+{% block legend %}Resultados{% endblock %}
+
+{% block tabs %}
+<div class="row clearfix base-tabs"> <!-- PESTAÑA SORTEOS/RESULTADOS -->
+    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:draws' %}">Ver Sorteos</a></div>
+    <div class="col-md-2 tab-activa">Resultados</div>
+</div>
+{% endblock tabs %}
+
+{% block filterform_action %}{% url 'bet:old_draws' %}{% endblock %}
+
+{% block draws_actions %}
+
+    <table width="115" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            {% ifusergroup admin %}
+            <td title="Cargar resultados">
+               {% with results_url="bet:"|add:draw.game.code|add:"_results" date=draw.date_draw %}
+                   {% if draw.game.code == 'quiniela' %}
+                        <a href="{% url results_url date.year date.month date.day %}"
+                   {% else %}
+                       <a href="{% url results_url draw.pk %}"
+                   {% endif %}
+               {% endwith %}
+               class="btn btn-sm btn-info">
+               <i class="glyphicon glyphicon-pencil"></i></a>
+            </td>
+            {% endifusergroup %}
+
+            {% ifusergroup agenciero %}
+                {% if draw.extract_sent %}
+                <td title="Ver extracto">
+                    <a target="_blank" href="{{ draw.extract_file.url }}" class="btn btn-sm btn-info">
+                        <i class="glyphicon glyphicon-eye-open"></i></a>
+                </td>
+                {% else %}
+                <td></td>
+                {% endif %}
+            {% endifusergroup %}
+
+            {% if draw|has_coupons:user %}
+            <td title="Ver billetes">
+                {% ifusergroup agenciero %}
+                    <a href="{% url 'bet:coupons' draw.pk %}" class="btn btn-sm btn-info">
+                        <i class="glyphicon glyphicon-pencil"></i></a>
+                {% endifusergroup %}
+                {% ifusergroup admin %}
+                    <a href="{% url 'bet:admin_coupons' draw.pk %}" class="btn btn-sm btn-info">
+                        <i class="glyphicon glyphicon-eye-open"></i></a>
+                {% endifusergroup %}
+            </td>
+            {% endif %}
+        </tr>
+    </table>
+
+{% endblock %}
+

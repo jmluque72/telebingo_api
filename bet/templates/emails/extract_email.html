@@ -1,0 +1,73 @@
+{% extends 'emails/base_email.html' %}
+
+{% block content %}
+    <p>Adjunto encontrarás el extracto del sorteo N° {{ draw.number }} de <strong>{{ game }}</strong>
+        del día {{ draw.date_draw|date:"l j \d\e F" }}.</p>
+
+    {% for ticket in tickets %}
+
+        {% with details=ticket.get_details bet=ticket.get_details.0.bet agency=ticket.get_details.0.bet.agency %}
+        {% if   game.code == 'quiniela' %}
+            {% include 'emails/extract_email/quiniela.html' %}
+        {% elif game.code == 'quini6' %}
+            {% include 'emails/extract_email/quini6.html' with detail=ticket.get_details.0 %}
+        {% elif game.code == 'loto' %}
+            {% include 'emails/extract_email/loto.html' %}
+        {% elif game.code == 'loto5' %}
+            {% include 'emails/extract_email/loto5.html' %}
+        {% elif game.code == 'brinco' %}
+            {% include 'emails/extract_email/brinco.html' %}
+        {% elif game.code == 'loteria' %}
+            {% include 'emails/extract_email/loteria.html' %}
+        {% else %}
+            {% include 'emails/extract_email/preprinted.html' %}
+        {% endif %}
+        {% endwith %}
+    {% endfor %}
+    {% comment %}
+    {% if details|length == 1 %}
+        <h4>Esta fue tu apuesta</h4>
+    {% else %}
+        <h4>Estas fueron tus apuestas</h4>
+    {% endif %}
+
+    {% for detail in details %}
+        {% with detail=detail.parent %}
+        <strong>Fecha:</strong> {{ detail.bet.date_bet|date:"d/m/Y - H:i:s" }}<br/>
+        {% if game.type == 0 %}{# preimpreso #}
+            <strong>Coupón Nro:</strong> {{ detail.coupon.number }}<br/>
+            {% if game.code == 'loteria' %}
+                <strong>Fracciones:</strong> {{ detail.fraction_bought }}/{{ detail.coupon.fraction_sales }}<br/>
+                <strong>Progresión:</strong> {{ detail.coupon.loteriacoupon.progresion }}<br/>
+            {% endif %}
+        {% elif game.code == 'quiniela' %}
+
+        {% else %}
+            <strong>Números:</strong>
+            {% for number in detail.numbers %}
+                {{ number|stringformat:"02d" }}
+            {% endfor %}
+            {% if detail.extras %}
+                - <strong>Jackpots:</strong> {% for extra in detail.extras %}
+                    {{ extra|stringformat:"02d" }}
+                {% endfor %}
+            {% endif %}
+            <br/>
+            {% if game.code == 'quini6' %}
+                <strong>Modalidades:</strong> Tradicional{% if detail.rev %} - Revancha{% endif %}{% if detail.sie %} - Siempre Sale{% endif %}<br/>
+            {% elif game.code == 'loto' %}
+                <strong>Modalidades:</strong> Tradicional{% if detail.des %} - Desquite{% endif %}{% if detail.sos %} - Sale o Sale{% endif %}<br/>
+            {% endif %}
+        {% endif %}
+        {% endwith %}
+
+        {% if not forloop.last %}
+            <table border="0" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="background:none; border-bottom: 1px solid #d7dfe3; height:1px; width:100%; margin:0px 0px 0px 0px;">&nbsp;</td>
+              </tr>
+            </table><br>
+        {% endif %}
+    {% endfor %}
+    {% endcomment %}
+{% endblock %}

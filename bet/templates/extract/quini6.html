@@ -1,0 +1,24 @@
+{% extends 'extract/base_extract.html' %}
+
+{% block content %}
+    {% with results=draw.quini6_results.tra title="Tradicional" %}
+        {% include 'extract/results_set.html' %}
+    {% endwith %}
+
+    {% with results=draw.quini6_results.tra2 title="Segunda vuelta" %}
+        {% include 'extract/results_set.html' %}
+    {% endwith %}
+
+    {% with results=draw.quini6_results.rev title="Revancha" %}
+        {% include 'extract/results_set.html' %}
+    {% endwith %}
+
+    {% with results=draw.quini6_results.sie title="Siempre Sale" %}
+        {% include 'extract/results_set.html' %}
+    {% endwith %}
+
+    {% with results=draw.quini6_results.ext title="Premio Extra" %}
+        {% include 'extract/single_results_set.html' %}
+    {% endwith %}
+
+{% endblock %}

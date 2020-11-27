@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load ifusergroup %}
+{% load pagination_tags %}
+
+{% block extra_head %}<!-- form.media -->{{ form.media }}{% endblock %}
+
+{% block selected_menu %}#payments-menu{% endblock %}
+
+{% block content %}
+    <legend>Pagos recibidos <span>Total: ${{ total }}</span></legend>
+
+    <form method="get" action="{% url 'bet:payments' %}">
+            <div class="row clearfix divisor">
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.date_from.label }}</label>
+                        {{ form.date_from }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.date_to.label }}</label>
+                        {{ form.date_to }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.user.label }}</label><br />
+                        {{ form.user }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.code.label }}</label><br />
+                        {{ form.code }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.method.label }}</label><br />
+                        {{ form.method }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.state.label }}</label>
+                        {{ form.state }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <button class="btn btn-info" id="submit-draw-filter" type="submit" style="margin-top:24px">Filtrar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    <br />
+
+        <!-- Dialog -->
+        <div class="modal fade" id="modal-payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Acreditar carga de saldo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row clearfix">
+                            <div class="col-md-3"><label for="id_amount">Importe</label></div>
+                            <div class="col-md-6"><input id="id_amount" step="1.00" type="number"/></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cancel_btn" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="save_btn" class="btn btn-info">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- EndDialog -->
+    	{% csrf_token %}
+
+        <div class="row clearfix divisor-cabeceras">
+            <div class="col-md-2"><strong>Fecha</strong></div>
+            <div class="col-md-2"><strong>Usuario</strong></div>
+            <div class="col-md-1"><strong>Tipo</strong></div>
+            <div class="col-md-1"><strong>Monto</strong></div>
+            <div class="col-md-2"><strong>Método</strong></div>
+            <div class="col-md-2"><strong>N° Trans.</strong></div>
+            <div class="col-md-1"><strong>Estado</strong></div>
+        </div>
+
+        <div id="formset">
+        {% autopaginate instances 20 %}
+        {% for instance in instances %}
+
+            <div class="row clearfix divisor-tabla">
+                <div class="col-md-2">{{ instance.date|date:"d.m.Y H:i" }}</div>
+                <div class="col-md-2">{{ instance.user.user.get_full_name }}</div>
+                <div class="col-md-1">{{ instance.get_code_display }}</div>
+                <div class="col-md-1" {% if instance.amount < 0 %}style="color:red"{% endif %}>$ {{ instance.amount|intcomma }}</div>
+                {% if instance.code == 'CC' %}
+                <div class="col-md-2">{{ instance.chargemovement.get_method_display }}</div>
+                <div class="col-md-1">{{ instance.chargemovement.number }}</div>
+                {% else %}
+                <div class="col-md-2">{{ instance.withdrawalmovement.get_method_display }}</div>
+                <div class="col-md-2">{{instance.withdrawalmovement.cbu}}</div>
+                {% endif %}
+                {% if instance.state == 0 %}
+                    <form method="POST" action="{% url 'bet:update_payment' instance.pk %}">
+                        {% csrf_token %}
+
+                        <div class="col-md-2">
+                            <input type="hidden" data-initial="{{ instance.chargemovement.initial|stringformat:"f" }}" id="id-amount-{{ forloop.counter0 }}" name="amount" value="{{ instance.amount|stringformat:"f" }}"/>
+                            <select name="state" data-amount="id-amount-{{ forloop.counter0 }}">
+                                {% for x, y in state_choices %}
+                                    <option value="{{ x }}"{% if instance.state == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                {% else %}
+                    <div class="col-md-2">{{ instance.get_state_display }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% paginate %}
+        </div>
+
+        <script>
+            var mov_amount;
+            var confirmed = {{ confirmed }};
+            var current_select;
+
+            $(document).ready(function() {
+                $('#formset').find('select').each(function(index, element) {
+                    $(element).data("prev", $(element).val());
+                }).on('change', function() {
+                    current_select = $(this);
+                    if ($(this).val() == confirmed) {
+                        var amount_id = $(this).attr('data-amount');
+                        mov_amount = $('#'+amount_id);
+                        if (mov_amount.val() > 0)
+                            show_modal();
+                        else
+                            this.form.submit();
+                    } else {
+                        this.form.submit();
+                    }
+                });
+
+                $('#save_btn').click(function() {
+                    mov_amount.val($('#id_amount').val());
+                    $('#modal-payment').modal('hide');
+                    current_select.data("prev", current_select.val());
+                    mov_amount.closest("form").submit();
+                });
+
+                $('#cancel_btn').click(function() {
+                    current_select.val(current_select.data("prev"));
+                    current_select.selectpicker('refresh');
+                });
+
+                function show_modal() {
+                    var input = $('#id_amount');
+                    input.val(parseFloat(mov_amount.val()));
+                    input.attr('min', 0);
+                    input.attr('max', mov_amount.attr('data-initial'));
+                    $('#modal-payment').modal('show');
+                }
+            });
+        </script>
+
+{% endblock %}

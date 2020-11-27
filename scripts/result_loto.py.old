@@ -1,0 +1,408 @@
+# coding: utf-8
+
+import ssl
+import urllib as urllib2
+from HTMLParser import HTMLParser
+from bet import models
+
+def isNumber(number):
+    try:
+        int(number)
+        return True
+    except:
+        return False
+
+
+sorteo = ''
+tradicional = False
+numeros_tradicional = []
+premio_tradicional = [0,0,0,0,0,0,0,0,0,0,0,0]
+array_trad = [[], [], [], [], [], [], [], [], [], [], [], [], []]
+desquite = False
+numeros_desquite = []
+premio_desquite = [0,0,0]
+array_desq = [[], [], []]
+sale = False
+numeros_sale = []
+premio_sale = [0,0,0]
+sale_premio1 = []
+sale_premio2 = []
+sale_premio3 = []
+
+
+class MyHTMLParser(HTMLParser):
+    def handle_data(self, data):
+
+        global sorteo
+        global tradicional
+        global numeros_tradicional
+        global premio_tradicional
+        global array_trad
+        global desquite
+        global numeros_desquite
+        global premio_desquite
+        global array_desq
+        global sale
+        global numeros_sale
+        global premio_sale
+        global sale_premio1
+        global sale_premio2
+        global sale_premio3
+
+        data = data.translate(None,'\t\n ')
+        data = ''.join(e for e in data if e.isalnum())
+        if data[:1] == 'N' and sorteo == '':
+            sorteo = data[1:]
+        if data == 'Tradicional':
+            tradicional = True
+        if tradicional == True and isNumber(data) and int(data) < 42 and len(numeros_tradicional) < 8:
+            numeros_tradicional.append(data)
+        if tradicional == True and data[:7] == '1PREMIO':
+            premio_tradicional = [1,0,0,0,0,0,0,0,0,0,0,0]
+        if tradicional == True and data[:7] == '2PREMIO':
+            premio_tradicional = [0,1,0,0,0,0,0,0,0,0,0,0]
+        if tradicional == True and data[:7] == '3PREMIO':
+            premio_tradicional = [0,0,1,0,0,0,0,0,0,0,0,0]
+        if tradicional == True and data[:7] == '4PREMIO':
+            premio_tradicional = [0,0,0,1,0,0,0,0,0,0,0,0]
+        if tradicional == True and data[:7] == '5PREMIO':
+            premio_tradicional = [0,0,0,0,1,0,0,0,0,0,0,0]
+        if tradicional == True and data[:7] == '6PREMIO':
+            premio_tradicional = [0,0,0,0,0,1,0,0,0,0,0,0]
+        if tradicional == True and data[:7] == '7PREMIO':
+            premio_tradicional = [0,0,0,0,0,0,1,0,0,0,0,0]
+        if tradicional == True and data[:7] == '8PREMIO':
+            premio_tradicional = [0,0,0,0,0,0,0,1,0,0,0,0]
+        if tradicional == True and data[:7] == '9PREMIO':
+            premio_tradicional = [0,0,0,0,0,0,0,0,1,0,0,0]
+        if tradicional == True and data[:8] == '10PREMIO':
+            premio_tradicional = [0,0,0,0,0,0,0,0,0,1,0,0]
+        if tradicional == True and data[:8] == '11PREMIO':
+            premio_tradicional = [0,0,0,0,0,0,0,0,0,0,1,0]
+        if tradicional == True and data[:8] == '12PREMIO':
+            premio_tradicional = [0,0,0,0,0,0,0,0,0,0,0,1]
+        if premio_tradicional[0] == 1 and data != '' and len(array_trad[0]) < 3:
+            if len(array_trad[0]) == 0:
+                data = '6 + 2 Jack'
+            if data == 'Vacante':
+                data = 0
+            if len(array_trad[0]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_trad[0].append(data)  
+        if premio_tradicional[1] == 1 and data != '' and len(array_trad[1]) < 3:
+            if len(array_trad[1]) == 0:
+                data = '6 + 1 Jack'
+            if data == 'Vacante':
+                data = 0
+            if len(array_trad[1]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_trad[1].append(data)
+        if premio_tradicional[2] == 1 and data != '' and len(array_trad[2]) < 3:
+            if len(array_trad[2]) == 0:
+                data = '6'
+            if data == 'Vacante':
+                data = 0
+            if len(array_trad[2]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_trad[2].append(data)  
+        if premio_tradicional[3] == 1 and data != '' and len(array_trad[3]) < 3:
+            if len(array_trad[3]) == 0:
+                data = '5 + 2 Jack'
+            if data == 'Vacante':
+                data = 0
+            if len(array_trad[3]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_trad[3].append(data)  
+        if premio_tradicional[4] == 1 and data != '' and len(array_trad[4]) < 3:
+            if len(array_trad[4]) == 0:
+                data = '5 + 1 Jack'
+            if data == 'Vacante':
+                data = 0
+            if len(array_trad[4]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_trad[4].append(data)  
+        if premio_tradicional[5] == 1 and data != '' and len(array_trad[5]) < 3:
+            if len(array_trad[5]) == 0:
+                data = '5'
+            if data == 'Vacante':
+                data = 0
+            if len(array_trad[5]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_trad[5].append(data)  
+        if premio_tradicional[6] == 1 and data != '' and len(array_trad[6]) < 3:
+            if len(array_trad[6]) == 0:
+                data = '4 + 2 Jack'
+            if data == 'Vacante':
+                data = 0
+            if len(array_trad[6]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_trad[6].append(data)  
+        if premio_tradicional[7] == 1 and data != '' and len(array_trad[7]) < 3:
+            if len(array_trad[7]) == 0:
+                data = '4 + 1 Jack'
+            if data == 'Vacante':
+                data = 0
+            if len(array_trad[7]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_trad[7].append(data)  
+        if premio_tradicional[8] == 1 and data != '' and len(array_trad[8]) < 3:
+            if len(array_trad[8]) == 0:
+                data = '3 + 2 Jack'
+            if data == 'Vacante':
+                data = 0
+            if len(array_trad[8]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_trad[8].append(data)  
+        if premio_tradicional[9] == 1 and data != '' and len(array_trad[9]) < 3:
+            if len(array_trad[9]) == 0:
+                data = '4'
+            if data == 'Vacante':
+                data = 0
+            if len(array_trad[9]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_trad[9].append(data)  
+        if premio_tradicional[10] == 1 and data != '' and len(array_trad[10]) < 3:
+            if len(array_trad[10]) == 0:
+                data = '3 + 1 Jack'
+            if data == 'Vacante':
+                data = 0
+            if len(array_trad[10]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_trad[10].append(data)  
+        if premio_tradicional[11] == 1 and data != '' and len(array_trad[11]) < 3:
+            if len(array_trad[11]) == 0:
+                data = '3'
+            if data == 'Vacante':
+                data = 0
+            if len(array_trad[11]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_trad[11].append(data)
+
+        if data == 'Desquite':
+            tradicional = False
+            desquite = True
+        if desquite == True and isNumber(data) and int(data) < 42 and len(numeros_desquite) < 8:
+            numeros_desquite.append(data)               
+        if desquite == True and data == '1PREMIOJackpot':
+            premio_desquite = [1,0,0]
+        if desquite == True and data == '1PREMIO61jack':
+            premio_desquite = [0,1,0]
+        if desquite == True and data == '1PREMIOLoto':
+            premio_desquite = [0,0,1]
+        if premio_desquite[0] == 1 and data != '' and len(array_desq[0]) < 3:
+            if len(array_desq[0]) == 0:
+                data = '6 + 2 Jack'
+            if data == 'Vacante':
+                data = 0
+            if len(array_desq[0]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_desq[0].append(data)  
+        if premio_desquite[1] == 1 and data != '' and len(array_desq[1]) < 3:
+            if len(array_desq[1]) == 0:
+                data = '6 + 1 Jack'
+            if data == 'Vacante':
+                data = 0
+            if len(array_desq[1]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_desq[1].append(data)
+        if premio_desquite[2] == 1 and data != '' and len(array_desq[2]) < 3:
+            if len(array_desq[2]) == 0:
+                data = '6'
+            if data == 'Vacante':
+                data = 0
+            if len(array_desq[2]) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            array_desq[2].append(data)
+
+        if data == 'Saleosale':
+            desquite = False
+            sale = True
+        if sale == True and isNumber(data) and int(data) < 42 and len(numeros_sale) < 10:
+            numeros_sale.append(data)               
+        if sale == True and data == '6aciertos':
+            premio_sale = [1,0,0]
+        if sale == True and data == '5aciertos':
+            premio_sale = [0,1,0]
+        if sale == True and data == 'Doble':
+            premio_sale = [0,0,1]
+        if premio_sale[0] == 1 and data != '' and len(sale_premio1) < 3:
+            if data == 'Vacante':
+                data = 0
+            if len(sale_premio1) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            sale_premio1.append(data)  
+        if premio_sale[1] == 1 and data != '' and len(sale_premio2) < 3:
+            if data == 'Vacante':
+                data = 0
+            if len(sale_premio2) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            sale_premio2.append(data)
+        if premio_sale[2] == 1 and data != '' and len(sale_premio3) < 3:
+            if data == 'Vacante':
+                data = 0
+            if len(sale_premio3) == 2:
+                lendata = len(data) - 2
+                data = data[:lendata] + '.' + data[lendata:]  
+            sale_premio3.append(data)
+
+def run():
+
+    global sorteo
+    global tradicional
+    global numeros_tradicional
+    global premio_tradicional
+    global array_trad
+    global desquite
+    global numeros_desquite
+    global premio_desquite
+    global array_desq
+    global sale
+    global numeros_sale
+    global premio_sale
+    global sale_premio1
+    global sale_premio2
+    global sale_premio3
+
+    parser = MyHTMLParser()
+
+    urlquini = "https://www.loteriadecordoba.com.ar/juegos/loto"
+
+    context = ssl._create_unverified_context()
+
+    try:
+        html_page = urllib2.urlopen(urlquini, context=context)
+    except:
+        error = True
+    parser.feed(str(html_page.read()))
+
+
+    gameloto = models.Game.objects.get(code='loto')
+    loto = models.Draw.objects.filter(number=sorteo, game=gameloto)
+
+    if loto.count() == 0:
+        return
+    else:
+        loto = loto.first()
+        valid = models.LotoResults.objects.filter(draw=loto)
+        if valid.count() > 0:
+            return
+
+    tra = models.ResultsSet6Extra()
+    tra.number1 = numeros_tradicional[0]
+    tra.number2 = numeros_tradicional[1]
+    tra.number3 = numeros_tradicional[2]
+    tra.number4 = numeros_tradicional[3]
+    tra.number5 = numeros_tradicional[4]
+    tra.number6 = numeros_tradicional[5]
+    tra.extra1 = numeros_tradicional[6]
+    tra.extra2 = numeros_tradicional[7]
+    tra.save()
+
+    des = models.ResultsSet6Extra()
+    des.number1 = numeros_desquite[0]
+    des.number2 = numeros_desquite[1]
+    des.number3 = numeros_desquite[2]
+    des.number4 = numeros_desquite[3]
+    des.number5 = numeros_desquite[4]
+    des.number6 = numeros_desquite[5]
+    des.extra1 = numeros_desquite[6]
+    des.extra2 = numeros_desquite[7]
+    des.save()
+
+    sos = models.ResultsSet6()
+    sos.number1 = numeros_sale[0]
+    sos.number2 = numeros_sale[1]
+    sos.number3 = numeros_sale[2]
+    sos.number4 = numeros_sale[3]
+    sos.number5 = numeros_sale[4]
+    sos.number6 = numeros_sale[5]
+    sos.save()
+
+    lotoresults = models.LotoResults(draw=loto, tra=tra, des=des, sos=sos)
+    lotoresults.save()
+
+    for i in range(0,12):
+        rowextract = models.RowExtract()
+        rowextract.hits = array_trad[i][0]
+        rowextract.winners = array_trad[i][1]
+        rowextract.order = i
+        prize = models.Prize(type=0, value= array_trad[i][2])
+        prize.save()
+        rowextract.prize = prize
+        rowextract.results = tra
+        rowextract.save()  
+
+    for j in range(0,3):
+        rowextract = models.RowExtract()
+        rowextract.hits = array_desq[j][0]
+        rowextract.winners = array_desq[j][1]
+        rowextract.order = j
+        prize = models.Prize(type=0, value= array_desq[j][2])
+        prize.save()
+        rowextract.prize = prize
+        rowextract.results = des
+        rowextract.save() 
+
+    if sale_premio1[1] != 0:
+        rowextract = models.RowExtract()
+        rowextract.hits = 6
+        rowextract.winners = sale_premio1[1]
+        rowextract.order = 0
+        prize = models.Prize(type=0, value= sale_premio1[2])
+        prize.save()
+        rowextract.prize = prize
+        rowextract.results = sos
+        rowextract.save()
+    else:
+        rowextract = models.RowExtract()
+        rowextract.hits = 5
+        rowextract.winners = sale_premio2[1]
+        rowextract.order = 0
+        prize = models.Prize(type=0, value= sale_premio2[2])
+        prize.save()
+        rowextract.prize = prize
+        rowextract.results = sos
+        rowextract.save() 
+    
+    print('END')
+
+
+    # print sorteo
+    # print numeros_tradicional
+    # print array_trad[0]
+    # print array_trad[1]
+    # print array_trad[2]
+    # print array_trad[3]
+    # print array_trad[4]
+    # print array_trad[5]
+    # print array_trad[6]
+    # print array_trad[7]
+    # print array_trad[8]
+    # print array_trad[9]
+    # print array_trad[10]
+    # print array_trad[11]
+    # print numeros_desquite
+    # print array_desq[0]
+    # print array_desq[1]
+    # print array_desq[2]
+    # print numeros_sale
+    # print sale_premio1
+    # print sale_premio2
+    # print sale_premio3

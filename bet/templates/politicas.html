@@ -1,0 +1,529 @@
+{% extends "registration/registration_base.html" %}
+{% load widget_tweaks %}
+
+
+{% block title %}Login{% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+       <div class="header-transparent" style="background-color:white;">
+           <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="navbar-header">
+                        <div class="logo">
+                            <a href="">
+                                <img src="{% static 'img_login/logo.jpg' %}" class="img-responsive" alt="Loteria de Santa Cruz"/>
+                            </a>
+                        </div>
+                    </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="container">
+
+                <h2>A) REGLAMENTO GENERAL</h2>
+                <br/>
+                <br/>
+
+                {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+
+                    <strong>1. La Plataforma de juegos "Lotería Móvil Santa Cruz" (en adelante denominado, “LA PLATAFORMA”) y el Registro de Jugadores de Apuestas (en adelante, denominado “el Registro”), son organizados y ejecutados por La Lotería para Obras de Acción Social de la Provincia de Santa Cruz, en adelante “La Lotería”, y se regirán por las presentes normas y las que en el futuro dicte La Lotería.</strong></br></br>
+                    <strong>2. El sólo hecho de utilizar LA PLATAFORMA implicará para el apostador (en adelante denominado “el Usuario”) que, a partir de dicho momento, adhiere en forma automática e inmediata a todos y a cada uno de los siguientes Términos y Condiciones y de todas las normas, reglamentos, sus actualizaciones y condiciones de uso de todos los servicios y juegos habilitados en LA PLATAFORMA por La Lotería. </strong></br></br>
+
+                    <h5>REGISTRO EN LA PLATAFORMA</h5>
+                    <br/>
+
+
+                    <strong>3. A los efectos de acceder a LA PLATAFORMA, La Lotería ha creado el Registro de Usuarios de la plataforma que tiene por objeto garantizar el juego responsable, evitar el fraude y la participación de menores de edad.</strong></br></br>
+                    <strong>4. Podrán Registrarse en la plataforma únicamente las personas físicas mayores de edad que no cuenten con ningún impedimento o inhabilitación legal para ello. El Registro es único, individual y personal. El Usuario no puede autorizar a ninguna otra persona a utilizar su cuenta. Los datos proporcionados en el registro serán considerados como privados. Al registrarse se abrirá automáticamente una cuenta asignada al Usuario registrado, libre de gastos de inscripción, donde quedarán registrados todos sus movimientos (cargas de crédito, pago de apuestas, cobro de premios y retiros de dinero).</strong></br></br>
+                    <strong>5. El Registro podrá realizarse en La Lotería, situada en calle Perito Moreno 116 esquina Zapiola, CP (9400) – Rio Gallegos, Provincia de Santa Cruz,en los lugares oficiales habilitados por la misma, donde se le dará el instructivo para proceder a la registración, o vía registro en la aplicación móvil, completando todos los datos requeridos en el formulario de registro y deberá aceptar los Términos y Condiciones de Uso de LA PLATAFORMA.</strong></br></br>
+                    <strong>6. El Usuario es responsable de mantener actualizados los datos personales declarados en la inscripción. El DNI ingresado en el proceso de registro, no podrá ser modificado por el usuario una vez confirmado el mismo. En caso de haber cometido un error, deberá solicitar su corrección vía mail a sc@loteriamovil.com.ar.</strong></br></br>
+                    <strong>7. La Lotería no solicitará datos extras por ningún medio que no figuren en el formulario de registro, así como también no difundirá los datos del Registro, y solo usará los mismos para la finalidad establecida en el presente.</strong></br></br>
+                    <strong>8. El registro del usuario permanecerá vigente hasta la notificación por medio fehaciente, por parte del Usuario a La Lotería, de su decisión de retirar su inscripción al registro y haya realizado la extracción de los saldos remanentes de su cuenta asignada. Asimismo, y transcurrido el término de 120 días sin que se hayan registrados movimientos en la cuenta del usuario La Lotería podrá efectuar de manera automática la baja en el sistema.</strong></br></br>
+                    <strong>9. El Usuario se compromete a resguardar de terceras personas su clave personal de acceso a LA PLATAFORMA y toda transacción que se realice bajo su usuario y contraseña serán bajo su entera responsabilidad. En caso de que su clave haya sido sustraída o revelada por error a un tercero, tendrá la obligación de proceder al cambio de la misma.</strong></br></br>
+
+                    <h5>CUENTA DE USUARIO, COMPROBANTES/TICKETSELECTRONICOS (CARGA DE CREDITO, APUESTAS, COBRO DE PREMIOS, RETIRO DE SALDO)</h5>
+                    <br/>
+                    <strong>10. Al registrarse el Usuario, le será asignada una cuenta donde quedarán asentados todos sus movimientos a través de los comprobantes y/o tickets electrónicos generados por la plataforma. Dichos comprobantes serán respaldo válido para La Lotería y el Usuario, de cada uno de los movimientos registrados en la cuenta, y podrán ser impresos y resguardados por la Lotería en caso de querer conservar los mismo en soporte físico a fines administrativos. Dicha cuenta podrá ser consultada por el usuario en cualquier momento.</strong></br></br>
+                    <strong>11. Los depósitos o cargas de crédito se realizarán por medio de soportes físicos o electrónicos autorizados por La Lotería. Los mismos podrán ser utilizados en los medios tecnológicos habilitados por La Lotería, como por ejemplo, dispositivos móviles, internet, u otro que a La Lotería disponga.</strong></br></br>
+                    <strong>12. Las apuestas y/o compra de billetes de juego, se realizarán en forma directa, a través de telefonía celular o móvil, o cualquier otro medio que disponga La Lotería. Previamente, el Usuario deberá registrarse cumpliendo los requisitos solicitados y poseer saldo disponible, pagar las apuestas realizadas en los juegos habilitados por La Lotería. Posteriormente podrá consultar el ticket electrónico de su jugada emitido por LA PLATAFORMA.</strong></br></br>
+                    <strong>13. Los premios correspondientes a los Usuarios cuya apuesta emitida hubiere resultado premiada según la mecánica del juego realizado, les serán acreditados en el saldo de su cuenta si su monto no es mayor al máximo reglamentado por La Lotería, en cuyo caso, será considerado pagado una vez acreditado el valor de dicho premio en la cuenta del Usuario, tomando como válido el comprobante electrónico emitido por LA PLATAFORMA.En caso de premios mayores, la acreditación y/o cobro de los mismos, se ajustarán a los procedimientos reglamentados por La Lotería, debiendo el usuario presentar la documentación que le sea requerida.</strong></br/><br/>
+                    <strong>14. Los saldos en la cuenta del Usuariogenerados por el cobro de premios, son retornables y disponibles para su retiro dentro de los horarios de atención establecidos por La Lotería.El Usuario podrá en cualquier momento afectar dicho saldo disponible para la realización de nuevas apuestas o hacer efectivo el retiro de los mismos, total o parcialmente a través de los medios y lugares que La Lotería indique.</strong></br></br>
+                   
+
+                    <h5>LIMITE DE RESPONSABILIDAD. PROHIBICIONES</h5>
+                    <br/>
+
+                    <strong>15. La Lotería, en ningún caso y bajo ninguna circunstancia, será responsable por fallas o errores atribuibles al equipo telefónico utilizado por el Usuario, o errores de conectividad, enlace y/o transferencia de datos que impidan el registro de la operatoria en LA PLATAFORMA. El límite de la responsabilidad por parte de La Lotería respecto a los errores en los que hubiere incurrido LA PLATAFORMA, es el monto mínimo de la apuesta.</strong></br></br>
+                    <strong>16. Será considerada válida una apuesta que sea acompañada por el ticket electrónico (con código de seguridad válido) emitido por el sistema y registrada en tiempo y forma. En el caso de que se registraran, a favor del Usuario, premios que no correspondieren por error, es obligación del Usuario notificar dicha circunstancia a La Lotería. Cualquier beneficio que el Usuario pretenda obtener o conservar por error de LA PLATAFORMA constituirá una situación de enriquecimiento sin causa y lo obligará a restituir el importe mal percibido en forma inmediata.</strong></br></br>
+                    <strong>17. Los casos no previstos en el presente Reglamento serán interpretados y resueltos por La Lotería dentro de las facultades que le otorga la Ley. Las transgresiones a esta Reglamentación, y a las normas que en su consecuencia se dicten, serán juzgadas y sancionadas por La Lotería.</strong></br></br>
+                    <strong>18. Las apuestas realizadas en LA PLATAFORMA, quedan registradas con un código de transacción/control, generando un ticket electrónico que puede ser impreso por el Usuario y/o Lotería. El Usuario puede consultar los movimientos de su cuenta (depósitos y apuestas realizados con los detalles de las mismas, retiro de efectivo y saldo disponible). Las apuestas confirmadas por el Usuario y validadas por LA PLATAFORMA no pueden ser anuladas por el Usuario.</strong></br></br>
+                    <strong>19. Las actividades y transacciones realizadas en LA PLATAFORMA se regirán por la legislación Argentina. Cualquier controversia derivada de la relación entre el Usuario Jugador y La Lotería será competencia de los Tribunales Ordinarios de la ciudad de Rio Gallegos de la Provincia de Santa Cruz, con renuncia a cualquier otro fuero o jurisdicción que pudiere corresponder.</strong></br></br>
+
+                    <br/>
+                    <h2>B) TERMINOS Y CONDICIONES</h2>
+                    <br/>
+                    <br/>
+                    <p>La Lotería para Obras de Acción Social de la Provincia de Santa Cruz en adelante “La Lotería” ha implementado el uso de una plataforma de juegos llamada “Lotería Móvil Santa Cruz” en adelante “La Plataforma”, que le permitirá a Ud. realizar apuestas y/o adquirir billetes de juegos oficiales a través de distintos canales como telefonía celular y/o web.</p>
+                    <p>En el siguiente texto, denominado Términos y Condiciones de uso, como así también las Políticas de Privacidad, regularán la forma de uso que usted podrá hacer de los servicios que brinde la plataforma y de las aplicaciones que descargue para tal fin.</p>
+
+                    <strong>1. Usuario Registrado o apostador</strong></br></br>
+                    <p>Se denomina usuario registrado a la persona física que haya completado todos los datos solicitados para el registro
+                    en la plataforma y tenga activada su cuenta. El usuario no podrá realizar jugadas y/o compra de tickets
+                    si no se encuentra en la Provincia de Santa Cruz, por lo que se le pedirá tener la ubicación activada para realizar dicho control.
+                    El usuario es propietario de su cuenta en la plataforma. Automáticamente una
+                    persona que se registraen la plataforma está aceptando el uso y aplicación de los Términos y Condiciones,
+                    conformando un acuerdo entre usted y La Lotería.Sólo podrán participar en el uso de la plataformapersonas
+                    que no tengan ningún impedimento legal y que sean mayores de 18 años, pudiendo solicitarle la presentación
+                    o copia de su DNI para verificar dicha situación. Los datos proporcionados en el registro serán considerados
+                    como privados.</p>
+                    <strong>2. Derechos de la plataforma</strong></br></br>
+                    <p>La plataforma se reserva el derecho de admisión de cualquier solicitud de registro de cualquier persona y/o cancelar cualquier cuenta de usuario registrado, si detectara algún impedimento legal o anomalía de cualquier índole. La Lotería podrá, a su entera discreción, modificar o interrumpir el servicio ya sea en forma parcial o total y el mismo podrá no estar disponible durante períodos de mantenimiento o en otros momentos. La Lotería se reserva el derecho de modificar los presentes Términos y Condiciones en cualquier momento y sin previo aviso, por lo que usted será responsable de revisarlas periódicamente, y el solo hecho de seguir utilizando la plataforma indicará que usted presta consentimiento a dichas normas, caso contrario podrá solicitar la baja de su cuenta por medio fehaciente a La Lotería.</p>
+                    <strong> 3. Obligaciones del usuario</strong></br></br>
+                    <p>Es obligación del usuario suministrar correctamente los datos solicitados al momento del registro y mantenerlos actualizados ante cualquier cambio. Deberá resguardar su clave personal que es de uso estrictamente suyo. Será responsable de todas las transacciones realizadas en su cuenta y deberá controlar en forma periódica el balance de su cuenta e informar cualquier anomalía a La Lotería. En el caso de que se acrediten o debiten fondos de su cuenta erróneamente es absoluta y total responsabilidad de usted informar de este hecho a la Lotería. Cualquier ganancia posterior al error y anterior a la notificación, relacionada o no con el error, será considerada no válida y devuelta a LA PLATAFORMA.
+    </p>
+                    <strong>4. Uso de la Plataforma</strong></br></br>
+                    <p>Para utilizar la plataforma, usted deberá ser un usuario registrado y cargar saldo en su cuenta concurriendo a La Lotería de la Provincia de Santa Cruz o a través de los medios que esta habilite. Posteriormente podrá realizar sus apuestas en los juegos oficiales habilitados en la plataforma por La Lotería, que serán descontadas del saldo disponible mientras cubra dichas valores. En su cuenta de usuario serán acreditadas las cargas de crédito, se debitarán los importes para efectivizar la compra de sus Tickets/boletos y se acreditarán los importes por premios menores. También podrá solicitar el retiro de dinero correspondiente a premios acreditados, cuyo pago será efectuado a través de los medios informados por La Lotería. Para el cobro de premios mayores usted deberá dirigirse a las oficinas de la Lotería de la Provincia de Santa Cruz o donde esta le indique, debiendo presentar la documentación requerida. Los resultados utilizados para constatar premios de cualquier juego, son los que informa La Lotería oficialmente en sus extractos, absolutamente ninguna otra fuente de datos es válida para constatar los resultados, ni siquiera los publicados en la plataforma. En el caso de suspensión de un sorteo, postergación o anulación, automáticamente se tomará como resolución lo que La Lotería indique como forma de proceder ante esta situación.
+    </p>
+                    <strong>5. Consultas y Reclamos</strong></br></br>
+                    <p>Usted podrá realizar sus reclamos y consultas a través del mail sc@loteriamovil.com.ar o en las oficinas de la Lotería de la Provincia de Santa Cruz, sita en calle Perito Moreno 116 esquina Zapiola, CP (9400) – Rio Gallegos, Provincia de Santa Cruz.
+    Los casos que puedan originarse no previstos en estos Términos y Condiciones, serán interpretados y resueltos dentro de las facultades otorgadas por la Ley.
+    </p>
+
+                     <br/>
+                    <h2>C) POLITICAS DE PRIVACIDAD</h2>
+                    <br/>
+                    <br/>
+                    <p>Nuestra política de privacidad describe qué información recogemos y cómo la utilizamos ya que el acceso a los servicios disponibles en nuestros canales móviles implica la aceptación de nuestra política de privacidad. La Lotería podrá modificar estos términos en cualquier momento notificando toda actualización de los mismos.
+    </p>
+                    <p>La Lotería se compromete a cumplir con la protección de los datos personales establecido en la ley 25.326, informando a los titulares de los mismos que pueden ejercer los derechos de acceso, rectificación, cancelación y oposición, dirigiéndose por mail a: sc@loteriamovil.com.ar o bien, poniéndose en contacto con La Lotería al número (02966) 422631
+    </p>
+
+
+                    <h5>Registros e Identificación de Usuarios</h5>
+                    <br/>
+
+                    <p>El Registro de Usuarios de la plataforma es obligatoria para poder realizar apuestas en los juegos autorizados por La Lotería disponibles para nuestra Plataforma de Apuestas en nuestros canales móviles. La registración se puede realizar en La Lotería o en sus medios oficiales habilitados.
+    </p>
+                    <p>Durante el proceso de registro se requerirá como única información personal el Nombre, email y DNI. Luego, se controlará que el registro se esté realizando dentro de la jurisdicción de La Lotería, es decir, en la Provincia de Santa Cruz.
+    </p>
+                    <p>En caso de recibir un premio, que por el monto, deba tributar el impuesto al premio, conforme las disposiciones vigentes, se deberá completar por única vez un formulario con datos complementarios, disponible por Internet o en La Lotería. Esta información adicional será validada para la acreditación del pago de su premio. La aceptación de estos términos y condiciones implica el consentimiento para la realización de dichas verificaciones. 
+    </p>
+
+                                    <h5>Uso de la Información</h5>
+                    <br/>
+
+                    <p>Toda la información proporcionada será tratada de forma segura y de conformidad con la normativa de protección de datos. La actualización y/o rectificación de los datos e información personal podrá realizarse en cualquier momento accediendo por los canales habilitados. La Lotería no compartirá información personal sobre los usuarios del sitio con otras personas, organizaciones o compañías, bajo ningún concepto ni circunstancia.
+    </p>
+                    <p>Ocasionalmente, podrá recibir en su correo electrónico promociones, información adicional o noticias que La Lotería entienda que pueden resultar de interés. Para cancelar la suscripción a esos correos, se deberá remitir un correo a sc@loteriamovil.com.ar o bien, puede hacer esto poniéndose en contacto con nuestro centro de “Atención al cliente” al número (02966) 422631. 
+    </p>
+
+                    <h5>Protección de Datos</h5>
+                    <br/>
+
+                    <p>Nuestras medidas para la protección de datos incluyen seguridad física y espacial de datos, controles de acceso y sistemas que garantizan un alto nivel de codificación y seguridad de datos.
+    </p>
+                    <h5>Medidas de Seguridad</h5>
+                    <br/>
+
+                    <p>La información contenida en la cuenta está protegida por una contraseña generada por el Usuario quien debe resguardar de terceras personas la clave personal de acceso a LA PLATAFORMA. Toda transacción que se realice bajo un usuario y contraseña serán bajo entera responsabilidad del titular de dicha cuenta y clave personal. En caso de que la clave haya sido sustraída o revelada por error a un tercero, el Usuario estará obligado a proceder al cambio de la misma, para lo cual se le facilitará un módulo de gestión de sus datos personales y clave.
+    </p>
+                    <p>La Lotería no asume responsabilidad alguna por el uso indebido de los datos y contraseñas de acceso.
+    </p>
+                    <p>La Lotería no envía correos electrónicos ni realiza llamadas para solicitar cambio y/o confirmación de datos personales (nombre de usuario, claves, etcétera).
+    </p>
+
+                    <h5>Cancelación de inscripción en el Registro</h5>
+                    <br/>
+
+                    <p>El Usuario podrá cancelar o desactivar su cuenta en cualquier momento. La cancelación o desactivación de la cuenta producirá la eliminación de los datos personales del banco de datos de La Lotería, excepto que por causa justificada o requerimiento de algún organismo de control deban conservarse dichos datos.
+    </p>
+                    <h5>Información sobre Defensa al Consumidor</h5>
+                    <br/>
+
+                    <p>Nuestros usuarios encontraran información respecto a la legislación vigente en nuestro país en materia de Defensa del Consumidor ingresando en el sitio oficial http://www.consumidor.gov.ar, de la Subsecretaria de Defensa del Consumidor, organismo dependiente de la Secretaria de Comercio Interior, Ministerio de Economía y finanzas Publicas de la Nación. Asimismo, dispondrá de las vías de contacto de su interés.</p>
+
+                        </div>
+
+                    </div>
+                {% endif %}
+
+
+
+                {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+
+
+                    <strong>1. La Plataforma de juegos “Lotería Móvil La Pampa”  (en adelante denominado, “LA PLATAFORMA”) y el Registro de Jugadores de Apuestas (en adelante, denominado “el Registro”), son organizados y ejecutados por El Instituto de Seguridad Social de la provincia de La Pampa (ISS-DAFAS), en adelante “La DAFAS”, y se regirán por las presentes normas y las que en el futuro dicte La DAFAS. </strong></br></br>
+                    <strong>2. El sólo hecho de utilizar LA PLATAFORMA implicará para el apostador (en adelante denominado “el Usuario”) que, a partir de dicho momento, adhiere en forma automática e inmediata a todos y a cada uno de los siguientes Términos y Condiciones y de todas las normas, reglamentos, sus actualizaciones y condiciones de uso de todos los servicios y juegos habilitados en LA PLATAFORMA por La DAFAS. </strong></br></br>
+
+                    <h5>REGISTRO EN LA PLATAFORMA</h5>
+                    <br/>
+
+
+                    <strong>3. A los efectos de acceder a LA PLATAFORMA, La DAFAS ha creado el Registro de Usuarios de la plataforma que tiene por objeto garantizar el juego responsable, evitar el fraude y la participación de menores de edad.</strong></br></br>
+                    <strong>4. Podrán Registrarse en la plataforma únicamente las personas físicas mayores de edad que no cuenten con ningún impedimento o inhabilitación legal para ello. El registro es único, individual y personal. El Usuario no puede autorizar a ninguna otra persona a utilizar su cuenta. Los datos proporcionados en el registro serán considerados como privados. Al registrarse se abrirá automáticamente una cuenta asignada al Usuario registrado, libre de gastos de inscripción, donde quedarán registrados todos sus movimientos (cargas de crédito, pago de apuestas, cobro de premios y retiros de dinero).</strong></br></br>
+                    <strong>5. El Registro podrá realizarse en La DAFAS, situada en calle Pellegrini 385, 1° y 2° Piso, Santa Rosa, CP. 6300, provincia de La Pampa,en los lugares oficiales habilitados por la misma, donde se le dará el instructivo para proceder a la registración, o vía registro en la aplicación móvil, completando todos los datos requeridos en el formulario de registro y deberá aceptar los Términos y Condiciones de Uso de LA PLATAFORMA.</strong></br></br>
+                    <strong>6. El Usuario es responsable de mantener actualizados los datos personales declarados en la inscripción. El DNI ingresado en el proceso de registro, no podrá ser modificado por el usuario una vez confirmado el mismo. En caso de haber cometido un error, deberá solicitar su corrección vía mail a lp@loteriamovil.com.ar. </strong></br></br>
+                    <strong>7. La DAFAS no solicitará datos extras por ningún medio que no figuren en el formulario de registro, así como también no difundirá los datos del Registro, y solo usará los mismos para la finalidad establecida en el presente.</strong></br></br>
+                    <strong>8. El registro del usuario permanecerá vigente hasta la notificación por medio fehaciente, por parte del Usuario a La DAFAS, de su decisión de retirar su inscripción al registro y haya realizado la extracción de los saldos remanentes de su cuenta asignada. Asimismo, y transcurrido el término de 120 días sin que se hayan registrados movimientos en la cuenta del usuario La DAFAS podrá efectuar de manera automática la baja en el sistema.</strong></br></br>
+                    <strong>9. El Usuario se compromete a resguardar de terceras personas su clave personal de acceso a LA PLATAFORMA y toda transacción que se realice bajo su usuario y contraseña serán bajo su entera responsabilidad. En caso de que su clave haya sido sustraída o revelada por error a un tercero, tendrá la obligación de proceder al cambio de la misma.</strong></br></br>
+
+                    <h5>CUENTA DE USUARIO, COMPROBANTES/TICKETSELECTRONICOS (CARGA DE CREDITO, APUESTAS, COBRO DE PREMIOS, RETIRO DE SALDO)
+                    </h5>
+                    <br/>
+                    <strong>10. Al registrarse el Usuario, le será asignada una cuenta donde quedarán asentados todos sus movimientos a través de los comprobantes y/o tickets electrónicos generados por la plataforma. Dichos comprobantes serán respaldo válido para La DAFAS y el Usuario, de cada uno de los movimientos registrados en la cuenta, y podrán ser impresos y resguardados por la DAFAS en caso de querer conservar los mismo en soporte físico a fines administrativos. Dicha cuenta podrá ser consultada por el usuario en cualquier momento.</strong></br></br>
+                    <strong>11. Los depósitos o cargas de crédito se realizarán por medio de soportes físicos o electrónicos autorizados por La DAFAS. Los mismos podrán ser utilizados en los medios tecnológicos habilitados por La DAFAS, como por ejemplo, dispositivos móviles, internet, u otro que  La DAFAS disponga.</strong></br></br>
+                    <strong>12. Las apuestas y/o compra de billetes de juego, se realizarán en forma directa, a través de telefonía celular o móvil, o cualquier otro medio que disponga La DAFAS. Previamente, el Usuario deberá registrarse cumpliendo los requisitos solicitados y poseer saldo disponible, pagar las apuestas realizadas en los juegos habilitados por La DAFAS. Posteriormente podrá consultar el ticket electrónico de su jugada emitido por LA PLATAFORMA.</strong></br></br>
+                    <strong>13. Los premios correspondientes a los Usuarios cuya apuesta emitida hubiere resultado premiada según la mecánica del juego realizado, les serán acreditados en el saldo de su cuenta si su monto no es mayor al máximo reglamentado por La DAFAS, en cuyo caso, será considerado pagado una vez acreditado el valor de dicho premio en la cuenta del Usuario, tomando como válido el comprobante electrónico emitido por LA PLATAFORMA.En caso de premios mayores, la acreditación y/o cobro de los mismos, se ajustarán a los procedimientos reglamentados por La DAFAS, debiendo el usuario presentar la documentación que le sea requerida.</strong></br/><br/>
+                    <strong>14. Los saldos en la cuenta del Usuario generados por el cobro de premios, son retornables y disponibles para su retiro dentro de los horarios de atención establecidos por La DAFAS. El Usuario podrá en cualquier momento afectar dicho saldo disponible para la realización de nuevas apuestas o hacer efectivo el retiro de los mismos, total o parcialmente a través de los medios y lugares que La DAFAS indique.</strong></br></br>
+
+
+                    <h5>LIMITE DE RESPONSABILIDAD. PROHIBICIONES</h5>
+                    <br/>
+
+
+                    <strong>15. La DAFAS, en ningún caso y bajo ninguna circunstancia, será responsable por fallas o errores atribuibles al equipo telefónico utilizado por el Usuario, o errores de conectividad, enlace y/o transferencia de datos que impidan el registro de la operatoria en LA PLATAFORMA. El límite de la responsabilidad por parte de La DAFAS respecto a los errores en los que hubiere incurrido LA PLATAFORMA, es el monto mínimo de la apuesta.</strong></br></br>
+                    <strong>16. Será considerada válida una apuesta que sea acompañada por el ticket electrónico (con código de seguridad válido) emitido por LA PLATAFORMA y registrada en tiempo y forma. En el caso de que se registraran, a favor del Usuario, premios que no correspondieren por error, es obligación del Usuario notificar dicha circunstancia a La DAFAS. Cualquier beneficio que el Usuario pretenda obtener o conservar por error de LA PLATAFORMA constituirá una situación de enriquecimiento sin causa y lo obligará a restituir el importe mal percibido en forma inmediata.</strong></br></br>
+                    <strong>17. Los casos no previstos en el presente Reglamento serán interpretados y resueltos por La DAFAS dentro de las facultades que le otorga la Ley. Las transgresiones a esta Reglamentación, y a las normas que en su consecuencia se dicten, serán juzgadas y sancionadas por La DAFAS.</strong></br></br>
+                    <strong>18. Las apuestas realizadas en LA PLATAFORMA, quedan registradas con un código de transacción/control, generando un ticket electrónico que puede ser impreso por el Usuario y/o La DAFAS. El Usuario puede consultar los movimientos de su cuenta (depósitos y apuestas realizadas con los detalles de las mismas, retiro de efectivo y saldo disponible). Las apuestas confirmadas por el Usuario y validadas por LA PLATAFORMA no pueden ser anuladas por el Usuario. </strong></br></br>
+                    <strong>19. Las actividades y transacciones realizadas en LA PLATAFORMA se regirán por la legislación Argentina. Cualquier controversia derivada de la relación entre el Usuario Jugador y La DAFAS será competencia de los Tribunales Ordinarios de la ciudad de Santa Rosa de la Provincia de La Pampa, con renuncia a cualquier otro fuero o jurisdicción que pudiere corresponder.</strong></br></br>
+
+                    <br/>
+                    <h2>B) TÉRMINOS Y CONDICIONES</h2>
+                    <br/>
+                    <br/>
+                    <p>El Instituto de Seguridad Social de la provincia de La Pampa (ISS-DAFAS) en adelante “La DAFAS” ha implementado el uso de una plataforma de juegos llamada “Lotería Móvil La Pampa” en adelante “La Plataforma”, que le permitirá a Ud. realizar apuestas y/o adquirir billetes de juegos oficiales a través de distintos canales como telefonía celular y/o web.</p>
+                    <p>En el siguiente texto, denominado Términos y Condiciones de uso, como así también las Políticas de Privacidad, regularán la forma de uso que usted podrá hacer de los servicios que brinde la plataforma y de las aplicaciones que descargue para tal fin.</p>
+
+                    <strong>1. Usuario Registrado o apostador</strong></br></br>
+                    <p>Se denomina usuario registrado a la persona física que haya completado todos los datos solicitados para el registro
+                    en la plataforma y tenga activada su cuenta. El usuario no podrá realizar jugadas y/o compra de tickets,
+                    si no se encuentra en la Provincia de La Pampa, por lo que se le pedirá tener la ubicación activada para realizar dicho control.
+                    El usuario es propietario de su cuenta en la plataforma. Automáticamente una
+                    persona que se registraen la plataforma está aceptando el uso y aplicación de los Términos y Condiciones,
+                    conformando un acuerdo entre usted y La DAFAS. Sólo podrán participar en el uso de la plataformapersonas
+                    que no tengan ningún impedimento legal y que sean mayores de 18 años, pudiendo solicitarle la presentación
+                    o copia de su DNI para verificar dicha situación. Los datos proporcionados en el registro serán considerados
+                    como privados.</p>
+                    <strong>2. Derechos de la plataforma</strong></br></br>
+                    <p>La plataforma se reserva el derecho de admisión de cualquier solicitud de registro de cualquier persona y/o cancelar cualquier cuenta de usuario registrado, si detectara algún impedimento legal o anomalía de cualquier índole. La DAFAS podrá, a su entera discreción, modificar o interrumpir el servicio ya sea en forma parcial o total y el mismo podrá no estar disponible durante períodos de mantenimiento o en otros momentos. La DAFAS se reserva el derecho de modificar los presentes Términos y Condiciones en cualquier momento y sin previo aviso, por lo que usted será responsable de revisarlas periódicamente, y el solo hecho de seguir utilizando la plataforma indicará que usted presta consentimiento a dichas normas, caso contrario podrá solicitar la baja de su cuenta por medio fehaciente a La DAFAS.</p>
+                    <strong> 3. Obligaciones del usuario</strong></br></br>
+                    <p>Es obligación del usuario suministrar correctamente los datos solicitados al momento del registro y mantenerlos actualizados ante cualquier cambio. Deberá resguardar su clave personal que es de uso estrictamente suyo. Será responsable de todas las transacciones realizadas en su cuenta y deberá controlar en forma periódica el balance de su cuenta e informar cualquier anomalía a La DAFAS. En el caso de que se acrediten o debiten fondos de su cuenta erróneamente es absoluta y total responsabilidad de usted informar de este hecho a La DAFAS. Cualquier ganancia posterior al error y anterior a la notificación, relacionada o no con el error, será considerada no válida y devuelta a la plataforma.
+    </p>
+                    <strong>4. Uso de la Plataforma</strong></br></br>
+                    <p>Para utilizar la plataforma, usted deberá ser un usuario registrado y cargar saldo en su cuenta concurriendo a La DAFAS, o a través de los medios que esta habilite. Posteriormente podrá realizar sus apuestas en los juegos oficiales habilitados en la plataforma por La DAFAS, que serán descontadas del saldo disponible mientras cubra dichas valores. En su cuenta de usuario serán acreditadas las cargas de crédito, se debitarán los importes para efectivizar la compra de sus Tickets/boletos y se acreditarán los importes por premios menores. También podrá solicitar el retiro de dinero correspondiente a premios acreditados, cuyo pago será efectuado a través de los medios informados por La DAFAS. Para el cobro de premios mayores usted deberá dirigirse a las oficinas de La DAFAS o donde esta le indique, debiendo presentar la documentación requerida. Los resultados utilizados para constatar premios de cualquier juego, son los que informa La DAFAS oficialmente en sus extractos, absolutamente ninguna otra fuente de datos es válida para constatar los resultados, ni siquiera los publicados en la plataforma. En el caso de suspensión de un sorteo, postergación o anulación, automáticamente se tomará como resolución lo que La DAFAS indique como forma de proceder ante esta situación.
+    </p>
+                    <strong>5. Consultas y Reclamos</strong></br></br>
+                    <p>Usted podrá realizar sus reclamos y consultas a través del mail lp@loteriamovil.com.ar o en las oficinas de la DAFAS , sita en calle Pellegrini 385, 1° y 2° Piso, Santa Rosa, CP. 6300, provincia de La Pampa.
+                    Los casos que puedan originarse no previstos en estos Términos y Condiciones, serán interpretados y resueltos dentro de las facultades otorgadas por la Ley.
+    </p>
+
+                     <br/>
+                    <h2>C) POLITICAS DE PRIVACIDAD</h2>
+                    <br/>
+                    <br/>
+                    <p>Nuestra política de privacidad describe qué información recogemos y cómo la utilizamos ya que el acceso a los servicios disponibles en nuestros canales móviles implica la aceptación de nuestra política de privacidad. La DAFAS podrá modificar estos términos en cualquier momento notificando toda actualización de los mismos.
+    </p>
+                    <p>La DAFAS se compromete a cumplir con la protección de los datos personales establecido en la ley 25.326, informando a los titulares de los mismos que pueden ejercer los derechos de acceso, rectificación, cancelación y oposición, dirigiéndose por mail a: lp@loteriamovil.com.ar o bien, poniéndose en contacto con La DAFAS al número (02954) 43-3052.
+    </p>
+
+
+                    <h5>Registros e Identificación de Usuarios</h5>
+                    <br/>
+
+                    <p>El Registro de Usuarios de la plataforma es obligatoriO para poder realizar apuestas en los juegos autorizados por La DAFAS disponibles para nuestra Plataforma de Apuestas en nuestros canales móviles. La registración se puede realizar en La DAFAS o en sus medios oficiales habilitados.
+    </p>
+                    <p>Durante el proceso de registro se requerirá como única información personal el Nombre, email y DNI. En caso de recibir un premio, que por el monto, deba tributar el impuesto al premio, conforme las disposiciones vigentes, se deberá completar por única vez un formulario con datos complementarios, que será provisto por La DAFAS. Esta información adicional será validada para la acreditación del pago de su premio. La aceptación de estos términos y condiciones implica el consentimiento para la realización de dichas verificaciones.
+    </p>
+   
+                                    <h5>Uso de la Información</h5>
+                    <br/>
+
+                    <p>Toda la información proporcionada será tratada de forma segura y de conformidad con la normativa de protección de datos. La actualización y/o rectificación de los datos e información personal podrá realizarse en cualquier momento accediendo por los canales habilitados. La DAFAS no compartirá información personal sobre los usuarios del sitio con otras personas, organizaciones o compañías, bajo ningún concepto ni circunstancia.
+    </p>
+                    <p>Ocasionalmente, podrá recibir en su correo electrónico promociones, información adicional o noticias que La DAFAS entienda que pueden resultar de interés. Para cancelar la suscripción a esos correos, se deberá remitir un correo a lp@loteriamovil.com.ar o bien, puede hacer esto poniéndose en contacto con nuestro centro de “Atención al cliente” al número  (02954) 43-3052. 
+    </p>
+
+                    <h5>Protección de Datos</h5>
+                    <br/>
+
+                    <p>Nuestras medidas para la protección de datos incluyen seguridad física y espacial de datos, controles de acceso y sistemas que garantizan un alto nivel de codificación y seguridad de datos.
+    </p>
+                    <h5>Medidas de Seguridad</h5>
+                    <br/>
+
+                    <p>La información contenida en la cuenta está protegida por una contraseña generada por el Usuario quien debe resguardar de terceras personas la clave personal de acceso a LA PLATAFORMA. Toda transacción que se realice bajo un usuario y contraseña serán bajo entera responsabilidad del titular de dicha cuenta y clave personal. En caso de que la clave haya sido sustraída o revelada por error a un tercero, el Usuario estará obligado a proceder al cambio de la misma, para lo cual se le facilitará un módulo de gestión de sus datos personales y clave.
+    </p>
+                    <p>La DAFAS no asume responsabilidad alguna por el uso indebido de los datos y contraseñas de acceso.
+    </p>
+                    <p>La DAFAS no envía correos electrónicos ni realiza llamadas para solicitar cambio y/o confirmación de datos personales (nombre de usuario, claves, etcétera).
+    </p>
+
+                    <h5>Cancelación de inscripción en el Registro</h5>
+                    <br/>
+
+                    <p>El Usuario podrá cancelar o desactivar su cuenta en cualquier momento. La cancelación o desactivación de la cuenta producirá la eliminación de los datos personales del banco de datos de La DAFAS, excepto que por causa justificada o requerimiento de algún organismo de control deban conservarse dichos datos.
+    </p>
+                    <h5>Información sobre Defensa al Consumidor</h5>
+                    <br/>
+
+                    <p>Nuestros usuarios encontraran información respecto a la legislación vigente en nuestro país en materia de Defensa del Consumidor ingresando en el sitio oficial http://www.consumidor.gov.ar, de la Subsecretaria de Defensa del Consumidor, organismo dependiente de la Secretaria de Comercio Interior, Ministerio de Economía y finanzas Públicas de la Nación. Asimismo, dispondrá de las vías de contacto de su interés.</p>
+
+                        </div>
+
+                    </div>
+
+
+
+            {% endif %}
+
+            {% if 'www.jugaya.com' in request.build_absolute_uri  %}
+
+                    <strong>1. La Plataforma de juegos "Lotería Móvil Santa Cruz" (en adelante denominado, “LA PLATAFORMA”) y el Registro de Jugadores de Apuestas (en adelante, denominado “el Registro”), son organizados y ejecutados por La Lotería para Obras de Acción Social de la Provincia de Santa Cruz, en adelante “La Lotería”, y se regirán por las presentes normas y las que en el futuro dicte La Lotería.</strong></br></br>
+                    <strong>2. El sólo hecho de utilizar LA PLATAFORMA implicará para el apostador (en adelante denominado “el Usuario”) que, a partir de dicho momento, adhiere en forma automática e inmediata a todos y a cada uno de los siguientes Términos y Condiciones y de todas las normas, reglamentos, sus actualizaciones y condiciones de uso de todos los servicios y juegos habilitados en LA PLATAFORMA por La Lotería. </strong></br></br>
+
+                    <h5>REGISTRO EN LA PLATAFORMA</h5>
+                    <br/>
+
+
+                    <strong>3. A los efectos de acceder a LA PLATAFORMA, La Lotería ha creado el Registro de Usuarios de la plataforma que tiene por objeto garantizar el juego responsable, evitar el fraude y la participación de menores de edad.</strong></br></br>
+                    <strong>4. Podrán Registrarse en la plataforma únicamente las personas físicas mayores de edad que no cuenten con ningún impedimento o inhabilitación legal para ello. El Registro es único, individual y personal. El Usuario no puede autorizar a ninguna otra persona a utilizar su cuenta. Los datos proporcionados en el registro serán considerados como privados. Al registrarse se abrirá automáticamente una cuenta asignada al Usuario registrado, libre de gastos de inscripción, donde quedarán registrados todos sus movimientos (cargas de crédito, pago de apuestas, cobro de premios y retiros de dinero).</strong></br></br>
+                    <strong>5. El Registro podrá realizarse en La Lotería, situada en calle Perito Moreno 116 esquina Zapiola, CP (9400) – Rio Gallegos, Provincia de Santa Cruz,en los lugares oficiales habilitados por la misma, donde se le dará el instructivo para proceder a la registración, o vía registro en la aplicación móvil, completando todos los datos requeridos en el formulario de registro y deberá aceptar los Términos y Condiciones de Uso de LA PLATAFORMA.</strong></br></br>
+                    <strong>6. El Usuario es responsable de mantener actualizados los datos personales declarados en la inscripción. El DNI ingresado en el proceso de registro, no podrá ser modificado por el usuario una vez confirmado el mismo. En caso de haber cometido un error, deberá solicitar su corrección vía mail a sc@loteriamovil.com.ar.</strong></br></br>
+                    <strong>7. La Lotería no solicitará datos extras por ningún medio que no figuren en el formulario de registro, así como también no difundirá los datos del Registro, y solo usará los mismos para la finalidad establecida en el presente.</strong></br></br>
+                    <strong>8. El registro del usuario permanecerá vigente hasta la notificación por medio fehaciente, por parte del Usuario a La Lotería, de su decisión de retirar su inscripción al registro y haya realizado la extracción de los saldos remanentes de su cuenta asignada. Asimismo, y transcurrido el término de 120 días sin que se hayan registrados movimientos en la cuenta del usuario La Lotería podrá efectuar de manera automática la baja en el sistema.</strong></br></br>
+                    <strong>9. El Usuario se compromete a resguardar de terceras personas su clave personal de acceso a LA PLATAFORMA y toda transacción que se realice bajo su usuario y contraseña serán bajo su entera responsabilidad. En caso de que su clave haya sido sustraída o revelada por error a un tercero, tendrá la obligación de proceder al cambio de la misma.</strong></br></br>
+
+                    <h5>CUENTA DE USUARIO, COMPROBANTES/TICKETSELECTRONICOS (CARGA DE CREDITO, APUESTAS, COBRO DE PREMIOS, RETIRO DE SALDO)</h5>
+                    <br/>
+                    <strong>10. Al registrarse el Usuario, le será asignada una cuenta donde quedarán asentados todos sus movimientos a través de los comprobantes y/o tickets electrónicos generados por la plataforma. Dichos comprobantes serán respaldo válido para La Lotería y el Usuario, de cada uno de los movimientos registrados en la cuenta, y podrán ser impresos y resguardados por la Lotería en caso de querer conservar los mismo en soporte físico a fines administrativos. Dicha cuenta podrá ser consultada por el usuario en cualquier momento.</strong></br></br>
+                    <strong>11. Los depósitos o cargas de crédito se realizarán por medio de soportes físicos o electrónicos autorizados por La Lotería. Los mismos podrán ser utilizados en los medios tecnológicos habilitados por La Lotería, como por ejemplo, dispositivos móviles, internet, u otro que a La Lotería disponga.</strong></br></br>
+                    <strong>12. Las apuestas y/o compra de billetes de juego, se realizarán en forma directa, a través de telefonía celular o móvil, o cualquier otro medio que disponga La Lotería. Previamente, el Usuario deberá registrarse cumpliendo los requisitos solicitados y poseer saldo disponible, pagar las apuestas realizadas en los juegos habilitados por La Lotería. Posteriormente podrá consultar el ticket electrónico de su jugada emitido por LA PLATAFORMA.</strong></br></br>
+                    <strong>13. Los premios correspondientes a los Usuarios cuya apuesta emitida hubiere resultado premiada según la mecánica del juego realizado, les serán acreditados en el saldo de su cuenta si su monto no es mayor al máximo reglamentado por La Lotería, en cuyo caso, será considerado pagado una vez acreditado el valor de dicho premio en la cuenta del Usuario, tomando como válido el comprobante electrónico emitido por LA PLATAFORMA.En caso de premios mayores, la acreditación y/o cobro de los mismos, se ajustarán a los procedimientos reglamentados por La Lotería, debiendo el usuario presentar la documentación que le sea requerida.</strong></br/><br/>
+                    <strong>14. Los saldos en la cuenta del Usuariogenerados por el cobro de premios, son retornables y disponibles para su retiro dentro de los horarios de atención establecidos por La Lotería.El Usuario podrá en cualquier momento afectar dicho saldo disponible para la realización de nuevas apuestas o hacer efectivo el retiro de los mismos, total o parcialmente a través de los medios y lugares que La Lotería indique.</strong></br></br>
+
+
+                    <h5>LIMITE DE RESPONSABILIDAD. PROHIBICIONES</h5>
+                    <br/>
+
+                    <strong>15. La Lotería, en ningún caso y bajo ninguna circunstancia, será responsable por fallas o errores atribuibles al equipo telefónico utilizado por el Usuario, o errores de conectividad, enlace y/o transferencia de datos que impidan el registro de la operatoria en LA PLATAFORMA. El límite de la responsabilidad por parte de La Lotería respecto a los errores en los que hubiere incurrido LA PLATAFORMA, es el monto mínimo de la apuesta.</strong></br></br>
+                    <strong>16. Será considerada válida una apuesta que sea acompañada por el ticket electrónico (con código de seguridad válido) emitido por el sistema y registrada en tiempo y forma. En el caso de que se registraran, a favor del Usuario, premios que no correspondieren por error, es obligación del Usuario notificar dicha circunstancia a La Lotería. Cualquier beneficio que el Usuario pretenda obtener o conservar por error de LA PLATAFORMA constituirá una situación de enriquecimiento sin causa y lo obligará a restituir el importe mal percibido en forma inmediata.</strong></br></br>
+                    <strong>17. Los casos no previstos en el presente Reglamento serán interpretados y resueltos por La Lotería dentro de las facultades que le otorga la Ley. Las transgresiones a esta Reglamentación, y a las normas que en su consecuencia se dicten, serán juzgadas y sancionadas por La Lotería.</strong></br></br>
+                    <strong>18. Las apuestas realizadas en LA PLATAFORMA, quedan registradas con un código de transacción/control, generando un ticket electrónico que puede ser impreso por el Usuario y/o Lotería. El Usuario puede consultar los movimientos de su cuenta (depósitos y apuestas realizados con los detalles de las mismas, retiro de efectivo y saldo disponible). Las apuestas confirmadas por el Usuario y validadas por LA PLATAFORMA no pueden ser anuladas por el Usuario.</strong></br></br>
+                    <strong>19. Las actividades y transacciones realizadas en LA PLATAFORMA se regirán por la legislación Argentina. Cualquier controversia derivada de la relación entre el Usuario Jugador y La Lotería será competencia de los Tribunales Ordinarios de la ciudad de Rio Gallegos de la Provincia de Santa Cruz, con renuncia a cualquier otro fuero o jurisdicción que pudiere corresponder.</strong></br></br>
+
+                    <br/>
+                    <h2>B) TERMINOS Y CONDICIONES</h2>
+                    <br/>
+                    <br/>
+                    <p>La Lotería para Obras de Acción Social de la Provincia de Santa Cruz en adelante “La Lotería” ha implementado el uso de una plataforma de juegos llamada “Lotería Móvil Santa Cruz” en adelante “La Plataforma”, que le permitirá a Ud. realizar apuestas y/o adquirir billetes de juegos oficiales a través de distintos canales como telefonía celular y/o web.</p>
+                    <p>En el siguiente texto, denominado Términos y Condiciones de uso, como así también las Políticas de Privacidad, regularán la forma de uso que usted podrá hacer de los servicios que brinde la plataforma y de las aplicaciones que descargue para tal fin.</p>
+
+                    <strong>1. Usuario Registrado o apostador</strong></br></br>
+                    <p>Se denomina usuario registrado a la persona física que haya completado todos los datos solicitados para el registro
+                    en la plataforma y tenga activada su cuenta. El usuario no podrá realizar jugadas y/o compra de tickets
+                    si no se encuentra en la Provincia de Santa Cruz, por lo que se le pedirá tener la ubicación activada para realizar dicho control.
+                    El usuario es propietario de su cuenta en la plataforma. Automáticamente una
+                    persona que se registraen la plataforma está aceptando el uso y aplicación de los Términos y Condiciones,
+                    conformando un acuerdo entre usted y La Lotería.Sólo podrán participar en el uso de la plataformapersonas
+                    que no tengan ningún impedimento legal y que sean mayores de 18 años, pudiendo solicitarle la presentación
+                    o copia de su DNI para verificar dicha situación. Los datos proporcionados en el registro serán considerados
+                    como privados.</p>
+                    <strong>2. Derechos de la plataforma</strong></br></br>
+                    <p>La plataforma se reserva el derecho de admisión de cualquier solicitud de registro de cualquier persona y/o cancelar cualquier cuenta de usuario registrado, si detectara algún impedimento legal o anomalía de cualquier índole. La Lotería podrá, a su entera discreción, modificar o interrumpir el servicio ya sea en forma parcial o total y el mismo podrá no estar disponible durante períodos de mantenimiento o en otros momentos. La Lotería se reserva el derecho de modificar los presentes Términos y Condiciones en cualquier momento y sin previo aviso, por lo que usted será responsable de revisarlas periódicamente, y el solo hecho de seguir utilizando la plataforma indicará que usted presta consentimiento a dichas normas, caso contrario podrá solicitar la baja de su cuenta por medio fehaciente a La Lotería.</p>
+                    <strong> 3. Obligaciones del usuario</strong></br></br>
+                    <p>Es obligación del usuario suministrar correctamente los datos solicitados al momento del registro y mantenerlos actualizados ante cualquier cambio. Deberá resguardar su clave personal que es de uso estrictamente suyo. Será responsable de todas las transacciones realizadas en su cuenta y deberá controlar en forma periódica el balance de su cuenta e informar cualquier anomalía a La Lotería. En el caso de que se acrediten o debiten fondos de su cuenta erróneamente es absoluta y total responsabilidad de usted informar de este hecho a la Lotería. Cualquier ganancia posterior al error y anterior a la notificación, relacionada o no con el error, será considerada no válida y devuelta a LA PLATAFORMA.
+    </p>
+                    <strong>4. Uso de la Plataforma</strong></br></br>
+                    <p>Para utilizar la plataforma, usted deberá ser un usuario registrado y cargar saldo en su cuenta concurriendo a La Lotería de la Provincia de Santa Cruz o a través de los medios que esta habilite. Posteriormente podrá realizar sus apuestas en los juegos oficiales habilitados en la plataforma por La Lotería, que serán descontadas del saldo disponible mientras cubra dichas valores. En su cuenta de usuario serán acreditadas las cargas de crédito, se debitarán los importes para efectivizar la compra de sus Tickets/boletos y se acreditarán los importes por premios menores. También podrá solicitar el retiro de dinero correspondiente a premios acreditados, cuyo pago será efectuado a través de los medios informados por La Lotería. Para el cobro de premios mayores usted deberá dirigirse a las oficinas de la Lotería de la Provincia de Santa Cruz o donde esta le indique, debiendo presentar la documentación requerida. Los resultados utilizados para constatar premios de cualquier juego, son los que informa La Lotería oficialmente en sus extractos, absolutamente ninguna otra fuente de datos es válida para constatar los resultados, ni siquiera los publicados en la plataforma. En el caso de suspensión de un sorteo, postergación o anulación, automáticamente se tomará como resolución lo que La Lotería indique como forma de proceder ante esta situación.
+    </p>
+                    <strong>5. Consultas y Reclamos</strong></br></br>
+                    <p>Usted podrá realizar sus reclamos y consultas a través del mail sc@loteriamovil.com.ar o en las oficinas de la Lotería de la Provincia de Santa Cruz, sita en calle Perito Moreno 116 esquina Zapiola, CP (9400) – Rio Gallegos, Provincia de Santa Cruz.
+    Los casos que puedan originarse no previstos en estos Términos y Condiciones, serán interpretados y resueltos dentro de las facultades otorgadas por la Ley.
+    </p>
+
+                     <br/>
+                    <h2>C) POLITICAS DE PRIVACIDAD</h2>
+                    <br/>
+                    <br/>
+                    <p>Nuestra política de privacidad describe qué información recogemos y cómo la utilizamos ya que el acceso a los servicios disponibles en nuestros canales móviles implica la aceptación de nuestra política de privacidad. La Lotería podrá modificar estos términos en cualquier momento notificando toda actualización de los mismos.
+    </p>
+                    <p>La Lotería se compromete a cumplir con la protección de los datos personales establecido en la ley 25.326, informando a los titulares de los mismos que pueden ejercer los derechos de acceso, rectificación, cancelación y oposición, dirigiéndose por mail a: sc@loteriamovil.com.ar o bien, poniéndose en contacto con La Lotería al número (02966) 422631
+    </p>
+
+
+                    <h5>Registros e Identificación de Usuarios</h5>
+                    <br/>
+
+                    <p>El Registro de Usuarios de la plataforma es obligatoria para poder realizar apuestas en los juegos autorizados por La Lotería disponibles para nuestra Plataforma de Apuestas en nuestros canales móviles. La registración se puede realizar en La Lotería o en sus medios oficiales habilitados.
+    </p>
+                    <p>Durante el proceso de registro se requerirá como única información personal el Nombre, email y DNI. Luego, se controlará que el registro se esté realizando dentro de la jurisdicción de La Lotería, es decir, en la Provincia de Santa Cruz.
+    </p>
+                    <p>En caso de recibir un premio, que por el monto, deba tributar el impuesto al premio, conforme las disposiciones vigentes, se deberá completar por única vez un formulario con datos complementarios, disponible por Internet o en La Lotería. Esta información adicional será validada para la acreditación del pago de su premio. La aceptación de estos términos y condiciones implica el consentimiento para la realización de dichas verificaciones. 
+    </p>
+
+                                    <h5>Uso de la Información</h5>
+                    <br/>
+
+                    <p>Toda la información proporcionada será tratada de forma segura y de conformidad con la normativa de protección de datos. La actualización y/o rectificación de los datos e información personal podrá realizarse en cualquier momento accediendo por los canales habilitados. La Lotería no compartirá información personal sobre los usuarios del sitio con otras personas, organizaciones o compañías, bajo ningún concepto ni circunstancia.
+    </p>
+                    <p>Ocasionalmente, podrá recibir en su correo electrónico promociones, información adicional o noticias que La Lotería entienda que pueden resultar de interés. Para cancelar la suscripción a esos correos, se deberá remitir un correo a sc@loteriamovil.com.ar o bien, puede hacer esto poniéndose en contacto con nuestro centro de “Atención al cliente” al número (02966) 422631. 
+    </p>
+
+                    <h5>Protección de Datos</h5>
+                    <br/>
+
+                    <p>Nuestras medidas para la protección de datos incluyen seguridad física y espacial de datos, controles de acceso y sistemas que garantizan un alto nivel de codificación y seguridad de datos.
+    </p>
+                    <h5>Medidas de Seguridad</h5>
+                    <br/>
+
+                    <p>La información contenida en la cuenta está protegida por una contraseña generada por el Usuario quien debe resguardar de terceras personas la clave personal de acceso a LA PLATAFORMA. Toda transacción que se realice bajo un usuario y contraseña serán bajo entera responsabilidad del titular de dicha cuenta y clave personal. En caso de que la clave haya sido sustraída o revelada por error a un tercero, el Usuario estará obligado a proceder al cambio de la misma, para lo cual se le facilitará un módulo de gestión de sus datos personales y clave.
+    </p>
+                    <p>La Lotería no asume responsabilidad alguna por el uso indebido de los datos y contraseñas de acceso.
+    </p>
+                    <p>La Lotería no envía correos electrónicos ni realiza llamadas para solicitar cambio y/o confirmación de datos personales (nombre de usuario, claves, etcétera).
+    </p>
+
+                    <h5>Cancelación de inscripción en el Registro</h5>
+                    <br/>
+
+                    <p>El Usuario podrá cancelar o desactivar su cuenta en cualquier momento. La cancelación o desactivación de la cuenta producirá la eliminación de los datos personales del banco de datos de La Lotería, excepto que por causa justificada o requerimiento de algún organismo de control deban conservarse dichos datos.
+    </p>
+                    <h5>Información sobre Defensa al Consumidor</h5>
+                    <br/>
+
+                    <p>Nuestros usuarios encontraran información respecto a la legislación vigente en nuestro país en materia de Defensa del Consumidor ingresando en el sitio oficial http://www.consumidor.gov.ar, de la Subsecretaria de Defensa del Consumidor, organismo dependiente de la Secretaria de Comercio Interior, Ministerio de Economía y finanzas Publicas de la Nación. Asimismo, dispondrá de las vías de contacto de su interés.</p>
+
+                        </div>
+
+                    </div>
+                {% endif %}
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div id="footer-wrapper">
+            <div id="footer1">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-5 col-sm-12">
+                            <a target="_blank" href="http://loteriadesantacruz.gob.ar/">
+                                <img src="{% static 'img_login/logo-pie.jpg' %}" class="img-responsive" alt="Builder Construction HTML Template"/>
+                            </a>
+
+                        </div>
+                        <div class="col-md-4 col-sm-5">
+                            <div class="footer-info">
+                                <span class="icon-container" >
+                                    <img src="{% static 'img_login/svg/map.svg' %}" class="img-responsive" alt="map icon"/>
+                                </span>
+                                <span style='color:white;' class="tp-white">DIRECCIÓN:</br> Períto Moreno 116 esq. Zapiola</br>
+												  CP (9400) Río Gallegos</br>
+												  Tel. (02966) 422631</span>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 col-sm-4">
+                            <div class="footer-info">
+                                <span class="icon-container">
+                                    <img src="{% static 'img_login/svg/email.svg' %}" class="img-responsive" alt="email icon"/>
+                                </span>
+                                <a style='color:white;' class="tp-white" href="#">Email: contacto@loteriadesantacruz.gob.ar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+        <script src="{% static 'charge_credit/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/jquery.scripts.min.js' %}"></script>
+        <script src="{% static 'js/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
+        <script src="{% static 'js/rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
+		<script src="{% static 'js/retina.js' %}"></script>
+        <script src="{% static 'js/include.js' %}"></script>
+
+        <script>
+            jQuery(document).ready(function ($) {
+                'use strict';
+
+                jQuery('#rev-slider').revolution(
+                        {
+                            dottedOverlay: "none",
+                            delay: 9000,
+                            startwidth: 1170,
+                            startheight: 100,
+                            hideThumbs: 200,
+                            thumbWidth: 100,
+                            thumbHeight: 50,
+                            thumbAmount: 3,
+                            navigationType: "none",
+                            navigationArrows: "solo",
+                            navigationStyle: "preview5",
+                            touchenabled: "on",
+                            onHoverStop: "off",
+                            swipe_velocity: 0.7,
+                            swipe_min_touches: 1,
+                            swipe_max_touches: 1,
+                            drag_block_vertical: false,
+                            keyboardNavigation: "on",
+                            navigationHAlign: "center",
+                            navigationVAlign: "bottom",
+                            navigationHOffset: 0,
+                            navigationVOffset: 20,
+                            soloArrowLeftHalign: "left",
+                            soloArrowLeftValign: "center",
+                            soloArrowLeftHOffset: 20,
+                            soloArrowLeftVOffset: 0,
+                            soloArrowRightHalign: "right",
+                            soloArrowRightValign: "center",
+                            soloArrowRightHOffset: 20,
+                            soloArrowRightVOffset: 0,
+                            shadow: 0,
+                            fullWidth: "on",
+                            fullScreen: "off",
+                            spinner: "spinner0",
+                            stopLoop: "off",
+                            stopAfterLoops: -1,
+                            stopAtSlide: -1,
+                            shuffle: "off",
+                            forceFullWidth: "off",
+                            fullScreenAlignForce: "off",
+                            minFullScreenHeight: "400",
+                            hideThumbsOnMobile: "off",
+                            hideNavDelayOnMobile: 1500,
+                            hideBulletsOnMobile: "off",
+                            hideArrowsOnMobile: "off",
+                            hideThumbsUnderResolution: 0,
+                            hideSliderAtLimit: 0,
+                            hideCaptionAtLimit: 0,
+                            hideAllCaptionAtLilmit: 0,
+                            startWithSlide: 0,
+                            hideTimerBar: "on"
+                        });
+
+
+            });
+        </script>
+    </div>
+{% endblock %}
+

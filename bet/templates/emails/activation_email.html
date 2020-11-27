@@ -1,0 +1,7 @@
+{% extends 'emails/base_email.html' %}
+{% load humanize %}
+
+{% block content %}
+<p>Tu cuenta ha sido creada.<br>
+Por favor, ingresa a <a href="{{ activation_url }}" target="_blank">este link</a> para activarla.</p>
+{% endblock %}

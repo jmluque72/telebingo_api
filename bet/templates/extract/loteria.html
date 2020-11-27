@@ -1,0 +1,126 @@
+{% extends 'extract/base_extract.html' %}
+{% load lotteryprizesfilter %}
+
+{% block content %}
+
+   <div class="row clearfix">
+        <div class="title-juego">ORDINARIA</div>
+    </div>
+	<div class="row clearfix">
+        {% with numbers=draw.loteria_results.ord.get_numbers %}
+        <table width="100%" align="center" class="numeros-resultados">
+            <thead bgcolor="#e2eefc" class="cabecera-tabla">
+                <th class="interior-cabecera">Posici&oacute;n</th>
+                <th class="interior-cabecera">N&uacute;mero</th>
+                <th class="interior-cabecera">Premio</th>
+                </thead>
+            <tbody>
+            {% for number in numbers %}
+                <tr class="borde-extracto">
+                    <td class="interior-extracto">{{ forloop.counter|stringformat:"02d" }}</td>
+                    <td class="interior-extracto">{{ number|stringformat:"05d" }}</td>
+                    <td class="interior-extracto">$ {{ lp|location_prize:forloop.counter }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+	</div>
+    <br />
+    <div class="row clearfix">
+	    <div class="title-juego">PROGRESI&Oacute;N <strong>{{ draw.loteria_results.progresion|stringformat:"02d" }}</strong> <small>$ {{ lp.progresion_prize }}</small></div>
+	</div>
+	<div style="height:2px"></div>
+    <div class="row clearfix" style="margin-left:8px">
+        <div class="col-xs-5">
+    <!-- TERMINACIONES -->
+    <table width="100%" align="center" class="numeros-resultados">
+        <thead bgcolor="#e2eefc" class="cabecera-tabla">
+            <th colspan="2" class="title-juego">Terminaciones</th>
+        </thead>
+        <thead>
+            <th colspan="2" class="interior-cabecera">1° Premio</th>
+        </thead>
+
+        <tbody>
+        {% for ending in numbers.0|endings %}
+            <tr class="borde-extracto">
+                <td class="interior-extracto">{{ ending }}</td>
+                <td class="interior-extracto">$ {{ lp|ending_prize_1:ending }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+        <thead>
+            <th colspan="2" class="interior-cabecera">2° Premio</th>
+        </thead>
+
+        <tbody>
+            <tr class="borde-extracto">
+                <td class="interior-extracto">{{ numbers.1|stringformat:"i"|slice:"-2:" }}</td>
+                <td class="interior-extracto">$ {{ lp|ending_prize_2:"--" }}</td>
+            </tr>
+        </tbody>
+
+        <thead>
+            <th colspan="2" class="interior-cabecera">3° Premio</th>
+        </thead>
+
+        <tbody>
+            <tr class="borde-extracto">
+                <td class="interior-extracto">{{ numbers.2|stringformat:"i"|slice:"-2:" }}</td>
+                <td class="interior-extracto">$ {{ lp|ending_prize_3:"--" }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- FIN TERMINACIONES -->
+    </div>
+
+    <div class="col-xs-7">
+    <!-- APROXIMACIONES -->
+    <table width="100%" align="center" class="numeros-resultados">
+        <thead bgcolor="#e2eefc" class="cabecera-tabla">
+            <th colspan="3" class="title-juego">Aproximaciones</th>
+        </thead>
+        <thead>
+            <th colspan="3" class="interior-cabecera">1° Premio</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="subinterior">Anterior</td><td class="subinterior">Posterior</td><td class="subinterior">Premio</td>
+            </tr>
+            <tr>
+                <td align="center">{{ numbers.0|add:"-1" }}</td><td align="center">{{ numbers.0|add:"1" }}</td><td align="center">{{ lp|approach_prize:"1" }}</td>
+            </tr>
+        </tbody>
+
+        <thead>
+            <th colspan="3" class="interior-cabecera">2° Premio</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="subinterior">Anterior</td><td class="subinterior">Posterior</td><td class="subinterior">Premio</td>
+            </tr>
+            <tr>
+                <td align="center">{{ numbers.1|add:"-1" }}</td><td align="center">{{ numbers.1|add:"1" }}</td><td align="center">{{ lp|approach_prize:"2" }}</td>
+            </tr>
+        </tbody>
+
+        <thead>
+            <th colspan="3" class="interior-cabecera">3° Premio</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="subinterior">Anterior</td><td class="subinterior">Posterior</td><td class="subinterior">Premio</td>
+            </tr>
+            <tr>
+                <td align="center">{{ numbers.2|add:"-1" }}</td><td align="center">{{ numbers.2|add:"1" }}</td><td align="center">{{ lp|approach_prize:"3" }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- FIN APROXIMACIONES -->
+        </div>
+        </div>
+
+    {% endwith %}
+
+{% endblock %}

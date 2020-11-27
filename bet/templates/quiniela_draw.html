@@ -1,0 +1,158 @@
+{% extends "base_draw.html" %}
+{% load staticfiles %}
+
+{% block extra_head %}<!-- form.media -->{{ drawForm.media }}{% endblock %}
+
+{% block form-action %}
+    {% if drawForm.instance.pk %}
+        {% url 'bet:draw_quiniela_edit' drawForm.instance.pk %}
+    {% else %}
+        {% url 'bet:draw_quiniela_add' %}
+    {% endif %}
+{% endblock %}
+
+{% block draw_legend %}Concurso{% endblock %}
+
+{% block tabs_quiniela %}
+<div class="row clearfix base-tabs"> <!-- PESTAÑA SORTEOS/RESULTADOS -->
+    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:quinielas' %}">Sorteos</a></div>
+    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:draws_quiniela' %}">Concursos</a></div>
+    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:old_quinielas' %}">Resultados</a></div>
+    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:provinces' %}">Provincias</a></div>
+</div>
+{% endblock tabs_quiniela %}
+
+{% block draw_header %}{% endblock %}
+
+{% block draw_content %}
+
+    {% if drawForm.instance.pk %}
+        <div class="sub-secciones">Sorteos</div>
+
+        <div class="row clearfix divisor">
+
+            <div class="col-md-8">
+                {% if groups %}
+                    <label>Sorteos a los que este concurso pertenece:</label><br />
+                    <div class="form-group">
+                    <ul>
+                    {% for group in groups %}
+                        <li>{{ group.date }} - {{ group.province }} - {{ group.get_type_display }}</li>
+                    {% endfor %}
+                    </ul>
+                    </div>
+                {% else  %}
+                    <label>Este concurso no pertenece a ningún sorteo.</label><br />
+                {% endif %}
+            </div>
+
+        </div>
+    {% endif %}
+
+    <div class="sub-secciones">Quiniela</div>
+
+    <div class="row clearfix divisor">
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ drawForm.quiniela.label }}</label><br />
+                {{ drawForm.quiniela }}{{ drawForm.quiniela.errors }}
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ drawForm.type.label }}</label><br />
+                {{ drawForm.type }}{{ drawForm.type.errors }}
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-secciones">Fechas</div>
+
+    <div class="row clearfix divisor">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>{{ drawForm.date_draw.label }}</label>
+                {{ drawForm.date_draw }}{{ drawForm.date_draw.errors }}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>{{ drawForm.date_limit_agency.label }}</label>
+                {{ drawForm.date_limit_agency }}{{ drawForm.date_limit_agency.errors }}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>{{ drawForm.date_limit.label }}</label>
+                {{ drawForm.date_limit }}{{ drawForm.date_limit.errors }}
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <div class="row clearfix divisor">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ drawForm.state.label }}</label>
+                {{ drawForm.state }}{{ drawForm.state.errors }}
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="sub-secciones">Promociones</div>
+
+    <div class="row clearfix divisor">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>{{ drawForm.promotion_coupons.label }}</label>
+                {{ drawForm.promotion_coupons }}{{ drawForm.promotion_coupons.errors }}
+            </div>
+        </div>
+
+    </div>
+
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+
+    {{ drawForm.non_field_errors }}
+
+    <script>
+
+        function update_time(picker, datetime) {
+            // Actualiza la hora de picker con la hora de datetime
+
+            var date = new Date(picker.data("DateTimePicker").date);
+            var time = new Date(datetime);
+            date.setHours(time.getHours(), time.getMinutes());
+            picker.data("DateTimePicker").setDate(moment(date).format('D/MM/YYYY H:m'));
+            //$('#id_date_draw_picker').data('DateTimePicker').setDate('20/08/2016 15:30');
+        }
+
+        $("#id_quiniela, #id_type").change(function(){
+            var quinielas = $("#id_quiniela").val();
+            var type_id = $("#id_type").val();
+
+            if (!isNumber(type_id))
+                return;
+
+            $.ajax({
+                method: "POST",
+                url: "/lottery_time/",
+                data: { quinielas: quinielas, type_id: type_id, csrfmiddlewaretoken:'{{csrf_token}}' },
+                success: function(result){
+                    if (jQuery.isEmptyObject(result))
+                        return;
+
+                    update_time($("#id_date_draw_picker"), result.draw_date);
+                    update_time($("#id_date_limit_picker"), result.draw_limit);
+                    update_time($("#id_date_limit_agency_picker"), result.draw_limit_agency);
+                }
+            });
+        });
+
+    </script>
+
+{% endblock %}
+

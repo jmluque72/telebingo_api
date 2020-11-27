@@ -1,0 +1,40 @@
+{% extends "quinielas.html" %}
+{% load queryset_utils %}
+{% load staticfiles %}
+{% load pagination_tags %}
+
+{% block tabs %}
+<div class="row clearfix base-tabs"> <!-- PESTAÑA SORTEOS/RESULTADOS -->
+    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:quinielas' %}">Sorteos</a></div>
+    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:draws_quiniela' %}">Concursos</a></div>
+    <div class="col-md-2 tab-activa">Resultados</div>
+    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:provinces' %}">Provincias</a></div>
+</div>
+{% endblock tabs %}
+
+{% block filterform_action %}{% url 'bet:old_quinielas' %}{% endblock %}
+
+{% block filterform %}
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>{{ form.state.label }}</label><br />
+            {{ form.state }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block draws_actions %}
+
+    <table width="115" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td title="Cargar resultados">
+                <a href="{% url 'bet:quiniela_results' group.pk %}"
+                   class="btn btn-sm btn-info">
+                   <i class="glyphicon glyphicon-pencil"></i>
+                </a>
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}
+

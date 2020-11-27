@@ -1,0 +1,15 @@
+{% extends 'tickets/base_ticket.html' %}
+
+{% block modalities %}
+    <br/>
+    <span>{% if detail.rev %}Con Revancha{% endif %}{% if detail.sie %} - Con Siempre Sale{% endif %}</span>
+    <br/>
+{% endblock %}
+
+{% block details %}
+    <strong class="numeros">
+    {% for number in detail.numbers %}
+         {{ number|stringformat:"02d" }}
+    {% endfor %}
+    </strong>
+{% endblock %}

@@ -1,0 +1,107 @@
+<br />
+<div class="row clearfix divisor-tabla">
+<div class="row clearfix">
+    <div class="col-md-2">
+            <label style="font-size:22px; color:#448cde">Billetes</label>
+    </div>
+</div>
+<br />
+    <div class="cup_formset">
+        {{ couponFormSet.management_form }}
+
+        <div class="row clearfix empty-form hidden">
+            <div class="col-md-2">
+                <div class="form-group">
+                    {{ couponFormSet.empty_form.number }}
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    {{ couponFormSet.empty_form.value }}
+                    {{ couponFormSet.empty_form.text }}
+                    {{ couponFormSet.empty_form.coupon }}
+                </div>
+            </div>
+        </div>
+
+        {% for form in couponFormSet.forms %}
+
+            {% if forloop.counter0 == 0 %}
+                <div class="row clearfix">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>{{ form.number.label_tag }}</label>
+                        </div>
+                    </div>
+
+                    {% if not form.prize_type in form.hidden_fields %}
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                {{ form.prize_type.label_tag }}
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label><label>Premio:</label></label>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            <div class="row clearfix">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ form.number }}
+                    </div>
+                </div>
+
+                {% if not form.prize_type in form.hidden_fields %}
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ form.prize_type }}
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ form.value }}
+                        {{ form.text }}
+                        {{ form.coupon }}
+                    </div>
+                </div>
+
+            </div>
+            {{ form.non_field_errors }}
+        {% endfor %}
+
+        {% if not readonly and couponFormSet|length < couponFormSet.max_num %}
+            <button type="button" class="btn btn-primary" id="cup_addform">+</button>
+
+            <script>
+                var x = $('.cup_formset').children('div');
+
+                var cup = x.djangoFormset({deleteButtonText: 'Eliminar'});
+                $("#cup_addform").on('click', function() {
+                    cup.addForm();
+
+                    var max = parseInt($('#id_cup-MAX_NUM_FORMS').val());
+                    if (cup.forms.length == max)
+                        $("#cup_addform").remove();
+                });
+            </script>
+        {% endif %}
+    </div>
+
+    {% if couponFormSet.total_error_count %}
+        <ul class="errorlist nonfield"><li>Faltan datos.</li></ul>
+    {% endif %}
+
+    {{ couponFormSet.non_form_errors }}
+</div>

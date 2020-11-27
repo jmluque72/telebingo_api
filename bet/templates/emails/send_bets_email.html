@@ -1,0 +1,12 @@
+{% extends 'emails/base_email.html' %}
+{% load humanize %}
+
+{% block content %}
+
+    <p>Detalles de los cupones comprados para el sorte {{draw_number}} del juego {{game_name}}:</p>
+
+    <p>Cantidad de cupones vendidos: {{countc}}</p>
+
+{% endblock %}
+
+

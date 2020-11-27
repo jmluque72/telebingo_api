@@ -1,0 +1,53 @@
+Add next line to apache/conf/httpd.conf:
+WSGIPassAuthorization On
+
+WebServices: add @protected_resource() decorator after @register_call()
+
+CLIENT_ID: JB0ogKYJQIKSTKWp4n2uLoyj5zSNYxHKMMN2uSav
+CLIENT_SECRET: tugUbT8YGtsTX0IIuPwCUthpoGhRUqqLd0JI0JNilMG9HssCSdw2PJSKVCeX2DPM69PLJBwYrH2PlG4Nd7U4Vf7MBCaY4IJ8S1Y7wBMMD9AgHSi5xLnRtMoMjeAgjP7G
+
+GET ACCESS TOKEN
+POST http://agencia24desa.liricus.webfactional.com/o/token/
+headers: Content-Type: application/x-www-form-urlencoded
+{
+	"grant_type": "password",
+	"username": <username>,
+	"password": <password>",
+	"client_id": <client_id>,
+	"client_secret": <client_secret>
+}
+
+returns: {"access_token": "n39hPZYf2ZVoLvXTv1L92tubAKo1wA", "token_type": "Bearer", "expires_in": 36000, "refresh_token": "1rsnUQQmVKSDJpypvuGlyu7aBTw7F4", "scope": "read write"}
+returns: 401: UNAUTHORIZED (when credentials are invalid)
+
+
+
+REFRESH ACCESS TOKEN
+POST http://agencia24desa.liricus.webfactional.com/o/token/
+headers: Content-Type: application/x-www-form-urlencoded
+{
+	"grant_type": "refresh_token",
+	"client_id": <client_id>,
+	"client_secret": <client_secret>,
+	"refresh_token": <refresh_token>
+}
+
+returns: {"access_token": "n39hPZYf2ZVoLvXTv1L92tubAKo1wA", "token_type": "Bearer", "expires_in": 36000, "refresh_token": "1rsnUQQmVKSDJpypvuGlyu7aBTw7F4", "scope": "read write"}
+returns: 401: UNAUTHORIZED (when credentials are invalid)
+
+
+ACCESS PROTECTED SERVICE
+POST http://agencia24desa.liricus.webfactional.com/ws/call/
+headers: "Authorization: <token_type> <access_token>"
+
+returns: 403: FORBIDDEN (when access token has expired)
+
+
+LOGOUT
+POST http://agencia24desa.liricus.webfactional.com/o/revoke_token/
+headers: Content-Type: application/x-www-form-urlencoded
+{
+	"token": <access_token>,
+	"client_id": <client_id>,
+	"client_secret": <client_secret>
+}

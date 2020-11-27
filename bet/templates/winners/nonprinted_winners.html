@@ -1,0 +1,103 @@
+{% extends "winners/winners_base.html" %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+{% block action_form %}""{% endblock %}
+
+{% block results %}
+    <!-- Dialog -->
+    <div class="modal fade" id="modal-detail" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <!-- EndDialog -->
+    <br/><br />
+    {% with total=formset|length %}
+    <div class="row clearfix">
+        {% if total == 0 %}
+            <h3>No se encontraron ganadores en el sistema</h3>
+        {% else %}
+            <legend>Se encontr{{ total|pluralize:"ó,aron" }} {{ total }} ganador{{ total|pluralize:"es" }} en el sistema</legend>
+        {% endif %}
+    </div>
+    {% endwith %}
+
+    {{ formset.management_form }}
+    {% regroup formset by instance.info as winner_list %}
+    {% for winner in winner_list %}
+
+        {% if winner.list %}
+            <label class="titulo-separador">{{ winner.grouper }}</label><br /><br />
+
+            <div class="row clearfix divisor-cabeceras">
+                <div class="col-md-1">
+                    {% if not_notified and forloop.first %}
+                    <input id="id_check_all" type="checkbox"/>
+                    {% endif %}
+                    <label for="id_check_all">Notif.</label>
+                </div>
+                <div class="col-md-1"><strong>Aciertos</strong></div>
+                <div class="col-md-2"><strong>Números</strong></div>
+                <div class="col-md-1"><strong>Agencia</strong></div>
+                <div class="col-md-3"><strong>Ganador</strong></div>
+                <div class="col-md-2"><strong>Premio</strong></div>
+                <div class="col-md-1"><strong>Detalle</strong></div>
+            </div>
+
+            {% for item in winner.list %}
+                {% for field in item.hidden_fields %}
+                    {{ field }}
+                {% endfor %}
+
+                <div class="row clearfix divisor-tabla">
+                    {% if item.instance.notif %}
+                        {{ item.notif|add_class:"hidden" }}
+                        <div class="col-md-1">Notificado</div>
+                    {% else %}
+                        <div class="col-md-1">{{ item.notif }}</div>
+                    {% endif %}
+                    <div class="col-md-1">{{ item.instance.hits }}</div>
+                    <div class="col-md-2">
+                        {% for number in item.instance.get_detail.numbers %}
+                            {% if number in item.instance.parent.extract.results.get_numbers %}
+                                <strong>{{ number|stringformat:"02d" }}</strong>
+                            {% else %}
+                                {{ number|stringformat:"02d" }}
+                            {% endif %}
+                        {% endfor %}
+                        {% if item.instance.get_detail.extras %}
+                            -
+                            {% for extra in item.instance.get_detail.extras %}
+                                {% if extra in item.instance.parent.extract.results.parent.get_extras %}
+                                    <strong>{{ extra|stringformat:"02d" }}</strong>
+                                {% else %}
+                                    {{ extra|stringformat:"02d" }}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    {% with bet=item.instance.detail.detail.bet %}
+                    <div class="col-md-1">{{ bet.agency.name }}</div>
+                    <div class="col-md-3">{{ bet.user.user.get_full_name }}</div>
+                    <div class="col-md-2">$ {{ item.instance.parent.extract.get_prize|intcomma  }}</div>
+                    <div class="col-md-1" style="font-size: 12px;">
+                        <a href="{% url 'bet:bet_detail' bet.pk bet.game.code %}"
+                           data-toggle="modal" data-target="#modal-detail" >Ver Detalle</a>
+                    </div>
+                    {% endwith %}
+                </div>
+                <br/>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
+
+{% block buttons %}
+    {% if not_notified %}
+    <div class="row clearfix">
+        <button class="btn btn-info" name="save" type="submit">Notificar a los ganadores</button>
+    </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,38 @@
+[
+ {
+   "Fecha": "5/1/2019",
+   "Sorteo": 982,
+   "HoraSorteo": "21:00",
+   "FechaCierre": "5/1/2019",
+   "HoraAgencia": "20:45",
+   "Monto": "Pozo Estimado",
+   "Precio": 20
+ },
+ {
+   "Fecha": "13/1/2019",
+   "Sorteo": 983,
+   "HoraSorteo": "21:00",
+   "FechaCierre": "12/1/2019",
+   "HoraAgencia": "20:45",
+   "Monto": "Pozo Estimado",
+   "Precio": 20
+ },
+ {
+   "Fecha": "20/1/2019",
+   "Sorteo": 984,
+   "HoraSorteo": "21:00",
+   "FechaCierre": "19/1/2019",
+   "HoraAgencia": "20:45",
+   "Monto": "Pozo Estimado",
+   "Precio": 20
+ },
+ {
+   "Fecha": "27/1/2019",
+   "Sorteo": 985,
+   "HoraSorteo": "21:00",
+   "FechaCierre": "26/1/2019",
+   "HoraAgencia": "20:45",
+   "Monto": "Pozo Estimado",
+   "Precio": 20
+ }
+]

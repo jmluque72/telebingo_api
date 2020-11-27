@@ -1,0 +1,75 @@
+body {
+	font-family:Arial, Helvetica, sans-serif;
+    font-size: 12px;
+	color:#333 !important;
+	text-align:center;
+	background-color: #FFFFFF !important;
+}
+
+.page_break {
+    page-break-before: always;
+}
+	
+.title-juego {
+	background:#448cde !important;
+	text-align:center;
+	padding:5px;
+	color:#ffffff !important;
+	font-weight:normal
+}
+
+.numeros-ganadores {
+	text-align:center;
+	padding:10px;
+	font-size:20px;
+	color:#666666 !important
+}
+
+.numeros-ganadores-billete {
+	text-align:center;
+	padding:10px;
+	font-size:15px;
+	color:#666666 !important;
+}
+
+.numeros-resultados {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#666666 !important;
+}
+
+.cabecera-tabla {
+	border-bottom:solid 1px #a7a7a7; 
+	padding:15px 0
+}
+
+.cabecera-telebingo {
+	padding:5px 0;
+	text-align:center;
+	background:#e2eefc !important;
+}
+
+.interior-cabecera {
+	text-align:center;
+	font-weight:normal;
+	color:#333333 !important;
+	padding:5px 0;
+	background: #e2eefc !important;
+}
+
+.subinterior {
+	text-align:center;
+	font-weight:normal;
+	color:#333333 !important;
+	padding:1px 0;
+	background:#eaeaea !important;
+	border-top:solid 1px #fff
+}
+.borde-extracto {
+	 border-bottom:solid 0.5px #a7a7a7 !important;
+}
+
+.interior-extracto {
+	padding:5px 0;
+	text-align:center
+}

@@ -1,0 +1,98 @@
+<form id="edit_user_form" method='post' class="form" role="form" action='{% url 'bet:edit_user' pk %}'>
+    {% csrf_token %}
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Editar Usuario</h4>
+    </div>
+
+    <div class="modal-body">
+        {{ userForm.non_field_errors }}
+
+        <div class="row clearfix">
+            <div class="col-md-2">
+            	{{ userForm.first_name.label_tag }}
+            </div>
+            <div class="col-md-6">
+            	{{ userForm.first_name }}
+            </div>
+            <div class="col-md-4">
+               {{ userForm.first_name.errors }}
+            </div>
+        </div>
+	<br />
+        <div class="row clearfix">
+            <div class="col-md-2">
+            	{{ userForm.last_name.label_tag }}
+            </div>
+            <div class="col-md-6">
+            	{{ userForm.last_name }}
+            </div>
+            <div class="col-md-4">
+            	{{ userForm.last_name.errors }}
+            </div>
+        </div>
+	<br />
+        <div class="row clearfix">
+            <div class="col-md-2">
+            	{{ userForm.email.label_tag }}
+            </div>
+            <div class="col-md-6">
+            	{{ userForm.email }}
+            </div>
+            <div class="col-md-4">
+            	{{ userForm.email.errors }}
+            </div>
+        </div>
+
+        {{ profileForm.non_field_errors }}
+        {% for field in profileForm %}
+        	<br />
+            <div class="row clearfix">
+            	<div class="col-md-2">
+                	{{ field.label_tag }}
+                </div>
+                <div class="col-md-6">
+                	{{ field }}
+                </div>
+                <div class="col-md-4">
+                	{{ field.errors }}
+                </div>
+            </div>
+        {% endfor %}
+	<br />
+        <div class="row clearfix">
+            <div class="col-md-2">
+            	{{ userForm.is_active.label_tag }}
+            </div>
+            <div class="col-md-6">
+            	{{ userForm.is_active }}
+            </div>
+            <div class="col-md-4">
+            	{{ userForm.is_active.errors }}
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-info">Guardar</button>
+    </div>
+</form>
+
+<script>
+    $('select').selectpicker();
+
+    $('select').on('change', function(evt){
+        $('select').selectpicker('refresh');
+    });
+
+    var form_options = {
+        target: '.modal-content',
+        success: function () {
+        }
+    };
+    $('#edit_user_form').ajaxForm(form_options);
+
+</script>

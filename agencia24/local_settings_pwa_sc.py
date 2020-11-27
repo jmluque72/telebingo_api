@@ -1,0 +1,158 @@
+# Database
+# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+PROJECT_ROOT = BASE_DIR
+AXES_FAILURE_LIMIT=10
+CORS_ORIGIN_ALLOW_ALL = True
+DATABASES = {
+    'default': {
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'pwa_sc',    # Or path to database file if using sqlite3./AP
+        'USER': 'postgres',
+        'PASSWORD': '',
+        #'PASSWORD': 'Zz9~K*s:U6h5e+,',
+        'HOST': 'localhost',    # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',             # Set to empty string for default.
+        'CONN_MAX_AGE': 600
+    }
+}
+
+MP_SANDBOX = False
+MP_ACCESS_TOKEN = "APP_USR-5854aaf5-0a77-476d-8059-63f24c12c60b"
+MP_CLIENT_ID = "6461526720216209"
+MP_SECRET_KEY = "otXARuI35i5ZcukURJZAAw9l5MCjjBh3"
+
+
+
+# IOS
+IOS_PUSH_HEADERS = {
+    "Authorization": "key=AIzaSyB2pfw5MHTe3iajal6niPsKWaRruWuQooc",
+    "content-Type": "application/json"
+}
+
+ANDROID_PUSH_HEADERS_TABLET = {
+    "Authorization": "key=AIzaSyCBhq_afMrGKAuPNrZ6t-FpgBlH1BPOeQM", 
+    "content-Type": "application/json"
+}
+
+#===============================================================================
+# PDFKIT
+#===============================================================================
+
+WKHTMLTOPDF_PATH = '/usr/local/bin/wkhtmltopdf'
+
+#===============================================================================
+
+DESARROLLO = False# not DEBUG
+
+SITE_ID = 4 
+
+ADMINS = [('Developer', 'developer@liricus.com.ar')]
+DEBUG = True
+ALLOWED_HOSTS = ['*','api.jugaya.com', 'admin.sc.loteriamovil.com.ar','localhost']
+
+"""LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': 'A24 %(levelname)s [%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'logfile': {
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': 'agencia24/error.log'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['logfile', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'agencia24_default': {
+            'handlers': ['logfile', 'console', 'mail_admins'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    }
+}"""
+
+PASSWORD_MIN_LENGTH = 4
+
+PASSWORD_COMPLEXITY = { # You can omit any or all of these for no limit for that particular set
+    "UPPER": 0,        # Uppercase
+    "LOWER": 0,        # Lowercase
+    "LETTERS": 0,      # Either uppercase or lowercase letters
+    "DIGITS": 0,       # Digits
+    "SPECIAL": 0,      # Not alphanumeric, space or punctuation character
+    "WORDS": 0         # Words (alphanumeric sequences separated by a whitespace or punctuation character)
+}
+
+APP_CODE="PWA_SC"
+URL_DOMAIN="http://api.aikejugar.com.ar/"
+#URL_DOMAIN="http://13.58.40.234:8090/"
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(PROJECT_ROOT, "templates"),
+            "/home/ubuntu/projects/loteriamovil/src/agencia24/bet/templates",
+        ],
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
+                'bet.context_processors.debug',
+            ],
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+                'django.template.loaders.eggs.Loader',
+            ],
+            #'debug': False,
+        },
+    },
+]
+
+EMAIL_HOST_USER = "contacto_aikejugar"
+EMAIL_HOST_PASSWORD = "aikejugar100"
+EMAIL_HOST = 'smtp.webfaction.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = '(AikeJugar) <no_reply@aikejugar.com.ar>'
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+REQUIRE_UNIQUE_EMAIL = False
+
+
+

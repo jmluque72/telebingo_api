@@ -1,0 +1,60 @@
+{% load humanize %}
+<br/>
+<div class="row clearfix divisor-tabla">
+    <div class="row clearfix">
+        <div class="col-md-2">
+            <div class="form-group">
+                {% if round_number %}
+                <label class="titulo-separador">{{ round_number }}° Ronda</label><br />
+                {% endif %}
+                <span>{{ subtitle }}</span>
+             </div>
+        </div>
+    </div>
+
+    {% for number in results.get_numbers %}
+        {% if columns and forloop.counter0|divisibleby:columns %}
+            <div class="row clearfix">
+        {% endif %}
+
+        <div class="col-md-1">
+            <div class="form-group">
+                {{ number }}
+            </div>
+        </div>
+
+        {% if columns %}
+            {% if forloop.counter|divisibleby:columns or forloop.last %}
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="row clearfix">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Billete</label>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Premio</label>
+            </div>
+        </div>
+    </div>
+    {% for extract in results.extract_set.all %}
+        <div class="row clearfix">
+            <div class="col-md-2">
+                <div class="form-group">
+                    {{ extract.tbgrowextract.coupon.number }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    {% if extract.prize_type == 0 %}$ {% endif %}{{ extract.get_prize|intcomma }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>

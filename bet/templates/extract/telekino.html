@@ -1,0 +1,13 @@
+{% extends 'extract/base_extract.html' %}
+
+{% block content %}
+    {% with results=draw.telekino_results.tel title="Telekino" columns=3 %}
+        {% include 'extract/results_set.html' %}
+    {% endwith %}
+
+    {% with results=draw.telekino_results.rek title="Rekino" columns=5 %}
+        {% include 'extract/results_set.html' %}
+    {% endwith %}
+
+
+{% endblock %}

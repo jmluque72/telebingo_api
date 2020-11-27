@@ -1,0 +1,1000 @@
+ 1016  ls
+ 1017  cd src
+ 1018  ls
+ 1019  cd agencia24/
+ 1020  ls
+ 1021  nano local_settings_pwa_sc.py 
+ 1022  cd 
+ 1023  sudo su
+ 1024  cd proyects/
+ 1025  pwd
+ 1026  clear
+ 1027  ls
+ 1028  cd loteriamovil
+ 1029  ls
+ 1030  source bin/activste
+ 1031  source bin/activate
+ 1032  cd src
+ 1033  ls
+ 1034  history 
+ 1035  vi scripts/files/loto5.json 
+ 1036  python manage.py runscript --settings settings_pwa_sc
+ 1037  python manage.py runscript --settings settings_pwa_sc loadLoto5
+ 1038  cd agencia24/
+ 1039  ls
+ 1040  cd ..
+ 1041  python manage.py runscript --settings settings_pwa_sc.py loadLoto5
+ 1042  python manage.py runscript --settings settings_pwa_sc loadLoto5
+ 1043  history 
+ 1044  python manage.py runscript --settings agencia24.settings_pwa_sc loadLoto5
+ 1045  ls scripts/
+ 1046  python manage.py runscript --settings agencia24.settings_pwa_sc load_loto5
+ 1047  vi scripts/files/loto.json 
+ 1048  python manage.py runscript --settings agencia24.settings_pwa_sc load
+ 1049  python manage.py runscript --settings agencia24.settings_pwa_sc load_loto
+ 1050  vi scripts/files/brinco.json
+ 1051  python manage.py runscript --settings agencia24.settings_pwa_sc load_brinco
+ 1052  vi scripts/files/quini6.json
+ 1053  python manage.py runscript --settings agencia24.settings_pwa_sc load_quini6
+ 1054  python manage.py runscript --settings agencia24.settings_sf load_loto5
+ 1055  python manage.py runscript --settings agencia24.settings_sf load_loto
+ 1056  python manage.py runscript --settings agencia24.settings_sf load_quini6
+ 1057  python manage.py runscript --settings agencia24.settings_sf load_brinco
+ 1058  history mounth 
+ 1059  history
+ 1060  history > m<1
+ 1061  vi m<1
+ 1062  vi m1 
+ 1063  sudo mount /dev/xvdf1 /home/ubuntu/proyects/
+ 1064  sudo mount /dev/xvdf /home/ubuntu/proyects/
+ 1065  sudo service apache2 restart
+ 1066  pwd
+ 1067  cd proyects/
+ 1068  cd springfield/
+ 1069  source bin/activate
+ 1070  cd src
+ 1071  ls
+ 1072  history 
+ 1073  nohup python  manage.py runserver 0.0.0.0:9191 &
+ 1074  deativate
+ 1075  deactivate
+ 1076  pwd
+ 1077  cd ..
+ 1078  cd devt
+ 1079  ls
+ 1080  source bin/actiate
+ 1081  source bin/activate
+ 1082  cd src
+ 1083  ls
+ 1084  history 
+ 1085  nohup python  manage.py runserver 0.0.0.0:9999 &
+ 1086  exit
+ 1087  pwd
+ 1088  cd proyects/
+ 1089  ls
+ 1090  cd springfield/
+ 1091  ls
+ 1092  clear
+ 1093  ls
+ 1094  cd src
+ 1095  ls
+ 1096  vi springfield/settings.py
+ 1097  vi city/models.py
+ 1098  vi springfield/settings.py
+ 1099  pwd
+ 1100  cd
+ 1101  cd proyects/
+ 1102  cd take
+ 1103  ls
+ 1104  exit
+ 1105  sudo service mysql restart
+ 1106  exit
+ 1107  sudo service apache2 restart
+ 1108  exit
+ 1109  top
+ 1110  hg status
+ 1111  pwd
+ 1112  top
+ 1113  ps -fea | grep mono
+ 1114  kill -9 369
+ 1115  ps -fea | grep mono
+ 1116  kill -9 30377
+ 1117  sudo kill -9 30377
+ 1118  ps -fea | grep mono
+ 1119  top
+ 1120  exit
+ 1121  top
+ 1122  sudo service apache2 restart
+ 1123  top
+ 1124  pwd
+ 1125  exit
+ 1126  top
+ 1127  clear
+ 1128  ls
+ 1129  top
+ 1130  sudo service mysqld stop
+ 1131  sudo service mysql stop
+ 1132  top
+ 1133  pwd
+ 1134  sudo su - 
+ 1135  pwd
+ 1136  cd proyects/
+ 1137  cd devt/
+ 1138  ls
+ 1139  source bin/activate
+ 1140  cd src
+ 1141  ls
+ 1142  history 
+ 1143  nohup python  manage.py runserver 0.0.0.0:9999 &
+ 1144  ps -fea | grep python 
+ 1145  kill -9 12117
+ 1146  kill -9 12119
+ 1147  deactivate
+ 1148  pwd
+ 1149  cd ..
+ 1150  pwd
+ 1151  cd ..
+ 1152  cd springfield/
+ 1153  ls
+ 1154  source bin/activater
+ 1155  source bin/activate
+ 1156  cd src
+ 1157  ls
+ 1158  /home/ubuntu/proyects/devt/bin/python manage.py runserver 0.0.0.0:9191
+ 1159  deactivate
+ 1160  pwd
+ 1161  cd ..
+ 1162  source bin/activate
+ 1163  cd src
+ 1164  nohup python manage.py runserver 0.0.0.0:9191
+ 1165  nohup python manage.py runserver 0.0.0.0:9191 &
+ 1166  top
+ 1167  clear
+ 1168  sudo su - 
+ 1169  pwd
+ 1170  clear
+ 1171  pwd
+ 1172  exit
+ 1173  history > m1
+ 1174  vi m1
+ 1175  sudo mount /dev/xvdf /home/ubuntu/proyects/
+ 1176  sudo service apache2 restart
+ 1177  cd /etc/apache2/
+ 1178  cd sites-enabled/
+ 1179  ls
+ 1180  ls *.conf
+ 1181  clear
+ 1182  ls *.conf
+ 1183  mv coco_api.conf  coco_api.old
+ 1184  sudo mv coco_api.conf  coco_api.old
+ 1185  sudo mv landing_agencia24.conf landing_agencia24.old
+ 1186  mv lp.loteriamovil.com.ar.conf lp.loteriamovil.com.ar.old
+ 1187  sudo mv lp.loteriamovil.com.ar.conf lp.loteriamovil.com.ar.old
+ 1188  sudo mv lp.loteriamovil.com.ar.ssl.conf lp.loteriamovil.com.ar.ssl.old
+ 1189  sudo mv turnos_dev.conf turnos_dev.old
+ 1190  sudo service apache2 restart
+ 1191  top
+ 1192  clear
+ 1193  ls
+ 1194  pwd
+ 1195  ls
+ 1196  top
+ 1197  sudo service apache2 restart
+ 1198  top
+ 1199  exit
+ 1200  cd proyects
+ 1201  cd emovil
+ 1202  ls
+ 1203  source bin/activate
+ 1204  cd src
+ 1205  python manage.py shell
+ 1206  top
+ 1207  ping site.proclubapp.com
+ 1208  pwd
+ 1209  exit
+ 1210  pwd
+ 1211  ls
+ 1212  top
+ 1213  clear
+ 1214  pwd
+ 1215  cd proyects/
+ 1216  pwd
+ 1217  cd devt
+ 1218  ls
+ 1219  cd ..
+ 1220  ls
+ 1221  clear
+ 1222  ls
+ 1223  cd springfield/
+ 1224  ls
+ 1225  pwd
+ 1226  tar zcvf sprintfield.tgz *
+ 1227  ls
+ 1228  pwd
+ 1229  cd /home/ubuntu/backups/
+ 1230  ls
+ 1231  cd ..
+ 1232  cd proyects/
+ 1233  cd backups
+ 1234  ls
+ 1235  vi kk.sh 
+ 1236  vi poten2.sh
+ 1237  vi devpoten.sh
+ 1238  vi devpoten.pem
+ 1239  ./poten2.sh
+ 1240  chmod a+x poten2.sh
+ 1241  ./poten2.sh
+ 1242  chmod 600 devpoten.pem 
+ 1243  ./poten2.sh
+ 1244  clcear
+ 1245  pwd
+ 1246  clear
+ 1247  ls
+ 1248  cp poten2.sh spoten2.sh
+ 1249  vi spoten2.sh 
+ 1250  ./spoten2-.sh
+ 1251  ./spoten2.sh
+ 1252  vi spoten2.sh 
+ 1253  ./spoten2.sh
+ 1254  vi spoten2.sh 
+ 1255  ./spoten2.sh
+ 1256  pwd
+ 1257  ls
+ 1258  clear
+ 1259  ls
+ 1260  pwd
+ 1261  mv /home/ubuntu/proyects/springfield/*.tgz .
+ 1262  ls
+ 1263  ./spoten2.sh
+ 1264  ls
+ 1265  ./spoten2.sh 
+ 1266  vi /etc/apache2/sites-enabled/weiv.conf 
+ 1267  vi /etc/apache2/sites-enabled/*weiv*
+ 1268  sudo su -
+ 1269  pwd
+ 1270  cd ..
+ 1271  ls
+ 1272  clear
+ 1273  ls
+ 1274  cd loteriamovil/
+ 1275  ls
+ 1276  clear
+ 1277  ls
+ 1278  pwd
+ 1279  cd src
+ 1280  ls
+ 1281  cd ..
+ 1282  source bin/activate
+ 1283  cd src
+ 1284  ls
+ 1285  history 
+ 1286  history > m1
+ 1287  vi m1
+ 1288  pwd
+ 1289  cd agencia24
+ 1290  ls
+ 1291  ls *pwa*
+ 1292  cd ..
+ 1293  nohup python manage.py runserver 0.0.0.0:8080 --settings agencia24.settings_pwa_sc
+ 1294  nohup python manage.py runserver 0.0.0.0:8080 --settings agencia24.settings_pwa_sc &
+ 1295  sudo kill -9 13323
+ 1296  nohup python manage.py runserver 127.0.0.1:8080 --settings agencia24.settings_pwa_sc &
+ 1297  ps -fea | grep 8080
+ 1298  kill -9 13325
+ 1299  ps -fea | grep 8080
+ 1300  nohup python manage.py runserver 127.0.0.1:8080 --settings agencia24.settings_pwa_sc &
+ 1301  ps -fea | grep 8080
+ 1302  cd /etc/apache2/
+ 1303  ls
+ 1304  cd sites-enabled/
+ 1305  ls
+ 1306  clear
+ 1307  ls *.old
+ 1308  clear
+ 1309  pwd
+ 1310  ls
+ 1311  ls *pwa*
+ 1312  sudo service apache2 restart
+ 1313  vi pwa_api-le-ssl.conf
+ 1314  pwd
+ 1315  ls
+ 1316  vi cde.conf 
+ 1317  cd /var/www/html/emovil_js/
+ 1318  ls
+ 1319  cd scripts/
+ 1320  ls
+ 1321  grep api.emovil.com.ar *
+ 1322  vi app.js
+ 1323  sudo vi app.js
+ 1324  sudo service apache2 restart
+ 1325  ls
+ 1326  cd
+ 1327  cd proyects/
+ 1328  pwd
+ 1329  clear
+ 1330  ls
+ 1331  sudo su -
+ 1332  pwd
+ 1333  exit
+ 1334  chmod -R 777 /tmp/syslog
+ 1335  sudo chmod -R 777 /tmp/syslog
+ 1336  cd proyects
+ 1337  cd emovi
+ 1338  cd emovil
+ 1339  source bin/activate
+ 1340  cd src
+ 1341  python manage.py shell
+ 1342  cd ..
+ 1343  sudo su
+ 1344  sudo service apache2 restart
+ 1345  top
+ 1346  pwd
+ 1347  cd proyects/
+ 1348  pwd
+ 1349  ls
+ 1350  pwd
+ 1351  cd weiv
+ 1352  ls
+ 1353  top
+ 1354  pwd
+ 1355  top
+ 1356  sudo service apache2 restart
+ 1357  sudo su - 
+ 1358  sudo su
+ 1359  cd nuve
+ 1360  cd proyects/
+ 1361  cd nuve
+ 1362  ls
+ 1363  cd src
+ 1364  ls
+ 1365  tar zcvf nuve.tgz *
+ 1366  mv nuve.tgz /tmp
+ 1367  exit
+ 1368  top
+ 1369  sudo service apache2 restart
+ 1370  sudo su
+ 1371  top
+ 1372  cd nuve
+ 1373  cd
+ 1374  cd nuve
+ 1375  pwd
+ 1376  cd proyects/
+ 1377  cd nuve
+ 1378  ls
+ 1379  cd src
+ 1380  ls
+ 1381  vi index.js 
+ 1382  vi auth/login.js 
+ 1383  vi index.js 
+ 1384  vi App.js
+ 1385  ls
+ 1386  vi index.js 
+ 1387  vi containers/App.js
+ 1388  vi ../store.js
+ 1389  ls
+ 1390  vi index.js 
+ 1391  top
+ 1392  ls
+ 1393  cd components/
+ 1394  ls
+ 1395  grep -r push *.js
+ 1396  vi BarMenu.js 
+ 1397  cd components/
+ 1398  top
+ 1399  sudo service apache2 restart
+ 1400  top
+ 1401  clear
+ 1402  top
+ 1403  sudo service apache2 restart
+ 1404  swapoff /dev/sda2
+ 1405  sudo swapoff /dev/sda2
+ 1406  sudo fdisk 
+ 1407  sudo fdisk -l
+ 1408  sudo swapoff /dev/xvda
+ 1409  sudo swapoff /dev/xvda1
+ 1410  top
+ 1411  pwd
+ 1412  sudo su -
+ 1413  top
+ 1414  sudo service apache2 restart
+ 1415  top
+ 1416  exit
+ 1417  top
+ 1418  sudo service apache2 restart
+ 1419  top
+ 1420  pwd
+ 1421  cd proyects/
+ 1422  cd devt
+ 1423  ls
+ 1424  source bin/activate
+ 1425  cd src
+ 1426  pwd
+ 1427  nohup python manage.py runserver 0.0.0.0:9191 &
+ 1428  ps -fea | grep python 
+ 1429  kill -9 32494
+ 1430  kill -9 32496
+ 1431  pwd
+ 1432  nohup python manage.py runserver 0.0.0.0:9999 &
+ 1433  deactivate
+ 1434  cd
+ 1435  cd proyects/
+ 1436  cd springfield/
+ 1437  ls
+ 1438  source bin/activate
+ 1439  cd src
+ 1440  l
+ 1441  ls
+ 1442  python manage.py runserver 0.0.0.0:9191
+ 1443  nohup python manage.py runserver 0.0.0.0:9191 &
+ 1444  clear
+ 1445  df -h .
+ 1446  top
+ 1447  sudo servie apache2 restart
+ 1448  sudo service apache2 restart
+ 1449  top
+ 1450  ls
+ 1451  cd proyects
+ 1452  ls
+ 1453  exit
+ 1454  sudo service apache2 restart
+ 1455  top
+ 1456  clear
+ 1457  pwd
+ 1458  cd
+ 1459  cd proyects/
+ 1460  top
+ 1461  exit
+ 1462  top
+ 1463  sudo service apache2 restart
+ 1464  top
+ 1465  exit
+ 1466  top
+ 1467  sudo service apache2 restart
+ 1468  sudo service apache2 restart
+ 1469  cd proyects/
+ 1470  cd loteriamovil
+ 1471  ls
+ 1472  cd src
+ 1473  ls
+ 1474  vi bet/models.py
+ 1475  vi bet/webservices.py
+ 1476  sudo service apache2 restart
+ 1477  vi bet/webservices.py
+ 1478  sudo service apache2 restart
+ 1479  vi bet/webservices.py
+ 1480  sudo service apache2 restart
+ 1481  vi bet/webservices.py
+ 1482  vi bet/models.py
+ 1483  vi bet/webservices.py
+ 1484  sudo service apache2 restart
+ 1485  top
+ 1486  exit
+ 1487  cd proyects/
+ 1488  cd turnos
+ 1489  ls
+ 1490  cd src
+ 1491  clear
+ 1492  ls
+ 1493  cd turnos/
+ 1494  ls
+ 1495  clear
+ 1496  ls
+ 1497  cd templates/
+ 1498  ls
+ 1499  clear
+ 1500  ls
+ 1501  vi home.html 
+ 1502  clear
+ 1503  pwd
+ 1504  cd 
+ 1505  cd turnos
+ 1506  ls
+ 1507  cd src
+ 1508  ls
+ 1509  cd turnos/
+ 1510  ls
+ 1511  cd templates
+ 1512  ls
+ 1513  vi home.html 
+ 1514  exit
+ 1515  cd turnos
+ 1516  ls
+ 1517  cd src
+ 1518  ls
+ 1519  vi turnos/templates/home.html 
+ 1520  pwd
+ 1521  cd
+ 1522  cd proyects/
+ 1523  cd turnos
+ 1524  ls
+ 1525  sudo su - 
+ 1526  pwd
+ 1527  clear
+ 1528  ls
+ 1529  cd
+ 1530  exit
+ 1531  cd proyects
+ 1532  cd emovil
+ 1533  source bin/activate
+ 1534  cd src
+ 1535  python manage.py shell
+ 1536  top
+ 1537  sudo service apache2 restart
+ 1538  exit
+ 1539  sudo su - 
+ 1540  top
+ 1541  sudo service apache2 restart
+ 1542  cd proyects/
+ 1543  pwd
+ 1544  cd loteriamovil
+ 1545  ls
+ 1546  cd src
+ 1547  ls
+ 1548  vi scripts/files/quinielas.json 
+ 1549  hisotry 
+ 1550  history 
+ 1551  cd ..
+ 1552  source bin/activate
+ 1553  cd src
+ 1554  python manage.py runscript --settings agencia24.settings_sf load_qunielas
+ 1555  python manage.py runscript --settings agencia24.settings_sf load_quniela
+ 1556  python manage.py runscript --settings agencia24.settings_sf load_quiniela
+ 1557  python manage.py runscript --settings agencia24.settings_sf load_quinielas
+ 1558  pwd
+ 1559  exit
+ 1560  history 
+ 1561  history  > m1
+ 1562  vi m1
+ 1563  sudo mount /dev/xvdf /home/ubuntu/proyects/
+ 1564  sudo service apache2 restart
+ 1565  cd proyects
+ 1566  ls
+ 1567  cd weiv
+ 1568  source bin/actuvate
+ 1569  source bin/activate
+ 1570  cd src
+ 1571  ls
+ 1572  cd event
+ 1573  ls
+ 1574  cd webservices.py
+ 1575  nano webservices.py
+ 1576  sudo servicce apache2 restart
+ 1577  sudo service apache2 restart
+ 1578  cd devt
+ 1579  ls
+ 1580  cd proyects/
+ 1581  cd turnos
+ 1582  ls
+ 1583  cd ..
+ 1584  cd devt/
+ 1585  ls
+ 1586  cd src
+ 1587  pwd
+ 1588  source bin/activate
+ 1589  cd ..
+ 1590  source bin/activate
+ 1591  pwd
+ 1592  ls
+ 1593  clear
+ 1594  deactivate
+ 1595  cd
+ 1596  cd proyects/
+ 1597  cd springfield/
+ 1598  ls
+ 1599  source bin/activate
+ 1600  cd src
+ 1601  ls
+ 1602  hisotry 
+ 1603  history 
+ 1604  nohup python manage.py runserver 0.0.0.0:9191 &
+ 1605  exit
+ 1606  psql -U postgres emovil
+ 1607  pwd
+ 1608  cd proyects/
+ 1609  ls
+ 1610  cd emovil
+ 1611  ls
+ 1612  cd src
+ 1613  ls
+ 1614  vi generic/settings.py
+ 1615  psql -U postgres cde_emovil
+ 1616  pwd
+ 1617  exit
+ 1618  cd proyects/
+ 1619  cd loteria
+ 1620  cd loteriamovil/
+ 1621  ls
+ 1622  cd src
+ 1623  ls
+ 1624  cd scripts/
+ 1625  ls
+ 1626  clear
+ 1627  ls
+ 1628  vi result_loto.py
+ 1629  cat result_loto.py
+ 1630  vi result_loto.py
+ 1631  crontab -e
+ 1632  cd ..
+ 1633  source bin/activate
+ 1634  vi /home/ubuntu/proyects/loteriamovil/run_minute.sh
+ 1635  sudo su -
+ 1636  pwd
+ 1637  ls
+ 1638  cd src
+ 1639  ls
+ 1640  cd bet
+ 1641  ls
+ 1642  cd jobs
+ 1643  ls
+ 1644  vi /home/ubuntu/proyects/loteriamovil/run_minute.sh
+ 1645  sudo su - crontab -l 
+ 1646  sudo crontab -l 
+ 1647  ls
+ 1648  cd ..
+ 1649  ls
+ 1650  cd ..
+ 1651  cd scripts/
+ 1652  ls
+ 1653  grep cron *
+ 1654  grep Cron *
+ 1655  cd ..
+ 1656  ls
+ 1657  cd sbet
+ 1658  ls
+ 1659  cd bet
+ 1660  vi tests.py 
+ 1661  grep Cron *
+ 1662  grep -r Cron *
+ 1663  cd ..
+ 1664  cd agencia24/
+ 1665  ls
+ 1666  grep cron *
+ 1667  grep Cron *
+ 1668  cd ..
+ 1669  cd bet
+ 1670  cd jobs
+ 1671  ls
+ 1672  cd daily/
+ 1673  ls
+ 1674  vi clear_tokens.py
+ 1675  cd ..
+ 1676  cd hourly/
+ 1677  kls
+ 1678  ls
+ 1679  cd ..
+ 1680  ls
+ 1681  cd hourly/
+ 1682  ls
+ 1683  cd ..
+ 1684  ls
+ 1685  pwd
+ 1686  cd ..
+ 1687  sudo crontab -l
+ 1688  /home/ubuntu/emovil/bin/activate &&  python /home/ubuntu/emovil/src/manage.py runcrons
+ 1689  clear
+ 1690  ls
+ 1691  crontab -l 
+ 1692  vi /home/ubuntu/proyects/loteriamovil/run_minute.sh
+ 1693  vi /home/ubuntu/proyects/loteriamovil/run_hour.sh
+ 1694  python manage.py runscript --settings agencia24.settings_sf result_loto
+ 1695  exit
+ 1696  cd proyects
+ 1697  cd emovil
+ 1698  cd src
+ 1699  hg pull -u
+ 1700  sudo service apache2 restart
+ 1701  hg pull -u
+ 1702  sudo service apache2 restart
+ 1703  hg pull -u
+ 1704  sudo service apache2 restart
+ 1705  python manage.py makemigrations
+ 1706  cd ..
+ 1707  source bin/activate
+ 1708  cd src
+ 1709  python manage.py makemigratons
+ 1710  python manage.py makemigrations
+ 1711  hg pull -u
+ 1712  python manage.py makemigrations
+ 1713  hg pull -u
+ 1714  python manage.py makemigrations
+ 1715  python manage.py migrate
+ 1716  sudo service apache2 restart
+ 1717  hg pull -u
+ 1718  python manage.py migrate
+ 1719  python manage.py makemigrations
+ 1720  python manage.py migrate
+ 1721  sudo service apache2 restart
+ 1722  pwd
+ 1723  exit
+ 1724  history 
+ 1725  sudo mount /dev/xvdf /home/ubuntu/proyects/
+ 1726  sudo service apache2 restart
+ 1727  top
+ 1728  sudo service apache2 restart
+ 1729  top
+ 1730  sudo service apache2 restart
+ 1731  exit
+ 1732  sudo service apache2 restart
+ 1733  crontab -e
+ 1734  sudo su -
+ 1735  top
+ 1736  ps -fea | grep 10564 
+ 1737  crontab -l 
+ 1738  sudo su -
+ 1739  exit
+ 1740  top
+ 1741  pwd
+ 1742  cd proyects/
+ 1743  ls
+ 1744  cd springfield/
+ 1745  source bin/activate
+ 1746  cd src
+ 1747  history 
+ 1748  ps -fea | grep 9191
+ 1749  nohup python manage.py runserver 0.0.0.0:9191 &
+ 1750  ls -lart
+ 1751  exit
+ 1752  ls -lart
+ 1753  top
+ 1754  pwd
+ 1755  cd proyects/
+ 1756  ./poten2.sh
+ 1757  pwd
+ 1758  exit
+ 1759  sudo service apache2 restart
+ 1760  toip
+ 1761  top
+ 1762  sudo service apache2 restart
+ 1763  top
+ 1764  exit
+ 1765  pwd
+ 1766  cd proyects/
+ 1767  cd loteriamovil/
+ 1768  ls
+ 1769  vi src/scripts/bet_not_played.py
+ 1770  sudo su - 
+ 1771  cd pro
+ 1772  cd src
+ 1773  cd agencia24/
+ 1774  ls
+ 1775  vi wsgi_pwa_sc.py
+ 1776  vi settings_pwa_sc
+ 1777  vi settings_pwa_sc.py
+ 1778  vi local_settings_pwa_sc.py
+ 1779  psql -U postgres pwa_sc
+ 1780  pwd
+ 1781  history 
+ 1782  manage.py runserver 0.0.0.0:8080 --settings agencia24.settings_pwa_sc 
+ 1783  cd ..
+ 1784  bet_not_played.py
+ 1785  manage.py runscript bet_not_played --settings agencia24.settings_pwa_sc 
+ 1786  python manage.py runscript bet_not_played --settings agencia24.settings_pwa_sc 
+ 1787  vi scripts/bet_not_played.py
+ 1788  python manage.py runscript bet_not_played --settings agencia24.settings_pwa_sc 
+ 1789  vi scripts/bet_not_played.py
+ 1790  python manage.py runscript bet_not_played --settings agencia24.settings_pwa_sc 
+ 1791  vi scripts/bet_not_played.py
+ 1792  python manage.py runscript bet_not_played --settings agencia24.settings_pwa_sc 
+ 1793  vi scripts/bet_not_played.py
+ 1794  python manage.py runscript bet_not_played --settings agencia24.settings_pwa_sc 
+ 1795  vi scripts/bet_not_played.py
+ 1796  python manage.py runscript bet_not_played --settings agencia24.settings_pwa_sc 
+ 1797  vi scripts/bet_not_played.py
+ 1798  python manage.py runscript bet_not_played --settings agencia24.settings_pwa_sc 
+ 1799  pwd
+ 1800  history | grep mount
+ 1801  sudo mount /dev/xvdf /home/ubuntu/proyects/
+ 1802  sudo service apache2 restart
+ 1803  exit
+ 1804  touch /etc/udev/rules.d/40-vm-hotadd.rules
+ 1805  vi touch /etc/udev/rules.d/40-vm-hotadd.rules
+ 1806  sudo vi touch /etc/udev/rules.d/40-vm-hotadd.rules
+ 1807  sudo touch /etc/udev/rules.d/40-vm-hotadd.rules
+ 1808  exit
+ 1809  pwd
+ 1810  top
+ 1811  sudo service apache2 restart
+ 1812  top
+ 1813  sudo touch /etc/udev/rules.d/40-vm-hotadd.rules
+ 1814  sudo reboot
+ 1815  sudo echo 1 > /proc/sys/vm/drop_caches
+ 1816  cd proc
+ 1817  cd /proc
+ 1818  cd sys
+ 1819  ls
+ 1820  cd vm
+ 1821  ls
+ 1822  sudo su -
+ 1823  history | grep mount
+ 1824  sudo mount /dev/xvdf /home/ubuntu/proyects/
+ 1825  sudo service apache2 restart
+ 1826  cd
+ 1827  cd proyects/
+ 1828  cd springfield/
+ 1829  ls
+ 1830  source bin/activater
+ 1831  source bin/activate
+ 1832  cd src
+ 1833  ls
+ 1834  history 
+ 1835  vi /etc/apache2/sites-enabled/reservas.conf 
+ 1836  nohup python manage.py runserver 0.0.0.0:9191 &
+ 1837  history > m1
+ 1838  vi m1
+ 1839  top
+ 1840  exit
+ 1841  top
+ 1842  exit
+ 1843  top
+ 1844  exit
+ 1845  history 
+ 1846  history | mount
+ 1847  history | greo mount
+ 1848  history | grep mount
+ 1849  sudo mount /dev/xvdf /home/ubuntu/proyects/
+ 1850  sudo service apache2 restrt
+ 1851  sudo service apache2 restart
+ 1852  top
+ 1853  clear
+ 1854  top
+ 1855  sudo service apache2 restart
+ 1856  sudo service apache2 restarttop
+ 1857  top
+ 1858  pwd
+ 1859  top
+ 1860  sudo service apache2 restart
+ 1861  top
+ 1862  sudo service apache2 restart
+ 1863  top
+ 1864  uname -a
+ 1865  cat /etc/*rele*
+ 1866  vi /lib/udev/rules.d/40-vm-hotadd.rules
+ 1867  top
+ 1868  vi /proc/sys/vm/drop_caches
+ 1869  sudo vi /proc/sys/vm/drop_caches
+ 1870  sudo echo 1 > /proc/sys/vm/drop_caches 
+ 1871  sudo su -
+ 1872  top
+ 1873  pwd
+ 1874  sudo su - 
+ 1875  top
+ 1876  cd proyects/
+ 1877  pwd
+ 1878  cd springfield/
+ 1879  source bin/activate
+ 1880  cd src
+ 1881  vi /etc/apache2/sites-enabled/reservas.conf
+ 1882  pwd
+ 1883  ls
+ 1884  source bin/activate
+ 1885  cd ..
+ 1886  source bin/activate
+ 1887  cd src
+ 1888  nohup python manage.py runserver 0.0.0.0:9191
+ 1889  nohup python manage.py runserver 0.0.0.0:9191 &
+ 1890  sudo su - 
+ 1891  sudo su -
+ 1892  top
+ 1893  psexit
+ 1894  exit
+ 1895  top
+ 1896  sudo service apache2 restart
+ 1897  cd proyects/
+ 1898  cd loteriamovil/
+ 1899  ls
+ 1900  cd src
+ 1901  ls
+ 1902  clear
+ 1903  ls
+ 1904  ls clear
+ 1905  ls
+ 1906  pwd
+ 1907  cd src
+ 1908  pwd
+ 1909  vi bet/views.py
+ 1910  sudo service apache2 restart
+ 1911  vi bet/views.py
+ 1912  sudo service apache2 restart
+ 1913  vi bet/views.py
+ 1914  sudo service apache2 restart
+ 1915  vi bet/views.py
+ 1916  sudo service apache2 restart
+ 1917  exit
+ 1918  cd turnos
+ 1919  ls
+ 1920  cd src
+ 1921  ls
+ 1922  vi turnos/views.py
+ 1923  top
+ 1924  ps -fea | grep python 
+ 1925  ps -fea | grep watch
+ 1926  exit
+ 1927  top
+ 1928  ps -fea | grep python 
+ 1929  ps -fea | grep watch
+ 1930  exit
+ 1931  top
+ 1932  cd proyects/
+ 1933  ls
+ 1934  cd devt/
+ 1935  ls
+ 1936  source bin/activate
+ 1937  cd src
+ 1938  ls
+ 1939  history > m1 
+ 1940  vi m1
+ 1941  nohup python  manage.py runserver 0.0.0.0:9999 &
+ 1942  top
+ 1943  pwd
+ 1944  exit
+ 1945  cat /tmp/geolocalization.txt 
+ 1946  top
+ 1947  pwd
+ 1948  cd proyects/
+ 1949  clear
+ 1950  pwd
+ 1951  clear
+ 1952  ls
+ 1953  pwd
+ 1954  clear
+ 1955  ls
+ 1956  cd sc_old
+ 1957  ls
+ 1958  cd ..
+ 1959  pwd
+ 1960  exit
+ 1961  top
+ 1962  pwd
+ 1963  cd proyects/
+ 1964  cd GT
+ 1965  ls
+ 1966  git status
+ 1967  pwd
+ 1968  exit
+ 1969  cd /tmp
+ 1970  wget https://tce-in.s3.amazonaws.com/fcd9fe5ed83e0fbd593a81db67fe5e1.mp4
+ 1971  ffmepg
+ 1972  ffmegp
+ 1973  ffmpeg -i fcd9fe5ed83e0fbd593a81db67fe5e1.mp4
+ 1974  exit
+ 1975  df -h .
+ 1976  exit
+ 1977  pwd
+ 1978  cd turnos
+ 1979  ls
+ 1980  cd src
+ 1981  ls
+ 1982  cd turnos/
+ 1983  ls
+ 1984  cd templates/
+ 1985  ls
+ 1986  vi home.html 
+ 1987  vi ../views.py
+ 1988  sudo service apache2 restart
+ 1989  vi home.html 
+ 1990  vi /etc/apache2/sites-enabled/turnos.conf 
+ 1991  vi home.html 
+ 1992  vi ../views.py
+ 1993  sudo service apache2 restart
+ 1994  tail -f /var/log/apache2/error.log
+ 1995  vi ../views.py
+ 1996  sudo service apache2 restart
+ 1997  tail -f /var/log/apache2/error.log
+ 1998  exit
+ 1999  sudo su -
+ 2000  exit
+ 2001  pwd
+ 2002  cd proyects/
+ 2003  cd loteriamovil
+ 2004  ls
+ 2005  cd src
+ 2006  clear
+ 2007  pwd
+ 2008  ls
+ 2009  cd ..
+ 2010  source bin/activate
+ 2011  cd src
+ 2012  ls
+ 2013  history 
+ 2014  history > m<
+ 2015  history > m1

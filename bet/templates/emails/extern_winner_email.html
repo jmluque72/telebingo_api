@@ -1,0 +1,14 @@
+{% extends 'emails/base_email.html' %}
+{% load humanize %}
+
+{% block greeting %}{% endblock %}
+
+{% block content %}
+    <p>El usuaio <strong>{{ user.get_full_name }}</strong> ganó <strong>
+    {% if winner.prize_type == 0 %}
+        ${{ winner.get_prize|intcomma }}
+    {% else %}
+        {{ winner.get_prize }}
+    {% endif %}
+    </strong> en {{ game.article }} {{ game.name }}.</p>
+{% endblock %}

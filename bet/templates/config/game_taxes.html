@@ -1,0 +1,158 @@
+{% extends "config/base_config.html" %}
+{% load staticfiles %}
+
+{% block selected_menu %}#settings-menu{% endblock %}
+{% block selected_tab %}#game-taxes-tab{% endblock %}
+
+{% block content %}
+
+    {{ block.super }}
+
+    <form method="get">
+        <div class="row clearfix divisor">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ filterForm.province.label }}</label>
+                    {{ filterForm.province }}
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% if filterForm.province.value %}
+
+        <form method="post" action="">
+            {% csrf_token %}
+
+            {{ taxesFormSet.management_form }}
+            <div class="row clearfix divisor-cabeceras">
+                <div class="col-md-2"><strong>Juego</strong></div>
+                <div class="col-md-2"><strong>Min. Nac. ($)</strong></div>
+                <div class="col-md-2"><strong>Imp. Nac. (%)</strong></div>
+                <div class="col-md-2"><strong>Min. Prov. ($)</strong></div>
+                <div class="col-md-2"><strong>Imp. Prov. (%)</strong></div>
+                <div class="col-md-2"><strong>Max. ($)</strong></div>
+            </div>
+            <br/>
+            {% for form in taxesFormSet %}
+
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+
+                <div class="row clearfix">
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {% if form.instance.pk %}
+                                {{ form.instance.game.name }}
+                            {% else %}
+                                {{ form.get_name_display }}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.min_nat }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.nat_tax }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.min_prov }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.prov_tax }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.min }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.non_field_errors }}
+                        </div>
+                    </div>
+                </div>
+                {% if form.errors %}
+                    <div class="row clearfix">
+
+                    <div class="col-md-2">
+                        {{ form.non_field_errors }}
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.min_nat.errors }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.nat_tax.errors }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.min_prov.errors }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.prov_tax.errors }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.min.errors }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.non_field_errors.errors }}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {{ form.non_field_errors }}
+
+            {% endfor %}
+
+            <br/>
+            <div class="row clearfix">
+                <input class="btn" type="button" value="Cancelar" onclick="window.location={% url 'bet:old_draws' %};"/>
+                <button class="btn btn-info" name="save" type="submit">GUARDAR</button>
+            </div>
+        </form>
+    {% else %}
+        <h4>Seleccione una provincia</h4>
+    {% endif %}
+
+    <script>
+        $(function() {
+           $("#id_province").change(function () {
+                $(this).closest('form').submit();
+           });
+        });
+    </script>
+
+{% endblock %}

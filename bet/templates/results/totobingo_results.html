@@ -1,0 +1,86 @@
+{% extends "results/results_base.html" %}
+
+{% block action_form %}{% url 'bet:totobingo_results' draw.pk %}{% endblock %}
+
+{% block tabs %}
+    <div class="row clearfix base-tabs"> <!-- PESTAÑA EXTRACTO/GANADORES -->
+        <div class="col-md-2 tab-activa">Extracto</div>
+        <div class="col-md-2 tab-inactiva">Ganadores</div>
+    </div>
+{% endblock %}
+
+{% block results %}
+
+    {% with form=gogForm numbersFormSet=gogFormSet extractForm=extractFormGog title='Ganá o ganá' dynamic='gog' %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+
+    {% with form=pozForm extractForm=extractFormPoz title='Pozo Millonario' columns=4 %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+
+    {% with form=starForm extractForm=extractFormStar title='Bolilla Estrella' %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+
+    {% include 'results/coupons_results.html' %}
+
+{% endblock %}
+
+{% block script_extracto %}
+<script>
+    $(document).ready(function() {
+        var extracto = {
+                "gog": [[1, 200000]],
+                "poz": [[0, 3800000],
+                        [5, 8000],
+                        [100, 250],
+                        [1500, 10],
+                        [0, 10000000]],
+                "star": [[3000, 10]]
+            };
+
+        var holder = $('.base-tabs');
+        if (holder.length == 0)
+            holder = $('legend');
+
+        holder.append('<ul id="navul" class="nav navbar-nav pull-right"><a href="javascript:void(0)" id="button_fill"><h4>LLENAR</h4></a></ul>');
+
+        $('#button_fill').on("click", function () {
+            $('input[type=number]').each(function () {
+                var max = $(this).attr("max");
+                if (max)
+                    $(this).val(Math.floor((Math.random() * parseInt(max)) + 1));
+            });
+
+            Object.keys(extracto).forEach(function(key) {
+                var array = extracto[key];
+                array.forEach(function(entry, index) {
+                    var winners = key+'-'+index+'-winners';
+                    $('input[type=number][name='+winners+']').val(entry[0]);
+                    var prize = key+'-'+index+'-value';
+                    $('input[type=number][name='+prize+']').val(entry[1]);
+                });
+            });
+        });
+
+        $('form').on('submit', function(e){
+            e.preventDefault();
+
+            var numbers = [];
+            $("input[type=number][class=number-comma]").each(function () {
+                var number = $(this).val();
+                if (number)
+                    numbers.push(number);
+            });
+            console.log(numbers);
+
+            $("#id_numbers").val(numbers.join(','));
+
+            this.submit();
+        });
+
+    });
+</script>
+{% endblock %}
+

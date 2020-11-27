@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load ifusergroup %}
+{% load staticfiles %}
+{% load pagination_tags %}
+
+{% block extra_head %}<!-- form.media -->{{ form.media }}{% endblock %}
+
+{% block selected_menu %}#bets-menu{% endblock %}
+
+{% block content %}
+    <!-- Dialog -->
+    <div class="modal fade" id="modal-detail" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <!-- EndDialog -->
+
+    <legend>Apuestas recibidas <span>Total: ${{ total }}</span></legend>
+
+    <form method="get" action="{% url 'bet:bets' %}">
+        <div class="row clearfix divisor">
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_from.label }}</label>
+                    {{ form.date_from }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_to.label }}</label>
+                    {{ form.date_to }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.user.label }}</label><br />
+                    {{ form.user }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.game.label }}</label><br />
+                    {{ form.game }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.agency.label }}</label><br />
+                    {{ form.agency }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.state.label }}</label>
+                    {{ form.state }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <button class="btn btn-info" id="submit-draw-filter" type="submit" style="margin-top:24px">Filtrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <br />
+    <div class="row clearfix divisor-cabeceras">
+        <div class="col-md-1"><strong>Fecha Apuesta</strong></div>
+        <div class="col-md-2"><strong>Usuario</strong></div>
+        <div class="col-md-2"><strong>Juego</strong></div>
+        <div class="col-md-1"><strong>Detalle</strong></div>
+        <div class="col-md-1"><strong>Fecha Juego</strong></div>
+        <div class="col-md-1"><strong>Monto</strong></div>
+        <div class="col-md-2"><strong>Agencia</strong></div>
+        <div class="col-md-1"><strong>Estado</strong></div>
+        <div class="col-md-1"><strong>Extracto</strong></div>
+     </div>
+
+    {% autopaginate bet_list 20 %}
+    {% for bet in bet_list %}
+        <div class="row clearfix divisor-tabla{{ bet.won|yesno:" won," }}">
+            <div class="col-md-1">{{ bet.date_bet|date:"d M H:i" }}</div>
+            <div class="col-md-2">{{ bet.user.user.get_full_name }}</div>
+            <div class="col-md-2">
+                <img width="35px" src="{{ bet.game.logo.url }}"/>{{ bet.game.name }}
+            </div>
+            <div class="col-md-1" style="font-size: 12px;">
+                <a href="{% url 'bet:bet_detail' bet.pk bet.game.code %}"
+                   data-toggle="modal" data-target="#modal-detail" >Ver Detalle</a>
+            </div>
+            <div class="col-md-1">{{ bet.draws.0.date_draw|date:"d M H:i" }}</div>
+            <div class="col-md-1">{% if bet.importq %}$ {{ bet.importq }}{% endif %}</div>
+            <div class="col-md-2">{{ bet.agency }}</div>
+            <div class="col-md-1">
+                {% if app_code == 'SC' %}
+                        Jugada
+                    {% else %}
+                        {{ bet.get_state_display }}
+                    {% endif %}
+            </div>
+{{app_code}}
+            <div class="col-md-1">{{ bet.draws.0.extract_sent|yesno:"Enviado,Pendiente" }}</div>
+        </div>
+    {% endfor %}
+    {% paginate %}
+
+    <script>
+        // VACIAR DIALOGO AL CERRAR
+        $('#modal-detail').on('hide.bs.modal', function () {
+            $(this).removeData('bs.modal');
+            $(this).find('.modal-content').html('');
+        });
+    </script>
+{% endblock %}

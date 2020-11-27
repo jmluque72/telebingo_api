@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load pagination_tags %}
+{% load humanize %}
+{% load ifusergroup %}
+{% load negatefilter %}
+{% load staticfiles %}
+
+{% block extra_head %}
+    <script src="{% static 'jquery/jquery.form.js' %}"></script>
+{% endblock %}
+
+{% block selected_menu %}#users-menu{% endblock %}
+
+{% block content %}
+    <!-- Dialog -->
+    <div class="modal fade" id="modal-movement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <!-- EndDialog -->
+	<div class="row clearfix">
+    	<legend>Usuarios</legend>
+    </div>
+
+    <div class="row clearfix divisor">
+        <a href="{% url 'bet:users' %}">Usuarios</a> &gt; <strong>{{ profile.user.get_full_name }}</strong>
+    </div>
+
+    <br />
+    <div class="row clearfix divisor">
+        <div class="col-md-3"><strong>Fecha de Alta: </strong>{{ profile.user.date_joined|date:"d-N-Y" }}</div>
+        <div class="col-md-2"><strong>Estado: </strong>{% if profile.user.is_active %}Activo{% else %}Inactivo{% endif %}</div>
+        <div class="col-md-4"><strong>eMail: </strong>{{ profile.user.email }}</div>
+    </div>
+
+    <br />
+    <div class="row clearfix divisor">
+    	<div class="col-md-3 bloque-saldo">
+        	Saldo para jugar
+            <h2 style="margin:0">${{ profile.saldo|intcomma }}</h2>
+        </div>
+        <div class="col-md-3 bloque-saldo division-saldo">
+        	Disponible para retirar
+            <h2 style="margin:0">${{ profile.saldo|intcomma }}</h2>
+        </div>
+        {% if withdrawal %}
+        <div class="col-md-3 bloque-saldo">
+        	Pedido de retiro
+            <h2 style="margin:0">${{ withdrawal.amount|negate|intcomma }}</h2>
+            <form method="post" action="{% url 'bet:approve_withdrawal' withdrawal.pk %}">
+	            {% csrf_token %}
+                <tr><td><button class="btn" type="submit">Aprobar retiro</button></td></tr>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+
+    <h2>Movimientos de cuenta</h2>
+    <br>
+    <div class="row clearfix divisor-cabeceras">
+        <div class="col-md-2"><strong>Fecha</strong></div>
+        <div class="col-md-2"><strong>Tipo de movimiento</strong></div>
+        <div class="col-md-2"><strong>Detalle</strong></div>
+        <div class="col-md-2"><strong>Importe</strong></div>
+        <div class="col-md-2"><strong>Estado</strong></div>
+        <div class="col-md-2"><strong>Saldo</strong></div>
+    </div>
+
+    {% autopaginate movements 20 %}
+    {% for movement in movements %}
+        <div class="row clearfix divisor-tabla">
+            <div class="col-md-2">{{ movement.date|date:"d-N-Y"}}<br />{{ movement.date|date:"H:i" }}</div>
+            <div class="col-md-2">{{ movement.get_code_display }}</div>
+            <div class="col-md-2">
+                <a href="{% url 'bet:movement_detail' movement.pk %}"
+                   data-toggle="modal" data-target="#modal-movement" >Ver Detalle</a>
+            </div>
+            <div class="col-md-2" {% if movement.amount < 0 %}style="color:red"{% endif %}>$ {{ movement.amount|intcomma }}</div>
+
+            <div class="col-md-2"   {% if movement.state %}
+                                        title="{{ movement.confirm_date|date:"d-N-Y H:m" }}"
+                                    {% endif %}>
+                {{ movement.get_state_display }}
+            </div>
+
+            <div class="col-md-2">$ {{ movement.saldo }}</div>
+         </div>
+    {% endfor %}
+    {% paginate %}
+
+    <script>
+        // VACIAR DIALOGO AL CERRAR
+        // (Necesario cuando se abren diferentes dialogos en una misma pagina)
+        $('#modal-movement').on('hide.bs.modal', function () {
+            $('#modal-movement').removeData('bs.modal');
+            $('#modal-movement .modal-content').html('');
+        });
+    </script>
+{% endblock %}

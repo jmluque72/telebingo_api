@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% load pagination_tags %}
+{% load widget_tweaks %}
+{% load humanize %}
+{% load ifusergroup %}
+{% load negatefilter %}
+{% load staticfiles %}
+
+{% block extra_head %}
+    <script src="{% static 'jquery/jquery.form.js' %}"></script>
+    <!-- form.media -->{{ form.media }}
+{% endblock %}
+
+{% block selected_menu %}#agencies-menu{% endblock %}
+
+{% block content %}
+    <!-- Dialog -->
+    <div class="modal fade" id="modal-detail" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    {% ifusergroup admin %}
+        <div class="modal fade" id="modal-payment" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content"></div>
+            </div>
+        </div>
+        <!-- EndDialog -->
+        <div class="row clearfix">
+            <legend>Agencia {{ agency.name }}</legend>
+        </div>
+    {% else %}
+        <div class="row clearfix">
+            <legend>Movimientos <span class="accion">{{ agency.name }}</span></legend>
+        </div>
+    {% endifusergroup %}
+
+    <div class="row clearfix">
+        <div class="col-md-2"><strong>N&uacute;mero: </strong>{{ agency.number }}</div>
+        <div class="col-md-3"><strong>Fecha de Alta: </strong>{{ agency.date_joined|date:"d.m.Y" }}</div>
+        <div class="col-md-3"><strong>Agenciero: </strong>{{ agency.user.get_full_name }}</div>
+        <div class="col-md-2"><strong>Estado: </strong>{{ agency.is_active|yesno:"Activa,Inactiva" }}</div>
+    </div>
+    <div class="row clearfix divisor">
+        <div class="col-md-2"><strong>Provincia: </strong>{{ agency.province.name }}</div>
+        <div class="col-md-3"><strong>Barrio: </strong>{{ agency.neighborhood }}</div>
+        <div class="col-md-4"><strong>Direcci&oacute;n: </strong>{{ agency.address }}</div>
+    </div>
+
+
+    <div class="row clearfix {% if not form.non_field_errors %}divisor{% endif %}">
+        <form id="filter_form" method="get" action="">
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_from.label }}</label>
+                    {{ form.date_from }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_to.label }}</label>
+                    {{ form.date_to }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.game.label }}</label><br />
+                    {{ form.game }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <button title="Vaciar filtro" class="btn" onclick="$('#filter_form').find('input').val('');$('select').selectpicker('deselectAll');" type="button" style="margin-top:24px"><i class="glyphicon glyphicon-erase"></i></button>
+                    <button class="btn btn-info" id="submit-draw-filter" type="submit" style="margin-top:24px">Filtrar</button>
+                </div>
+            </div>
+        </form>
+        <form method="get" action="">
+            <div class="col-md-2 col-md-offset-1">
+                <div class="form-group">
+                    <label>{{ form.number.label }}</label><br />
+                    {{ form.number|attr:"required:required" }}
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <button class="btn btn-info" id="submit-draw-filter" type="submit" style="margin-top:24px">Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% if form.non_field_errors %}
+        <div class="row clearfix divisor">
+            <div class="col-md-4 col-md-offset-2">
+                <div class="form-group">
+                    {{ form.non_field_errors }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <br />
+    <div class="row clearfix divisor">
+        {% ifusergroup admin %}
+            <div class="col-md-2 bloque-saldo">
+                Acreditado <h3>$ {{ confirmed|intcomma }}</h3>
+            </div>
+            <div class="col-md-2 bloque-saldo">
+                Pendiente <h3>$ {{ pending|intcomma }}</h3>
+            </div>
+            <div class="col-md-2 bloque-saldo">
+                Total Tickets <h3>$ {{ tickets|intcomma }}</h3>
+            </div>
+            <div class="col-md-2 bloque-saldo">
+                Total Premios <h3>$ {{ prizes|intcomma }}</h3>
+            </div>
+
+            {% if pending != 0 and form.is_completed %}
+                <form method="POST" action="{% url 'bet:agency_commission' agency.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="date_from" id="date_from_id" value="{{ form.date_from.value }}" />
+                    <input type="hidden" name="date_to" id="date_to_id" value='{{ form.date_to.value }}' />
+                    <input type="hidden" name="movs" id="movs" value="{% for mov in movements %}{{ mov.pk }}{% if not forloop.last %},{% endif %}{% endfor %}" />
+                    <div class="col-md-3">
+                        <input type="submit" class="btn btn-default" value="{% if pending > 0 %}Cobrar{% else %}Pagar{% endif %}"/>
+                    </div>
+                </form>
+            {% endif %}
+        {% else %}
+            <div class="col-md-3 bloque-saldo">
+                Saldo <h2 style="margin:0">$ {{ pending|negate|intcomma }}</h2>
+            </div>
+        {% endifusergroup %}
+    </div>
+
+    <br/>
+    <div class="row clearfix divisor-cabeceras">
+        <div class="col-md-2"><strong>Fecha Movimiento</strong></div>
+        <div class="col-md-1"><strong>Fecha Sorteo</strong></div>
+        <div class="col-md-2"><strong>Motivo</strong></div>
+        <div class="col-md-2"><strong>Detalle</strong></div>
+        <div class="col-md-1"><strong>Importe Agencia</strong></div>
+        <div class="col-md-1"><strong>Importe Ticket</strong></div>
+        <div class="col-md-2"><strong>Estado</strong></div>
+        <div class="col-md-1"><strong>N° ref. pago</strong></div>
+    </div>
+
+    {% autopaginate movements 20 %}
+    {% for movement in movements %}
+        <div class="row clearfix divisor-tabla">
+            <div class="col-md-2">{{ movement.date_mov|date:"d-M-y H:i" }}</div>
+            <div class="col-md-1">{{ movement.parent.draw.date_draw|date:"d-M-y" }}</div>
+            <div class="col-md-2">{{ movement.reason }}</div>
+            <div class="col-md-2">
+                <a href="{% url 'bet:agen_movement_detail' movement.pk %}"
+                   data-toggle="modal" data-target="#modal-detail" >Ver Detalle</a>
+            </div>
+            {% ifusergroup admin %}
+                <div class="col-md-1" {% if movement.amount < 0 %}style="color:red"{% endif %}>$ {{ movement.amount|intcomma }}</div>
+                <div class="col-md-1">{% if movement.code <= 1 %}$ {{ movement.parent.real_amount|intcomma }}{% endif %}</div>
+            {% else %}
+                <div class="col-md-1" {% if movement.amount > 0 %}style="color:red"{% endif %}>$ {{ movement.amount|negate|intcomma }}</div>
+                <div class="col-md-1">{% if movement.code <= 1 %}$ {{ movement.parent.real_amount|intcomma }}{% endif %}</div>
+            {% endifusergroup %}
+            <div class="col-md-2">{{ movement.get_state_display }}</div>
+            <div class="col-md-1">
+            {% if movement.code > 1 %}
+                <a title="Movimientos asociados" href="?number={{ movement.id }}">{{ movement.id }}</a>
+            {% elif movement.payment.id %}
+                <a title="Movimientos asociados" href="?number={{ movement.payment.id }}">{{ movement.payment.id }}</a>
+            {% endif %}
+            </div>
+         </div>
+    {% endfor %}
+    {% paginate %}
+
+    <script>
+        // VACIAR DIALOGO AL CERRAR
+        $('#modal-detail').on('hide.bs.modal', function () {
+            $(this).removeData('bs.modal');
+            $(this).find('.modal-content').html('');
+        });
+    </script>
+{% endblock %}

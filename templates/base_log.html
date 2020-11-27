@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>
+        {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+           Loteriamovil Santa cruz
+        {% endif %}
+        {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+           Loteriamovil de La Pampa
+        {% endif %}
+        {% if 'a24.agencia24.com.ar' in request.build_absolute_uri  %}
+           Agencia 24
+        {% endif %}
+        {% if 'www.mibingomovil.com.ar' in request.build_absolute_uri %}
+            Mi bingo movil
+        {% endif %}
+
+        {% block title %}{% endblock %}
+    </title>
+
+    <meta name="author" content="RPS">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% include "base_static.html" %}
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body style="background:#ebebeb">
+
+
+<div class="container1">
+
+
+    {% include "flashmsg.html" %}
+
+    {% block content %}Empty page{% endblock %}
+
+</div>
+<div class="modals">
+    {% block modals %}{% endblock %}
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+{% with detail=details.0 draw=bet.draws.0 %}
+<hr style="color:#ccc; border:solid 1px #eee" />
+    <div style="text-align:center">
+        <h4 style="color:#4186d4">{% block title %}{{ game.name|upper }} del {{ draw.date_draw|date:"d/m/Y" }} {% endblock %}</h4>
+        {% block modalities %}{% endblock %}
+
+        <span>{{bet.agency.name}}</span><br>
+
+    </div>
+    
+<hr style="color:#ccc; border:solid 1px #eee" />
+    {% block topdetails %}{% endblock %}
+
+    <div style="text-align:center">
+        {% block details %}{% endblock %}
+        <hr style="color:#ccc; border:solid 1px #eee" />
+        {% if draw.game.type == 1 %}
+            <strong>Valor del ticket:</strong>  ${{ bet.importq }}
+        {% else %}
+            <strong>Valor del cart&oacute;n:</strong>  ${{ bet.importq }}
+        {% endif %}
+    </div>
+    <div style="text-align:center">
+        {% block bottomdetails %}
+        <strong>Fecha y hora:</strong> {{ bet.date_bet|date:"d/m/Y - H:i:s" }}<br/>
+        <strong>Sorteo Nro:</strong> {{ draw.number }}<br />
+        {# <strong>Prescribe:</strong> {{ draw.date_draw|date:"d/m/Y" }} #}
+        {% endblock %}
+    </div>
+{% endwith %}

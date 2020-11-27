@@ -1,0 +1,107 @@
+{% extends "config/base_config.html" %}
+{% load staticfiles %}
+
+{% block extra_head %}
+    <script src="{% static 'prizeform.js' %}"></script>
+    {{ form.media }}
+{% endblock %}
+
+{% block selected_menu %}#settings-menu{% endblock %}
+{% block selected_tab %}#loteria-prizes-tab{% endblock %}
+
+{% block content %}
+
+    {{ block.super }}
+
+    <div class="row clearfix"><div class="col-md-2 col-md-offset-2"><strong>Mes:</strong>{{ form.month }}</div></div>
+    {% comment %}
+    <div class="col-md-2"><label><a href="{% url 'bet:loteria_prizes' prev_date.year prev_date.month %}">{{ prev_date|date:"F Y" }}</a></label></div>
+    <div class="col-md-2"><label class="titulo-separador">{{ date|date:"F Y" }}</label></div>
+    <div class="col-md-2"><label><a href="{% url 'bet:loteria_prizes' next_date.year next_date.month %}">{{ next_date|date:"F Y" }}</a></label></div>
+    {% endcomment %}
+    <br /><br />
+
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ prizeFormSet.management_form }}
+
+        {% for form in prizeFormSet %}
+
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            <div class="row clearfix">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {% if form.instance.pk %}
+                            {{ form.instance.get_code_display }}
+                        {% else %}
+                            {{ form.get_code_display }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% if not form.prize_type in form.hidden_fields %}
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ form.prize_type }}
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ form.value }}
+                        {{ form.text }}
+                        {{ form.coupon }}
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        {{ form.non_field_errors }}
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+        <br/>
+        <div class="row clearfix">
+            <input class="btn" type="button" value="Cancelar" onclick="window.location={% url 'bet:old_draws' %};"/>
+            <button class="btn btn-info" name="save" type="submit">GUARDAR</button>
+        </div>
+    </form>
+
+    <script>
+        String.format = function() {
+            // The string containing the format items (e.g. "{0}")
+            // will and always has to be the first argument.
+            var theString = arguments[0];
+
+            // start with the second argument (i = 1)
+            for (var i = 1; i < arguments.length; i++) {
+                // "gm" = RegEx options for Global search (more than one instance)
+                // and for Multiline search
+                var regEx = new RegExp("\\{" + (i - 1) + "\\}", "gm");
+                theString = theString.replace(regEx, arguments[i]);
+            }
+
+            return theString;
+        };
+
+        $('#id_month_picker').on("dp.change", function(e) {
+            if (e !== undefined){
+                var url = String.format("/loteria_prizes/{0}/{1}/", e.date.year(), e.date.month()+1);
+                {% if draw_pk %}
+                    url = String.format("{0}{1}/", url, {{draw_pk}});
+                {% endif %}
+
+                location.href = url;
+            }
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'extract/base_extract.html' %}
+
+{% block content %}
+    {% with results=draw.loto5_results.tra title="Tradicional" %}
+        {% include 'extract/results_set.html' %}
+    {% endwith %}
+{% endblock %}

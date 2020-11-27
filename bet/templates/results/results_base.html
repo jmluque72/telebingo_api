@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block extra_head %}
+<script src="{% static 'prizeform.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row clearfix">
+    	<legend>{% block legend %}{{ draw.game.name }} <span class="accion">Cargar resultados</span>{% endblock %}</legend>
+    </div>
+    {% with url_results='bet:'|add:draw.game.code|add:'_results' %}
+    <form id="results_form" method="post" action={% block action_form %}"{% url url_results draw.pk %}"{% endblock %} enctype="multipart/form-data">
+    {% endwith %}
+        {% csrf_token %}
+
+        {% block tabs %}
+            <div class="row clearfix base-tabs"> <!-- PESTAÑA EXTRACTO/GANADORES -->
+                <div class="col-md-2 tab-activa">Extracto</div>
+                {% if draw.extract_sent %}
+                    <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:nonprinted_winners' draw.pk %}">Ganadores</a></div>
+                {% else %}
+                    <div class="col-md-2 tab-inactiva">Ganadores</div>
+                {% endif %}
+            </div>
+        {% endblock %}
+        <div class="row clearfix divisor-tabla">
+            {% block draw_info %}
+            <div class="col-md-2">
+                <label>Sorteo Nro: </label>{{ draw.number }}
+            </div>
+            <div class="col-md-2">
+                <label>Fecha: </label>&nbsp;{{ draw.date_draw|date:"d-N-Y" }}
+            </div>
+            <div class="col-md-2">
+                <label>Hora: </label>&nbsp;{{ draw.date_draw|date:"H:i" }}
+            </div>
+            {% endblock %}
+        </div>
+
+        {% block results %}{% endblock %}
+
+        <br/>
+        {% block buttons %}
+            {% if not draw.extract_sent %}
+                <div class="row clearfix">
+                    <input class="btn" type="button" value="Cancelar" onclick="window.history.back();"/>
+                    <button class="btn btn-info" name="save" type="submit">GUARDAR</button>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+    </form>
+
+    {% if draw.is_loaded and not draw.extract_sent %}
+        </br>
+        <form method="post" action="{% url 'bet:send_extract' draw.pk %}">
+            {% csrf_token %}
+            <div class="row clearfix">
+                {% if draw.game.type == 1 or draw.game.code == 'loteria' or 'telebingo' in draw.game.code %}
+                    <button class="btn btn-info" name="send" type="submit">Enviar extracto y determinar ganadores</button>
+                {% else %}
+                    <button class="btn btn-info" name="send" type="submit">Enviar extracto</button>
+                {% endif %}
+            </div>
+        </form>
+    {% endif %}
+
+    {% block post_results %}{% endblock %}
+
+    {% block script_extracto %}
+        <script>
+
+        var extracto = {% block extracto %}{}{% endblock %};
+
+        $(document).ready(function() {
+            var holder = $('.base-tabs:last');
+            if (holder.length == 0)
+                holder = $('legend');
+
+            {% if DEBUG %}
+            holder.append('<ul id="navul" class="nav navbar-nav pull-right"><a href="javascript:void(0)" id="button_fill"><h4>LLENAR</h4></a></ul>');
+            {% endif %}
+
+            $('#button_fill').on("click", function () {
+                $('input[type=number]').each(function () {
+                    var max = $(this).attr("max");
+                    if (max)
+                        $(this).val(Math.floor((Math.random() * parseInt(max)) + 1));
+                });
+
+                Object.keys(extracto).forEach(function(key) {
+                    var array = extracto[key];
+                    array.forEach(function(entry, index) {
+                        var winners = key+'-'+index+'-winners';
+                        $('input[type=number][name='+winners+']').val(entry[0]);
+                        var prize = key+'-'+index+'-value';
+                        $('input[type=number][name='+prize+']').val(entry[1]);
+                    });
+                });
+            });
+        });
+        </script>
+    {% endblock %}
+
+    {% block script %}{% comment %}
+        <script>
+        $(document).ready(function() {
+            console.log($(".errorlist").scrollBottom());
+            $('html, body').animate({
+                scrollTop: $(".errorlist").scrollBottom()
+                //scrollTop: $(".errorlist").offset().top
+            }, 2000);
+        });
+        </script>{% endcomment %}
+    {% endblock %}
+
+{% endblock %}

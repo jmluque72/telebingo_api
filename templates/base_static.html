@@ -1,0 +1,87 @@
+{% load staticfiles %}
+
+<!-- CSS -->
+
+{% comment %}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %} " />
+<link rel="stylesheet" type="text/css" href="{% static 'base.css' %} " />
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/widgets.css' %}" />
+{% endcomment %}
+
+<link type="text/css" href="{% static 'jquery/css/jquery-ui-1.11.3.css' %}" rel="stylesheet" media="screen">
+<link type="text/css" href="{% static 'bootstrap/css/bootstrap-responsive.min.css' %}" rel="stylesheet" media="screen">
+<link type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet" media="screen">
+<link type="text/css" href="{% static 'bootstrap-select/css/bootstrap-select.min.css' %}" rel="stylesheet"
+    media="screen">
+<link rel="stylesheet" href="{% static 'fancybox/jquery.fancybox.css' %}" type="text/css" media="screen" />
+<link type="text/css" href="{% static 'agencia24.css' %}" rel="stylesheet" media="screen">
+<link type="text/css" href="{% static 'django_modalview/css/modal.css' %}" rel="stylesheet" media="screen">
+
+
+{% if 'login' in  request.build_absolute_uri or 'FAQ' in request.build_absolute_uri or 'como_se_juega' in request.build_absolute_uri or 'terms' in request.build_absolute_uri or 'user_profile_saldo' in request.build_absolute_uri or 'politicas' in request.build_absolute_uri %}
+
+
+
+<link type="text/css" href="{% static 'style.css' %}" rel="stylesheet" media="screen">
+<link type="text/css" href="{% static 'retina.css' %}" rel="stylesheet" media="screen">
+<link type="text/css" href="{% static 'responsive.css' %}" rel="stylesheet" media="screen">
+<link type="text/css" href="{% static 'color-default.css' %}" rel="stylesheet" media="screen">
+<link type="text/css" href="{% static 'animate.css' %}" rel="stylesheet" media="screen">
+
+
+<!-- Font icons -->
+<link rel="stylesheet" href="{% static 'fonts/font-awesome-4.3.0/css/font-awesome.min.css' %}" />
+
+
+
+<!-- Google Web fonts -->
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,300italic,400,800,700,600'
+    rel='stylesheet' type='text/css'>
+
+{% endif %}
+
+
+<!-- FAVICON -->
+{% if 'www.jugaya.com' in  request.build_absolute_uri  %}
+
+<link rel="icon" href="{% static 'imgs/favicon_jugaya.png' %}?v=4" type="image/x-icon" />
+<link rel="shortcut icon" href="{% static 'imgs/favicon_jugaya.png' %}?v=4" type="image/x-icon" />
+{% endif %}
+
+
+{% if not 'www.jugaya.com' in  request.build_absolute_uri  %}
+
+
+    {% if 'www.mibingomovil.com.ar' in  request.build_absolute_uri  %}
+
+        <link rel="icon" href="{% static 'imgs/favicon_ca.png' %}?v=4" type="image/x-icon" />
+        <link rel="shortcut icon" href="{% static 'imgs/favicon_ca.png' %}?v=4" type="image/x-icon" />
+
+    {% else %}
+        <link rel="icon" href="{% static 'imgs/favicon_desa.png' %}?v=4" type="image/x-icon" />
+        <link rel="shortcut icon" href="{% static 'imgs/favicon_desa.png' %}?v=4" type="image/x-icon" />
+    {% endif %}
+
+{% endif %}
+
+
+
+
+<!-- JS -->
+<script src="{% static 'jquery/jquery-1.12.3.min.js' %}"></script>
+<script src="{% static 'jquery/jquery-ui-1.11.3.js' %}"></script>
+<script src="{% static 'moment/moment.js' %}"></script>
+<script src="{% static 'moment/locale/es.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'bootstrap-select/js/bootstrap-select.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'fancybox/jquery.fancybox.js' %}"></script>
+<script src="{% static 'bootbox/bootbox-4.4.0.min.js' %}"></script>
+<script src="{% static 'django-formsets/django-formset.js' %}"></script>
+
+<script src="{% static 'common/levent.js' %}"></script>
+<script src="{% static 'common/monkey.patch.js' %}"></script>
+<script src="{% static 'common/localimg.js' %}"></script>
+
+<script src="{% static 'django_modalview/js/django_modal_view.js' %}"></script>
+<script src="{% static 'agencia24.js' %}"></script>

@@ -1,0 +1,10 @@
+{% extends 'movs/basemovement_detail.html' %}
+
+{% block bottomdetail %}
+    <div class="form-group">
+        <strong>Método: </strong> {{ movement.get_method_display }}
+    </div>
+    <div class="form-group">
+        <strong>CBU: </strong> {{ movement.cbu }}
+    </div>
+{% endblock %}

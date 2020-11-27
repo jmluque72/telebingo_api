@@ -1,0 +1,12 @@
+{% extends 'agen_movements/base_detail.html' %}
+
+{% block bottomdetail %}
+    {% with winner=movement.winner.parent.get_winners.0 %}
+    <div class="form-group">
+        <strong>Juego: </strong> {{ winner.draw.game.name }} <small>{{ winner.draw.date_draw }}</small>
+    </div>
+    <div class="form-group">
+        <strong>Usuario: </strong> {{ winner.detail.parent.bet.user.user.get_full_name }}
+    </div>
+    {% endwith %}
+{% endblock %}

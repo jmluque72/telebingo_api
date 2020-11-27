@@ -1,0 +1,24 @@
+{% extends 'emails/base_email.html' %}
+
+{% block content %}
+
+
+      {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+            <p><strong>Loteria Movil </strong> ha hecho tu apuesta de <strong>{{ game }}</strong>.</p>
+      {% endif %}
+      {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+            <p><strong>Loteria Movil </strong> ha hecho tu apuesta de <strong>{{ game }}</strong>.</p>
+      {% endif %}
+      {% if 'jugaya.com' in request.build_absolute_uri  %}
+            <p><strong>Juga Ya </strong> ha hecho tu apuesta de <strong>{{ game }}</strong>.</p>
+      {% endif %}
+
+    {% if not preprinted %}
+        <p>Adjunto encontrar&aacute;s el ticket virtual de tu apuesta.</p>
+        <p>Para solicitar el ticket real ingresa <a href="{{ ticket_url }}">aqu&iacute;</a>.</p>
+    {% elif ticket %}
+        Adjunto encontrar&aacute;s la foto de tu cart&oacute;n.
+    {% else %}
+        <p>Para solicitar el billete ingresá <a href="{{ ticket_url }}">aqu&iacute;</a>.</p>
+    {% endif %}
+{% endblock %}

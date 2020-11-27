@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load ifusergroup %}
+{% load i18n %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>
+        {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri %}
+        Loteriamovil Santa cruz
+        {% endif %}
+        {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri %}
+        Loteriamovil de La Pampa
+        {% endif %}
+        {% if 'a24.agencia24.com.ar' in request.build_absolute_uri %}
+        Agencia 24
+        {% endif %}
+        {% if 'www.jugaya.com' in request.build_absolute_uri %}
+        Juega Ya
+        {% endif %}
+        {% if 'www.mibingomovil.com.ar' in request.build_absolute_uri %}
+        Mi bingo movil
+        {% endif %}
+
+        {% block title %}{% endblock %}
+    </title>
+
+
+
+    <meta name="author" content="RPS">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% include "base_static.html" %}
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+    <nav class='navbar navbar-default' class1="navbar {% if DEBUG %}navbar-desa{% else %}navbar-default{% endif %}">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        {% if 'sc.' in request.build_absolute_uri %}
+                        <a class="brand" href="{% url 'bet:home' %}"><img src='{% static "img_login/logo.jpg" %}'
+                                border="0"></a>
+                        {% else %}
+                        <a class="brand" href="{% url 'bet:home' %}"><img src='{% static "imgs/logo_header.png" %}'
+                                border="0"></a>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul id="navul" class="nav navbar-nav pull-right">
+                            {% ifusergroup admin %}
+                            <li id="settings-menu"><a href="{% url 'bet:loteria_prizes' %}"><i
+                                        class="glyphicon glyphicon-cog"></i>
+                                    Configuracion</a></li>
+                            {% endifusergroup %}
+
+                            {% if user.is_authenticated %}
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="glyphicon glyphicon-user"></i> {{user.username}} <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    {% if user.is_staff %}
+                                    <li><a href="/admin"><i class="glyphicon glyphicon-cog"></i> Admin</a></li>
+                                    <li class="divider" role="separator"></li>
+                                    {% endif %}
+                                    <li><a href="{% url 'auth_logout' %}"><i class="glyphicon glyphicon-off"></i>
+                                            Salir</a></li>
+                                </ul>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="{% url 'auth_login' %}"><i class="icon-off"></i> Login</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </nav>
+
+    {% block second_menu %}
+    <div class="navbar navbar-default second-menu">
+        <div class="container" style="padding-left:0px">
+            <div class="row clearfix">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-2">
+                        <ul id="navul" class="nav navbar-nav second-items">
+                            {%block extra_nav%}
+                            {% ifusergroup admin %}
+                            <li id="games-menu"><a href="{% url 'bet:games' %}">Juegos</a></li>
+                            <li id="draws-menu"><a href="{% url 'bet:draws' %}">Sorteos</a></li>
+                            <li id="quinielas-menu"><a href="{% url 'bet:draws_quiniela' %}">Quinielas</a></li>
+                            <li id="users-menu"><a href="{% url 'bet:users' %}">Usuarios</a></li>
+                            <li id="agencies-menu"><a href="{% url 'bet:agencies' %}">Agencias</a></li>
+                            <li id="payments-menu"><a href="{% url 'bet:payments' %}">Pagos</a></li>
+                            <li id="bets-menu"><a href="{% url 'bet:bets' %}">Apuestas</a></li>
+                            <li id="prize-requests-menu"><a href="{% url 'bet:movements_all' %}">Movimientos</a></li>
+                            <li id="prize-requests-menu"><a href="{% url 'bet:send_push' %}">Notificaciones</a></li>
+
+                            <li id="promotions-menu"><a href="{% url 'bet:promotions' %}">Promociones</a></li>
+                            {% endifusergroup %}
+                            {% ifusergroup agenciero %}
+                            <li id="draws-menu"><a href="{% url 'bet:draws' %}">Sorteos</a></li>
+                            <li id="agencies-menu"><a href="{% url 'bet:agency' %}">Movimientos</a></li>
+                            {% endifusergroup %}
+                            {% endblock %}
+                            <div class="hide" id="selected_menu">{% block selected_menu %}{% endblock %}</div>
+                            <div class="hide" id="selected_tab">{% block selected_tab%}{% endblock %}</div>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    <div class="container">
+
+
+        {% include "flashmsg.html" %}
+
+        {% block content %}Empty page{% endblock %}
+
+
+
+    </div> <!-- container -->
+
+    <div class="container footer navbar-fixed-bottom">
+        <div class="text-center">
+            &copy; <a href="#">Loteria movil</a> 2018
+        </div>
+    </div>
+    <div class="modals">
+        {% block modals %}{% endblock %}
+    </div>
+
+</body>
+
+</html>

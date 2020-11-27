@@ -1,0 +1,14 @@
+{% extends 'details/basebet_details.html' %}
+
+{% block details %}
+    {{ block.super }}
+    {% with detail=details.0 %}
+    <div class="form-group">
+        <strong>Números:
+        {% for number in detail.numbers %}
+             {{ number|stringformat:"02d" }}
+        {% endfor %}
+        </strong>
+    </div>
+    {% endwith %}
+{% endblock %}

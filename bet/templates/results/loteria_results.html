@@ -1,0 +1,40 @@
+{% extends "results/results_base.html" %}
+
+{% block action_form %}{% url 'bet:loteria_results' draw.pk %}{% endblock %}
+
+{% block tabs %}
+    <div class="row clearfix base-tabs"> <!-- PESTAÑA EXTRACTO/GANADORES -->
+        <div class="col-md-2 tab-activa">Extracto</div>
+        {% if draw.extract_sent %}
+            <div class="col-md-2 tab-inactiva"><a href="{% url 'bet:loteria_winners' draw.pk %}">Ganadores</a></div>
+        {% else %}
+            <div class="col-md-2 tab-inactiva">Ganadores</div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block results %}
+
+    <br/>
+    {% for field in progForm.hidden_fields %}
+        {{ field }}
+    {% endfor %}
+    <div class="row clearfix">
+        <div class="col-md-1">
+            <label>{{ progForm.progresion.label_tag }}</label>
+        </div>
+        <div class="col-md-1">
+            {{ progForm.progresion }}
+        </div>
+    </div>
+
+    <br/>
+
+    <div class="row clearfix">
+    	<div class="col-md-1"><label>Resultados</label></div>
+    </div>
+    {% with form=resultsForm columns=1 show_order=True %}
+        {% include 'results/quiniela_results_set.html' %}
+    {% endwith %}
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% for form in extractForm %}
+    {% if forloop.counter0 == 0 %}
+        <div class="row clearfix">
+            {% if form.hits and not form.hits in form.hidden_fields %}
+            <div class="col-md-2">
+                <div class="form-group">
+                    {{ form.hits.label_tag }}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    {{ form.winners.label_tag }}
+                </div>
+            </div>
+
+            {% if not form.prize_type in form.hidden_fields %}
+            <div class="col-md-2">
+                <div class="form-group">
+                    {{ form.prize_type.label_tag }}
+                </div>
+            </div>
+            {% endif %}
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label><label>Premio:</label></label>
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
+
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+
+    <div class="row clearfix">
+
+        {% if form.hits and not form.hits in form.hidden_fields %}
+        <div class="col-md-2">
+            <div class="form-group">
+                {{ form.hits }}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="col-md-2">
+            <div class="form-group">
+                {{ form.winners }}
+            </div>
+        </div>
+
+        {% if not form.prize_type in form.hidden_fields %}
+        <div class="col-md-2">
+            <div class="form-group">
+                {{ form.prize_type }}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="col-md-2">
+            <div class="form-group">
+                {{ form.value }}
+                {{ form.text }}
+                {{ form.coupon }}
+            </div>
+        </div>
+    </div>
+
+    {{ form.non_field_errors }}
+{% endfor %}

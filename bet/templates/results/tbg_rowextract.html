@@ -1,0 +1,90 @@
+<div class="row clearfix">
+    <div class="col-md-2">
+        <div class="form-group">
+            {{ extractForm.0.number.label_tag }}
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            {{ extractForm.0.prize_type.label_tag }}
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label><label>Premio:</label></label>
+        </div>
+    </div>
+</div>
+
+<div class="{{ dynamic }}_extract_formset">
+
+    {% with form=extractForm.empty_form %}
+    <div class="row clearfix empty-form hidden">
+        <div class="col-md-2">
+            <div class="form-group">
+                {{ form.number }}
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                {{ form.prize_type }}
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                {{ form.value }}
+                {{ form.text }}
+            </div>
+        </div>
+    </div>
+    {% endwith %}
+
+    {% for form in extractForm %}
+
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        <div class="row clearfix">
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    {{ form.number }}
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    {{ form.prize_type }}
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    {{ form.value }}
+                    {{ form.text }}
+                </div>
+            </div>
+        </div>
+
+        {{ form.non_field_errors }}
+    {% endfor %}
+
+</div>
+
+{% if not readonly and dynamic %}
+    <button type="button" onclick="this.blur();" class="btn btn-primary" id="{{ dynamic }}_extract_addform">+</button>
+
+    <script>
+        var x = $('.{{ dynamic }}_extract_formset').children('div');
+
+        var {{ dynamic|add:"_extract" }} = x.djangoFormset({insertDeleteButton: false});
+        $("#{{ dynamic }}_extract_addform").on('click', function(event) {
+            {{ dynamic|add:"_extract" }}.addForm();
+        });
+    </script>
+{% endif %}

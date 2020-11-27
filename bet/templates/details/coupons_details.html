@@ -1,0 +1,35 @@
+{% extends 'details/basebet_details.html' %}
+
+{% block details %}
+    {% for detail in details %}
+        <div style="border-top: 1px solid #e5e5e5; padding-top: 10px;">
+        <div class="form-group">
+            <strong>Número de Billete:</strong> {{ detail.coupon.number }}
+            {% if game.code == 'loteria' %}
+            <strong>Progresión:</strong> {{ detail.coupon.loteriacoupon.progresion }}
+            {% endif %}
+        </div>
+        {% if game.code == 'loteria' %}
+            <div class="form-group">
+                <strong>Fracciones:</strong> {{ detail.fraction_bought }}
+            </div>
+        {% endif %}
+        {% if detail.coupon.agency %}
+        <div class="form-group">
+            <strong>Agencia:</strong> {{ detail.coupon.agency }}
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <strong>Estado: </strong> {{ detail.get_state_display }}
+        </div>
+        {% if detail.ticket.real %}
+        <div class="form-group">
+            {# <a class="image-popup-vertical-fit" href="{{ detail.ticket.real.url }}"><strong>Ticket</strong></a> #}
+            <a class="fancybox" rel="group" href="{{ detail.ticket.real.url }}"><strong>Ticket</strong></a>
+        </div>
+        {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block bottomdetails %}{% endblock %}

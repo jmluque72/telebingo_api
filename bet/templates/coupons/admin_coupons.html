@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load pagination_tags %}
+{% load staticfiles %}
+
+{% block extra_head %}
+    <script src="{% static 'jquery/jquery.form.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap-uploadprogress.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <fieldset>
+		<legend>{{ draw.game.name }} <span class="accion">{{ draw.is_old|yesno:",Agregar " }}Billetes</span></legend>
+
+        <div class="row clearfix base-tabs"> <!-- PESTAÑA SORTEO/BILLETES -->
+            <div class="col-md-1 tab-inactiva"><a href="{% url 'bet:draw_preprinted_edit' draw.game.code draw.pk %}">Sorteo</a></div>
+            <div class="col-md-1 tab-activa">Billetes</div>
+        </div>
+        <br />
+
+        <div class="row clearfix divisor-tabla">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Sorteo Nro:</label> {{ draw.number }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Fecha:</label> {{ draw.date_draw|date:"d-N-Y" }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Hora:</label> {{ draw.date_draw|date:"H:i" }}
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <div class="row clearfix">
+    	<div class="col-md-3 bloque-saldo">
+        	Total <h2 style="margin:0">{{ total|intcomma }}</h2>
+        </div>
+        {% if 'telebingo' in draw.game.code %}
+        <div class="col-md-3 bloque-saldo">
+        	Registrados <h2 style="margin:0">{{ registered|intcomma }}</h2>
+        </div>
+        {% endif %}
+        <div class="col-md-3 bloque-saldo">
+        	Vendidos <h2 style="margin:0">{{ sold|intcomma }}</h2>
+        </div>
+        {% if 'telebingo' in draw.game.code and not draw.is_old %}
+        <div class="col-md-2 col-md-offset-1" style="margin-top: 21px;">
+            <td><a href="{% url 'bet:import_coupons' pk=draw.pk %}"
+                   class="btn btn-sm btn-default django-modal">Importar billetes</a></td>
+        </div>
+        {% endif %}
+    </div>
+    <br />
+
+    <form method="get" action="">
+        <div class="row clearfix divisor">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.agency.label }}</label><br />
+                    {{ form.agency }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.state.label }}</label><br />
+                    {{ form.state }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <button class="btn btn-info" id="submit-draw-filter" type="submit" style="margin-top:24px">Filtrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br />
+
+    <div class="row clearfix divisor-cabeceras">
+        <div class="col-md-2"><strong>Agencia</strong></div>
+        <div class="col-md-2"><strong>Número</strong></div>
+        <div class="col-md-2"><strong>Estado</strong></div>
+    </div>
+    {% autopaginate coupons 20 %}
+    {% for coupon in coupons %}
+    	<div class="row clearfix divisor-tabla">
+            <div class="col-md-2">
+            	{{ coupon.agency }}
+            </div>
+            <div class="col-md-2">
+            	{{ coupon.number }}
+            </div>
+            <div class="col-md-2">
+            	{{ coupon.detailcoupon_set.count|yesno:"Vendido,Disponible" }}
+            </div>
+        </div>
+    {% endfor %}
+    {% paginate %}
+
+    <script>
+        var changed;
+         $('.django-modal').DjangoModalRunner({
+            hide_on_success: true,
+            error_class: 'alert-error',
+            on_show_modal: function(){
+                changed = false;
+            },
+            on_hide_modal_after_submit: function(){
+                if (changed)
+                    location.reload();
+            },
+            /*on_hide_modal: function() {
+                alert('hide without action');
+            },
+            on_submit: function(){
+                alert('submit');
+            },*/
+            on_done: function(){
+                changed = true;
+                setTimeout(function(){ $(".alert-success").fadeOut(); }, 1000);
+            }
+        });
+    </script>
+{% endblock %}

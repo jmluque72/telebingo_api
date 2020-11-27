@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load pagination_tags %}
+{% load staticfiles %}
+
+{% block extra_head %}
+    <script src="{% static 'jquery/jquery.form.js' %}"></script>
+    <!-- form.media -->{{ form.media }}
+{% endblock %}
+
+{% block selected_menu %}#promotions-menu{% endblock %}
+
+{% block content %}
+    <!-- Dialog -->
+    <div class="modal fade" id="modal-promotion" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+	<div class="row clearfix">
+        <legend>Promociones
+            <ul id="navul" class="nav navbar-nav pull-right">
+                <li><a href="{% url 'bet:promotion' %}" class="btn btn-nuevo"
+                   data-toggle="modal" data-target="#modal-promotion" >Nueva promoción</a></li>
+            </ul>
+        </legend>
+	</div>
+
+    <form method="get" action="{% url 'bet:promotions' %}">
+        <div class="row clearfix divisor">
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_from.label }}</label>
+                    {{ form.date_from }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.date_to.label }}</label>
+                    {{ form.date_to }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.code.label }}</label><br />
+                    {{ form.code }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{ form.state.label }}</label><br />
+                    {{ form.state }}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <button class="btn btn-info" id="submit-draw-filter" type="submit" style="margin-top:24px">Filtrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <br />
+    <div class="row clearfix divisor-cabeceras">
+        <div class="col-md-2"><strong>Fecha</strong></div>
+        <div class="col-md-2"><strong>Juego</strong></div>
+        <div class="col-md-5"><strong>Promoción/Sugerencia</strong></div>
+        <div class="col-md-1"><strong>Estado</strong></div>
+        <div class="col-md-2"><strong>Acciones</strong></div>
+    </div>
+
+    {% autopaginate promotions 20 %}
+    {% for promo in promotions %}
+        <div class="row clearfix divisor-tabla">
+            <div class="col-md-2">{{ promo.draw.date_draw|date:"d N - H:i" }}</div>
+            <div class="col-md-2">{{ promo.draw.game }}</div>
+            <div class="col-md-5">{{ promo.suggestion }}</div>
+            <div class="col-md-1">{{ promo.is_active|yesno:"Activa,Inactiva" }}</div>
+            <div class="col-md-2">
+                <table width="115" border="0" cellspacing="0" cellpadding="0"><tr>
+                    <td><a href="{% url 'bet:promotion' promo.pk %}" class="btn btn-sm btn-info"
+                           data-toggle="modal" data-target="#modal-promotion" title="Editar">
+                        <i class="glyphicon glyphicon-pencil"></i></a></td>
+                </tr></table>
+            </div>
+        </div>
+    {% endfor %}
+    {% paginate %}
+
+    <script>
+        // VACIAR DIALOGO AL CERRAR
+        $('#modal-promotion').on('hide.bs.modal', function () {
+            $('#modal-promotion').removeData('bs.modal');
+            $('#modal-promotion .modal-content').html('');
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,133 @@
+
+<!--
+
+<br/><br/>
+<div class="row">
+    <div class="col-md-4">
+        <p>Loteria de Santa cruz</p>
+    </div>
+        <div class="col-md-6 pull-right">
+            <button class="btn btn-success" onclick="return openComoJugar();">Como Jugar</button>
+            <button class="btn btn-success" onclick="return openFAQ();" >Preguntas frecuentes</button>
+            <a class="btn btn-success" href="{% url 'auth_logout' %}">Desconectarse</a>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <br/><br/><br/><br/>
+
+
+        <div style="text-align:center;">
+            <legend>Tu saldo actual es de   <span>Total: ${{ profile.saldo }}</span></legend>
+
+
+            <h1>Ingrese el importe a cargar </h1>
+
+            <input name="importe" id="importe" style='width:20%;text-align:right;' type="number" />
+            <br/>
+            <a onclick="openMP();" name="MP-Checkout" class="orange-ar-m-sq-arall" mp-mode="model">Cargar con mercado pago</a>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="row" style="text-align:center;">
+    <div  id='id_pending' class="col-md-6" style="visibility:hidden;">
+            <div class="alert alert-danger">No pudimos completar la operacion.</div>
+    </div>
+</div>
+
+
+    <script>
+
+       function openComoJugar() {
+
+            $('#myModal').on('show.bs.modal', function(){
+                $('#frame').attr('src', "http://localhost:8000/como_se_juega/")
+                $('#title').html("Como jugar");
+
+            });
+            $('#myModal').modal('show');
+
+
+       }
+
+       function openFAQ() {
+
+            $('#myModal').on('show.bs.modal', function(){
+                $('#frame').attr('src', "http://localhost:8000/como_se_juega/")
+                $('#title').html("FAQ");
+
+            });
+            $('#myModal').modal('show');
+
+       }
+
+
+        Mercadopago.setPublishableKey("hTCvkQHiQ8JUQotORKFsC3heNMSZ2MBM");
+
+        (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+
+
+       function openMP() {
+
+            if ($('#importe').val() == '') {
+                alert("Debe completar importe");
+                return;
+            }
+            data = {"import": $('#importe').val()}
+            $.get( "../get_preferences_charge", data, function( data ) {
+                alert(data.url);
+                $MPC.openCheckout ({
+                    url: data.url,
+                    mode: "modal",
+                    onreturn: function(data) {
+                        console.log(data);
+                        if (data.collection_status=='approved'){
+                            location.reload();
+		                } else if(data.collection_status=='pending'){
+			                $("#id_pending").css("visibility","visible");
+		                } else if(data.collection_status=='in_process'){
+			                $("#id_pending").css("visibility","visible");
+		                } else if(data.collection_status=='rejected'){
+			                $("#id_pending").css("visibility","visible");
+		                } else if(data.collection_status==null){
+			                $("#id_pending").css("visibility","visible");
+		                }
+		            }
+                });
+            });
+
+
+       }
+
+
+    </script>
+
+
+
+
+
+
+<div id="myModal" class="modal fade">
+<div class="modal-dialog">
+    <div class="modal-content" style="height: 500px;width:600px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><p id="title"></p></h4>
+            </div>
+            <iframe id='frame' width='100%' height='70%' src="http://localhost:8000/como_se_juega/"/>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

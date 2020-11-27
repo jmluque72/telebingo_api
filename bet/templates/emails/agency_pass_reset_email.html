@@ -1,0 +1,19 @@
+{% extends 'emails/base_email.html' %}
+
+{% block content %}
+
+      {% if 'sc.loteriamovil.com.ar' in request.build_absolute_uri  %}
+            <p>Gracias por unirse a Loteriamovil.</p>
+      {% endif %}
+      {% if 'lp.loteriamovil.com.ar' in request.build_absolute_uri  %}
+            <p>Gracias por unirse a Loteriamovil.</p>
+      {% endif %}
+      {% if 'jugaya.com' in request.build_absolute_uri  %}
+            <p>Gracias por unirse a Juga Ya.</p>
+      {% endif %}
+
+    <p>Se ha creado una cuenta a su nombre. Para configurar tu contraseña, por favor accede al siguiente enlace,
+        o cópialo y pégalo en tu navegador:</p>
+
+    <p>{{ reset_url }}</p>
+{% endblock %}

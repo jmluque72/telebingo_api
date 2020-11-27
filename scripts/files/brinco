@@ -1,0 +1,38 @@
+[
+ {
+   "Fecha": "6/9/2020",
+   "Sorteo": 1058,
+   "HoraSorteo": "21:00",
+   "FechaCierre": "5/9/2020",
+   "HoraAgencia": "16:00",
+   "Monto": "Pozo Estimado",
+   "Precio": 40
+ },
+ {
+   "Fecha": "13/9/2020",
+   "Sorteo": 1059,
+   "HoraSorteo": "21:00",
+   "FechaCierre": "12/9/2020",
+   "HoraAgencia": "16:00",
+   "Monto": "Pozo Estimado",
+   "Precio": 40
+ },
+ {
+   "Fecha": "20/9/2020",
+   "Sorteo": 1060,
+   "HoraSorteo": "21:00",
+   "FechaCierre": "19/9/2020",
+   "HoraAgencia": "16:00",
+   "Monto": "Pozo Estimado",
+   "Precio": 40
+ },
+ {
+   "Fecha": "27/9/2020",
+   "Sorteo": 1061,
+   "HoraSorteo": "21:00",
+   "FechaCierre": "26/9/2020",
+   "HoraAgencia": "16:00",
+   "Monto": "Pozo Estimado",
+   "Precio": 40
+ }
+]

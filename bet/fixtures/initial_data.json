@@ -1,0 +1,538 @@
+[
+  {
+    "pk": 1,
+    "model": "sites.site",
+    "fields": {
+      "name": "agencia24.com.ar",
+      "domain": "http://www.admin.agencia24.com.ar"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "sites.site",
+    "fields": {
+      "name": "agencia24.com.ar",
+      "domain": "http://agencia24desa.liricus.webfactional.com"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "sites.site",
+    "fields": {
+      "name": "agencia24.com.ar",
+      "domain": "http://localhost:8000"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "bet.quiniela",
+    "fields": {
+      "name": "Buenos Aires",
+      "code": 2
+    }
+  },
+  {
+    "pk": 2,
+    "model": "bet.quiniela",
+    "fields": {
+      "name": "Córdoba",
+      "code": 3
+    }
+  },
+  {
+    "pk": 3,
+    "model": "bet.quiniela",
+    "fields": {
+      "name": "Nacional",
+      "code": 1
+    }
+  },
+  {
+    "pk": 4,
+    "model": "bet.quiniela",
+    "fields": {
+      "name": "Santiago del Estero",
+      "code": 5
+    }
+  },
+  {
+    "pk": 1,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 0,
+      "quiniela_prizes": "7,70,600,3500"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 1
+    }
+  },
+  {
+    "pk": 3,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 2
+    }
+  },
+  {
+    "pk": 4,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 3
+    }
+  },
+  {
+    "pk": 5,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 4,
+      "quiniela_prizes": "7,70,500,3500"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 5
+    }
+  },
+  {
+    "pk": 7,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 6
+    }
+  },
+  {
+    "pk": 8,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 7
+    }
+  },
+  {
+    "pk": 9,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 8
+    }
+  },
+  {
+    "pk": 10,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 9
+    }
+  },
+  {
+    "pk": 11,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 10
+    }
+  },
+  {
+    "pk": 12,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 11
+    }
+  },
+  {
+    "pk": 13,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 12
+    }
+  },
+  {
+    "pk": 14,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 13
+    }
+  },
+  {
+    "pk": 15,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 14
+    }
+  },
+  {
+    "pk": 16,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 15
+    }
+  },
+  {
+    "pk": 17,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 16
+    }
+  },
+  {
+    "pk": 18,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 17
+    }
+  },
+  {
+    "pk": 19,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 18
+    }
+  },
+  {
+    "pk": 20,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 19
+    }
+  },
+  {
+    "pk": 21,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 20
+    }
+  },
+  {
+    "pk": 22,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 21
+    }
+  },
+  {
+    "pk": 23,
+    "model": "bet.province",
+    "fields": {
+      "code_name": 22
+    }
+  },
+  {
+    "pk": 1,
+    "model": "auth.user",
+    "fields": {
+      "username": "liricus",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2016-01-02 09:00:00",
+      "groups": [1],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$20000$RO1dEcVHS023$0ho6cTRD60fOJsN0RLmwa4JaAqp6eFlsfZFSk2PB+3Y=",
+      "email": "",
+      "date_joined": "2016-01-02 09:00:00"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "auth.user",
+    "fields": {
+      "username": "agenciero",
+      "first_name": "Angelo",
+      "last_name": "Pavoni",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "last_login": "2016-01-02 09:00:00",
+      "groups": [2],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$20000$h77OxwaLJQnr$aNbfqxQDsw5aTpbQXtRyPsGLlDXNekMCHNGhEw8Ggjw=",
+      "email": "agenciero@liricus.com.ar",
+      "date_joined": "2016-01-02 09:00:00"
+    }
+  },
+  {
+    "fields": {
+      "province": 5,
+      "neighborhood": "Centro",
+      "name": "Agencia24",
+      "timestamp": "2016-02-02T14:13:06.626Z",
+      "is_active": true,
+      "number": "01-0123-000",
+      "user": 2,
+      "address": "Independencia 124 Local 3"
+    },
+    "model": "bet.agency",
+    "pk": 1},
+  {
+    "pk": 1,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 1,
+      "type": 0,
+      "draw_time": "11:30-03:00",
+      "draw_limit": "11:00-03:00"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 1,
+      "type": 1,
+      "draw_time": "14:00-03:00",
+      "draw_limit": "13:30-03:00"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 1,
+      "type": 2,
+      "draw_time": "17:30-03:00",
+      "draw_limit": "17:00-03:00"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 1,
+      "type": 3,
+      "draw_time": "21:00-03:00",
+      "draw_limit": "20:30-03:00"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 2,
+      "type": 0,
+      "draw_time": "11:30-03:00",
+      "draw_limit": "11:00-03:00"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 2,
+      "type": 1,
+      "draw_time": "14:00-03:00",
+      "draw_limit": "13:30-03:00"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 2,
+      "type": 2,
+      "draw_time": "17:30-03:00",
+      "draw_limit": "17:00-03:00"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 2,
+      "type": 3,
+      "draw_time": "21:00-03:00",
+      "draw_limit": "20:30-03:00"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 3,
+      "type": 0,
+      "draw_time": "11:30-03:00",
+      "draw_limit": "11:00-03:00"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 3,
+      "type": 1,
+      "draw_time": "14:00-03:00",
+      "draw_limit": "13:30-03:00"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 3,
+      "type": 2,
+      "draw_time": "17:30-03:00",
+      "draw_limit": "17:00-03:00"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 3,
+      "type": 3,
+      "draw_time": "21:00-03:00",
+      "draw_limit": "20:30-03:00"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "bet.lotterytime",
+    "fields": {
+      "quiniela": 4,
+      "type": 3,
+      "draw_time": "21:00-03:00",
+      "draw_limit": "20:30-03:00"
+    }
+  },
+{
+  "pk": 1,
+  "model": "bet.game",
+  "fields": {
+    "code": "quiniela",
+    "type": 1,
+    "name": "Quiniela",
+    "order": 1
+  }
+},
+{
+  "pk": 3,
+  "model": "bet.game",
+  "fields": {
+    "code": "quini6",
+    "type": 1,
+    "name": "Quini 6",
+    "order": 3
+  }
+},
+{
+  "pk": 4,
+  "model": "bet.game",
+  "fields": {
+    "code": "loto",
+    "type": 1,
+    "name": "Loto",
+    "order": 4
+  }
+},
+{
+  "pk": 7,
+  "model": "bet.game",
+  "fields": {
+    "code": "loto5",
+    "type": 1,
+    "name": "Loto 5",
+    "order": 7
+  }
+},
+{
+  "pk": 8,
+  "model": "bet.game",
+  "fields": {
+    "code": "brinco",
+    "type": 1,
+    "name": "Brinco",
+    "order": 8
+  }
+},
+{
+  "pk": 6,
+  "model": "bet.game",
+  "fields": {
+    "code": "loteria",
+    "type": 0,
+    "name": "Lotería",
+    "order": 6
+  }
+},
+{
+  "pk": 5,
+  "model": "bet.game",
+  "fields": {
+    "code": "telekino",
+    "type": 0,
+    "name": "TeleKino",
+    "order": 5
+  }
+},
+{
+  "pk": 2,
+  "model": "bet.game",
+  "fields": {
+    "code": "telebingocordobes",
+    "type": 0,
+    "name": "TeleBingo",
+    "order": 2
+  }
+},
+{
+  "pk": 9,
+  "model": "bet.game",
+  "fields": {
+    "code": "totobingo",
+    "type": 0,
+    "name": "TotoBingo",
+    "order": 9
+  }
+},
+{
+  "pk": 10,
+  "model": "bet.game",
+  "fields": {
+    "code": "telebingocorrentino",
+    "type": 0,
+    "name": "TeleBingo Correntino",
+    "order": 10
+  }
+},
+{
+  "pk": 11,
+  "model": "bet.game",
+  "fields": {
+    "code": "telebingoneuquino",
+    "type": 0,
+    "name": "TeleBingo Río Negro y Neuquén",
+    "order": 11
+  }
+},
+{
+  "fields": {
+    "username": "mluque@liricus.com.ar",
+    "first_name": "Manuel",
+    "last_name": "Luque",
+    "is_active": true,
+    "is_superuser": false,
+    "is_staff": false,
+    "last_login": "2015-10-25T21:03:14.597Z",
+    "groups": [
+      3
+    ],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$20000$6dd39$6ntt2gJ5++lhVnr2xPNFRKkyeK1RXN+ly3Gl2fdUkMI=",
+    "email": "mluque@liricus.com.ar",
+    "date_joined": "2015-10-23T20:50:21.339Z"
+  },
+  "model": "auth.user",
+  "pk": 3
+},
+{
+  "model": "registration.registrationprofile",
+  "pk": 1,
+  "fields": {
+    "activation_key": "ALREADY_ACTIVATED",
+    "user": 3
+  }
+}
+]

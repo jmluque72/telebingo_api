@@ -1,0 +1,96 @@
+{% extends "results/results_base.html" %}
+
+{% block action_form %}{% url 'bet:quini6_results' draw.pk %}{% endblock %}
+
+{% block results %}
+    <!-- Dialog -->
+    <div class="modal fade" id="modal-winners" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <!-- EndDialog -->
+    {% with form=traForm extractForm=extractFormTra title='Tradicional' subtitle='Primer sorteo' %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+    {% with form=tra2Form extractForm=extractFormTra2  title='Tradicional' subtitle='La segunda del Quini' %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+
+    {% with form=revForm extractForm=extractFormRev title='Revancha' %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+
+    {% with form=sieForm extractForm=extractFormSie title='Siempre Sale' %}
+        {% include 'results/results_set.html' %}
+    {% endwith %}
+    
+    <br/>
+    <div class="row clearfix divisor-tabla">
+        <div class="row clearfix">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="titulo-separador">Premio Extra</label><br />
+                 </div>
+            </div>
+        </div>
+
+        {% with extractForm=extractFormExt %}
+            {% include 'results/rowextract.html' %}
+        {% endwith %}
+
+        {% comment %}
+        <div class="row clearfix">
+            <div class="col-md-2">
+                <label>{{ extractFormExt.winners.label_tag }}</label>
+            </div>
+
+            <div class="col-md-2">
+                <label>{{ extractFormExt.prize.label_tag }}</label>
+            </div>
+        </div>
+
+        {% for hidden in extractFormExt.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        <div class="row clearfix">
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    {{ extractFormExt.winners }}
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    {{ extractFormExt.prize }}
+                </div>
+            </div>
+
+            {% if extractFormExt.winners.errors or extractFormExt.prize.errors %}
+            <div class="col-md-3">
+                <ul class="errorlist"><li>Complete el premio extra.</li></ul>
+            </div>
+            {% endif %}
+
+        </div>
+        {{ extractFormExt.non_field_errors }}
+        {% endcomment %}
+
+    </div>
+
+{% endblock %}
+
+{% block extracto %}
+{
+    "tra": [[0, 250000000],
+            [30, 350000],
+            [1500, 100000]],
+    "tra2": [[0, 20000000],
+            [25, 350000],
+            [2000, 100000]],
+    "rev": [[0, 6000000]],
+    "sie": [[10, 200000]]
+}
+{% endblock %}
